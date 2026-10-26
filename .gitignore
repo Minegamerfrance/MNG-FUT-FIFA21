@@ -1,4 +1,4 @@
-runtime/
+/server/runtime/
 backups/
 __pycache__/
 *.pyc
