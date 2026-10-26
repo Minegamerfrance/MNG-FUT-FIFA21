@@ -2,6 +2,9 @@
 import fut_inventory
 
 REWARDS={
+ 104000199:dict(resourceId=104000199,assetId=98000199,carddbid=104000199,cardassetid=39,
+     itemType='custom',cardsubtypeid=11,family='badges',table='fcc_badgecards',
+     teamid=98000199,leagueId=0,category=1,name='Écusson',imageName='l98000199.dds'),
  6500014:dict(resourceId=6500014,assetId=6500014,carddbid=6500014,
      itemType='vanity',cardsubtypeid=500,vanityType=500,vanitySubTypeId=500,
      family='vanity_tifo',tifoId=6500014,category=1,name='Tifo',
