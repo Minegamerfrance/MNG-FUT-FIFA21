@@ -1,6 +1,7 @@
 """Stable season identity, native claim routes and atomic level receipts."""
 import json,re
 import season_cosmetics
+import season_picks
 
 def normalize(path):
  # FIFA 21 chooses learning/campaign/world from the native group type.
@@ -33,9 +34,12 @@ def claim_level(s,lvl):
   kind=award.get('awardType');items=[]
   pack_id=int(award.get('value',0)) if kind=='pack' else None
   # Preserve existing level rewards while committing their marker with them.
-  if kind=='item':resources=[int(award['value'])]
+  is_pick=lvl in season_picks.SPECS
+  if kind=='item' and not is_pick:resources=[int(award['value'])]
   else:resources=[]
   next_id=max(int(s.STATE.get('next_item_id',900000000000)),int(s.STATE.conn.execute('SELECT COALESCE(MAX(id),0) FROM items').fetchone()[0]))
+  if is_pick:
+   next_id+=1;items.append(season_picks.token(s,lvl,next_id))
   for rid in resources:
    next_id+=1
    items.append(season_cosmetics.item(s,rid,next_id) if rid in season_cosmetics.REWARDS else s.STATE.build_player_item(rid,next_id,'unassigned'))
@@ -45,10 +49,14 @@ def claim_level(s,lvl):
       (pack_id,json.dumps({'source':'season_level','levelId':lvl,'created':s.now_s(),'untradeable':True})))
    for item in items:
     s.STATE.conn.execute('INSERT INTO items(id,resource_id,pile,data) VALUES(?,?,?,?)',(item['id'],item['resourceId'],'unassigned',json.dumps(item)))
+   if is_pick:
+    token=items[0]
+    _put(s,'player_pick:'+str(token['id']),dict(minRating=token['minRating'],choiceCount=token['choiceCount'],choices=[]))
    if items:_put(s,'next_item_id',next_id)
    if kind=='coin':_put(s,'credits',s.STATE.credits()+int(award.get('value',0)))
    claimed.add(lvl);_put(s,'scmp_claimed_levels',sorted(claimed))
   s.PENDING_USERSESSION_REFRESH.set()
   native=[s._native_pack_item(i) for i in items]
+  if is_pick:award=dict(award,itemData=native[0])
   return {'awards':[award],'awardsList':[award],'grantedItems':native,'itemList':native,'alreadyClaimed':False,
           'scmpChosenRewardDtos':chosen_levels(s),'dynamicObjectivesUpdates':{'needsGroupsRefresh':True}}

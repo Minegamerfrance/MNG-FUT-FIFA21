@@ -47,6 +47,7 @@ import cr7_flashback_sbc
 import featured_art
 import recurring_objectives
 import season_cosmetics
+import season_picks
 import season_persistence
 
 try:
@@ -1374,6 +1375,7 @@ class State:
             # only for picks.
             and aqua_pro_resource_id(int(resource_id)) is None
             and player_meta(int(resource_id)).get("packEligible", True)
+            and (not token.get('allowedRarities') or int(player_meta(int(resource_id)).get('rareflag',0)) in token['allowedRarities'])
         ]
         if len(candidates) < choice_count:
             raise RuntimeError(f"only {len(candidates)} players satisfy the {min_rating}+ pick")
@@ -5268,6 +5270,8 @@ def _pack_award(pack_id: int, count: int = 1) -> dict[str, Any]:
 
 
 def _scmp_award(kind: str, value: int, count: int = 1) -> dict[str, Any]:
+    if kind == 'player_pick':
+        return season_picks.award(sys.modules[__name__],value)
     if kind == 'cosmetic':
         return season_cosmetics.award(sys.modules[__name__],value)
     if kind == 'player':
@@ -5286,7 +5290,14 @@ def _scmp_season_levels() -> list[dict[str, Any]]:
     levels: list[dict[str, Any]] = []
     for lvl in range(1, _SCMP_SEASON_LEVELS + 1):
         kind, val = _SCMP_LEVEL_REWARD_POOL[(lvl - 1) % len(_SCMP_LEVEL_REWARD_POOL)]
-        if lvl == 6:
+        credit_levels=(1,4,9,11,14,19,21,24,29)
+        if lvl in credit_levels:
+            kind, val = 'coin', 25000 if lvl == 29 else 2500 * (credit_levels.index(lvl)+1)
+        elif lvl in (2,8,12,18,22):
+            kind, val = 'pack', {2:300,8:301,12:303,18:403,22:404}[lvl]
+        elif lvl in season_picks.SPECS:
+            kind, val = 'player_pick', lvl
+        elif lvl == 6:
             kind, val = 'cosmetic', 6500014
         elif lvl == 16:
             kind, val = 'cosmetic', 8120213
