@@ -1,5 +1,6 @@
 """Stable season identity, native claim routes and atomic level receipts."""
 import json,re
+import season_cosmetics
 
 def normalize(path):
  # FIFA 21 chooses learning/campaign/world from the native group type.
@@ -36,7 +37,8 @@ def claim_level(s,lvl):
   else:resources=[]
   next_id=max(int(s.STATE.get('next_item_id',900000000000)),int(s.STATE.conn.execute('SELECT COALESCE(MAX(id),0) FROM items').fetchone()[0]))
   for rid in resources:
-   next_id+=1;items.append(s.STATE.build_player_item(rid,next_id,'unassigned'))
+   next_id+=1
+   items.append(season_cosmetics.item(s,rid,next_id) if rid in season_cosmetics.REWARDS else s.STATE.build_player_item(rid,next_id,'unassigned'))
   with s.STATE.conn:
    if pack_id is not None:
     s.STATE.conn.execute('INSERT INTO unopened_packs(pack_id,data) VALUES(?,?)',

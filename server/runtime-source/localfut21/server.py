@@ -46,6 +46,7 @@ import sbc_reward_presentation
 import cr7_flashback_sbc
 import featured_art
 import recurring_objectives
+import season_cosmetics
 import season_persistence
 
 try:
@@ -5267,6 +5268,8 @@ def _pack_award(pack_id: int, count: int = 1) -> dict[str, Any]:
 
 
 def _scmp_award(kind: str, value: int, count: int = 1) -> dict[str, Any]:
+    if kind == 'cosmetic':
+        return season_cosmetics.award(sys.modules[__name__],value)
     if kind == 'player':
         meta=player_meta(value)
         return _sbc_award_json({'type':'PLAYER','attributes':{'resourceId':value,'name':meta.get('name',''),'rating':meta.get('rating',0),'position':meta.get('preferredPosition','')}})
@@ -5283,7 +5286,11 @@ def _scmp_season_levels() -> list[dict[str, Any]]:
     levels: list[dict[str, Any]] = []
     for lvl in range(1, _SCMP_SEASON_LEVELS + 1):
         kind, val = _SCMP_LEVEL_REWARD_POOL[(lvl - 1) % len(_SCMP_LEVEL_REWARD_POOL)]
-        if lvl == 30:
+        if lvl == 6:
+            kind, val = 'cosmetic', 6500014
+        elif lvl == 16:
+            kind, val = 'cosmetic', 8120213
+        elif lvl == 30:
             kind, val = 'player', 67301182
         elif lvl == 15:
             kind, val = 'player', 67349948
