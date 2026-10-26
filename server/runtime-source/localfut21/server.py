@@ -5319,7 +5319,7 @@ def _scmp_season_levels() -> list[dict[str, Any]]:
             kind, val = 'pack', 523
         levels.append({
             "levelId": lvl,
-            "chosenOption": 0 if lvl in set(STATE.get("scmp_claimed_levels",[]) or []) else -1,
+            "chosenOption": int((STATE.get("scmp_chosen_options",{}) or {}).get(str(lvl),0)) if lvl in set(STATE.get("scmp_claimed_levels",[]) or []) else -1,
             "state": 2 if lvl in set(STATE.get("scmp_claimed_levels",[]) or []) else (1 if int(STATE.get("scmp_user_xp",0) or 0) >= lvl * _SCMP_XP_PER_LEVEL else 0),
             "level": lvl,
             "xpThreshold": lvl * _SCMP_XP_PER_LEVEL,
@@ -5333,6 +5333,7 @@ def _scmp_season_levels() -> list[dict[str, Any]]:
                 "awards": [_scmp_award(kind, val)],
             }],
         })
+    levels[4]['rewardOptionList'].append(dict(optionId=1,defaultOption=False,hiddenReward=False,awards=[_scmp_award('player',67266165)]))
     return levels
 
 
@@ -5354,8 +5355,8 @@ def _scmp_grant_level_award(award: dict[str, Any]) -> list[dict[str, Any]]:
     return granted
 
 
-def _claim_scmp_level(lvl: int) -> dict[str, Any]:
-    return season_persistence.claim_level(sys.modules[__name__], lvl)
+def _claim_scmp_level(lvl: int, option_id: int = 0) -> dict[str, Any]:
+    return season_persistence.claim_level(sys.modules[__name__], lvl, option_id)
 
 
 def _scmp_objective(claimed: bool = False) -> dict[str, Any]:
@@ -7645,7 +7646,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         low)
     if _scmp_level and method in ("POST", "PUT"):
         lvl = int(_scmp_level.group(1))
-        return _seasonal_reply('scmp_level_claim',_claim_scmp_level(lvl))
+        return _seasonal_reply('scmp_level_claim',_claim_scmp_level(lvl,int(_scmp_level.group(2))))
 
     # Objectives: claim the group / campaign-wide reward (the "82 x10"), once.
     _scmp_claim = re.fullmatch(

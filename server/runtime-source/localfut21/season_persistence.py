@@ -21,16 +21,18 @@ def window(s):
 def chosen_levels(s):
  # CardsDLL 0x331410 consumes scmpChosenRewardDtos, using the level parser
  # at 0x333640 (levelId + integer chosenOption). Preserve the single option 0.
- return [dict(levelId=int(lvl),chosenOption=0,state=2) for lvl in sorted(set(s.STATE.get('scmp_claimed_levels',[]) or []))]
+ return [dict(levelId=int(lvl),chosenOption=int((s.STATE.get("scmp_chosen_options",{}) or {}).get(str(lvl),0)),state=2) for lvl in sorted(set(s.STATE.get('scmp_claimed_levels',[]) or []))]
 
-def claim_level(s,lvl):
+def claim_level(s,lvl,option_id=0):
  with s.STATE.lock:
   xp=int(s.STATE.get('scmp_user_xp',0) or 0)
   claimed=set(s.STATE.get('scmp_claimed_levels',[]) or [])
   level=next((r for r in s._scmp_season_levels() if r['levelId']==lvl),None)
   if level is None or lvl in claimed or xp<level['xpThreshold']:
    return {'awards':[],'awardsList':[],'alreadyClaimed':lvl in claimed,'scmpChosenRewardDtos':chosen_levels(s)}
-  award=level['rewardOptionList'][0]['awards'][0]
+  option=next((row for row in level['rewardOptionList'] if row['optionId']==option_id),None)
+  if option is None:return {'awards':[],'awardsList':[],'invalidOption':True,'scmpChosenRewardDtos':chosen_levels(s)}
+  award=option['awards'][0]
   kind=award.get('awardType');items=[]
   pack_id=int(award.get('value',0)) if kind=='pack' else None
   # Preserve existing level rewards while committing their marker with them.
@@ -54,6 +56,8 @@ def claim_level(s,lvl):
     _put(s,'player_pick:'+str(token['id']),dict(minRating=token['minRating'],choiceCount=token['choiceCount'],choices=[]))
    if items:_put(s,'next_item_id',next_id)
    if kind=='coin':_put(s,'credits',s.STATE.credits()+int(award.get('value',0)))
+   chosen=dict(s.STATE.get('scmp_chosen_options',{}) or {});chosen[str(lvl)]=option_id
+   _put(s,'scmp_chosen_options',chosen)
    claimed.add(lvl);_put(s,'scmp_claimed_levels',sorted(claimed))
   s.PENDING_USERSESSION_REFRESH.set()
   native=[s._native_pack_item(i) for i in items]

@@ -1,5 +1,5 @@
 {
-  "version": "mng-player-studio-c5253cfa209e-event-rulebreakers-team1-v1-new-totw1-19-v1-retire-meslier-v1-opara-otw-paused-v1",
+  "version": "mng-player-studio-c5253cfa209e-event-rulebreakers-team1-v1-new-totw1-19-v1-retire-meslier-v1-opara-otw-paused-v1-babel-season-choice-v1",
   "enabled": true,
   "allowedRarities": [
     0,
@@ -17202,6 +17202,7 @@
     67110043,
     67150100,
     67262108,
+    67266165,
     67273104,
     67278280,
     67282595,
