@@ -1,0 +1,13 @@
+runtime/
+backups/
+__pycache__/
+*.pyc
+*.sqlite3*
+*.log
+*.pid
+*.key
+*.pem
+*.pfx
+.local/
+server/runtime-source/local-*-modulus.bin
+server/runtime-source/certs/
