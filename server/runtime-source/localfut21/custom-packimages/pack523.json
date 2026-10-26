@@ -1,0 +1,18 @@
+{
+  "packId": 523,
+  "artId": 51,
+  "source": "C:\\Users\\Mineg\\Downloads\\background_51 (2).png",
+  "sourceSha256": "dc48fbd73bc2cdacf33ea11cef3a83a477e9a2cc01b78e9e3458a4fac6f97901",
+  "cachePath": "C:\\Users\\Mineg\\Documents\\FIFA 21\\filesystemcache\\atlFUTPackImages\\background_51.dds",
+  "size": [
+    252,
+    358
+  ],
+  "format": "BGRA8 uncompressed",
+  "nativeDisplayConfirmed": false,
+  "fit": "contain",
+  "presentation": "per-pack override",
+  "nativeHeaderSource": "E:\\FIFA\\Fifa 21\\fichier frosty\\ui\\external\\ion_fut\\imgAssets\\pack\\background\\background_4.dds",
+  "nativeHeaderSha256": "ecccbaaedd666c900cda566b6f5ded483492a88e9f8c85adc1b8c68e49276283",
+  "ddsBytes": 360992
+}

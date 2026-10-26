@@ -1,0 +1,381 @@
+{
+  "version": 1,
+  "baseUrl": "https://raw.githubusercontent.com/Minegamerfrance/MNG-FUT-FIFA21/d225671692092bfca9745301d76c1d2c3b23b476",
+  "files": {
+    "custom-backgrounds/cards_bg_c_1_85_0.dds": {
+      "sha256": "597704d576f222b5f50b97fafb4a6e3893809af3ad1f2ec1a553f26b2b71c0dd",
+      "size": 62448,
+      "path": "images/runtime/custom-backgrounds/cards_bg_c_1_85_0.dds"
+    },
+    "custom-backgrounds/cards_bg_c_1_98_0.dds": {
+      "sha256": "e180887d33d420218dd64bba2212549f6088515a2ab61b7af5da3410d9f1b6c4",
+      "size": 62448,
+      "path": "images/runtime/custom-backgrounds/cards_bg_c_1_98_0.dds"
+    },
+    "custom-backgrounds/cards_bg_e_1_85_0.dds": {
+      "sha256": "a4bf3d24c062ccd96d83affa96b93b8f08bbae50678a82e56988f59064a348a2",
+      "size": 115328,
+      "path": "images/runtime/custom-backgrounds/cards_bg_e_1_85_0.dds"
+    },
+    "custom-backgrounds/cards_bg_e_1_98_0.dds": {
+      "sha256": "3952dc22154713d641ef575c5de8ed144e0edd7cca8d7c3610d7a47dad40e7af",
+      "size": 115328,
+      "path": "images/runtime/custom-backgrounds/cards_bg_e_1_98_0.dds"
+    },
+    "custom-backgrounds/cards_bg_j_1_85_0.dds": {
+      "sha256": "f7e1001e0c4d610c6d6cdb12420ee622b961b29d234939ff7a3fd610daf06264",
+      "size": 371648,
+      "path": "images/runtime/custom-backgrounds/cards_bg_j_1_85_0.dds"
+    },
+    "custom-backgrounds/cards_bg_j_1_98_0.dds": {
+      "sha256": "6ec31c896edb0cfe7056f83a3b7755fcf29ded1037934953f05d79a39377a4ce",
+      "size": 371648,
+      "path": "images/runtime/custom-backgrounds/cards_bg_j_1_98_0.dds"
+    },
+    "custom-backgrounds/cards_bg_s_1_85_0.dds": {
+      "sha256": "b8e838ee3279a1499db78e1fd1eaf2a2a612e680bad761b0a695391e3562aef2",
+      "size": 34528,
+      "path": "images/runtime/custom-backgrounds/cards_bg_s_1_85_0.dds"
+    },
+    "custom-backgrounds/cards_bg_s_1_98_0.dds": {
+      "sha256": "e32b36f03ac1d19999ae9a81d33458db647933792061bd1c5041743581a4688a",
+      "size": 34528,
+      "path": "images/runtime/custom-backgrounds/cards_bg_s_1_98_0.dds"
+    },
+    "custom-featuredbanners/mng_rulebreakers1_v1.dds": {
+      "sha256": "28b5cef8b16cb1c195215f4c524f49461da9d7df94e57dfc28481245312b2486",
+      "size": 2359424,
+      "path": "images/runtime/custom-featuredbanners/mng_rulebreakers1_v1.dds"
+    },
+    "custom-featuredbanners/mng_totw1_v1.dds": {
+      "sha256": "dd1604aa74c6c48e7b40102f270fb05451608cd6b8ba7f5797e9193b2d5e1b00",
+      "size": 2359424,
+      "path": "images/runtime/custom-featuredbanners/mng_totw1_v1.dds"
+    },
+    "custom-packimages/background_51.dds": {
+      "sha256": "c3f3e28257e4a8260b42f4bcfd94bc576786e63e2ed44f76e8071bf8659944d3",
+      "size": 360992,
+      "path": "images/runtime/custom-packimages/background_51.dds"
+    },
+    "custom-packimages/background_52.dds": {
+      "sha256": "b92bef1ffb18e948d3ea4f59ff240d560224096ed08e10bece075b74ef99de43",
+      "size": 115336,
+      "path": "images/runtime/custom-packimages/background_52.dds"
+    },
+    "custom-playerheads/p146562.dds": {
+      "sha256": "e162ce3bf2872c6acb98d72650e9a2b7f014f72010813e97f5322f63c74cf632",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p146562.dds"
+    },
+    "custom-playerheads/p158023.dds": {
+      "sha256": "073cc0a5f24342327369b2698a2c0d2af81ca9291649085ea5cc658807cf9939",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p158023.dds"
+    },
+    "custom-playerheads/p16798017.dds": {
+      "sha256": "17b02a80a294c23edb3b54649df609fc42ce51428cf6cca8ee126314f1949961",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16798017.dds"
+    },
+    "custom-playerheads/p169416.dds": {
+      "sha256": "c33ad9eee534155e6d89668229eee42ca70d6d9158b9e77efe5f8abda3906a15",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p169416.dds"
+    },
+    "custom-playerheads/p16974299.dds": {
+      "sha256": "87217825ab4243f09b07bbd49303e90770553650a8451732b0632d1c872e85d5",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16974299.dds"
+    },
+    "custom-playerheads/p16976162.dds": {
+      "sha256": "017f139e444d5c6b25efe50cc047f6144b786475ec768e3bce1b7bb1e4fb3201",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16976162.dds"
+    },
+    "custom-playerheads/p16978615.dds": {
+      "sha256": "d9984f75e6a9d90d0635766c2c266fd9fffcc0ef27b0fe2432958a234baada06",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16978615.dds"
+    },
+    "custom-playerheads/p16978735.dds": {
+      "sha256": "e362719ea037b1772b35ab7784988ea58386cac03f0d84856172b599de8732eb",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16978735.dds"
+    },
+    "custom-playerheads/p16982647.dds": {
+      "sha256": "9eb993234dc965f3a18613212598b716ce469bd993f35a84ccc45878c2274df8",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16982647.dds"
+    },
+    "custom-playerheads/p16993483.dds": {
+      "sha256": "7cb3fdba7e23a9519176a4b8a2011420ca347cb496482f2afb99462c6f71316a",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16993483.dds"
+    },
+    "custom-playerheads/p16993570.dds": {
+      "sha256": "1f486b9e59bfb58767d5b6385819799a78094aaae4c6b29c4d1f61582ca8479f",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p16993570.dds"
+    },
+    "custom-playerheads/p17001587.dds": {
+      "sha256": "b4844b10ce2f8167607d922ffb981175a76c59c441c49a7462352e7a384f4615",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p17001587.dds"
+    },
+    "custom-playerheads/p17009360.dds": {
+      "sha256": "12dae49085b5f9b756fcb05177dae4880bd00f3b3aece62c48a636236cd39000",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p17009360.dds"
+    },
+    "custom-playerheads/p17019872.dds": {
+      "sha256": "00a390bf90aa48e9f06a2b31816ecdc771555d11c85e8d91ba55ea6a1299c6e4",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p17019872.dds"
+    },
+    "custom-playerheads/p17030220.dds": {
+      "sha256": "64863490b1c644e85d929d9887a224202d9e58d7d5452cda2d39d87675669a13",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p17030220.dds"
+    },
+    "custom-playerheads/p194404.dds": {
+      "sha256": "6809d1c6528627c3ec58e3a27bce9fea3ee963a0f7bc6a981e3e0b9f6bf71cb8",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p194404.dds"
+    },
+    "custom-playerheads/p50522519.dds": {
+      "sha256": "00d20eff23c7cbdbf9e36d213bf58f0d85ba533edf96aabfa983d3f4e01cb720",
+      "size": 32528,
+      "path": "images/runtime/custom-playerheads/p50522519.dds"
+    },
+    "custom-playerheads/p50527512.dds": {
+      "sha256": "82a38d5b6fc5394c8520bb308dc01c5e6a20d149006f4ded65f23c116867ad66",
+      "size": 32528,
+      "path": "images/runtime/custom-playerheads/p50527512.dds"
+    },
+    "custom-playerheads/p67110043.dds": {
+      "sha256": "324cbe91ea88618c7bec940aefb665a0ecf11f20da5ed2aa85f4f04e2aec0a7e",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67110043.dds"
+    },
+    "custom-playerheads/p67150100.dds": {
+      "sha256": "0d3c2ef5d4ceba1b4f30c82759175bc8ffddcb40b8f591be7c9eedf15595357f",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67150100.dds"
+    },
+    "custom-playerheads/p67262108.dds": {
+      "sha256": "e511dd38e88b846fc79cb9cdc73e5e8e0be845973a67fb3d8e902aa96ab9410d",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67262108.dds"
+    },
+    "custom-playerheads/p67278280.dds": {
+      "sha256": "c33ad9eee534155e6d89668229eee42ca70d6d9158b9e77efe5f8abda3906a15",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67278280.dds"
+    },
+    "custom-playerheads/p67292771.dds": {
+      "sha256": "6677850127d5a5e45d390c8f58a224de27fab024094ca7482569d35de6437adf",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67292771.dds"
+    },
+    "custom-playerheads/p67293296.dds": {
+      "sha256": "1332adb051a900649f527e1a25d889fdc8e165817fe1c90391add662fb1c94ca",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67293296.dds"
+    },
+    "custom-playerheads/p67296825.dds": {
+      "sha256": "0bf2cef003e0f305ae5938437cd264bbf8e0bb18610e15f3f19b98b3279ba608",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67296825.dds"
+    },
+    "custom-playerheads/p67299347.dds": {
+      "sha256": "c430b3113128bdcfeee1cb01ebe9c532e60d136c27adba8a83faae25703e4c8a",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67299347.dds"
+    },
+    "custom-playerheads/p67301182.dds": {
+      "sha256": "6e36e9e8ea3f86db1e4e6ea329a240f6f4c92e15457b6e336f138a3b8e41ab00",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67301182.dds"
+    },
+    "custom-playerheads/p67301638.dds": {
+      "sha256": "6092b3e34f0db93b8d0cceaf488a97183c60dc2e78bbb8ed789a2872f5e2a162",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67301638.dds"
+    },
+    "custom-playerheads/p67303268.dds": {
+      "sha256": "6809d1c6528627c3ec58e3a27bce9fea3ee963a0f7bc6a981e3e0b9f6bf71cb8",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67303268.dds"
+    },
+    "custom-playerheads/p67309752.dds": {
+      "sha256": "bcf0065346ec4d05d42c66a525c388b1ceab788e5ffe3aeccd395856055033e3",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67309752.dds"
+    },
+    "custom-playerheads/p67314266.dds": {
+      "sha256": "67b3d0e77e8c660f08473c7f11b26f4cd6fedd715da6b88f5acc3b740ceefd73",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67314266.dds"
+    },
+    "custom-playerheads/p67314542.dds": {
+      "sha256": "fc38e6f57200de005f678d35573a1c26b99a47de3410afba08ceba2531d91396",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67314542.dds"
+    },
+    "custom-playerheads/p67320164.dds": {
+      "sha256": "f477148f99d419d1a0f5e31af692b9bfa1af43acb125f673c79f44c39348e948",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67320164.dds"
+    },
+    "custom-playerheads/p67321486.dds": {
+      "sha256": "6f52c1e8c840e13fec654661664bfd8d6749173997a33f6b9be7e2096d475f13",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67321486.dds"
+    },
+    "custom-playerheads/p67325507.dds": {
+      "sha256": "d6a83612bfff205d0b10824e2fd35da3bdf537b6cc2c0ca450dacde1b6e42fd6",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67325507.dds"
+    },
+    "custom-playerheads/p67334974.dds": {
+      "sha256": "10e3383b95f618cfc76de0fe0dd8f2c9793dfd9a6cb4e1887992fea6dd8fa142",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67334974.dds"
+    },
+    "custom-playerheads/p67338101.dds": {
+      "sha256": "85611a47b04df28120d37482c5e6e046461246dffa96428a5552f90093a1e336",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67338101.dds"
+    },
+    "custom-playerheads/p67339006.dds": {
+      "sha256": "932a502c2304e37aa58eae14445b1e341264e79bf74cc8d61889b47f2731cde3",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67339006.dds"
+    },
+    "custom-playerheads/p67344809.dds": {
+      "sha256": "e848db244c9f73d8780d3a5aef3f7fcd7374719d4a56accc80e30faac89c16e8",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67344809.dds"
+    },
+    "custom-playerheads/p67349948.dds": {
+      "sha256": "d8b09eb94f32e95c331251d5860d14db2228dfe41bac2893d786ef81cab5f32e",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67349948.dds"
+    },
+    "custom-playerheads/p83886121.dds": {
+      "sha256": "a8e30fd7f276fa6a859efb2317b91d2804deaa1e1da7fe986d2b58f6a9a2ac1a",
+      "size": 32528,
+      "path": "images/runtime/custom-playerheads/p83886121.dds"
+    },
+    "custom-playerheads/p83906881.dds": {
+      "sha256": "4d7c97e8338c048d63f0ca5ab3091a7e62e79f6de82d47f6c0a86a56457811c3",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p83906881.dds"
+    },
+    "custom-playerheads/p84075655.dds": {
+      "sha256": "6b530d135367924adfa1f59ff8637a64f8eaa27f78c9909d068676193d05689c",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p84075655.dds"
+    },
+    "custom-playerheads/p84088451.dds": {
+      "sha256": "56dcf2bd8d12857c7e4ecde87a7a11233b3250e405da185d979e479691c3a092",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p84088451.dds"
+    },
+    "custom-playerheads/p84095368.dds": {
+      "sha256": "b785b7c72ed96580036951512de9894eb9a0e8787140878b0a3c4da127a4ac40",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p84095368.dds"
+    },
+    "custom-playerheads/p84098542.dds": {
+      "sha256": "97a97bf36715fccc918868f0ec09d319043db2697c4ebfe01eff48e1e4f9aa19",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p84098542.dds"
+    },
+    "custom-playerheads/p84102432.dds": {
+      "sha256": "cfa5ab2789695ed36850514b94d552304a738627520d7ff7ab69c8e584751153",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p84102432.dds"
+    },
+    "assets/livemessaging/rulebreakers-panel-v2.png": {
+      "sha256": "b685f00611ac647c899d529a46822cdb45cc13d3f26891fc0a664ef60402a6ce",
+      "size": 1805841,
+      "path": "images/runtime/assets/livemessaging/rulebreakers-panel-v2.png"
+    },
+    "assets/livemessaging/rulebreakers-panel-v3.png": {
+      "sha256": "81fbc308ebcbd94124599d435e9698d7fbc2133a0bcc991ea05a30f960c55f74",
+      "size": 1798019,
+      "path": "images/runtime/assets/livemessaging/rulebreakers-panel-v3.png"
+    },
+    "assets/livemessaging/rulebreakers-team1.jpg": {
+      "sha256": "7defba7b1e047f7ee64ca6691584f5e2c9fbf658e70ff4435a2fb7a920350b7f",
+      "size": 595756,
+      "path": "images/runtime/assets/livemessaging/rulebreakers-team1.jpg"
+    },
+    "assets/livemessaging/rulebreakers-top3-v1.jpg": {
+      "sha256": "24c6ed99da8a1866b6ec5fe1ab26823b9b88f153e1b4672c5fd823bf7e6633dc",
+      "size": 343852,
+      "path": "images/runtime/assets/livemessaging/rulebreakers-top3-v1.jpg"
+    },
+    "assets/livemessaging/totw1-new.png": {
+      "sha256": "52bc1f677f9ede7307c7702f9cafd70f93a3ead069bc6dede76eaea3d6a8f47c",
+      "size": 4749995,
+      "path": "images/runtime/assets/livemessaging/totw1-new.png"
+    },
+    "assets/livemessaging/totw1-panel-v1.png": {
+      "sha256": "12af51a5047cb305eec9c85c6376a41288bfaa41179a575c9a8cf5d5ba866e8a",
+      "size": 1703438,
+      "path": "images/runtime/assets/livemessaging/totw1-panel-v1.png"
+    },
+    "assets/sbc/sbc_challenge_image_330003-mng83-v1.png": {
+      "sha256": "63c2acf8458f7830dd80569487a15e56ea2b4f4981081f5c7afd6685963aff79",
+      "size": 10843,
+      "path": "images/runtime/assets/sbc/sbc_challenge_image_330003-mng83-v1.png"
+    },
+    "assets/sbc/sbc_challenge_image_330004-1f4ce31f-188f.png": {
+      "sha256": "00e34e3596b2f3c836016a18f82a1c721800de306c9306974920f0ddc69a5ade",
+      "size": 10905,
+      "path": "images/runtime/assets/sbc/sbc_challenge_image_330004-1f4ce31f-188f.png"
+    },
+    "assets/sbc/sbc_challenge_image_330005-fb83431f-9d46.png": {
+      "sha256": "cb0102aa43d783531e092caf1825875b6ce3c7d6a8be9bdd8ddaa6c9b9913438",
+      "size": 11095,
+      "path": "images/runtime/assets/sbc/sbc_challenge_image_330005-fb83431f-9d46.png"
+    },
+    "assets/sbc/sbc_set_image_1010001.png": {
+      "sha256": "5c1d77848470690d8ec88ecc783227eaa84ca43348a68ef3f7cc18d09cd11126",
+      "size": 269397,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010001.png"
+    },
+    "assets/sbc/sbc_set_image_1010002.png": {
+      "sha256": "9ca5800db0c190c99e9c7435f4a077ed806e63a2e0b5af3c349e375df6fc674f",
+      "size": 275384,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010002.png"
+    },
+    "assets/sbc/sbc_set_image_1010003.png": {
+      "sha256": "7d8e9c3330f8099440deff2623dfc9752b0f40b3a9dd1aa9e95e4d79199cc5d8",
+      "size": 281682,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010003.png"
+    },
+    "assets/sbc/sbc_set_image_1010005.png": {
+      "sha256": "2b8bbe97b0bd152c8ffb5d158f8ee775db9b644314af082eb87e43f7b640b775",
+      "size": 245404,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010005.png"
+    },
+    "assets/sbc/sbc_set_image_1010006.png": {
+      "sha256": "cb98c749016ea2480174df9f8f7fe24dce4b76aa76088e640c05b5e333cc63db",
+      "size": 248078,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010006.png"
+    },
+    "assets/sbc/sbc_set_image_1010007.png": {
+      "sha256": "f0cbfe2511cd87bd7d37cd86ee60855adb5f10ed4af70c9c8dd8d6cd54b33b92",
+      "size": 280915,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010007.png"
+    },
+    "assets/sbc/sbc_set_image_1010009.png": {
+      "sha256": "4e9df4bd5609018ea348b689dcb04a4895657df9488c45eea1d5ba11ee28da6b",
+      "size": 256241,
+      "path": "images/runtime/assets/sbc/sbc_set_image_1010009.png"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "official-fifa21-objective-reference-1",
+  "groups": [
+    {
+      "id": "OTW_DIOGO_JOTA_2020",
+      "name": "Diogo Jota — Ones to Watch",
+      "resourceId": 84110538,
+      "releaseDate": "2020-10-09",
+      "acquisition": "objective",
+      "sbc": false,
+      "source": "https://www.fifaultimateteam.it/en/fifa-21-requirements-for-diogo-jota-otw-card-in-season-objectives/",
+      "liveProgressImplemented": false,
+      "objectives": [
+        {
+          "id": "through_talent",
+          "mode": "RIVALS",
+          "target": 4,
+          "metric": "matches_with_portuguese_through_ball_assist"
+        },
+        {
+          "id": "portuguese_pro",
+          "mode": "SQUAD_BATTLES",
+          "difficulty": "PROFESSIONAL",
+          "target": 4,
+          "metric": "matches_with_liga_nos_goal"
+        },
+        {
+          "id": "skilled_in_battle",
+          "mode": "SQUAD_BATTLES",
+          "difficulty": "PROFESSIONAL",
+          "target": 5,
+          "metric": "matches_with_assist_by_four_star_skill_player"
+        },
+        {
+          "id": "rivals_record",
+          "mode": "RIVALS",
+          "target": 10,
+          "metric": "premier_league_finesse_goals"
+        },
+        {
+          "id": "premier_league_performer",
+          "mode": "RIVALS",
+          "target": 5,
+          "metric": "matches_with_two_premier_league_goals"
+        }
+      ]
+    }
+  ]
+}

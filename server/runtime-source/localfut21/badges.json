@@ -1,0 +1,92 @@
+[
+  {
+    "resourceId": 6000210,
+    "carddbid": 6000210,
+    "assetId": 210,
+    "teamid": 210,
+    "leagueId": 17,
+    "name": "Stade Malherbe Caen",
+    "source": "https://www.futbin.com/21/club_items/badges/6000210/sm-caen"
+  },
+  {
+    "resourceId": 6000047,
+    "carddbid": 6000047,
+    "assetId": 47,
+    "teamid": 47,
+    "leagueId": 31,
+    "name": "Milan",
+    "source": "https://www.futbin.com/21/club_items/badges/6000047/milan"
+  },
+  {
+    "resourceId": 6000021,
+    "carddbid": 6000021,
+    "assetId": 21,
+    "teamid": 21,
+    "leagueId": 19,
+    "name": "FC Bayern München",
+    "source": "https://www.futbin.com/21/club_items/badges/6000021/fc-bayern"
+  },
+  {
+    "resourceId": 6000022,
+    "carddbid": 6000022,
+    "assetId": 22,
+    "teamid": 22,
+    "leagueId": 19,
+    "name": "Borussia Dortmund",
+    "source": "https://www.futbin.com/21/club_items/badges/6000022/dortmund"
+  },
+  {
+    "resourceId": 6000091,
+    "carddbid": 6000091,
+    "assetId": 91,
+    "teamid": 91,
+    "leagueId": 14,
+    "name": "Derby County",
+    "source": "https://www.futbin.com/21/club_items/badges/6000091/derby-county"
+  },
+  {
+    "resourceId": 6000241,
+    "carddbid": 6000241,
+    "assetId": 241,
+    "teamid": 241,
+    "leagueId": 53,
+    "name": "FC Barcelona",
+    "source": "https://www.futbin.com/21/club_items/badges/6000241/fc-barcelona"
+  },
+  {
+    "resourceId": 6000243,
+    "carddbid": 6000243,
+    "assetId": 243,
+    "teamid": 243,
+    "leagueId": 53,
+    "name": "Real Madrid",
+    "source": "https://www.futbin.com/21/club_items/badges/6000243/real-madrid"
+  },
+  {
+    "resourceId": 6000110,
+    "carddbid": 6000110,
+    "assetId": 110,
+    "teamid": 110,
+    "leagueId": 13,
+    "name": "Wolverhampton Wanderers",
+    "source": "https://www.futbin.com/21/club_items/badges/6000110/wolves"
+  },
+  {
+    "resourceId": 6000028,
+    "carddbid": 6000028,
+    "assetId": 28,
+    "teamid": 28,
+    "leagueId": 20,
+    "name": "Hamburger SV",
+    "source": "https://www.futbin.com/21/club_items/badges/6000028/hamburger-sv"
+  },
+  {
+    "resourceId": 6000039,
+    "carddbid": 6000039,
+    "assetId": 39,
+    "teamid": 39,
+    "leagueId": 31,
+    "name": "Atalanta",
+    "source": "https://www.futbin.com/21/club_items/badges/6000039/atalanta"
+  }
+]

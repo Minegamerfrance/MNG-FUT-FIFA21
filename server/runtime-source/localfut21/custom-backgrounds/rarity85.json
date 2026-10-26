@@ -1,0 +1,65 @@
+{
+  "colorArray": [
+    16777215,
+    1317404,
+    4573674
+  ],
+  "expColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "collColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "smallColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "shineArray": [
+    16777215
+  ],
+  "version": 1,
+  "id": 85,
+  "name": "League Player",
+  "levels": false,
+  "shell": 2,
+  "bigHead": false,
+  "untradableOnly": true,
+  "hide": false,
+  "embargoTime": 0,
+  "guid": "d479de87-00e3-43f9-a6f1-55e4ec4cb085",
+  "smallItemCRC": [
+    1114449395
+  ],
+  "collapsedItemCRC": [
+    3456999686
+  ],
+  "largeItemCRC": [
+    1362827162
+  ],
+  "jumboItemCRC": [
+    2876629418
+  ]
+}

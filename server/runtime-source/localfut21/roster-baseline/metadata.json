@@ -1,0 +1,561 @@
+[
+  {
+    "label": "fut_native_db",
+    "schema": "cd7c79866f16f32ca09c045f8120973b7d981927",
+    "tables": 48,
+    "baselineSha256": "db6c974dd4a5634d7f6118eda70d2a048e778f158e6bd1d6ac45556a49f8b212",
+    "sourceSha256": "4458d98861c3732ca4ed45816def992c2e75e385afbbd5288cc5fbcf012139ef",
+    "fields": {
+      "playerid": {
+        "short": "ykFq",
+        "minimum": 0
+      },
+      "weakfootabilitytypecode": {
+        "short": "aOBn",
+        "minimum": 1
+      },
+      "accessorycolourcode4": {
+        "short": "cAUq",
+        "minimum": 0
+      },
+      "accessorycode1": {
+        "short": "gOol",
+        "minimum": 0
+      },
+      "personality": {
+        "short": "hxxo",
+        "minimum": 1
+      },
+      "smallsidedshoetypecode": {
+        "short": "iKqs",
+        "minimum": 0
+      },
+      "modifier": {
+        "short": "isYi",
+        "minimum": -5
+      },
+      "animfreekickstartposcode": {
+        "short": "jLuE",
+        "minimum": 0
+      },
+      "gkkicking": {
+        "short": "kqda",
+        "minimum": 1
+      },
+      "jerseyfit": {
+        "short": "lTKv",
+        "minimum": 0
+      },
+      "jerseystylecode": {
+        "short": "miIB",
+        "minimum": 0
+      },
+      "dribbling": {
+        "short": "nEbM",
+        "minimum": 1
+      },
+      "shotpower": {
+        "short": "ohpV",
+        "minimum": 1
+      },
+      "balance": {
+        "short": "onkY",
+        "minimum": 1
+      },
+      "headvariation": {
+        "short": "pHkq",
+        "minimum": 0
+      },
+      "contractvaliduntil": {
+        "short": "qvmK",
+        "minimum": 0
+      },
+      "firstnameid": {
+        "short": "tHlO",
+        "minimum": 0
+      },
+      "haircolorcode": {
+        "short": "uGEA",
+        "minimum": 0
+      },
+      "marking": {
+        "short": "wxMq",
+        "minimum": 1
+      },
+      "preferredposition1": {
+        "short": "wZQU",
+        "minimum": 0
+      },
+      "hashighqualityhead": {
+        "short": "ykrW",
+        "minimum": 0
+      },
+      "penalties": {
+        "short": "AGsE",
+        "minimum": 1
+      },
+      "volleys": {
+        "short": "Dydz",
+        "minimum": 1
+      },
+      "tattooback": {
+        "short": "HEDC",
+        "minimum": 0
+      },
+      "headclasscode": {
+        "short": "HvCm",
+        "minimum": 0
+      },
+      "tattoorightleg": {
+        "short": "JRjz",
+        "minimum": 0
+      },
+      "finishingcode2": {
+        "short": "LwOe",
+        "minimum": 0
+      },
+      "iscustomized": {
+        "short": "Oirg",
+        "minimum": 0
+      },
+      "slidingtackle": {
+        "short": "PhuM",
+        "minimum": 1
+      },
+      "animpenaltieskickstylecode": {
+        "short": "SAHF",
+        "minimum": 0
+      },
+      "jumping": {
+        "short": "URGo",
+        "minimum": 1
+      },
+      "birthdate": {
+        "short": "WVIU",
+        "minimum": 0
+      },
+      "runningcode1": {
+        "short": "ZeVz",
+        "minimum": 0
+      },
+      "headingaccuracy": {
+        "short": "aReg",
+        "minimum": 1
+      },
+      "aggression": {
+        "short": "iTce",
+        "minimum": 1
+      },
+      "trait1": {
+        "short": "juxV",
+        "minimum": 0
+      },
+      "longpassing": {
+        "short": "kerE",
+        "minimum": 1
+      },
+      "potential": {
+        "short": "mpuH",
+        "minimum": 1
+      },
+      "socklengthcode": {
+        "short": "nVWW",
+        "minimum": 0
+      },
+      "weight": {
+        "short": "sNZW",
+        "minimum": 30
+      },
+      "shoetypecode": {
+        "short": "tgwT",
+        "minimum": 0
+      },
+      "bodytypecode": {
+        "short": "xWyx",
+        "minimum": 1
+      },
+      "gkpositioning": {
+        "short": "yfhq",
+        "minimum": 1
+      },
+      "skintypecode": {
+        "short": "Dlgo",
+        "minimum": 0
+      },
+      "gkglovetypecode": {
+        "short": "GReX",
+        "minimum": 0
+      },
+      "tattooleftarm": {
+        "short": "HfYD",
+        "minimum": 0
+      },
+      "lastnameid": {
+        "short": "QCfa",
+        "minimum": 0
+      },
+      "preferredposition4": {
+        "short": "YnYz",
+        "minimum": -1
+      },
+      "curve": {
+        "short": "YFaA",
+        "minimum": 1
+      },
+      "nationality": {
+        "short": "enmm",
+        "minimum": 0
+      },
+      "skintonecode": {
+        "short": "ejir",
+        "minimum": 1
+      },
+      "animpenaltiesapproachcode": {
+        "short": "fmxK",
+        "minimum": 0
+      },
+      "isretiring": {
+        "short": "kvuF",
+        "minimum": 0
+      },
+      "accessorycolourcode1": {
+        "short": "kmkN",
+        "minimum": 0
+      },
+      "facialhaircolorcode": {
+        "short": "mIlz",
+        "minimum": 0
+      },
+      "sideburnscode": {
+        "short": "mrAn",
+        "minimum": 0
+      },
+      "animpenaltiesstartposcode": {
+        "short": "naby",
+        "minimum": 0
+      },
+      "shoecolorcode2": {
+        "short": "nbJH",
+        "minimum": 0
+      },
+      "strength": {
+        "short": "nmgT",
+        "minimum": 1
+      },
+      "accessorycode4": {
+        "short": "oQQC",
+        "minimum": 0
+      },
+      "faceposerpreset": {
+        "short": "qwYd",
+        "minimum": 0
+      },
+      "playerjointeamdate": {
+        "short": "vTpl",
+        "minimum": 0
+      },
+      "shortpassing": {
+        "short": "vObb",
+        "minimum": 1
+      },
+      "interceptions": {
+        "short": "wWzG",
+        "minimum": 1
+      },
+      "finishing": {
+        "short": "xJZL",
+        "minimum": 1
+      },
+      "attackingworkrate": {
+        "short": "BqFe",
+        "minimum": 0
+      },
+      "hairtypecode": {
+        "short": "CkYD",
+        "minimum": 0
+      },
+      "gender": {
+        "short": "EveZ",
+        "minimum": 0
+      },
+      "gkhandling": {
+        "short": "GBGj",
+        "minimum": 1
+      },
+      "sprintspeed": {
+        "short": "NrcP",
+        "minimum": 1
+      },
+      "preferredposition2": {
+        "short": "NgVS",
+        "minimum": -1
+      },
+      "acceleration": {
+        "short": "SPge",
+        "minimum": 1
+      },
+      "stamina": {
+        "short": "XjDq",
+        "minimum": 1
+      },
+      "reactions": {
+        "short": "YCnI",
+        "minimum": 1
+      },
+      "eyecolorcode": {
+        "short": "Zufj",
+        "minimum": 1
+      },
+      "accessorycolourcode3": {
+        "short": "acRl",
+        "minimum": 0
+      },
+      "defensiveworkrate": {
+        "short": "boFm",
+        "minimum": 0
+      },
+      "accessorycode2": {
+        "short": "dXNv",
+        "minimum": 0
+      },
+      "emotion": {
+        "short": "gNbt",
+        "minimum": 1
+      },
+      "hasseasonaljersey": {
+        "short": "iCDR",
+        "minimum": 0
+      },
+      "trait2": {
+        "short": "inAr",
+        "minimum": 0
+      },
+      "runningcode2": {
+        "short": "oXYh",
+        "minimum": 0
+      },
+      "facialhairtypecode": {
+        "short": "onGA",
+        "minimum": 0
+      },
+      "crossing": {
+        "short": "wGOH",
+        "minimum": 1
+      },
+      "gkdiving": {
+        "short": "xrSG",
+        "minimum": 1
+      },
+      "height": {
+        "short": "ypBQ",
+        "minimum": 130
+      },
+      "skillmoves": {
+        "short": "BAPc",
+        "minimum": 0
+      },
+      "longshots": {
+        "short": "CsBG",
+        "minimum": 1
+      },
+      "tattooleftleg": {
+        "short": "CVWU",
+        "minimum": 0
+      },
+      "standingtackle": {
+        "short": "CsyD",
+        "minimum": 1
+      },
+      "finishingcode1": {
+        "short": "GFLI",
+        "minimum": 0
+      },
+      "eyebrowcode": {
+        "short": "HqUh",
+        "minimum": 0
+      },
+      "commonnameid": {
+        "short": "HDYx",
+        "minimum": 0
+      },
+      "usercaneditname": {
+        "short": "NBsd",
+        "minimum": 0
+      },
+      "tattoofront": {
+        "short": "OnPm",
+        "minimum": 0
+      },
+      "shoedesigncode": {
+        "short": "PeUv",
+        "minimum": 0
+      },
+      "skillmoveslikelihood": {
+        "short": "PJsq",
+        "minimum": 0
+      },
+      "agility": {
+        "short": "RRQB",
+        "minimum": 1
+      },
+      "gksavetype": {
+        "short": "SJED",
+        "minimum": 0
+      },
+      "avatarpomid": {
+        "short": "VRvd",
+        "minimum": 0
+      },
+      "freekickaccuracy": {
+        "short": "VgKc",
+        "minimum": 1
+      },
+      "playerjerseynameid": {
+        "short": "Vqpv",
+        "minimum": 0
+      },
+      "internationalrep": {
+        "short": "WVsa",
+        "minimum": 1
+      },
+      "positioning": {
+        "short": "XsFD",
+        "minimum": 1
+      },
+      "tattoorightarm": {
+        "short": "YjNY",
+        "minimum": 0
+      },
+      "vision": {
+        "short": "ZoOK",
+        "minimum": 1
+      },
+      "gkreflexes": {
+        "short": "eYFI",
+        "minimum": 1
+      },
+      "composure": {
+        "short": "jlQJ",
+        "minimum": 1
+      },
+      "animpenaltiesmotionstylecode": {
+        "short": "nRxa",
+        "minimum": 0
+      },
+      "gkkickstyle": {
+        "short": "rJqp",
+        "minimum": 0
+      },
+      "shortstyle": {
+        "short": "wwlr",
+        "minimum": 0
+      },
+      "accessorycode3": {
+        "short": "ycJN",
+        "minimum": 0
+      },
+      "tattoohead": {
+        "short": "BhwR",
+        "minimum": 0
+      },
+      "accessorycolourcode2": {
+        "short": "Bfhz",
+        "minimum": 0
+      },
+      "shoecolorcode1": {
+        "short": "CSEx",
+        "minimum": 0
+      },
+      "headassetid": {
+        "short": "GEba",
+        "minimum": 0
+      },
+      "ballcontrol": {
+        "short": "MgwU",
+        "minimum": 1
+      },
+      "preferredfoot": {
+        "short": "MDvm",
+        "minimum": 1
+      },
+      "headtypecode": {
+        "short": "OoQO",
+        "minimum": 0
+      },
+      "hairstylecode": {
+        "short": "OFRx",
+        "minimum": 0
+      },
+      "preferredposition3": {
+        "short": "OblE",
+        "minimum": -1
+      },
+      "runstylecode": {
+        "short": "Tbvt",
+        "minimum": 0
+      },
+      "overallrating": {
+        "short": "UERs",
+        "minimum": 1
+      },
+      "jerseysleevelengthcode": {
+        "short": "UFvj",
+        "minimum": 0
+      }
+    },
+    "advertisedSchemas": [
+      "211375c20c2568a463c7378fe0ecae0812a41fe9",
+      "cd7c79866f16f32ca09c045f8120973b7d981927"
+    ],
+    "nativeTableOrder": [
+      "aiJH",
+      "esAj",
+      "rIsB",
+      "tfLS",
+      "DbIl",
+      "LbKk",
+      "OIcD",
+      "PViY",
+      "SWFH",
+      "TKgq",
+      "YBgI",
+      "kgGh",
+      "nrFl",
+      "AqBt",
+      "FMpz",
+      "Knen",
+      "QMqB",
+      "UlaA",
+      "Zeam",
+      "brHl",
+      "mMQM",
+      "nhky",
+      "sloG",
+      "CZUM",
+      "CxJp",
+      "Qxjv",
+      "YOKt",
+      "ZrAO",
+      "kISL",
+      "lyxL",
+      "mDGw",
+      "nQVU",
+      "onMQ",
+      "yAGl",
+      "yYtg",
+      "ySyc",
+      "AGmV",
+      "RrqT",
+      "SPTx",
+      "YNEf",
+      "bneD",
+      "lmOU",
+      "qdZF",
+      "xgkO",
+      "DFeB",
+      "GiKo",
+      "ONtg",
+      "Vmkr"
+    ]
+  }
+]

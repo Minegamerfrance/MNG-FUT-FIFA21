@@ -1,0 +1,3532 @@
+{
+  "cutoff": "2020-12-31",
+  "cards": [
+    {
+      "resourceId": 50534505,
+      "assetId": 202857,
+      "name": "Bellarabi",
+      "edition": "Rulebreakers",
+      "rating": 85,
+      "releaseDate": "2020-10-30",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67311721,
+      "assetId": 202857,
+      "name": "Bellarabi",
+      "edition": "Rulebreakers",
+      "rating": 85,
+      "releaseDate": "2020-10-30",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50544171,
+      "assetId": 212523,
+      "name": "Anderson Talisca",
+      "edition": "Rulebreakers",
+      "rating": 84,
+      "releaseDate": "2020-10-27",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50571838,
+      "assetId": 240190,
+      "name": "Malong",
+      "edition": "Rulebreakers",
+      "rating": 83,
+      "releaseDate": "2020-10-24",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50547849,
+      "assetId": 216201,
+      "name": "Iñaki Williams",
+      "edition": "Rulebreakers",
+      "rating": 84,
+      "releaseDate": "2020-10-23",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67325065,
+      "assetId": 216201,
+      "name": "Iñaki Williams",
+      "edition": "Rulebreakers",
+      "rating": 84,
+      "releaseDate": "2020-10-23",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67347889,
+      "assetId": 239025,
+      "name": "Niane",
+      "edition": "Ligue 1 POTM",
+      "rating": 84,
+      "releaseDate": "2020-10-22",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50496877,
+      "assetId": 165229,
+      "name": "Koscielny",
+      "edition": "Flashback",
+      "rating": 86,
+      "releaseDate": "2020-10-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50502538,
+      "assetId": 170890,
+      "name": "Matuidi",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-18",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67307574,
+      "assetId": 198710,
+      "name": "Rodríguez",
+      "edition": "Ones to Watch",
+      "rating": 84,
+      "releaseDate": "2020-10-16",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50548002,
+      "assetId": 216354,
+      "name": "Kramarić",
+      "edition": "Bundesliga POTM",
+      "rating": 86,
+      "releaseDate": "2020-10-16",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67286277,
+      "assetId": 177413,
+      "name": "Witsel",
+      "edition": "Flashback",
+      "rating": 86,
+      "releaseDate": "2020-10-13",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 84112460,
+      "assetId": 226380,
+      "name": "Hwang Hee Chan",
+      "edition": "Ones to Watch",
+      "rating": 77,
+      "releaseDate": "2020-10-11",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 84139084,
+      "assetId": 253004,
+      "name": "Ansu Fati",
+      "edition": "La Liga POTM",
+      "rating": 86,
+      "releaseDate": "2020-10-10",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 67273104,
+      "assetId": 164240,
+      "name": "Thiago Silva",
+      "edition": "Ones to Watch",
+      "rating": 86,
+      "releaseDate": "2020-10-09",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50553127,
+      "assetId": 221479,
+      "name": "Calvert-Lewin",
+      "edition": "Premier League POTM",
+      "rating": 84,
+      "releaseDate": "2020-10-09",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 84127176,
+      "assetId": 241096,
+      "name": "Tonali",
+      "edition": "Ones to Watch",
+      "rating": 77,
+      "releaseDate": "2020-10-05",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    },
+    {
+      "resourceId": 50467761,
+      "assetId": 136113,
+      "name": "Morgan",
+      "edition": "Player Moments",
+      "rating": 74,
+      "releaseDate": "2020-11-29",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 84088636,
+      "assetId": 202556,
+      "name": "Depay",
+      "edition": "Player Moments",
+      "rating": 87,
+      "releaseDate": "2020-11-29",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50516223,
+      "assetId": 184575,
+      "name": "Alessandrini",
+      "edition": "Flashback",
+      "rating": 85,
+      "releaseDate": "2020-11-28",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50489176,
+      "assetId": 157528,
+      "name": "Stoppelkamp",
+      "edition": "Record Breaker",
+      "rating": 74,
+      "releaseDate": "2020-11-27",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 100816375,
+      "assetId": 153079,
+      "name": "Agüero",
+      "edition": "Flashback",
+      "rating": 87,
+      "releaseDate": "2020-11-27",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 4000,
+      "assetId": 238387,
+      "name": "Bergkamp",
+      "edition": "Icon",
+      "rating": 90,
+      "releaseDate": "2020-11-26",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 7518,
+      "assetId": 237603,
+      "name": "Verón",
+      "edition": "Icon",
+      "rating": 88,
+      "releaseDate": "2020-11-26",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 17015637,
+      "assetId": 238421,
+      "name": "Hernández",
+      "edition": "Icon",
+      "rating": 85,
+      "releaseDate": "2020-11-26",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 239080,
+      "assetId": 239081,
+      "name": "Luís Figo",
+      "edition": "Icon",
+      "rating": 90,
+      "releaseDate": "2020-11-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 239517,
+      "assetId": 239516,
+      "name": "Zanetti",
+      "edition": "Icon",
+      "rating": 88,
+      "releaseDate": "2020-11-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 17016276,
+      "assetId": 239060,
+      "name": "van der Sar",
+      "edition": "Icon",
+      "rating": 87,
+      "releaseDate": "2020-11-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 84074625,
+      "assetId": 188545,
+      "name": "Lewandowski",
+      "edition": "Bundesliga POTM",
+      "rating": 93,
+      "releaseDate": "2020-11-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 67288710,
+      "assetId": 179846,
+      "name": "Khedira",
+      "edition": "Flashback",
+      "rating": 86,
+      "releaseDate": "2020-11-19",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 84111165,
+      "assetId": 225085,
+      "name": "Bamba",
+      "edition": "Ligue 1 POTM",
+      "rating": 86,
+      "releaseDate": "2020-11-19",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50533643,
+      "assetId": 201995,
+      "name": "Felipe Anderson",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 88,
+      "releaseDate": "2020-11-15",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 67299907,
+      "assetId": 191043,
+      "name": "Alex Sandro",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 87,
+      "releaseDate": "2020-11-13",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50531752,
+      "assetId": 200104,
+      "name": "Son",
+      "edition": "Premier League POTM",
+      "rating": 89,
+      "releaseDate": "2020-11-13",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50572402,
+      "assetId": 240754,
+      "name": "Atal",
+      "edition": "UEL Road to the Knockouts",
+      "rating": 82,
+      "releaseDate": "2020-11-10",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 67306645,
+      "assetId": 197781,
+      "name": "Isco",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 90,
+      "releaseDate": "2020-11-07",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 117673576,
+      "assetId": 233064,
+      "name": "Mount",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 90,
+      "releaseDate": "2020-11-06",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 84116222,
+      "assetId": 230142,
+      "name": "Oyarzabal",
+      "edition": "La Liga POTM",
+      "rating": 88,
+      "releaseDate": "2020-11-06",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 67317312,
+      "assetId": 208448,
+      "name": "Forsberg",
+      "edition": "Player Moments",
+      "rating": 86,
+      "releaseDate": "2020-11-03",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 50551830,
+      "assetId": 220182,
+      "name": "Denayer",
+      "edition": "Rulebreakers",
+      "rating": 84,
+      "releaseDate": "2020-11-01",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/"
+    },
+    {
+      "resourceId": 67270512,
+      "assetId": 161648,
+      "name": "Ben Arfa",
+      "edition": "Flashback",
+      "rating": 87,
+      "releaseDate": "2020-12-30",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 161840,
+      "assetId": 239067,
+      "name": "Fernando Hierro",
+      "edition": "Icon",
+      "rating": 91,
+      "releaseDate": "2020-12-28",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 256869,
+      "assetId": 256870,
+      "name": "Fernando Torres",
+      "edition": "Icon",
+      "rating": 88,
+      "releaseDate": "2020-12-28",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 247515,
+      "assetId": 247517,
+      "name": "Barnes",
+      "edition": "Icon",
+      "rating": 89,
+      "releaseDate": "2020-12-28",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50520919,
+      "assetId": 189271,
+      "name": "Coquelin",
+      "edition": "Showdown",
+      "rating": 85,
+      "releaseDate": "2020-12-26",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 100887630,
+      "assetId": 224334,
+      "name": "Acuña",
+      "edition": "Showdown",
+      "rating": 86,
+      "releaseDate": "2020-12-26",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 84080063,
+      "assetId": 193983,
+      "name": "Delort",
+      "edition": "Ligue 1 POTM",
+      "rating": 86,
+      "releaseDate": "2020-12-24",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 84088022,
+      "assetId": 201942,
+      "name": "Roberto Firmino",
+      "edition": "FUT Freeze",
+      "rating": 89,
+      "releaseDate": "2020-12-24",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50571694,
+      "assetId": 240046,
+      "name": "João Victor",
+      "edition": "FUT Freeze",
+      "rating": 84,
+      "releaseDate": "2020-12-23",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50566554,
+      "assetId": 234906,
+      "name": "Aouar",
+      "edition": "FUT Freeze",
+      "rating": 86,
+      "releaseDate": "2020-12-22",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67334239,
+      "assetId": 225375,
+      "name": "Laimer",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-21",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50535753,
+      "assetId": 204105,
+      "name": "Lala",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-20",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50545604,
+      "assetId": 213956,
+      "name": "Adama Traoré",
+      "edition": "FUT Freeze",
+      "rating": 84,
+      "releaseDate": "2020-12-19",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 100869409,
+      "assetId": 206113,
+      "name": "Gnabry",
+      "edition": "FUT Freeze",
+      "rating": 88,
+      "releaseDate": "2020-12-18",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 184788461,
+      "assetId": 239085,
+      "name": "Haaland",
+      "edition": "Bundesliga POTM",
+      "rating": 90,
+      "releaseDate": "2020-12-18",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67255400,
+      "assetId": 146536,
+      "name": "Jesús Navas",
+      "edition": "FUT Freeze",
+      "rating": 86,
+      "releaseDate": "2020-12-17",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50548057,
+      "assetId": 216409,
+      "name": "Politano",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-16",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67338744,
+      "assetId": 229880,
+      "name": "Wan-Bissaka",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-15",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50543336,
+      "assetId": 211688,
+      "name": "Gayà",
+      "edition": "FUT Freeze",
+      "rating": 86,
+      "releaseDate": "2020-12-14",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50561554,
+      "assetId": 229906,
+      "name": "Bailey",
+      "edition": "FUT Freeze",
+      "rating": 84,
+      "releaseDate": "2020-12-13",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50504954,
+      "assetId": 173306,
+      "name": "Ansaldi",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-12",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67316729,
+      "assetId": 207865,
+      "name": "Marquinhos",
+      "edition": "FUT Freeze",
+      "rating": 87,
+      "releaseDate": "2020-12-11",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 134429926,
+      "assetId": 212198,
+      "name": "Bruno Fernandes",
+      "edition": "Premier League POTM",
+      "rating": 91,
+      "releaseDate": "2020-12-11",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 84106777,
+      "assetId": 220697,
+      "name": "Maddison",
+      "edition": "TOTGS Europa League",
+      "rating": 84,
+      "releaseDate": "2020-12-10",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67301251,
+      "assetId": 192387,
+      "name": "Immobile",
+      "edition": "Team of the Group Stage",
+      "rating": 88,
+      "releaseDate": "2020-12-08",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67307648,
+      "assetId": 198784,
+      "name": "Oxlade-Chamberlain",
+      "edition": "Player Moments",
+      "rating": 85,
+      "releaseDate": "2020-12-05",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50532597,
+      "assetId": 200949,
+      "name": "Lucas Moura",
+      "edition": "TOTGS Europa League",
+      "rating": 85,
+      "releaseDate": "2020-12-04",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 151237388,
+      "assetId": 242444,
+      "name": "João Félix",
+      "edition": "La Liga POTM",
+      "rating": 87,
+      "releaseDate": "2020-12-04",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 67265383,
+      "assetId": 156519,
+      "name": "Herrera",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 86,
+      "releaseDate": "2020-12-03",
+      "acquisition": "sbc",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/"
+    },
+    {
+      "resourceId": 50529977,
+      "assetId": 198329,
+      "name": "Rodrigo",
+      "edition": "Ones to Watch",
+      "rating": 82,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 50531562,
+      "assetId": 199914,
+      "name": "Allan",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 50563941,
+      "assetId": 232293,
+      "name": "Osimhen",
+      "edition": "Ones to Watch",
+      "rating": 82,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 50575278,
+      "assetId": 243630,
+      "name": "David",
+      "edition": "Ones to Watch",
+      "rating": 77,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67282595,
+      "assetId": 173731,
+      "name": "Bale",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67317534,
+      "assetId": 208670,
+      "name": "Ziyech",
+      "edition": "Ones to Watch",
+      "rating": 86,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67317784,
+      "assetId": 208920,
+      "name": "Aké",
+      "edition": "Ones to Watch",
+      "rating": 79,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67318853,
+      "assetId": 209989,
+      "name": "Partey",
+      "edition": "Ones to Watch",
+      "rating": 86,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67321052,
+      "assetId": 212188,
+      "name": "Werner",
+      "edition": "Ones to Watch",
+      "rating": 86,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67321326,
+      "assetId": 212462,
+      "name": "Alex Telles",
+      "edition": "Ones to Watch",
+      "rating": 84,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67330227,
+      "assetId": 221363,
+      "name": "van de Beek",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67331356,
+      "assetId": 222492,
+      "name": "Sané",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67336792,
+      "assetId": 227928,
+      "name": "Nélson Semedo",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67339522,
+      "assetId": 230658,
+      "name": "Arthur",
+      "edition": "Ones to Watch",
+      "rating": 84,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67344076,
+      "assetId": 235212,
+      "name": "Hakimi",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67344654,
+      "assetId": 235790,
+      "name": "Havertz",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 67350325,
+      "assetId": 241461,
+      "name": "Ferrán Torres",
+      "edition": "Ones to Watch",
+      "rating": 81,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 84067952,
+      "assetId": 181872,
+      "name": "Vidal",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 84075589,
+      "assetId": 189509,
+      "name": "Thiago",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 84108745,
+      "assetId": 222665,
+      "name": "Ødegaard",
+      "edition": "Ones to Watch",
+      "rating": 85,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 84110538,
+      "assetId": 224458,
+      "name": "Diogo Jota",
+      "edition": "Ones to Watch",
+      "rating": 83,
+      "releaseDate": "2020-10-09",
+      "acquisition": "objective",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 100839876,
+      "assetId": 176580,
+      "name": "Suárez",
+      "edition": "Ones to Watch",
+      "rating": 89,
+      "releaseDate": "2020-10-09",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 100866847,
+      "assetId": 203551,
+      "name": "Florenzi",
+      "edition": "Ones to Watch",
+      "rating": 84,
+      "releaseDate": "2020-10-16",
+      "acquisition": "otw-pack",
+      "source": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    },
+    {
+      "resourceId": 50524949,
+      "assetId": 193301,
+      "name": "Lacazette",
+      "edition": "Season Reward",
+      "rating": 85,
+      "releaseDate": "2020-10-01",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50536571,
+      "assetId": 204923,
+      "name": "Sabitzer",
+      "edition": "Season Reward",
+      "rating": 85,
+      "releaseDate": "2020-10-01",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50536717,
+      "assetId": 205069,
+      "name": "Juan Bernat",
+      "edition": "Season Reward",
+      "rating": 85,
+      "releaseDate": "2020-10-01",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 16975547,
+      "assetId": 198331,
+      "name": "Vydra",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-10-14",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50541669,
+      "assetId": 210021,
+      "name": "Mukhtar",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-10-21",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67345474,
+      "assetId": 236610,
+      "name": "Kean",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-10-28",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67335030,
+      "assetId": 226166,
+      "name": "Mukiele",
+      "edition": "Rulebreakers",
+      "rating": 84,
+      "releaseDate": "2020-10-23",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50487969,
+      "assetId": 156321,
+      "name": "Akinfenwa",
+      "edition": "Rulebreakers",
+      "rating": 74,
+      "releaseDate": "2020-10-30",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50540936,
+      "assetId": 209288,
+      "name": "Mollet",
+      "edition": "Objective Player",
+      "rating": 86,
+      "releaseDate": "2020-10-30",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67351394,
+      "assetId": 242530,
+      "name": "Okafor",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-11-04",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50557741,
+      "assetId": 226093,
+      "name": "Adams",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-11-11",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50555218,
+      "assetId": 223570,
+      "name": "Sambia",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-11-25",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50508641,
+      "assetId": 176993,
+      "name": "Bojan",
+      "edition": "Objective Player",
+      "rating": 84,
+      "releaseDate": "2020-11-04",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50553771,
+      "assetId": 222123,
+      "name": "Long",
+      "edition": "Objective Player",
+      "rating": 82,
+      "releaseDate": "2020-11-04",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50568641,
+      "assetId": 236993,
+      "name": "Lima",
+      "edition": "Objective Player",
+      "rating": 83,
+      "releaseDate": "2020-11-04",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50500862,
+      "assetId": 169214,
+      "name": "Sinclair",
+      "edition": "Objective Player",
+      "rating": 82,
+      "releaseDate": "2020-11-22",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50517070,
+      "assetId": 185422,
+      "name": "King",
+      "edition": "Objective Player",
+      "rating": 84,
+      "releaseDate": "2020-11-22",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50542746,
+      "assetId": 211098,
+      "name": "Dack",
+      "edition": "Objective Player",
+      "rating": 82,
+      "releaseDate": "2020-11-22",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50555289,
+      "assetId": 223641,
+      "name": "Baumgartl",
+      "edition": "Objective Player",
+      "rating": 83,
+      "releaseDate": "2020-12-03",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50563512,
+      "assetId": 231864,
+      "name": "van Bergen",
+      "edition": "Objective Player",
+      "rating": 84,
+      "releaseDate": "2020-12-03",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 50577752,
+      "assetId": 246104,
+      "name": "Gravenberch",
+      "edition": "Objective Player",
+      "rating": 82,
+      "releaseDate": "2020-12-03",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-league-squad-foundations-objectives/"
+    },
+    {
+      "resourceId": 67350350,
+      "assetId": 241486,
+      "name": "Koundé",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 84,
+      "releaseDate": "2020-11-06",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67324194,
+      "assetId": 215330,
+      "name": "Correa",
+      "edition": "UCL Road to the Knockouts",
+      "rating": 86,
+      "releaseDate": "2020-11-13",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50524277,
+      "assetId": 192629,
+      "name": "Iago Aspas",
+      "edition": "Season Reward",
+      "rating": 86,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50542061,
+      "assetId": 210413,
+      "name": "Romagnoli",
+      "edition": "Season Reward",
+      "rating": 86,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67329835,
+      "assetId": 220971,
+      "name": "Keïta",
+      "edition": "Season Reward",
+      "rating": 85,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50554221,
+      "assetId": 222573,
+      "name": "Tello",
+      "edition": "Season Reward",
+      "rating": 82,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50561669,
+      "assetId": 230021,
+      "name": "Aidoo",
+      "edition": "Season Reward",
+      "rating": 82,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50570786,
+      "assetId": 239138,
+      "name": "Jeong Woo Yeong",
+      "edition": "Season Reward",
+      "rating": 82,
+      "releaseDate": "2020-11-20",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50535395,
+      "assetId": 203747,
+      "name": "Héctor Bellerín",
+      "edition": "Objective Player",
+      "rating": 85,
+      "releaseDate": "2020-11-21",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67311341,
+      "assetId": 202477,
+      "name": "Deulofeu",
+      "edition": "Objective Player",
+      "rating": 86,
+      "releaseDate": "2020-11-26",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 117684324,
+      "assetId": 243812,
+      "name": "Rodrygo",
+      "edition": "Record Breaker",
+      "rating": 83,
+      "releaseDate": "2020-11-27",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50583500,
+      "assetId": 251852,
+      "name": "Adeyemi",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-12-02",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50564136,
+      "assetId": 232488,
+      "name": "Romero",
+      "edition": "Team of the Group Stage",
+      "rating": 74,
+      "releaseDate": "2020-12-09",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50577588,
+      "assetId": 245940,
+      "name": "Wamangituka",
+      "edition": "Team of the Week",
+      "rating": 74,
+      "releaseDate": "2020-12-16",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 67322209,
+      "assetId": 213345,
+      "name": "Coman",
+      "edition": "Team of the Group Stage",
+      "rating": 86,
+      "releaseDate": "2020-12-04",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50520805,
+      "assetId": 189157,
+      "name": "Bolasie",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-11",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 84086690,
+      "assetId": 200610,
+      "name": "Volland",
+      "edition": "FUT Freeze",
+      "rating": 86,
+      "releaseDate": "2020-12-18",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50547837,
+      "assetId": 216189,
+      "name": "Capa",
+      "edition": "FUT Freeze",
+      "rating": 85,
+      "releaseDate": "2020-12-22",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 50539092,
+      "assetId": 207444,
+      "name": "Damm",
+      "edition": "FUT Freeze",
+      "rating": 74,
+      "releaseDate": "2020-12-23",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    },
+    {
+      "resourceId": 259431,
+      "assetId": 250,
+      "name": "Beckham",
+      "edition": "David Beckham",
+      "rating": 86,
+      "releaseDate": "2020-12-15",
+      "acquisition": "objective",
+      "source": "https://fifauteam.com/fifa-21-schedule-dates/"
+    }
+  ],
+  "sbcAdaptations": [
+    {
+      "resourceId": 50534505,
+      "date": "2020-10-30",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67311721,
+      "date": "2020-10-30",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50544171,
+      "date": "2020-10-27",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "ANDERSON TALISCA",
+          "requirements": [
+            "Players from Brazil: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50571838,
+      "date": "2020-10-24",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "85-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50547849,
+      "date": "2020-10-23",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from Spain: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67325065,
+      "date": "2020-10-23",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from Spain: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67347889,
+      "date": "2020-10-22",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from Ligue 1 Conforama: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50496877,
+      "date": "2020-10-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "PAST AND PRESENT",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Players from Ligue 1 Conforama: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LES BLEUS",
+          "requirements": [
+            "Players from France: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50502538,
+      "date": "2020-10-18",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from France: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67307574,
+      "date": "2020-10-16",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "JAMES RODRÍGUEZ",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50548002,
+      "date": "2020-10-16",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67286277,
+      "date": "2020-10-13",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "BVB",
+          "requirements": [
+            "Players from Dortmund: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84112460,
+      "date": "2020-10-11",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "HWANG HEE-CHAN",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84139084,
+      "date": "2020-10-10",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "LA LIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "SPAIN",
+          "requirements": [
+            "Players from Spain: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TACTICAL EMULATION",
+          "requirements": [
+            "Players from FC Barcelona: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67273104,
+      "date": "2020-10-09",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "THIAGO SILVA",
+          "requirements": [
+            "Total Players: 11",
+            "Min Chem: 80",
+            "Min Rating: 82",
+            "Min players from England Premier League: 1"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50553127,
+      "date": "2020-10-09",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84127176,
+      "date": "2020-10-05",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Serie A TIM (ITA 1): Min 1",
+            "Squad Rating: Min 80",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50467761,
+      "date": "2020-11-29",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Leicester City: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84088636,
+      "date": "2020-11-29",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Pplayers from Ligue 1: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 1"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50516223,
+      "date": "2020-11-28",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "ALESSANDRINI",
+          "requirements": [
+            "players from France: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50489176,
+      "date": "2020-11-27",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "players from Germany: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 100816375,
+      "date": "2020-11-27",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "TOP PERFORMANCE",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LA ALBICELESTE",
+          "requirements": [
+            "Players from Argentina: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE CITIZENS",
+          "requirements": [
+            "Players from Manchester City: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 4000,
+      "date": "2020-11-26",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE ICEMAN",
+          "requirements": [
+            "Players from Arsenal: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from Netherlands: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE ARTIST",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "87-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 7518,
+      "date": "2020-11-26",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 81",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LA BRUJITA",
+          "requirements": [
+            "Players from Argentina: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "ITALIAN SCUDETTO",
+          "requirements": [
+            "Players from Lazio + Inter: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "EL ARCHITECTO",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 17015637,
+      "date": "2020-11-26",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 80",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "85-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "86-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "86-RATED SQUAD",
+          "requirements": [
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 239080,
+      "date": "2020-11-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 81",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from Portugal: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE LION KING",
+          "requirements": [
+            "Players from FC Barcelona: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "GALÁCTICOS",
+          "requirements": [
+            "Players from Real Madrid: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 88",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "89-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 89",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 239517,
+      "date": "2020-11-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 80",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "CLUB LEGEND",
+          "requirements": [
+            "Players from Inter: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "EL TRACTOR",
+          "requirements": [
+            "Players from Argentina: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "86-RATED SQUAD",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 17016276,
+      "date": "2020-11-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE SILVERWARE DAYS",
+          "requirements": [
+            "Players from Ajax + Manchester Utd: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from Netherlands: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84074625,
+      "date": "2020-11-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "FC BAYERN",
+          "requirements": [
+            "Players from FC Bayern: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67288710,
+      "date": "2020-11-19",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "PAST AND PRESENT",
+          "requirements": [
+            "Players from Real Madrid + Juventus: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "CHALLENGE 2",
+          "requirements": [
+            "Players from Germany: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84111165,
+      "date": "2020-11-19",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "LIGUE 1",
+          "requirements": [
+            "Players from Ligue 1: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from France: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50533643,
+      "date": "2020-11-15",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "FELIPE ANDERSON",
+          "requirements": [
+            "Players from Brazil: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67299907,
+      "date": "2020-11-13",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TACTICAL EMULATION",
+          "requirements": [
+            "Players from Piemonte Calcio: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50531752,
+      "date": "2020-11-13",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "SPURS",
+          "requirements": [
+            "Players from Spurs: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "88-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 88",
+            "Team Chemistry: Min 55",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50572402,
+      "date": "2020-11-10",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Ligue 1: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67306645,
+      "date": "2020-11-07",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "REAL MADRID",
+          "requirements": [
+            "Players from Real Madrid: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 117673576,
+      "date": "2020-11-06",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "CHELSEA",
+          "requirements": [
+            "Players from Chelsea: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84116222,
+      "date": "2020-11-06",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "LA LIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67317312,
+      "date": "2020-11-03",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50551830,
+      "date": "2020-11-01",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-november/",
+      "archivedSquads": [
+        {
+          "name": "LIGUE 1",
+          "requirements": [
+            "Players from Ligue 1: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BELGIUM",
+          "requirements": [
+            "Players from Belgium: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67270512,
+      "date": "2020-12-30",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BEN ARFA",
+          "requirements": [
+            "Players from France: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 161840,
+      "date": "2020-12-28",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 80",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "GALÁTICOS",
+          "requirements": [
+            "Players from Real Madrid: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from Spain: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 256869,
+      "date": "2020-12-28",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "EL NIÑO",
+          "requirements": [
+            "Players from Atlético de Madrid: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "THE REDS",
+          "requirements": [
+            "Players from Liverpool: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BLUES SILVERWARE",
+          "requirements": [
+            "Players from Chelsea: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from Spain: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 247515,
+      "date": "2020-12-28",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BORN LEGEND",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Bronze",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "RISING STAR",
+          "requirements": [
+            "Rare: Exactly 11",
+            "Player Level: Exactly Silver",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP-NOTCH",
+          "requirements": [
+            "IF + FUT Champions Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "DIGGER",
+          "requirements": [
+            "Players from Liverpool: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL IDOL",
+          "requirements": [
+            "Players from England: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LEAGUE FINESSE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50520919,
+      "date": "2020-12-26",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from France: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LA LIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 100887630,
+      "date": "2020-12-26",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "ARGENTINA",
+          "requirements": [
+            "Players from Argentina: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LA LIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84080063,
+      "date": "2020-12-24",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "ANDY DELORT",
+          "requirements": [
+            "Players from Ligue 1: Min 1",
+            "IF Players: Min 2",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84088022,
+      "date": "2020-12-24",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "LIVERPOOL",
+          "requirements": [
+            "Players from Liverpool: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BRAZIL",
+          "requirements": [
+            "Players from Brazil: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "88-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 88",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50571694,
+      "date": "2020-12-23",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BRAZIL",
+          "requirements": [
+            "Players from Brazil: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 82",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50566554,
+      "date": "2020-12-22",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Ligue 1 Conforama: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67334239,
+      "date": "2020-12-21",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "RB LEIPZIG",
+          "requirements": [
+            "Players from RB Leipzig: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50535753,
+      "date": "2020-12-20",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "KENNY LALA",
+          "requirements": [
+            "Players from Ligue 1: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50545604,
+      "date": "2020-12-19",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "WOLVES",
+          "requirements": [
+            "Players from Wolves: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad:"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 100869409,
+      "date": "2020-12-18",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "FC BAYERN",
+          "requirements": [
+            "Players from FC Bayern: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 60",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 184788461,
+      "date": "2020-12-18",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "BORUSSIA DORTMUND",
+          "requirements": [
+            "Players from Dortmund: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BUNDESLIGA",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67255400,
+      "date": "2020-12-17",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "SPAIN",
+          "requirements": [
+            "Players from Napoli: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "LA LIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50548057,
+      "date": "2020-12-16",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "NAPOLI",
+          "requirements": [
+            "Players from Napoli: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "SERIE A TIM",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67338744,
+      "date": "2020-12-15",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "MANCHESTER UNITED",
+          "requirements": [
+            "Players from Manchester Utd: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from England: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50543336,
+      "date": "2020-12-14",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50561554,
+      "date": "2020-12-13",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Bundesliga: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50504954,
+      "date": "2020-12-12",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "IF + FUT-CHAMP Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67316729,
+      "date": "2020-12-11",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "CHALLENGE 1",
+          "requirements": [
+            "Players from Paris SG: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 134429926,
+      "date": "2020-12-11",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from Portugal: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "MANCHESTER UNITED",
+          "requirements": [
+            "Players from Manchester Utd: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "88-RATED SQUAD",
+          "requirements": [
+            "Squad Rating: Min 88",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 84106777,
+      "date": "2020-12-10",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "JAMES MADDISON",
+          "requirements": [
+            "players from Leicester City: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67301251,
+      "date": "2020-12-08",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "LAZIO",
+          "requirements": [
+            "Players from Lazio: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 83",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "SERIE A TIM",
+          "requirements": [
+            "Players from Serie A TIM: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67307648,
+      "date": "2020-12-05",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "LIVERPOOL",
+          "requirements": [
+            "Players from Liverpool: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "TOP FORM",
+          "requirements": [
+            "IF Players: Min 1",
+            "Squad Rating: Min 86",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 50532597,
+      "date": "2020-12-04",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "SPURS",
+          "requirements": [
+            "Players from Spurs: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "BRAZIL",
+          "requirements": [
+            "Players from Brazil: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 70",
+            "Players in the Squad: 11"
+          ]
+        },
+        {
+          "name": "PREMIER LEAGUE",
+          "requirements": [
+            "Players from Premier League: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 65",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 151237388,
+      "date": "2020-12-04",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "NATIONAL DUTY",
+          "requirements": [
+            "Players from Portugal: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 84",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11",
+            "TRADEABLE REWARDS",
+            "Prime Electrum Players Pack"
+          ]
+        },
+        {
+          "name": "ATLETICO MADRID",
+          "requirements": [
+            "Players from Atlético de Madrid: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 75",
+            "Players in the Squad: 11",
+            "TRADEABLE REWARDS",
+            "Premium Gold Players Pack"
+          ]
+        },
+        {
+          "name": "LALIGA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "Squad Rating: Min 87",
+            "Team Chemistry: Min 50",
+            "Players in the Squad: 11",
+            "TRADEABLE REWARDS",
+            "Rare Electrum Players Pack"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    },
+    {
+      "resourceId": 67265383,
+      "date": "2020-12-03",
+      "source": "https://fifauteam.com/fifa-21-squad-building-challenges-december/",
+      "archivedSquads": [
+        {
+          "name": "HERRERA",
+          "requirements": [
+            "Players from LaLiga Santander: Min 1",
+            "IF Players: Min 1",
+            "Squad Rating: Min 85",
+            "Team Chemistry: Min 80",
+            "Players in the Squad: 11"
+          ]
+        }
+      ],
+      "adaptation": "MNG squads retain rating/chemistry/quality/rare counts; IF becomes rare. National, league and club conditions and intermediate pack rewards are not reproduced."
+    }
+  ],
+  "dynamicRatings": "OTW use the highest available performance-card stats through December 2020, cross-checked against the dated tracker. RTTF retain local archived values; the intermediate dated RTTF attribute evolution is not reconstructed."
+}

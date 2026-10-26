@@ -1,0 +1,2342 @@
+{
+  "schema": "localfut-fifa21-sbc-catalog-2",
+  "source": {
+    "type": "hand-authored",
+    "verified": "Foundations SBCs checked against fifauteam.com and dexerto.com; promo/player/icon sets are best-effort tiered reconstructions"
+  },
+  "enabled": true,
+  "tabs": [
+    {
+      "id": 0,
+      "name": "Foundations",
+      "icon": "sbc_tab_basic"
+    },
+    {
+      "id": 3,
+      "name": "Hybrid",
+      "icon": "sbc_tab_hybrid"
+    },
+    {
+      "id": 4,
+      "name": "Upgrades",
+      "icon": "sbc_tab_upgrades"
+    },
+    {
+      "id": 6,
+      "name": "Players",
+      "icon": "sbc_tab_players"
+    }
+  ],
+  "packTypes": [
+    {
+      "id": "bronze",
+      "name": "Bronze Pack"
+    },
+    {
+      "id": "silver",
+      "name": "Silver Pack"
+    },
+    {
+      "id": "premium_silver_players",
+      "name": "Premium Silver Players Pack"
+    },
+    {
+      "id": "gold",
+      "name": "Gold Pack"
+    },
+    {
+      "id": "premium_gold",
+      "name": "Premium Gold Pack"
+    },
+    {
+      "id": "gold_players",
+      "name": "Gold Players Pack"
+    },
+    {
+      "id": "premium_gold_players",
+      "name": "Premium Gold Players Pack"
+    },
+    {
+      "id": "electrum_players",
+      "name": "Electrum Players Pack"
+    },
+    {
+      "id": "prime_electrum_players",
+      "name": "Prime Electrum Players Pack"
+    },
+    {
+      "id": "prime_gold_players",
+      "name": "Prime Gold Players Pack"
+    },
+    {
+      "id": "prime_mixed_players",
+      "name": "Prime Mixed Players Pack"
+    },
+    {
+      "id": "rare_players",
+      "name": "Rare Players Pack"
+    },
+    {
+      "id": "rare_mixed_players",
+      "name": "Rare Mixed Players Pack"
+    },
+    {
+      "id": "rare_gold",
+      "name": "Rare Gold Pack"
+    },
+    {
+      "id": "jumbo_rare_players",
+      "name": "Jumbo Rare Players Pack"
+    },
+    {
+      "id": "mega",
+      "name": "Mega Pack"
+    },
+    {
+      "id": "rare_mega",
+      "name": "Rare Mega Pack"
+    },
+    {
+      "id": "ultimate",
+      "name": "Ultimate Pack"
+    },
+    {
+      "id": "player_pick",
+      "name": "Player Pick"
+    }
+  ],
+  "sets": [
+    {
+      "id": "FND_LETS_GET_STARTED",
+      "tabId": 0,
+      "name": "Let's Get Started",
+      "description": "The first steps into Squad Building Challenges.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001000",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_1",
+          "order": 1,
+          "name": "First Exchange",
+          "difficulty": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 1,
+                  "max": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "bronze",
+                  "name": "Bronze Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 50
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_2",
+          "order": 2,
+          "name": "The Second Step",
+          "difficulty": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 3,
+                  "max": 3
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 12,
+                  "max": 100
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "bronze",
+                  "name": "Bronze Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_3",
+          "order": 3,
+          "name": "The Third Step",
+          "difficulty": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 4,
+                  "max": 4
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 17,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "min": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "silver",
+                  "name": "Silver Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 100
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 3,
+      "challengeIds": [
+        "CH_1",
+        "CH_2",
+        "CH_3"
+      ],
+      "_catalogOrdinal": 0
+    },
+    {
+      "id": "FND_LEAGUE_NATION_BASICS",
+      "tabId": 0,
+      "name": "League and Nation Basics",
+      "description": "Learn how leagues and nations drive chemistry.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001000",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_4",
+          "order": 1,
+          "name": "One League Attack",
+          "difficulty": 2,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 5,
+                  "max": 5
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 45,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "min": 5
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_silver_players",
+                  "name": "Premium Silver Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_5",
+          "order": 2,
+          "name": "One Nation Midfield",
+          "difficulty": 2,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 5,
+                  "max": 5
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 45,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_gold",
+                  "name": "Premium Gold Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_6",
+          "order": 3,
+          "name": "Multi League & Nation",
+          "difficulty": 2,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 6,
+                  "max": 6
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 55,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 48,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "min": 2
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "min": 2
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_gold",
+                  "name": "Premium Gold Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 125
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 3,
+      "challengeIds": [
+        "CH_4",
+        "CH_5",
+        "CH_6"
+      ],
+      "_catalogOrdinal": 1
+    },
+    {
+      "id": "FND_LETS_KEEP_GOING",
+      "tabId": 0,
+      "name": "Let's Keep Going",
+      "description": "Build small squads that hold their chemistry together.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001000",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_7",
+          "order": 1,
+          "name": "Brick Slots",
+          "difficulty": 2,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 2,
+                  "max": 2
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 43,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "min": 2
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "min": 2
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "bronze",
+                  "name": "Bronze Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_8",
+          "order": 2,
+          "name": "The Correct Position",
+          "difficulty": 2,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 3,
+                  "max": 3
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 12,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "min": 3
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "min": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "silver",
+                  "name": "Silver Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_9",
+          "order": 3,
+          "name": "Perfect Links",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 5,
+                  "max": 5
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 40,
+                  "max": 100
+                }
+              },
+              {
+                "type": "SAME_NATION",
+                "attributes": {
+                  "max": 2
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 2
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_silver_players",
+                  "name": "Premium Silver Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "COINS",
+                "attributes": {},
+                "value": 500
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 125
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_10",
+          "order": 4,
+          "name": "Loyal Lads",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 3,
+                  "max": 3
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 30,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 1
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "min": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_silver_players",
+                  "name": "Premium Silver Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 125
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 4,
+      "challengeIds": [
+        "CH_7",
+        "CH_8",
+        "CH_9",
+        "CH_10"
+      ],
+      "_catalogOrdinal": 2
+    },
+    {
+      "id": "FND_HYBRID_NATIONS",
+      "tabId": 3,
+      "name": "Hybrid Nations",
+      "description": "Squads spanning many nations. A permanent chemistry test.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001003",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_11",
+          "order": 1,
+          "name": "The Final Four",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 70,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 80,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 4
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 4
+                }
+              },
+              {
+                "type": "SAME_NATION",
+                "attributes": {
+                  "max": 4
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 4
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "electrum_players",
+                  "name": "Electrum Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_12",
+          "order": 2,
+          "name": "Six of the Best",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 75,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 85,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 6
+                }
+              },
+              {
+                "type": "SAME_NATION",
+                "attributes": {
+                  "max": 3
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "gold_players",
+                  "name": "Gold Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_13",
+          "order": 3,
+          "name": "Elite Eight",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 88,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 5
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 8
+                }
+              },
+              {
+                "type": "SAME_NATION",
+                "attributes": {
+                  "max": 2
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 3
+                }
+              },
+              {
+                "type": "QUALITY",
+                "attributes": {
+                  "value": "gold"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "prime_gold_players",
+                  "name": "Prime Gold Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 200
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_14",
+          "order": 4,
+          "name": "Around the World",
+          "difficulty": 5,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 81,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 100,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 8
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 10
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "rare_players",
+                  "name": "Rare Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 250
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 4,
+      "challengeIds": [
+        "CH_11",
+        "CH_12",
+        "CH_13",
+        "CH_14"
+      ],
+      "_catalogOrdinal": 3
+    },
+    {
+      "id": "FND_HYBRID_LEAGUES",
+      "tabId": 3,
+      "name": "Hybrid Leagues",
+      "description": "Squads spanning many leagues. A permanent chemistry test.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001003",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_15",
+          "order": 1,
+          "name": "Give Me Five",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 69,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 80,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 6
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 5
+                }
+              },
+              {
+                "type": "SAME_LEAGUE",
+                "attributes": {
+                  "max": 4
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 4
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "prime_mixed_players",
+                  "name": "Prime Mixed Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_16",
+          "order": 2,
+          "name": "Seven-League Boots",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 78,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 85,
+                  "max": 100
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 7
+                }
+              },
+              {
+                "type": "SAME_LEAGUE",
+                "attributes": {
+                  "max": 3
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "prime_electrum_players",
+                  "name": "Prime Electrum Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_17",
+          "order": 3,
+          "name": "The Whole Nine Yards",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 80,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 99,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 6
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 9
+                }
+              },
+              {
+                "type": "SAME_LEAGUE",
+                "attributes": {
+                  "max": 2
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 2
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "mega",
+                  "name": "Mega Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 200
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_18",
+          "order": 4,
+          "name": "First XI",
+          "difficulty": 5,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 100,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 8
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 11
+                }
+              },
+              {
+                "type": "QUALITY",
+                "attributes": {
+                  "value": "gold"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "rare_players",
+                  "name": "Rare Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 250
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 4,
+      "challengeIds": [
+        "CH_15",
+        "CH_16",
+        "CH_17",
+        "CH_18"
+      ],
+      "_catalogOrdinal": 4
+    },
+    {
+      "id": "FND_LEAGUE_NATION_HYBRID",
+      "tabId": 3,
+      "name": "League and Nation Hybrid",
+      "description": "The permanent puzzle: balance nations and leagues at once.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001003",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_19",
+          "order": 1,
+          "name": "The Challenger",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 100,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 2
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 3
+                }
+              },
+              {
+                "type": "QUALITY",
+                "attributes": {
+                  "value": "gold"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "rare_mixed_players",
+                  "name": "Rare Mixed Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_20",
+          "order": 2,
+          "name": "Advanced",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 79,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 100,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 3
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 5
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_gold_players",
+                  "name": "Premium Gold Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 175
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_21",
+          "order": 3,
+          "name": "Fiendish",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 81,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 90,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 6
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 6
+                }
+              },
+              {
+                "type": "SAME_NATION",
+                "attributes": {
+                  "max": 3
+                }
+              },
+              {
+                "type": "SAME_LEAGUE",
+                "attributes": {
+                  "max": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "mega",
+                  "name": "Mega Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 200
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_22",
+          "order": 4,
+          "name": "Puzzle Master",
+          "difficulty": 5,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 82,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 85,
+                  "max": 100
+                }
+              },
+              {
+                "type": "NATIONS",
+                "attributes": {
+                  "exact": 9
+                }
+              },
+              {
+                "type": "LEAGUES",
+                "attributes": {
+                  "exact": 7
+                }
+              },
+              {
+                "type": "SAME_CLUB",
+                "attributes": {
+                  "max": 3
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "rare_mega",
+                  "name": "Rare Mega Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 250
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 4,
+      "challengeIds": [
+        "CH_19",
+        "CH_20",
+        "CH_21",
+        "CH_22"
+      ],
+      "_catalogOrdinal": 5
+    },
+    {
+      "id": "FND_ADVANCED",
+      "tabId": 0,
+      "name": "Advanced",
+      "description": "Higher-rated squads for better rewards.",
+      "repeatable": false,
+      "image": "sbc_set_image_1001000",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_23",
+          "order": 1,
+          "name": "Gold Rush",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 75,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 70,
+                  "max": 100
+                }
+              },
+              {
+                "type": "QUALITY",
+                "attributes": {
+                  "value": "gold"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "premium_gold",
+                  "name": "Premium Gold Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_24",
+          "order": 2,
+          "name": "Rising Standard",
+          "difficulty": 3,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 80,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 75,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 5
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "gold_players",
+                  "name": "Gold Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 175
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_25",
+          "order": 3,
+          "name": "Marquee Squad",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 84,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 80,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 8
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "prime_gold_players",
+                  "name": "Prime Gold Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "COINS",
+                "attributes": {},
+                "value": 2500
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 200
+              }
+            ]
+          }
+        },
+        {
+          "id": "CH_26",
+          "order": 4,
+          "name": "Elite Standard",
+          "difficulty": 5,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 86,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 85,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "rare_players",
+                  "name": "Rare Players Pack",
+                  "count": 1
+                }
+              },
+              {
+                "type": "COINS",
+                "attributes": {},
+                "value": 5000
+              },
+              {
+                "type": "XP",
+                "attributes": {},
+                "value": 250
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 4,
+      "challengeIds": [
+        "CH_23",
+        "CH_24",
+        "CH_25",
+        "CH_26"
+      ],
+      "_catalogOrdinal": 6
+    },
+    {
+      "id": "UP_82",
+      "tabId": 4,
+      "name": "82+ Player Pick",
+      "description": "Guaranteed 82+ rated player pick.",
+      "repeatable": true,
+      "image": "sbc_set_image_1001004",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_66",
+          "order": 1,
+          "name": "82+ Player Pick",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "player_pick",
+                  "name": "Player Pick",
+                  "count": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 1,
+      "challengeIds": [
+        "CH_66"
+      ],
+      "_catalogOrdinal": 20
+    },
+    {
+      "id": "UP_84",
+      "tabId": 4,
+      "name": "84+ Player Pick",
+      "description": "Guaranteed 84+ rated player pick.",
+      "repeatable": true,
+      "image": "sbc_set_image_1001004",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_67",
+          "order": 1,
+          "name": "84+ Player Pick",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "player_pick",
+                  "name": "Player Pick",
+                  "count": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 1,
+      "challengeIds": [
+        "CH_67"
+      ],
+      "_catalogOrdinal": 21
+    },
+    {
+      "id": "UP_85",
+      "tabId": 4,
+      "name": "85+ Upgrade",
+      "description": "Guaranteed 85+ rated players pack.",
+      "repeatable": true,
+      "image": "sbc_set_image_1001004",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_68",
+          "order": 1,
+          "name": "85+ Upgrade",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 85,
+                  "max": 99
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 90,
+                  "max": 100
+                }
+              },
+              {
+                "type": "RARE",
+                "attributes": {
+                  "min": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "prime_gold_players",
+                  "name": "Prime Gold Players Pack",
+                  "count": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 1,
+      "challengeIds": [
+        "CH_68"
+      ],
+      "_catalogOrdinal": 22
+    },
+    {
+      "id": "UP_86",
+      "tabId": 4,
+      "name": "86+ Player Pick",
+      "description": "Guaranteed 86+ rated player pick.",
+      "repeatable": true,
+      "image": "sbc_set_image_1001004",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_69",
+          "order": 1,
+          "name": "86+ Player Pick",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "player_pick",
+                  "name": "Player Pick",
+                  "count": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 1,
+      "challengeIds": [
+        "CH_69"
+      ],
+      "_catalogOrdinal": 23
+    },
+    {
+      "id": "UP_88",
+      "tabId": 4,
+      "name": "88+ Player Pick",
+      "description": "Guaranteed 88+ rated player pick.",
+      "repeatable": true,
+      "image": "sbc_set_image_1001004",
+      "state": "available",
+      "challenges": [
+        {
+          "id": "CH_70",
+          "order": 1,
+          "name": "88+ Player Pick",
+          "difficulty": 4,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": [
+              {
+                "type": "PACK",
+                "attributes": {
+                  "pack": "player_pick",
+                  "name": "Player Pick",
+                  "count": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "challengeCount": 1,
+      "challengeIds": [
+        "CH_70"
+      ],
+      "_catalogOrdinal": 24
+    },
+    {
+      "id": "OTW_OFFICIAL_2020_241096",
+      "tabId": 6,
+      "name": "Tonali — Ones to Watch",
+      "repeatable": false,
+      "_catalogOrdinal": 2000,
+      "descriptionKey": "official_otw_sbc_description",
+      "releaseDate": "2020-10-05",
+      "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "officialOTW": true,
+      "challenges": [
+        {
+          "id": "OTW_OFFICIAL_2020_241096_1",
+          "name": "Tonali",
+          "order": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 80
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 75
+                }
+              },
+              {
+                "type": "LEAGUE_ID",
+                "attributes": {
+                  "value": 31,
+                  "min": 1,
+                  "name": "Serie A"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          }
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 84127176,
+              "name": "Tonali",
+              "rating": 77,
+              "position": "CDM"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "OTW_OFFICIAL_2020_164240",
+      "tabId": 6,
+      "name": "Thiago Silva — Ones to Watch",
+      "repeatable": false,
+      "_catalogOrdinal": 2001,
+      "descriptionKey": "official_otw_sbc_description",
+      "releaseDate": "2020-10-09",
+      "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "officialOTW": true,
+      "challenges": [
+        {
+          "id": "OTW_OFFICIAL_2020_164240_1",
+          "name": "Thiago Silva",
+          "order": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 82
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 80
+                }
+              },
+              {
+                "type": "LEAGUE_ID",
+                "attributes": {
+                  "value": 13,
+                  "min": 1,
+                  "name": "Premier League"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          }
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 67273104,
+              "name": "Thiago Silva",
+              "rating": 86,
+              "position": "CB"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "OTW_OFFICIAL_2020_226380",
+      "tabId": 6,
+      "name": "Hwang Hee Chan — Ones to Watch",
+      "repeatable": false,
+      "_catalogOrdinal": 2002,
+      "descriptionKey": "official_otw_sbc_description",
+      "releaseDate": "2020-10-11",
+      "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "officialOTW": true,
+      "challenges": [
+        {
+          "id": "OTW_OFFICIAL_2020_226380_1",
+          "name": "Hwang Hee Chan",
+          "order": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 82
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 65
+                }
+              },
+              {
+                "type": "LEAGUE_ID",
+                "attributes": {
+                  "value": 19,
+                  "min": 1,
+                  "name": "Bundesliga"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          }
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 84112460,
+              "name": "Hwang Hee Chan",
+              "rating": 77,
+              "position": "ST"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "OTW_OFFICIAL_2020_198710",
+      "tabId": 6,
+      "name": "Rodríguez — Ones to Watch",
+      "repeatable": false,
+      "_catalogOrdinal": 2003,
+      "descriptionKey": "official_otw_sbc_description",
+      "releaseDate": "2020-10-16",
+      "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "officialOTW": true,
+      "challenges": [
+        {
+          "id": "OTW_OFFICIAL_2020_198710_1",
+          "name": "Rodríguez",
+          "order": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 82
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 65
+                }
+              },
+              {
+                "type": "LEAGUE_ID",
+                "attributes": {
+                  "value": 13,
+                  "min": 1,
+                  "name": "Premier League"
+                }
+              },
+              {
+                "type": "TOTW",
+                "attributes": {
+                  "min": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          }
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 67307574,
+              "name": "Rodríguez",
+              "rating": 84,
+              "position": "CAM"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "OTW_OFFICIAL_2020_170890",
+      "tabId": 6,
+      "name": "Matuidi — Ones to Watch",
+      "repeatable": false,
+      "_catalogOrdinal": 2004,
+      "descriptionKey": "official_otw_sbc_description",
+      "releaseDate": "2020-10-18",
+      "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+      "officialOTW": true,
+      "challenges": [
+        {
+          "id": "OTW_OFFICIAL_2020_170890_1",
+          "name": "Matuidi",
+          "order": 1,
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 83
+                }
+              },
+              {
+                "type": "CHEMISTRY",
+                "attributes": {
+                  "min": 60
+                }
+              },
+              {
+                "type": "NATION_ID",
+                "attributes": {
+                  "value": 18,
+                  "min": 1,
+                  "name": "France"
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          }
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 50502538,
+              "name": "Matuidi",
+              "rating": 83,
+              "position": "CDM"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "counts": {
+    "tabs": 9,
+    "sets": 52,
+    "challenges": 127
+  }
+}
