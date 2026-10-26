@@ -1,5 +1,5 @@
 {
-  "version": "mng-player-studio-c5253cfa209e-event-rulebreakers-team1-v1-new-totw1-19-v1-retire-meslier-v1",
+  "version": "mng-player-studio-c5253cfa209e-event-rulebreakers-team1-v1-new-totw1-19-v1-retire-meslier-v1-opara-otw-paused-v1",
   "enabled": true,
   "allowedRarities": [
     0,
@@ -17180,6 +17180,7 @@
     17006077,
     17009360,
     17012640,
+    17019872,
     17028508,
     17030220,
     33743941,
@@ -17209,6 +17210,7 @@
     67293296,
     67296825,
     67299347,
+    67299422,
     67301182,
     67301638,
     67303268,
@@ -17249,8 +17251,7 @@
     84112460,
     84127176,
     100839876,
-    100866847,
-    17019872
+    100866847
   ],
   "seasonRewardResourceIds": [
     67301182
@@ -17276,5 +17277,9 @@
     67299347,
     67344809
   ],
-  "rulebreakersActive": true
+  "rulebreakersActive": true,
+  "disabledRarities": [
+    21
+  ],
+  "otwActive": false
 }

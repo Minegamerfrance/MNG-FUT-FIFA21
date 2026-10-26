@@ -1137587,10 +1137587,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-18",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+    "catalogEnabled": false
   },
   "50503439": {
     "name": "José Fonte",
@@ -1137762,10 +1137763,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "50531099": {
     "name": "Ben Yedder",
@@ -1137937,10 +1137939,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "50540478": {
     "name": "Vardy",
@@ -1138542,10 +1138545,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "50575278": {
     "name": "David",
@@ -1138632,10 +1138636,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67273104": {
     "name": "Thiago Silva",
@@ -1138722,10 +1138727,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+    "catalogEnabled": false
   },
   "67282595": {
     "name": "Bale",
@@ -1138812,10 +1138818,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67285444": {
     "name": "Suárez",
@@ -1138986,8 +1138993,8 @@
       "version": "mng-custom-otw-v1",
       "scope": "Custom OTW cloned from current adjusted ordinary edition"
     },
-    "acquisition": "mng-custom-otw",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "customMNG": true,
     "officialOTW": false,
     "customSource": "Explicit user request: Bayern summer 2020 OTW additions",
@@ -1138995,7 +1139002,8 @@
       "cutoff": "2020-12-31",
       "sourceResourceId": 190483,
       "regularSync": true
-    }
+    },
+    "catalogEnabled": false
   },
   "67301182": {
     "name": "Götze",
@@ -1139170,11 +1139178,12 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
     "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
-    "mngStatsOverride": "regular-at-user-request"
+    "mngStatsOverride": "regular-at-user-request",
+    "catalogEnabled": false
   },
   "67317534": {
     "name": "Ziyech",
@@ -1139261,10 +1139270,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67317784": {
     "name": "Aké",
@@ -1139351,10 +1139361,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67318853": {
     "name": "Partey",
@@ -1139441,10 +1139452,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67321052": {
     "name": "Werner",
@@ -1139531,10 +1139543,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67321326": {
     "name": "Alex Telles",
@@ -1139621,10 +1139634,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67330227": {
     "name": "van de Beek",
@@ -1139711,10 +1139725,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67331356": {
     "name": "Sané",
@@ -1139801,10 +1139816,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67336792": {
     "name": "Nélson Semedo",
@@ -1139891,10 +1139907,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67339522": {
     "name": "Arthur",
@@ -1139981,10 +1139998,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67344076": {
     "name": "Hakimi",
@@ -1140071,10 +1140089,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67344654": {
     "name": "Havertz",
@@ -1140161,10 +1140180,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "67344809": {
     "name": "Marc Roca",
@@ -1140245,8 +1140265,8 @@
       "url": "https://wefut.com/player/21/16801/marc-roca",
       "resourceIdSource": "local-revision-fallback"
     },
-    "acquisition": "mng-custom-otw",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "customMNG": true,
     "officialOTW": false,
     "customSource": "Explicit user request: Bayern summer 2020 OTW additions",
@@ -1140258,7 +1140278,8 @@
       "cutoff": "2020-12-31",
       "sourceResourceId": 235945,
       "regularSync": true
-    }
+    },
+    "catalogEnabled": false
   },
   "67350325": {
     "name": "Ferrán Torres",
@@ -1140345,10 +1140366,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "84067952": {
     "name": "Vidal",
@@ -1140435,10 +1140457,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "84075589": {
     "name": "Thiago",
@@ -1140525,8 +1140548,8 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
     "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
     "personalAdjustment": {
@@ -1140542,7 +1140565,8 @@
         "reactions": 1,
         "composure": 2
       }
-    }
+    },
+    "catalogEnabled": false
   },
   "84075655": {
     "name": "Muniain",
@@ -1141064,10 +1141088,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "84110538": {
     "name": "Diogo Jota",
@@ -1141154,10 +1141179,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "objective",
+    "acquisition": "inactive-otw",
     "packEligible": false,
     "untradeable": true,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "84112460": {
     "name": "Hwang Hee Chan",
@@ -1141244,10 +1141270,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-11",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+    "catalogEnabled": false
   },
   "84127176": {
     "name": "Tonali",
@@ -1141334,10 +1141361,11 @@
       "regularSync": true
     },
     "releaseDate": "2020-10-05",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/"
+    "historicalSource": "https://fifauteam.com/fifa-21-squad-building-challenges-october/",
+    "catalogEnabled": false
   },
   "100839876": {
     "name": "Suárez",
@@ -1141424,10 +1141452,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-09",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "100866847": {
     "name": "Florenzi",
@@ -1141514,10 +1141543,11 @@
       "tracker": "https://fifauteam.com/fifa-21-ones-to-watch-tracker/"
     },
     "releaseDate": "2020-10-16",
-    "acquisition": "otw-pack",
-    "packEligible": true,
+    "acquisition": "inactive-otw",
+    "packEligible": false,
     "untradeable": false,
-    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update"
+    "historicalSource": "https://www.ea.com/en-us/news/pitch-notes-fut21-launch-update",
+    "catalogEnabled": false
   },
   "33743941": {
     "name": "Thiago",
@@ -1144359,5 +1144389,90 @@
     "releaseDate": "2020-09-30",
     "mngStatsOverride": "user-new-totw1-20261026",
     "dynamicImageResourceId": 17019872
+  },
+  "67299422": {
+    "name": "Opara",
+    "firstName": "Ike",
+    "lastName": "Opara",
+    "commonName": "",
+    "rating": 82,
+    "preferredPosition": "CB",
+    "preferredFoot": "Right",
+    "workRateAttack": "Medium",
+    "workRateDefense": "High",
+    "weakFoot": 2,
+    "skillMoves": 2,
+    "dateOfBirth": "1989-02-21",
+    "height": 188,
+    "weight": 82,
+    "leagueId": 39,
+    "leagueName": "MLS",
+    "teamid": 111138,
+    "teamName": "Minnesota United FC",
+    "nation": 95,
+    "nationName": "United States",
+    "assetId": 190558,
+    "resourceId": 67299422,
+    "cardsubtypeid": 0,
+    "rareflag": 22,
+    "rarityName": "Rulebreakers",
+    "rarityClass": "halloween",
+    "tier": "gold",
+    "special": true,
+    "face": [
+      88,
+      44,
+      62,
+      80,
+      82,
+      77
+    ],
+    "attributes": {
+      "acceleration": 83,
+      "agility": 97,
+      "balance": 88,
+      "jumping": 86,
+      "reactions": 95,
+      "sprintSpeed": 92,
+      "stamina": 69,
+      "strength": 80,
+      "aggression": 77,
+      "interceptions": 81,
+      "positioning": 56,
+      "vision": 58,
+      "composure": 89,
+      "ballControl": 78,
+      "crossing": 34,
+      "curve": 50,
+      "dribbling": 76,
+      "finishing": 36,
+      "freeKickAccuracy": 55,
+      "headingAccuracy": 86,
+      "longPassing": 72,
+      "longShots": 35,
+      "marking": 79,
+      "penalties": 53,
+      "shortPassing": 80,
+      "shotPower": 64,
+      "slidingTackle": 79,
+      "standingTackle": 85,
+      "volleys": 50,
+      "gkDiving": 9,
+      "gkHandling": 16,
+      "gkKicking": 13,
+      "gkReflexes": 8,
+      "gkSpeed": 0,
+      "gkPositioning": 7
+    },
+    "wefutCard": {
+      "id": 1769,
+      "url": "https://wefut.com/player/21/1769/ike-opara",
+      "resourceIdSource": "wefut-base-id"
+    },
+    "acquisition": "objective",
+    "packEligible": false,
+    "untradeable": true,
+    "dynamicImageResourceId": 67299422,
+    "mngStatsOverride": "user-opara-rulebreakers-season-20261026"
   }
 }

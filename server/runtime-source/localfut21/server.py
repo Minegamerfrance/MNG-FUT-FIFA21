@@ -5307,6 +5307,8 @@ def _scmp_season_levels() -> list[dict[str, Any]]:
             kind, val = 'player', 67301182
         elif lvl == 15:
             kind, val = 'player', 67349948
+        elif lvl == 5:
+            kind, val = 'player', 67299422
         elif lvl == 10:
             kind, val = 'player', 67314266
         elif lvl == 20:

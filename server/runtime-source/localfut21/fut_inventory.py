@@ -118,7 +118,7 @@ def page(items,search):
     return items[start:start+count]
 
 def eligible(meta):
-    return meta.get('packEligible',True) and str(meta.get('acquisition','')).lower() not in ('sbc','objective','objectives')
+    return meta.get('catalogEnabled',True) and meta.get('packEligible',True) and str(meta.get('acquisition','')).lower() not in ('sbc','objective','objectives')
 
 def cosmetics(s):
     result=[]
@@ -148,6 +148,7 @@ def catalogue(s,search,concept=False):
     if kind in ('player','concept','conceptplayer','any','all'):
         result=[]
         for rid,meta in s.PLAYER_DB.items():
+            if not meta.get('catalogEnabled',True):continue
             if not concept and not eligible(meta):continue
             item=s.STATE.build_player_item(rid,CONCEPT_BASE+rid if concept else MARKET_BASE+rid,'concept' if concept else 'trade')
             item.update(name=meta.get('name',''))

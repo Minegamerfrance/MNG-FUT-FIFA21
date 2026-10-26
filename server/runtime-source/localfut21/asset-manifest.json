@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "baseUrl": "https://raw.githubusercontent.com/Minegamerfrance/MNG-FUT-FIFA21/d225671692092bfca9745301d76c1d2c3b23b476",
+  "baseUrl": "https://raw.githubusercontent.com/Minegamerfrance/MNG-FUT-FIFA21/e71745f88cefe4d58dd9a7776d496950b1395f57",
   "files": {
     "custom-backgrounds/cards_bg_c_1_85_0.dds": {
       "sha256": "597704d576f222b5f50b97fafb4a6e3893809af3ad1f2ec1a553f26b2b71c0dd",
@@ -376,6 +376,11 @@
       "sha256": "4e9df4bd5609018ea348b689dcb04a4895657df9488c45eea1d5ba11ee28da6b",
       "size": 256241,
       "path": "images/runtime/assets/sbc/sbc_set_image_1010009.png"
+    },
+    "custom-playerheads/p67299422.dds": {
+      "sha256": "23c8891837d3218be99adce4be2672da9d1aba9ac5fcd7a49ac1d70b3117e222",
+      "size": 56448,
+      "path": "images/runtime/custom-playerheads/p67299422.dds"
     }
   }
 }
