@@ -15,7 +15,7 @@ class BallonDor(Campaign):
  def __init__(self):
   super().__init__(7201,dict(player=PLAYER,key='mng_ballon_or_2026_v1',title='La route du Ballon d’or 2026',
    subTitle='Revivez le parcours de Harry Kane, des Spurs à Munich, et obtenez sa version Ballon d’or 2026 en prêt pour 15 matchs !',
-   leagueName='MNG FUT',priority=1,displayOrder=list(range(6))),ROWS,xp=0,group_xp=1000)
+   leagueName='MNG FUT',priority=300,displayOrder=list(range(6))),ROWS,xp=0,group_xp=1000)
  def progress(self,s):
   p=super().progress(s)
   if p.get('criteriaVersion')!=2:
@@ -114,40 +114,66 @@ class BallonDor(Campaign):
      s.STATE.conn.execute('UPDATE items SET pile=?,data=? WHERE id=?',(item.get('pile','club'),json.dumps(item),item['id']))
     mo._put(s,self.key+'_match_'+ctx['id'],dict(increments=changes,mode=ctx['mode'],at=s.now_s()));mo._put(s,self.key,p)
 
- def unlocked(self,s):return True
+
+ def unlocked(self,s):
+  key=self.spec.get('previousKey')
+  return not key or bool((s.STATE.get(key,{}) or {}).get('claimed'))
  def increments(self,participants,starters,total,reason):
-  return [int(any(x['assetId']==202126 for x in participants)),int(any(x['nation']==14 for x in starters)),
-   int(any(x['position']=='ST' for x in starters)),int(reason=='WIN' and any(x['club']==21 for x in starters)),total(participants,'assists'),total(participants,'goals')]
+  return [int(any(x['assetId']==self.spec.get('matchAsset',202126) for x in participants)),
+   int(any(x['nation']==self.spec.get('starterNation',14) for x in starters)),
+   int(any(x['position']==self.spec.get('starterRole','ST') for x in starters)),
+   int(reason=='WIN' and any(x['club']==self.spec.get('starterClub',21) for x in starters)),
+   total(participants,'assists'),total(participants,'goals')]
  def group(self,s,details=True):
-  result=super().group(s,details)
-  result['groupIdsToUnlock']=[7202]
+  result=Campaign.group(self,s,details)
+  previous=self.spec.get('previousGroup')
+  locked=not self.unlocked(s)
+  # CardsDLL: group state 9 selects FUT_SCMP_GROUP_STATUS_LOCKED and the
+  # locked panel. Its prerequisite label reads groupIdsToUnlock from this
+  # group (vector +0x168), so this list contains the REQUIRED parent ID.
+  result.update(groupIdsToUnlock=[previous] if previous else [],requiredGroupIds=[previous] if previous else [],isLocked=locked,locked=locked)
+  if locked:
+   result.update(groupState=9,state=9)
   return result
 
 DEMBELE=67340307
 DEMBELE_ROWS=(
- ('Le prodige de Rennes',6,301,'Disputez 6 matchs avec Ousmane Dembélé, quelle que soit sa version, en Rivals ou en Clashs d’équipes.'),
- ('Le roi des nuits européennes',8,303,'Marquez 8 buts avec des joueurs français en Rivals ou en Clashs d’équipes.'),
- ('Le maître de la Ligue 1',21,403,'Marquez 21 buts avec des joueurs de Ligue 1 titulaires en Rivals ou en Clashs d’équipes.'),
+ ('Les débuts à Rennes',29,301,'Disputez 29 matchs avec Ousmane Dembélé, quelle que soit sa version, en Rivals ou en Clashs d’équipes.'),
+ ('Les Bleus',7,303,'Disputez 7 matchs avec au moins un joueur français titulaire en Rivals ou en Clashs d’équipes.'),
+ ('Le faux neuf parisien',53,404,'Disputez 53 matchs avec au moins un BU titulaire en Rivals ou en Clashs d’équipes.'),
+ ('La conquête de Paris',48,403,'Remportez 48 matchs avec au moins un joueur du Paris Saint-Germain titulaire en Rivals ou en Clashs d’équipes.'),
  ('Le génie du collectif',16,521,'Adressez 16 passes décisives en Rivals ou en Clashs d’équipes.'),
- ('Paris au sommet de l’Europe',53,404,'Disputez 53 matchs avec au moins un joueur du Paris Saint-Germain titulaire en Rivals ou en Clashs d’équipes.'),
- ('Une saison en or',35,405,'Marquez 35 buts avec des joueurs français en Rivals ou en Clashs d’équipes.'),
+ ('L’instinct du buteur',35,405,'Marquez 35 buts en Rivals ou en Clashs d’équipes.'),
 )
 class DembeleBallonDor(BallonDor):
  def __init__(self):
   Campaign.__init__(self,7202,dict(player=DEMBELE,key='mng_ballon_or_2025_v1',title='La route du Ballon d’or 2025',
    subTitle='Revivez le parcours d’Ousmane Dembélé et obtenez sa version Ballon d’or 2025 en prêt pour 15 matchs !',
-   rewardName='Ousmane Dembélé Ballon d’or 2025 — prêt de 15 matchs',leagueName='MNG FUT',priority=2,displayOrder=list(range(6))),DEMBELE_ROWS,xp=0,group_xp=1000)
+   rewardName='Ousmane Dembélé Ballon d’or 2025 — prêt de 15 matchs',leagueName='MNG FUT',priority=200,displayOrder=list(range(6)),
+   previousGroup=7201,previousKey='mng_ballon_or_2026_v1',matchAsset=231443,starterNation=18,starterRole='ST',starterClub=73),DEMBELE_ROWS,xp=0,group_xp=1000)
+ def progress(self,s):
+  p=Campaign.progress(self,s)
+  if p.get('criteriaVersion')!=3:
+   # Preserve equivalent appearances, assists and goals; do not reinterpret
+   # prior goals as appearances or PSG appearances as wins. Keep receipts.
+   old=p['counts'][:]
+   p['counts']=[min(29,old[0]),0,0,0,min(16,old[3]),min(35,old[5])]
+   p['criteriaVersion']=3;s.STATE.set(self.key,p)
+  return p
+
+RODRI=67340730
+RODRI_ROWS=(
+ ('Les débuts à Villarreal',6,301,'Disputez 6 matchs avec Rodri, quelle que soit sa version, en Rivals ou en Clashs d’équipes.'),
+ ('La Roja',13,303,'Disputez 13 matchs avec au moins un joueur espagnol titulaire en Rivals ou en Clashs d’équipes.'),
+ ('Le maître de l’entrejeu',50,404,'Disputez 50 matchs avec au moins un MDC titulaire en Rivals ou en Clashs d’équipes.'),
+ ('Le départ pour Manchester',43,403,'Remportez 43 matchs avec au moins un joueur de Manchester City titulaire en Rivals ou en Clashs d’équipes.'),
+ ('Le sens du collectif',14,521,'Adressez 14 passes décisives en Rivals ou en Clashs d’équipes.'),
+ ('Le sens du but',9,405,'Marquez 9 buts en Rivals ou en Clashs d’équipes.'),
+)
+class RodriBallonDor(BallonDor):
+ def __init__(self):
+  Campaign.__init__(self,7203,dict(player=RODRI,key='mng_ballon_or_2024_v1',title='La route du Ballon d’or 2024',
+   subTitle='Revivez le parcours de Rodri et obtenez sa version Ballon d’or 2024 en prêt pour 15 matchs !',
+   rewardName='Rodri Ballon d’or 2024 — prêt de 15 matchs',leagueName='MNG FUT',priority=100,displayOrder=list(range(6)),
+   previousGroup=7202,previousKey='mng_ballon_or_2025_v1',matchAsset=231866,starterNation=45,starterRole='CDM',starterClub=10),RODRI_ROWS,xp=0,group_xp=1000)
  def progress(self,s):return Campaign.progress(self,s)
- def unlocked(self,s):return bool((s.STATE.get('mng_ballon_or_2026_v1',{}) or {}).get('claimed'))
- def group(self,s,details=True):
-  result=Campaign.group(self,s,details)
-  result.update(requiredGroupIds=[7201],isLocked=not self.unlocked(s),locked=not self.unlocked(s))
-  if not self.unlocked(s):
-   result.update(groupState=0,state=0,subTitle='Verrouillé : terminez La route du Ballon d’or 2026 et récupérez Kane pour débloquer ces défis.')
-   for objective in result.get('objectives',[]):objective['state']='LOCKED'
-  return result
- def increments(self,participants,starters,total,reason):
-  french=[x for x in participants if x['nation']==18]
-  ligue1=[x for x in starters if x['leagueId']==16]
-  goals=total(french,'goals')
-  return [int(any(x['assetId']==231443 for x in participants)),goals,total(ligue1,'goals'),total(participants,'assists'),int(any(x['club']==73 for x in starters)),goals]

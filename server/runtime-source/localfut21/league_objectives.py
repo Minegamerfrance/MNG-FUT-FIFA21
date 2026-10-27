@@ -78,9 +78,10 @@ from scary_nights import Nights
 CAMPAIGNS[7102]=Nights()
 from pumpkin_objectives import Pumpkins
 CAMPAIGNS[8003]=Pumpkins()
-from ballon_dor_objectives import BallonDor,DembeleBallonDor
+from ballon_dor_objectives import BallonDor,DembeleBallonDor,RodriBallonDor
 CAMPAIGNS[7201]=BallonDor()
 CAMPAIGNS[7202]=DembeleBallonDor()
+CAMPAIGNS[7203]=RodriBallonDor()
 
 def progress(s,group_id=GROUP):return CAMPAIGNS[group_id].progress(s)
 def group(s,details=True,group_id=GROUP):return CAMPAIGNS[group_id].group(s,details)
@@ -95,7 +96,7 @@ def event_category(s):
     return dict(categoryId=RULEBREAKERS_CATEGORY,id=RULEBREAKERS_CATEGORY,name='Rulebreakers',priority=3,groupsList=groups,groups=groups)
 
 def mng_category(s):
-    groups=[group(s,True,7201),group(s,True,7202)]
+    groups=[group(s,True,7201),group(s,True,7202),group(s,True,7203)]
     return dict(categoryId=72,id=72,name='MNG FUT',priority=4,groupsList=groups,groups=groups)
 
 def route(s,method,path):
