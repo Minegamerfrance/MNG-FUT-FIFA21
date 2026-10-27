@@ -7,6 +7,7 @@ param(
     [ValidateSet('auto', 'ea-app', 'replacement')]
     [string]$LSXMode = "",
     [string]$UserConfigRoot = "",
+    [string]$RuntimeDataRoot = "",
     [string]$LauncherLogPath = ""
 )
 
@@ -51,6 +52,10 @@ $UserConfigRoot = Resolve-LocalFutUserConfigRoot $UserConfigRoot
 $SettingsPath = Join-Path $UserConfigRoot 'launcher-settings.json'
 # Resolve before elevation and forward explicitly, including over-the-shoulder UAC.
 $env:LOCALFUT21_USER_CONFIG_ROOT = $UserConfigRoot
+if(-not $RuntimeDataRoot){$RuntimeDataRoot=if($env:LOCALFUT_RUNTIME_ROOT){$env:LOCALFUT_RUNTIME_ROOT}else{Join-Path $env:LOCALAPPDATA 'FIFA21LocalFUT'}}
+$RuntimeDataRoot=[IO.Path]::GetFullPath($RuntimeDataRoot)
+$env:LOCALFUT_RUNTIME_ROOT=$RuntimeDataRoot
+
 $settings = Get-LocalFutUserSettings $UserConfigRoot
 $VendorRoot = Join-Path $ProjectRoot 'runtime-source'
 $RuntimeRoot = Join-Path $ProjectRoot 'runtime'
@@ -575,6 +580,7 @@ if (-not $SafeGameLaunch -and -not (Test-Administrator)) {
     if ($WaitForExternalGame) { $argList += '-WaitForExternalGame' }
     if ($LSXMode) { $argList += @('-LSXMode', $LSXMode) }
     $argList += @('-UserConfigRoot', ('"{0}"' -f $UserConfigRoot))
+    $argList += @('-RuntimeDataRoot', ('"{0}"' -f $RuntimeDataRoot))
     if ($LauncherLogPath) { $argList += @('-LauncherLogPath', ('"{0}"' -f $LauncherLogPath)) }
     $elevated = Start-Process -FilePath 'powershell.exe' -Verb RunAs -ArgumentList $argList -WindowStyle Hidden -PassThru
     # Wait for setup itself, not its long-lived server/redirector descendants.
@@ -593,6 +599,16 @@ try {
     }
     Ensure-WorkingCopy ([string]$settings.sourcePath)
     $python = Resolve-Python3
+    # MNG web catalogue synchronization (read-only export, separate process).
+    $webSync = Join-Path $ProjectRoot 'Sync-Web-Catalog.py'
+    if (Test-Path -LiteralPath $webSync) {
+        try {
+            $webSyncArgs = @($python.Arguments) + @(('"{0}"' -f $webSync), '--source', ('"{0}"' -f (Join-Path $ProjectRoot 'runtime-source/localfut21')), '--watch')
+            Start-Process -FilePath $python.Path -ArgumentList $webSyncArgs -WorkingDirectory $ProjectRoot -WindowStyle Hidden | Out-Null
+        } catch { Write-Warning 'La synchronisation du catalogue web sera retentee au prochain lancement.' }
+    }
+    . (Join-Path $ProjectRoot 'First-Run.ps1')
+    Initialize-Mng21NewClub $python $UserConfigRoot
 
     $requestedLSXMode = if ($LSXMode) { $LSXMode } elseif ($settings.lsxMode) { [string]$settings.lsxMode } else { 'auto' }
     if ($requestedLSXMode -notin @('auto', 'ea-app', 'replacement')) {

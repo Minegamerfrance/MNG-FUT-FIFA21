@@ -1,4 +1,4 @@
-"""The nine requested store offers; reward packs remain independently openable."""
+"""The requested store offers; reward packs remain independently openable."""
 import copy
 
 # id, name, group, coin price, FIFA points, items, rares
@@ -12,6 +12,7 @@ OFFERS=(
  (303,'Pack jumbo premium or','gold',15000,300,24,7),
  (403,'Pack méga','special',35000,700,30,18),
  (404,'Pack méga rare','special',55000,1100,30,30),
+ (405,'Pack ultime','special',125000,2500,30,30),
 )
 
 def points(s):return max(0,int(s.STATE.get('fifa_points',0) or 0))

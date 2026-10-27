@@ -46,6 +46,7 @@ import sbc_reward_presentation
 import cr7_flashback_sbc
 import featured_art
 import recurring_objectives
+import new_club
 import season_cosmetics
 import season_picks
 import season_persistence
@@ -126,7 +127,9 @@ def load_config() -> dict[str, Any]:
         "club_id": 1,
         "club_name": "Local FC",
         "club_abbr": "LCL",
-        "credits": 500000,
+        "credits": 10000,
+        "starter_credits": 10000,
+        "starter_fifa_points": 1000,
         "fut_game": "fifa21",
         "game_sku": "FFA21PCC",
         "fut_sku": "FUT21PCC",
@@ -642,7 +645,15 @@ def player_attribute_metadata(resource_id: int) -> dict[str, Any]:
     # CardsDLL reserves 34 integer slots for the detailed attributes.  FIFA's
     # player database has 29 outfield attributes and six goalkeeper values;
     # GK speed is derived by the game and is therefore omitted here.
-    ingame_order = tuple(name for group in _PLAYER_ATTRIBUTE_GROUPS for name in group) + (
+    # Native player-attribute enum, not the grouped visual order. For example,
+    # positioning is slot 11, finishing 16, shot power 22 and long shots 23.
+    ingame_order = (
+        "acceleration", "sprintspeed", "agility", "balance", "jumping",
+        "stamina", "strength", "reactions", "aggression", "composure",
+        "interceptions", "positioning", "vision", "ballcontrol", "crossing",
+        "dribbling", "finishing", "freekickaccuracy", "headingaccuracy",
+        "longpassing", "shortpassing", "marking", "shotpower", "longshots",
+        "standingtackle", "slidingtackle", "curve", "volleys", "penalties",
         "gkdiving", "gkhandling", "gkkicking", "gkreflexes", "gkpositioning",
     )
     ingame_attributes = [
@@ -933,7 +944,11 @@ class State:
                 """
             )
             self.conn.commit()
-            self.set_default("credits", int(CFG["credits"]))
+            fresh_club = (self.conn.execute("SELECT 1 FROM kv WHERE key='credits'").fetchone() is None
+                          and not self._has_any_items() and not self._has_any_squads())
+            if fresh_club:self.set_default('starter_profile_version',1)
+            self.set_default("credits", int(CFG.get('starter_credits',10000)) if fresh_club else int(CFG["credits"]))
+            self.set_default('fifa_points',int(CFG.get('starter_fifa_points',1000)) if fresh_club else 0)
             self.set_default("next_item_id", 900000000000)
             self.set_default("sid", "LOCAL15-" + sha1_text(str(time.time()))[:20].upper())
             self.set_default("token", "LOCAL15TOKEN-" + sha1_text(str(time.time() + 1))[:24].upper())
@@ -944,9 +959,10 @@ class State:
             self._migrate_custom_resource_ids()
             self._migrate_legacy_manager_items()
             self._migrate_direct_player_pick_tokens()
-            self._ensure_initial_club_players()
-            self._ensure_initial_club_manager()
-            self._ensure_initial_club_kits()
+            if self.get('starter_profile_version') != 1 or self.get('onboarding_created'):
+                self._ensure_initial_club_players()
+                self._ensure_initial_club_manager()
+                self._ensure_initial_club_kits()
             self._enrich_existing_player_items()
             if not TEST_MODE:
                 deduplicate_owned(self)
@@ -1129,6 +1145,9 @@ class State:
             raise ValueError(f"Player edition {resource_id} is outside the summer 2020 catalogue")
         loan_games = max(0, int(loan_games))
         return {
+            **({"skillmoves": int(meta["skillMoves"])-1,
+                "weakfootabilitytypecode": int(meta["weakFoot"])}
+               if int(resource_id) in (67310990,67340307) else {}),
             "id": item_id,
             "timestamp": now_s(),
             "resourceId": int(resource_id),
@@ -1487,7 +1506,7 @@ class State:
             return
         fallback_resource_id = min(
             MANAGER_DB,
-            key=lambda rid: (-int(MANAGER_DB[rid].get("rating", 0) or 0), int(rid)),
+            key=lambda rid: (int(MANAGER_DB[rid].get("rating", 0) or 0) * (1 if self.get("starter_profile_version")==1 else -1), int(rid)),
         )
         with self.lock:
             rows = self.conn.execute("SELECT id, resource_id, pile, data FROM items").fetchall()
@@ -1715,6 +1734,10 @@ class State:
 
     def _ensure_initial_club_players(self) -> None:
         """Add missing initial players without resetting or replacing club state."""
+        if self.get('starter_profile_version')==1:
+            # Native country selection owns the one-time allocation.
+            return
+            return
         if CATALOG_POLICY.get("enabled"):
             migration = self.get("catalog_policy_migration", {})
             if migration.get("existingClub") or self.owned_player_resource_ids():
@@ -2196,6 +2219,10 @@ class State:
         return rid in self.owned_player_resource_ids()
 
     def _seed_squad(self) -> None:
+        if self.get('starter_profile_version')==1:
+            # Native account remains empty until country selection.
+            return
+            return
         players = self.list_items("club")[:11]
         lineup = []
         for idx, item in enumerate(players):
@@ -2684,12 +2711,20 @@ def _native_pack_item(item: dict[str, Any]) -> dict[str, Any]:
         # broke consumables / Draft).  Skill moves / weak foot are not
         # overridden -- doing so showed wrong star ratings on cards like Pelé.
         out.update(_player_name_fields(out))
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307):
+        # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
+        # Keep this edition-specific; gold Kane keeps his own identity.
+        out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
+        out["weakfootabilitytypecode"] = int(player_meta(int(out["resourceId"]))["weakFoot"])
     if int(out.get("resourceId",0) or 0) == 83906881:
         out["weakfootabilitytypecode"] = int(player_meta(83906881)["weakFoot"])
     return out
 
 
 STATE = State(DB_PATH)
+if STATE.get('starter_profile_version') == 1:
+    for _club_key in ('club_name', 'club_abbr'):
+        CFG[_club_key] = STATE.get(_club_key, CFG[_club_key])
 mng_pick_sbc.migrate_pending(sys.modules[__name__])
 
 recurring_objectives.initialize(sys.modules[__name__])
@@ -3022,6 +3057,11 @@ def _active_club_items() -> list[dict[str, Any]]:
             stadium_value = int(item.get("stadiumid", item.get("assetId", 0)) or 0)
             item["stadiumid"] = stadium_value
             item["StadiumId"] = stadium_value
+    # Native startup keeps positional slots: stadium, home, away, badge, ball.
+    # Replacing owned items by remove/append must not move the away kit into
+    # the badge slot, even when all itemState labels are themselves correct.
+    slot_order = {'activeStadium':0,'activeHomeKit':1,'activeAwayKit':2,'activeBadge':3,'activeBall':4}
+    items.sort(key=lambda item: slot_order.get(item.get('itemState'), 99))
     return items
 
 
@@ -3314,6 +3354,11 @@ def _native_player_item(item: dict[str, Any]) -> dict[str, Any]:
     # Pelé PIM show wrong star ratings, so the client's own value is kept.
     if _is_special_card(item):
         out.update(_player_name_fields(item))
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307):
+        # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
+        # Keep this edition-specific; gold Kane keeps his own identity.
+        out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
+        out["weakfootabilitytypecode"] = int(player_meta(int(out["resourceId"]))["weakFoot"])
     if int(out.get("resourceId",0) or 0) == 83906881:
         out["weakfootabilitytypecode"] = int(player_meta(83906881)["weakFoot"])
     return out
@@ -5425,7 +5470,7 @@ def _scmp_campaign_json() -> dict[str, Any]:
     recurring_objectives.login(sys.modules[__name__])
     season_window = season_persistence.window(sys.modules[__name__])
     claimed = bool(STATE.get("scmp_reward_claimed", False))
-    cats = [league_objectives.event_category(sys.modules[__name__]), _scmp_category(claimed), league_objectives.category(sys.modules[__name__])]
+    cats = [league_objectives.mng_category(sys.modules[__name__]), league_objectives.event_category(sys.modules[__name__]), _scmp_category(claimed), league_objectives.category(sys.modules[__name__])]
     user_xp = int(STATE.get("scmp_user_xp", 0) or 0)
     levels = _scmp_season_levels()
     return {
@@ -6846,6 +6891,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         return route_local_auth(method, low, parsed.query, headers, body)
     query = urllib.parse.parse_qs(parsed.query)
     payload = safe_json(body)
+    first_run = new_club.route(sys.modules[__name__], method, low, query, payload)
+    if first_run is not None:return first_run
     loading = loading_content.route(sys.modules[__name__], method, low, payload)
     if loading is not None:
         return loading
@@ -7426,6 +7473,14 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # player_attribute_metadata preserves each requested defId while
         # resolving the two pro cards through their base-asset aliases.
         records = [player_attribute_metadata(resource_id) for resource_id in requested_ids]
+        # The native details screen asks for both base asset and special
+        # definition, and may resolve its detailed attributes through either.
+        # Alias only this explicit Kane-edition batch, never base-only searches.
+        for special_id,base_id in ((67310990,202126),(67340307,231443)):
+            if special_id in requested_ids:
+                records = [dict(player_attribute_metadata(special_id), defId=record['defId'])
+                           if record['defId'] == base_id else record for record in records]
+
         log.info("Resolved player attribute metadata requested=%s", requested_ids)
         # CardsDLL's FutGetPlayerAttributesServerResponse reads a top-level
         # array directly (there is no collection-name wrapper).
@@ -8672,6 +8727,10 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                     "leagueId": int(vmeta.get("leagueId", 0)), "teamid": int(vmeta.get("teamid", 0)),
                     "nation": int(vmeta.get("nation", 0)), "attributeList": player_attribute_list(int(vrid)),
                 })
+            for variant in variants:
+                if int(variant.get('resourceId',0)) in (67310990,67340307):
+                    variant['skillmoves'] = int(player_meta(int(variant['resourceId']))['skillMoves']) - 1
+                    variant['weakfootabilitytypecode'] = int(player_meta(int(variant['resourceId']))['weakFoot'])
             variants.sort(key=lambda x: int(x.get("rating", 0)), reverse=True)
         return 200, {}, json_bytes({"itemData": variants})
 

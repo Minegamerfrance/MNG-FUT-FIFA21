@@ -26,7 +26,7 @@ GROUPS = {
 BACKGROUND_GUID = 'd479de87-00e3-43f9-a6f1-55e4ec4cb085'
 
 def background(s, path):
-    match=re.fullmatch(r'/fut/items/images/backgrounds/itembgs/([a-f0-9-]+)/(cards_bg_[scej]_1_(85|98)_0.dds)',path)
+    match=re.fullmatch(r'/fut/items/images/backgrounds/itembgs/([a-f0-9-]+)/(cards_bg_[scej]_1_(63|85|98)_0.dds)',path)
     if not match: return None
     rarity=int(match.group(3))
     spec=json.loads((s.ROOT/'custom-backgrounds'/f'rarity{rarity}.json').read_text(encoding='utf8'))
@@ -41,7 +41,7 @@ def background(s, path):
 
 def tunables(s, body):
     document=json.loads(body)
-    for rarity in (85,98):
+    for rarity in (63,85,98):
         spec=json.loads((s.ROOT/'custom-backgrounds'/f'rarity{rarity}.json').read_text(encoding='utf8'))
         document['rarities']=[x for x in document['rarities'] if x['id']!=rarity]+[spec]
     return json.dumps(document,ensure_ascii=True).encode('utf8')
@@ -78,6 +78,9 @@ from scary_nights import Nights
 CAMPAIGNS[7102]=Nights()
 from pumpkin_objectives import Pumpkins
 CAMPAIGNS[8003]=Pumpkins()
+from ballon_dor_objectives import BallonDor,DembeleBallonDor
+CAMPAIGNS[7201]=BallonDor()
+CAMPAIGNS[7202]=DembeleBallonDor()
 
 def progress(s,group_id=GROUP):return CAMPAIGNS[group_id].progress(s)
 def group(s,details=True,group_id=GROUP):return CAMPAIGNS[group_id].group(s,details)
@@ -91,10 +94,14 @@ def event_category(s):
     groups=[group(s,True,7102),group(s,True,GIGNAC_GROUP),group(s,True,8003)]
     return dict(categoryId=RULEBREAKERS_CATEGORY,id=RULEBREAKERS_CATEGORY,name='Rulebreakers',priority=3,groupsList=groups,groups=groups)
 
+def mng_category(s):
+    groups=[group(s,True,7201),group(s,True,7202)]
+    return dict(categoryId=72,id=72,name='MNG FUT',priority=4,groupsList=groups,groups=groups)
+
 def route(s,method,path):
-    match=re.fullmatch(r'/ut/game/fifa21/scmp/(?:active|learning|world)/category/(70|71)/details',path)
+    match=re.fullmatch(r'/ut/game/fifa21/scmp/(?:active|learning|world)/category/(70|71|72)/details',path)
     if match:
-        cat=category(s) if int(match.group(1))==CATEGORY else event_category(s)
+        cat={70:category,71:event_category,72:mng_category}[int(match.group(1))](s)
         return 200,dict(categoryId=cat['categoryId'],groupsList=cat['groupsList'])
     match=re.fullmatch(r'/ut/game/fifa21/scmp/campaign/group/(\d+)(?:/objective/(\d+))?/rewards',path)
     if match and method in ('POST','PUT'):

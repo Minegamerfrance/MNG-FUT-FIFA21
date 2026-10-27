@@ -1,0 +1,12 @@
+NOUVEAU DEPART FIFA 21
+
+Nouvelle installation : démarrez le serveur depuis MNG FUT. La création du club demande le pseudo, le nom du club et son abréviation.
+Le départ comprend 23 joueurs bronze, 10 000 crédits et 1 000 points FIFA. Cette dotation est attribuée une seule fois.
+
+ESSAI SANS EFFACER MON CLUB
+1. Sortez de FUT et restez au menu principal de FIFA 21.
+2. Ouvrez Tester-Nouveau-Club.cmd : un profil distinct est utilisé.
+3. Choisissez votre pseudo et votre club, puis retournez dans FUT.
+4. Pour retrouver votre club habituel, sortez de FUT et ouvrez Revenir-Mon-Club.cmd, puis retournez dans FUT.
+
+Le profil d'essai est conservé d'une session à l'autre. Aucun des deux boutons ne supprime de sauvegarde.
