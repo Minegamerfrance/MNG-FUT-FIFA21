@@ -1,0 +1,65 @@
+{
+  "colorArray": [
+    16777215,
+    12094525,
+    12094525
+  ],
+  "expColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "collColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "smallColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "shineArray": [
+    16766720
+  ],
+  "version": 5,
+  "id": 63,
+  "name": "Ballon d'Or 2026",
+  "levels": false,
+  "shell": 2,
+  "bigHead": false,
+  "untradableOnly": true,
+  "hide": false,
+  "embargoTime": 0,
+  "guid": "4923a9b8-329f-4203-b4d7-ae93f7357d75",
+  "smallItemCRC": [
+    620434876
+  ],
+  "collapsedItemCRC": [
+    3205514017
+  ],
+  "largeItemCRC": [
+    3864823276
+  ],
+  "jumboItemCRC": [
+    499868790
+  ]
+}
