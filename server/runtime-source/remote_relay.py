@@ -63,6 +63,7 @@ def start_relays(remote, bind="127.0.0.1", ports=PORTS):
                 return
             try:
                 with socket.create_connection((remote, self.server.server_address[1]), timeout=5) as upstream:
+                    print("[CONNECT] TCP", self.server.server_address[1], "-> private host", flush=True)
                     self.request.settimeout(10)
                     upstream.settimeout(10)
                     readers = [self.request, upstream]
@@ -79,8 +80,8 @@ def start_relays(remote, bind="127.0.0.1", ports=PORTS):
                                     pass
                             else:
                                 target.sendall(data)
-            except OSError:
-                pass
+            except OSError as error:
+                print("[CHANNEL] TCP", self.server.server_address[1], type(error).__name__, flush=True)
             finally:
                 capacity.release()
 

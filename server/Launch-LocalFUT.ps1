@@ -296,14 +296,20 @@ function Wait-ForGameProcess([int]$TimeoutSeconds = 180) {
     throw "FIFA21.exe did not remain running within $TimeoutSeconds seconds after launch."
 }
 
-function Wait-ForExternalSessionEnd([object]$Game) {
-    # Retain this Process object: a later FIFA process has a new session even
-    # if Windows eventually reuses its numeric process ID.
-    while (Get-Listener 8090) {
+function Wait-ForExternalSessionEnd([object]$Game, [object]$Transport = $null) {
+    # Keep the exact process handles. A transient Windows socket-inventory
+    # failure must not end a healthy session or disarm its hosts routing.
+    $missingSamples = 0
+    while ($true) {
         try { if ($Game.HasExited) { return $true } } catch { return $true }
+        if ($Transport) {
+            try { if ($Transport.HasExited) { return $false } } catch { return $false }
+        } else {
+            if (Get-Listener 8090) { $missingSamples = 0 } else { $missingSamples++ }
+            if ($missingSamples -ge 5) { return $false }
+        }
         Start-Sleep -Seconds 1
     }
-    return $false
 }
 
 function Get-ExpectedRuntimeHashes {
@@ -748,6 +754,7 @@ try {
                 throw 'A healthy local FUT/Blaze server is already running without the required replacement LSX listener. Run Stop-LocalFUT.ps1, then retry.'
             }
             $reuseHealthyServer = $true
+            $server = Get-Process -Id $serverOwnerIds[0] -ErrorAction Stop
             Write-StatusLine 'Server' 'Reusing local FUT/Blaze services with the current auth bootstrap profile' Green
         } else {
             Write-StatusLine 'Server' "Restarting this MNG FUT 21 server (PID $($serverOwnerIds[0])) for the current auth bootstrap profile" Yellow
@@ -879,9 +886,9 @@ try {
                     $launchContext = "already-running EA App game (PID $($existingFifa.Id))"
                     Write-StatusLine 'Game' "ATTACHING to running FIFA 21 PID $($existingFifa.Id)" Cyan
                 } else {
-                    $launchContext = 'external FIFA Mod Manager'
-                    $status.game = 'WAITING - launch FIFA 21 from FIFA Mod Manager'
-                    $status.connection = 'WAITING EXTERNAL GAME - server ready; launch from FIFA Mod Manager'
+                    $launchContext = 'manually launched FIFA 21'
+                    $status.game = 'WAITING - launch FIFA 21 with your usual EA App method'
+                    $status.connection = 'WAITING EXTERNAL GAME - server ready; launch FIFA normally'
                     $status.authBridge = 'WAITING for externally launched FIFA 21'
                     $listener = Get-Listener 8090
                     @{ serverPid=$listener.OwningProcess; redirectorPid=$redirector.Id; externalWaitPid=$PID; projectRoot=$ProjectRoot } |
@@ -984,7 +991,7 @@ try {
                     ConvertTo-Json | Write-RuntimeText -Path $PidPath
                 Save-Status $status
                 Write-StatusLine 'Session' 'Persistent server; monitoring manually launched FIFA sessions' Green
-                if (-not (Wait-ForExternalSessionEnd $fifa)) {
+                if (-not (Wait-ForExternalSessionEnd $fifa $server)) {
                     $status.server = 'STOPPED'
                     $status.connection = 'OFFLINE - server stopped; game left open'
                     break

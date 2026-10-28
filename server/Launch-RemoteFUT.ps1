@@ -26,7 +26,9 @@ if (-not $gamePath -or -not (Test-Path -LiteralPath $gamePath)) {
     } finally { $picker.Dispose() }
 }
 $clientRoot = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'MNG21\RemoteClient21'
+[IO.Directory]::CreateDirectory((Join-Path $PSScriptRoot 'runtime')) | Out-Null
 Write-Host 'Mode serveur distant prive : aucun club ne sera heberge sur ce connecteur.'
 Write-Host 'Ferme le serveur FUT local avant de continuer, puis lance FIFA avec ta methode habituelle.'
 & (Join-Path $PSScriptRoot 'Launch-LocalFUT.ps1') -RemoteHost $RemoteHost -LSXMode ea-app -WaitForExternalGame `
-    -GamePath $gamePath -UserConfigRoot (Join-Path $clientRoot 'config') -RuntimeDataRoot (Join-Path $clientRoot 'runtime')
+    -GamePath $gamePath -UserConfigRoot (Join-Path $clientRoot 'config') -RuntimeDataRoot (Join-Path $clientRoot 'runtime') `
+    -LauncherLogPath (Join-Path $PSScriptRoot 'runtime\connexion.log')
