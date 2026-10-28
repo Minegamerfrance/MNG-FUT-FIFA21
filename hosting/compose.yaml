@@ -1,0 +1,30 @@
+# First private test: one backend and one persistent club.
+# Access these ports through a private network/tunnel, never publicly.
+services:
+  fut21:
+    build:
+      context: ..
+      dockerfile: hosting/Dockerfile
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    volumes:
+      - club-test:/state
+    ports:
+      - "127.0.0.1:8090:8090"
+      - "127.0.0.1:44321:44321"
+      - "127.0.0.1:10853:10853"
+      - "127.0.0.1:17502:17502/tcp"
+      - "127.0.0.1:17502:17502/udp"
+      - "127.0.0.1:42232:42232"
+      - "127.0.0.1:8081:8081"
+      - "127.0.0.1:42231:42231"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  club-test:
