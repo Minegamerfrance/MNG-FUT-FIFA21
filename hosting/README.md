@@ -22,11 +22,11 @@ routage, mais ne prouve pas le passage par Internet depuis un autre réseau.
 
 Tests de transport : `python hosting/test_remote_relay.py`.
 
-## Préparation pour un futur hôte Linux
+## Hôte Linux
 
-Préparation pour une machine Linux disposant de Docker Compose. Ce dossier
-ne constitue pas un déploiement déjà effectué. Aucun hébergeur n'est créé et
-aucun port Internet n'est ouvert automatiquement.
+Déploiement Docker validé sur Ubuntu 26.04 : démarrage des services,
+connexion depuis un PC Windows par Tailscale et persistance SQLite après
+redémarrage du conteneur. L'entrée dans FUT sur cet hôte reste à valider en jeu.
 
 ## Premier essai privé
 
@@ -40,6 +40,15 @@ La sauvegarde personnelle Windows n'est pas copiée. Les images du catalogue
 sont récupérées à la demande depuis le dépôt existant, avec contrôle d'empreinte.
 
 Les ports du moteur sont publiés uniquement sur la boucle locale de l'hôte.
+Pour un VPS privé connecté à Tailscale, créer un fichier `.env` à côté de
+`compose.yaml` avec `MNG21_BIND_ADDRESS=` suivi de son adresse IPv4 Tailscale.
+Ne jamais utiliser son IP publique ni `0.0.0.0`. Le fichier `.env` est propre
+à la machine et ne doit pas être ajouté au dépôt.
+Le service `mng-fut21.service` attend cette adresse avant de démarrer Compose.
+Ses chemins supposent une installation dans `/home/ubuntu/mng21-server`.
+Installer le service dans `/etc/systemd/system`, puis l'activer avec systemctl.
+Partager le VPS dans Tailscale avec chaque testeur autorisé : un partage du PC
+de développement ne donne pas automatiquement accès au VPS.
 L'accès distant doit passer par une connexion privée authentifiée. Ne pas
 remplacer ces adresses par `0.0.0.0` dans Compose : le moteur actuel n'est pas
 un service public multi-compte. Un seul testeur doit utiliser ce premier club.
@@ -57,5 +66,5 @@ avec un club temporaire, puis son redémarrage et sa persistance. Le moteur loca
 du joueur n'est pas arrêté. Le test utilise une autre adresse de boucle locale.
 
 Cette vérification ne prouve pas à elle seule le fonctionnement sous Linux,
-sur un hébergeur distant, ni dans FIFA par Internet. La construction Docker et
-la connexion en jeu devront être validées sur la machine choisie.
+sur un hébergeur distant, ni dans FIFA par Internet. La construction Docker est
+validée sur le VPS ; la connexion en jeu doit encore être validée.
