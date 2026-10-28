@@ -28,7 +28,7 @@ $script:Lang = 'en'
 $script:ServerProcess = $null
 $script:SelectedGame = '17'
 $script:ActiveServerGame = ''
-$script:LauncherVersion = '1.3.25'
+$script:LauncherVersion = '1.3.26'
 $script:ThemeAccent = '#DDFD45'
 $script:NotificationsUrl = 'https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/notifications.json'
 $script:NotificationsSeenPath = Join-Path $script:StateRoot 'notifications-seen.json'
@@ -588,7 +588,7 @@ function Send-Presence([string]$State,[string]$Text=''){
           </Button>
           <Button x:Name="Fifa20Tile" Grid.Row="4" Style="{StaticResource GameTile}"><Image x:Name="Fifa20Image" Stretch="Uniform"/></Button>
           <Button x:Name="Fifa21Tile" Grid.Row="5" Style="{StaticResource GameTile}" ToolTip="FIFA 21"><Image x:Name="Fifa21Image" Stretch="Uniform"/></Button>
-          <StackPanel Grid.Row="6" VerticalAlignment="Bottom" HorizontalAlignment="Center"><TextBlock Text="v1.3.10" Foreground="#6E7B75" FontSize="8" HorizontalAlignment="Center"/><TextBlock Text="CINEMATIC UI" Foreground="#52605A" FontSize="7" HorizontalAlignment="Center" Margin="0,4,0,0"/></StackPanel>
+          <StackPanel Grid.Row="6" VerticalAlignment="Bottom" HorizontalAlignment="Center"><TextBlock x:Name="LauncherVersionText" Foreground="#6E7B75" FontSize="8" HorizontalAlignment="Center"/><TextBlock Text="CINEMATIC UI" Foreground="#52605A" FontSize="7" HorizontalAlignment="Center" Margin="0,4,0,0"/></StackPanel>
         </Grid>
       </Border>
 
@@ -653,6 +653,7 @@ function Send-Presence([string]$State,[string]$Text=''){
 $reader=New-Object System.Xml.XmlNodeReader $xaml
 $window=[Windows.Markup.XamlReader]::Load($reader)
 function C([string]$name){return $window.FindName($name)}
+(C 'LauncherVersionText').Text = 'v' + $script:LauncherVersion
 
 $AccountButton=C 'AccountButton'; $FriendsTopButton=C 'FriendsTopButton'; $FriendsNavButton=C 'FriendsNavButton'; $FindFriendsButton=C 'FindFriendsButton'
 $NotificationsButton=C 'NotificationsButton';$NotificationsPopup=C 'NotificationsPopup';$CloseNotificationsButton=C 'CloseNotificationsButton';$NotificationsList=C 'NotificationsList';$NotificationsTitle=C 'NotificationsTitle'
