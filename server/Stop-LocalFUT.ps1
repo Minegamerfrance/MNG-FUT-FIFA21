@@ -82,6 +82,7 @@ if (Test-Path -LiteralPath $PidPath) {
     $trackedScripts = @(
         [pscustomobject]@{ Name = 'externalWaitPid'; FullPath = (Join-Path $ProjectRoot 'Launch-LocalFUT.ps1'); RelativePath = '' },
         [pscustomobject]@{ Name = 'serverPid'; FullPath = (Join-Path $VendorRoot 'localfut21\server.py'); RelativePath = 'localfut21\server.py' },
+        [pscustomobject]@{ Name = 'serverPid'; FullPath = (Join-Path $VendorRoot 'remote_relay.py'); RelativePath = 'remote_relay.py' },
         [pscustomobject]@{ Name = 'redirectorPid'; FullPath = (Join-Path $VendorRoot 'redirector_tls.py'); RelativePath = 'redirector_tls.py' }
     )
     foreach ($trackedScript in $trackedScripts) {
@@ -101,6 +102,7 @@ if (Test-Path -LiteralPath $PidPath) {
 # names one of this project's two runtime entry points.
 $ownedScripts = @(
     [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'localfut21\server.py'); RelativePath = 'localfut21\server.py' },
+    [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'remote_relay.py'); RelativePath = 'remote_relay.py' },
     [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'redirector_tls.py'); RelativePath = 'redirector_tls.py' }
 )
 Get-CimInstance Win32_Process -Filter "Name='python.exe'" | ForEach-Object {
@@ -142,7 +144,7 @@ for ($hostsAttempt = 0; $hostsAttempt -lt 8; $hostsAttempt++) {
     }
 }
 ipconfig /flushdns | Out-Null
-$remaining = @([Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | Where-Object { $_.Port -in @(8090,44321,42230) })
+$remaining = @([Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | Where-Object { $_.Port -in @(8090,44321,42230) -and [string]$_.Address -in @('127.0.0.1','0.0.0.0','::','::1') })
 if ($remaining) { throw ('Des services utilisent encore les ports FIFA 21 : '+(($remaining | ForEach-Object Port | Sort-Object -Unique) -join ', ')) }
 if (Test-Path -LiteralPath $PidPath) { Remove-Item -LiteralPath $PidPath -Force }
 $statusPath = Join-Path $RuntimeRoot 'status.json'

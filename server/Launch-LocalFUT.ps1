@@ -1,6 +1,8 @@
 ﻿[CmdletBinding()]
 param(
     [string]$GamePath = "",
+    [ValidatePattern('^(?:100\.)\d{1,3}\.\d{1,3}\.\d{1,3}$')]
+    [string]$RemoteHost = "",
     [switch]$NoGameLaunch,
     [switch]$SafeGameLaunch,
     [switch]$WaitForExternalGame,
@@ -250,6 +252,7 @@ function Resolve-Python3 {
 
 function Get-Listener([int]$Port) {
     @(Get-NetTCPConnection -State Listen -LocalPort $Port -ErrorAction SilentlyContinue |
+        Where-Object { $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') } |
         Select-Object -First 1)
 }
 
@@ -600,6 +603,7 @@ if (-not $SafeGameLaunch -and -not (Test-Administrator)) {
     Write-Host 'Administrator permission is required to update the hosts file and patch the running FIFA21.exe process.' -ForegroundColor Yellow
     $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"{0}"' -f $PSCommandPath))
     if ($GamePath) { $argList += @('-GamePath', ('"{0}"' -f $GamePath)) }
+    if ($RemoteHost) { $argList += @('-RemoteHost', $RemoteHost) }
     if ($NoGameLaunch) { $argList += '-NoGameLaunch' }
     if ($SafeGameLaunch) { $argList += '-SafeGameLaunch' }
     if ($WaitForExternalGame) { $argList += '-WaitForExternalGame' }
@@ -677,6 +681,7 @@ try {
         $selectedLSXMode = 'replacement'
     }
 
+    if ($RemoteHost -and $selectedLSXMode -ne 'ea-app') { throw 'Private remote tests require EA App mode; keep EA App running.' }
     $serverLSXMode = if ($selectedLSXMode -eq 'ea-app') { 'off' } else { 'required' }
     $status.lsx = if ($selectedLSXMode -eq 'ea-app') {
         if ($eaOwnsLSX) {
@@ -698,6 +703,7 @@ try {
         throw "Python dependency missing: cryptography. Install it with: `"$pythonHint`" -m pip install cryptography>=42"
     }
 
+    $expectedServerScript = if ($RemoteHost) { Join-Path $VendorRoot 'remote_relay.py' } else { $localServerScript }
     $reuseHealthyServer = $false
     $serverSourceHash = (Get-FileHash -LiteralPath $localServerScript -Algorithm SHA256).Hash
     $serverListeners = @(44321, 8090 | ForEach-Object { Get-Listener $_ } | Where-Object { $_ })
@@ -707,8 +713,11 @@ try {
             throw 'FUT/Blaze ports 8090 and 44321 must both belong to the same MNG FUT 21 server before it can be reused or restarted.'
         }
         $serverOwner = Get-CimInstance Win32_Process -Filter "ProcessId=$($serverOwnerIds[0])" -ErrorAction SilentlyContinue
-        if (-not (Test-ProcessOwnsExactScript $serverOwner $localServerScript)) {
+        if (-not (Test-ProcessOwnsExactScript $serverOwner $expectedServerScript)) {
             throw "FUT/Blaze ports belong to PID $($serverOwnerIds[0]), whose exact script is not '$localServerScript'. No foreign server will be stopped."
+        }
+        if ($RemoteHost -and [string]$serverOwner.CommandLine -notmatch ('--remote-host\s+' + [regex]::Escape($RemoteHost) + '(?:\s|$)')) {
+            throw 'A relay for a different host is already running. Stop it first.'
         }
         if (Test-HealthyLocalMockServer $serverSourceHash) {
             if ($selectedLSXMode -eq 'replacement' -and -not $localServerOwnsLSX) {
@@ -758,8 +767,12 @@ try {
     $redirectorLog = Join-Path $RuntimeRoot 'redirector.log'
     $redirectorError = Join-Path $RuntimeRoot 'redirector.error.log'
     if (-not $reuseHealthyServer) {
-        $serverScript = Join-Path $VendorRoot 'localfut21\server.py'
-        $serverArgs = @($python.Arguments) + @('-u', ('"{0}"' -f $serverScript), '--lsx-mode', $serverLSXMode)
+        $serverScript = $expectedServerScript
+        $serverArgs = if ($RemoteHost) {
+            @($python.Arguments) + @('-u', ('"{0}"' -f $serverScript), '--remote-host', $RemoteHost)
+        } else {
+            @($python.Arguments) + @('-u', ('"{0}"' -f $serverScript), '--lsx-mode', $serverLSXMode)
+        }
         $server = Start-Process -FilePath $python.Path -ArgumentList $serverArgs -WorkingDirectory $VendorRoot -RedirectStandardOutput $serverLog -RedirectStandardError $serverError -WindowStyle Hidden -PassThru
         if (-not (Wait-ForPort 44321) -or -not (Wait-ForPort 8090) -or -not (Wait-ForPort 10853)) {
             if (-not $server.HasExited) { Stop-Process -Id $server.Id -Force }
@@ -769,7 +782,7 @@ try {
         $startedOwner = if ($startedListener) {
             Get-CimInstance Win32_Process -Filter "ProcessId=$($startedListener.OwningProcess)" -ErrorAction SilentlyContinue
         }
-        if (-not (Test-ProcessOwnsExactScript $startedOwner $localServerScript) -or
+        if (-not (Test-ProcessOwnsExactScript $startedOwner $expectedServerScript) -or
             ($startedOwner.ProcessId -ne $server.Id -and $startedOwner.ParentProcessId -ne $server.Id)) {
             throw 'The FUT listener was not created by the exact MNG FUT 21 server just launched.'
         }

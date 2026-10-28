@@ -1,5 +1,29 @@
 # Hébergement de test FIFA 21
 
+## Essai gratuit sur le PC de l'hôte
+
+Tailscale doit être installé et connecté. `server/Start-TestHost.cmd` démarre
+un moteur séparé sur l'adresse privée Tailscale du PC. Le club d'essai se trouve
+dans `%LOCALAPPDATA%/MNG21/HostingTest21`, hors du club habituel. Le bouton
+`server/Stop-TestHost.cmd` arrête uniquement ce moteur d'essai et conserve son club.
+
+Sur le PC joueur : fermer le serveur FUT local, connecter Tailscale au réseau
+autorisé, puis ouvrir `server/Launch-RemoteFUT.cmd` et saisir l'adresse privée du
+PC serveur. Le lanceur habituel conserve ses correctifs Windows, son accès EA App
+et son redirecteur local ; le relais transmet FUT/Blaze/SSF en TCP et QoS en UDP.
+Le moteur FUT ne tourne que sur l'hôte. L'arrêt habituel du lanceur ferme le
+connecteur, sans arrêter le serveur d'essai.
+
+Cette première version possède UN club d'essai : ne pas y connecter deux joueurs
+simultanément. La séparation des comptes et le marché partagé restent à faire.
+Aucun réglage de box, pare-feu public ou publication Tailscale Funnel n'est ajouté.
+Le PC hôte doit rester allumé. Un test effectué depuis ce même PC vérifie le
+routage, mais ne prouve pas le passage par Internet depuis un autre réseau.
+
+Tests de transport : `python hosting/test_remote_relay.py`.
+
+## Préparation pour un futur hôte Linux
+
 Préparation pour une machine Linux disposant de Docker Compose. Ce dossier
 ne constitue pas un déploiement déjà effectué. Aucun hébergeur n'est créé et
 aucun port Internet n'est ouvert automatiquement.
