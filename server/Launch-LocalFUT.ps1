@@ -211,6 +211,8 @@ function Stop-SuspendedGame([object]$SuspendedGame) {
 
 function Resolve-Python3 {
     $candidates = @()
+    $privatePython = Join-Path $ProjectRoot '.venv\Scripts\python.exe'
+    if (Test-Path -LiteralPath $privatePython) { $candidates += [pscustomobject]@{ Path=$privatePython; Arguments=@() } }
     foreach ($commandName in @('python', 'python3')) {
         $command = Get-Command $commandName -ErrorAction SilentlyContinue
         if ($command -and $command.Source -notmatch '\\WindowsApps\\') {
@@ -304,12 +306,26 @@ function Wait-ForExternalSessionEnd([object]$Game) {
     return $false
 }
 
+function Get-ExpectedRuntimeHashes {
+    $contractPath = Join-Path $ProjectRoot 'remote-runtime.json'
+    if ($RemoteHost -and (Test-Path -LiteralPath $contractPath)) {
+        $contract = Get-Content -LiteralPath $contractPath -Raw | ConvertFrom-Json
+        if ($contract.gameId -ne '21' -or $contract.server -notmatch '^[a-fA-F0-9]{64}$' -or $contract.onboarding -notmatch '^[a-fA-F0-9]{64}$') {
+            throw 'Invalid remote client compatibility contract.'
+        }
+        return $contract
+    }
+    return [pscustomobject]@{
+        server = (Get-FileHash -LiteralPath (Join-Path $VendorRoot 'localfut21\server.py') -Algorithm SHA256).Hash
+        onboarding = (Get-FileHash -LiteralPath (Join-Path $VendorRoot 'localfut21\onboarding.py') -Algorithm SHA256).Hash
+    }
+}
+
 function Test-HealthyLocalMockServer([string]$ServerSourceHash) {
     try {
         $profile = Invoke-RestMethod -Uri 'http://127.0.0.1:8090/localfut/auth/bootstrap' -TimeoutSec 3 -MaximumRedirection 0
         if ($profile.version -ne 1 -or [string]$profile.serverSourceSha256 -ne $ServerSourceHash) { return $false }
-        $onboardingSource = Join-Path $VendorRoot 'localfut21\onboarding.py'
-        if ([string]$profile.onboardingSourceSha256 -ne (Get-FileHash -LiteralPath $onboardingSource -Algorithm SHA256).Hash) { return $false }
+        if ([string]$profile.onboardingSourceSha256 -ne (Get-ExpectedRuntimeHashes).onboarding) { return $false }
         $expectedClientIds = @('localfut21-blaze-server', 'localfut21-blaze-sdk', 'localfut21-ssf')
         $clientIds = @($profile.clientIds)
         if ($clientIds.Count -ne $expectedClientIds.Count) { return $false }
@@ -355,6 +371,12 @@ function Ensure-WorkingCopy([string]$SourceRoot) {
                    'redirector_tls.py', 'PATCH_RUNNING_FIFA21_TRUST.py',
                    'certs\spring18-cert.pem', 'certs\spring18-chain.pem', 'certs\spring18-key.pem',
                    'gos2015-original-modulus.bin', 'local-gos2015-modulus.bin')
+    if ($RemoteHost) {
+        $mustExist = @('remote_relay.py', 'redirector_tls.py', 'PATCH_RUNNING_FIFA21_TRUST.py',
+            'certs\spring18-cert.pem', 'certs\spring18-chain.pem', 'certs\spring18-key.pem',
+            'gos2015-original-modulus.bin', 'local-gos2015-modulus.bin')
+        [void](Get-ExpectedRuntimeHashes)
+    }
     $missing = @($mustExist | Where-Object { -not (Test-Path -LiteralPath (Join-Path $SourceRoot $_) -PathType Leaf) })
     if ($missing) {
         throw "Source project is incomplete. Missing: $($missing -join ', ')"
@@ -626,18 +648,20 @@ try {
     if ($NoGameLaunch -and $WaitForExternalGame) {
         throw '-NoGameLaunch and -WaitForExternalGame cannot be used together.'
     }
-    Ensure-WorkingCopy ([string]$settings.sourcePath)
+    if ($RemoteHost) { Ensure-WorkingCopy $VendorRoot } else { Ensure-WorkingCopy ([string]$settings.sourcePath) }
     $python = Resolve-Python3
     # MNG web catalogue synchronization (read-only export, separate process).
     $webSync = Join-Path $ProjectRoot 'Sync-Web-Catalog.py'
-    if (Test-Path -LiteralPath $webSync) {
+    if (-not $RemoteHost -and (Test-Path -LiteralPath $webSync)) {
         try {
             $webSyncArgs = @($python.Arguments) + @(('"{0}"' -f $webSync), '--source', ('"{0}"' -f (Join-Path $ProjectRoot 'runtime-source/localfut21')), '--watch')
             Start-Process -FilePath $python.Path -ArgumentList $webSyncArgs -WorkingDirectory $ProjectRoot -WindowStyle Hidden | Out-Null
         } catch { Write-Warning 'La synchronisation du catalogue web sera retentee au prochain lancement.' }
     }
-    . (Join-Path $ProjectRoot 'First-Run.ps1')
-    Initialize-Mng21NewClub $python $UserConfigRoot
+    if (-not $RemoteHost) {
+        . (Join-Path $ProjectRoot 'First-Run.ps1')
+        Initialize-Mng21NewClub $python $UserConfigRoot
+    }
 
     $requestedLSXMode = if ($LSXMode) { $LSXMode } elseif ($settings.lsxMode) { [string]$settings.lsxMode } else { 'auto' }
     if ($requestedLSXMode -notin @('auto', 'ea-app', 'replacement')) {
@@ -705,7 +729,7 @@ try {
 
     $expectedServerScript = if ($RemoteHost) { Join-Path $VendorRoot 'remote_relay.py' } else { $localServerScript }
     $reuseHealthyServer = $false
-    $serverSourceHash = (Get-FileHash -LiteralPath $localServerScript -Algorithm SHA256).Hash
+    $serverSourceHash = (Get-ExpectedRuntimeHashes).server
     $serverListeners = @(44321, 8090 | ForEach-Object { Get-Listener $_ } | Where-Object { $_ })
     if ($serverListeners) {
         $serverOwnerIds = @($serverListeners | Select-Object -ExpandProperty OwningProcess -Unique)

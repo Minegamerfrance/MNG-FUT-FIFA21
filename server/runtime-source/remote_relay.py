@@ -1,5 +1,6 @@
 """Private Tailscale test transport. No club engine or saved club on the client."""
 import argparse
+import hashlib
 import ipaddress
 import json
 import os
@@ -11,6 +12,7 @@ import socketserver
 import subprocess
 import threading
 import time
+import urllib.request
 
 PORTS = (8090, 44321, 10853, 17502, 42232, 8081, 42231)
 
@@ -118,8 +120,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--remote-host", required=True)
     parser.add_argument("--stop-file")
+    parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     validate_remote(args.remote_host)
+    if args.check:
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        with opener.open(f"http://{args.remote_host}:8090/localfut/auth/bootstrap", timeout=8) as response:
+            profile = json.load(response)
+        if profile.get("version") != 1:
+            raise RuntimeError("Le serveur ne renvoie pas le profil FIFA 21 attendu")
+        contract_path = Path(__file__).resolve().parents[1] / "remote-runtime.json"
+        if contract_path.exists():
+            contract = json.loads(contract_path.read_text(encoding="utf-8"))
+            for key, field in (("server", "serverSourceSha256"), ("onboarding", "onboardingSourceSha256")):
+                if str(profile.get(field, "")).lower() != str(contract.get(key, "")).lower():
+                    raise RuntimeError("Le connecteur et le serveur doivent utiliser la meme mise a jour")
+        for port in (44321, 10853, 17502):
+            with socket.create_connection((args.remote_host, port), timeout=5):
+                pass
+        print("Connexion privee FIFA 21 OK. FUT, Blaze, SSF et QoS TCP repondent.", flush=True)
+        return
     servers, stopped = start_relays(args.remote_host)
     print("[READY] Private FUT21 relay, TCP and QoS UDP; club remains on host", flush=True)
     try:
@@ -135,4 +155,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+        print("Connexion impossible :", error, flush=True)
+        raise SystemExit(1)
