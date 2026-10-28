@@ -25,3 +25,11 @@ config=json.loads((p/'contentfifa/fut/packs/packopening/packopeningconfig.json')
 assert row['totalRanges']==next(x['totalRanges'] for x in config['rangeValue'] if x['rarity']==38)==3
 assert all(len(v)==3 for v in row.values() if isinstance(v,list)) and row['walkOutBucketId']==[1]*3
 print('PASS: Ozil Prime89 Arsenal/CAM exact face stats, native stars/attributes, four backgrounds/CRC, Prime label, one-player pack and animation')
+
+assert not s.PLAYER_DB[rid]['catalogEnabled'] and 38 in s.CATALOG_POLICY['disabledRarities']
+assert not any(i['resourceId']==rid for i in s.fut_inventory.catalogue(s,{},concept=True))
+status,h,b=s.route_fut('GET','/fut/packs/loc/storepackdescriptions.fr_fr.xml',{},b'')
+import xml.etree.ElementTree as E
+rows={r.attrib.get('id'):''.join(r.itertext()) for r in E.fromstring(b).iter() if r.tag.endswith('trans-unit')}
+assert rows['FUT_STORE_PACK_523_NAME']=='Pack Rulebreakers garanti', rows['FUT_STORE_PACK_523_NAME']
+print('PASS: Prime hidden from concept catalogue; native Rulebreakers label updated')

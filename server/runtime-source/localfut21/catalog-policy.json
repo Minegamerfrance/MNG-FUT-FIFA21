@@ -17286,7 +17286,8 @@
   ],
   "rulebreakersActive": true,
   "disabledRarities": [
-    21
+    21,
+    38
   ],
   "otwActive": false
 }

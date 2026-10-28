@@ -356,7 +356,7 @@ _SBC_REWARD_PACK_SETTINGS: dict[int, dict[str, Any]] = {
     526: {"name":"Choix joueur 80+ (1 sur 3)","size":1,"gold_weight":100,"rare_slots":1,"min_rating":80,"player_pick_count":3,"untradeable":True},
     525: {"name":"Pack premium Or", "size":12,"gold_weight":100,"rare_slots":3,"untradeable":True},
     524: {"name":"Pack Méga", "size":30, "gold_weight":100,"rare_slots":18,"untradeable":True},
-    523: {"name":"Pack 1 joueur Rulebreakers garanti", "size":1, "gold_weight":100, "rare_slots":1, "guaranteed_specials":1, "allowed_rareflags":[22], "special_weights":{"22":100}, "special_chance":0, "manager_chance":0, "untradeable":True},
+    523: {"name":"Pack Rulebreakers garanti", "size":1, "gold_weight":100, "rare_slots":1, "guaranteed_specials":1, "allowed_rareflags":[22], "special_weights":{"22":100}, "special_chance":0, "manager_chance":0, "untradeable":True},
     520: {"name":"Pack 2 joueurs", "size":2, "gold_weight":100,"min_rating":75,"rare_slots":1,"special_chance":0,"untradeable":True},
     521: {"name":"Pack 2 joueurs Or rares", "size":2, "gold_weight":100,"min_rating":75,"rare_slots":2,"special_chance":0,"untradeable":True},
     522: {"name":"Pack joueur rare 75+", "size":1, "gold_weight":100,"min_rating":75,"rare_slots":1,"special_chance":0,"untradeable":True},
@@ -4047,6 +4047,8 @@ def _draft_player_choices(run: dict[str, Any], position_id: int, captain: bool =
     allowed = None if captain else _draft_allowed_positions(run, position_id)
     candidates = []
     for resource_id, meta in PLAYER_DB.items():
+        if not meta.get("catalogEnabled", True):
+            continue
         rating = int(meta.get("rating", 0) or 0)
         asset_id = int(meta.get("assetId", resource_id) or resource_id)
         position = str(meta.get("preferredPosition", "") or "").upper()
@@ -5269,7 +5271,7 @@ _PACK_NAMES = {
     528: "Pack Prime garanti",
     527: "Pack Ballon d’Or garanti",
     525: "Pack premium Or",
-    523: "Pack 1 joueur Rulebreakers garanti",
+    523: "Pack Rulebreakers garanti",
     524: "Pack Méga",
     520:"Pack 2 joueurs",521:"Pack 2 joueurs Or rares",522:"Pack joueur rare 75+",
     302: "Pack Jumbo Or",
@@ -8753,6 +8755,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         variants = []
         if rid:
             for vrid, vmeta in PLAYER_DB.items():
+                if not vmeta.get("catalogEnabled", True):
+                    continue
                 try:
                     asset = int(vmeta.get("assetId", vrid) or vrid)
                 except Exception:

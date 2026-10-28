@@ -1144881,7 +1144881,7 @@
       "gkPositioning": 6
     },
     "packEligible": false,
-    "catalogEnabled": true,
+    "catalogEnabled": false,
     "acquisition": "test",
     "untradeable": true,
     "dynamicImageResourceId": 67285499
