@@ -133,7 +133,10 @@ class BallonDor(Campaign):
   # group (vector +0x168), so this list contains the REQUIRED parent ID.
   result.update(groupIdsToUnlock=[previous] if previous else [],requiredGroupIds=[previous] if previous else [],isLocked=locked,locked=locked)
   if locked:
-   result.update(groupState=9,state=9)
+   # Keep the group, its prerequisite and reward preview in the category.
+   # Do not feed actionable objective rows into the native locked view: it
+   # reuses the preceding group's preview row control across selections.
+   result.update(groupState=9,state=9,objectives=[],objectivesCompleted=0)
   return result
 
 DEMBELE=67340307
