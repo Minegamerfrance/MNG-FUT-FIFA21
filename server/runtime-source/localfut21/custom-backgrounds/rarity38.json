@@ -1,0 +1,65 @@
+{
+  "colorArray": [
+    12371926,
+    10363706,
+    12371926
+  ],
+  "expColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "collColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "smallColorIndices": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    0
+  ],
+  "shineArray": [
+    4295645
+  ],
+  "version": 1,
+  "id": 38,
+  "name": "Prime",
+  "levels": false,
+  "shell": 2,
+  "bigHead": false,
+  "untradableOnly": true,
+  "hide": false,
+  "embargoTime": 0,
+  "guid": "a1af1be9-5423-4a1c-8a66-9e673faa5698",
+  "smallItemCRC": [
+    2087289139
+  ],
+  "collapsedItemCRC": [
+    4263343466
+  ],
+  "largeItemCRC": [
+    3093913512
+  ],
+  "jumboItemCRC": [
+    2919816654
+  ]
+}

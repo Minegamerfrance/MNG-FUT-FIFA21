@@ -26,7 +26,7 @@ GROUPS = {
 BACKGROUND_GUID = 'd479de87-00e3-43f9-a6f1-55e4ec4cb085'
 
 def background(s, path):
-    match=re.fullmatch(r'/fut/items/images/backgrounds/itembgs/([a-f0-9-]+)/(cards_bg_[scej]_1_(63|85|98)_0.dds)',path)
+    match=re.fullmatch(r'/fut/items/images/backgrounds/itembgs/([a-f0-9-]+)/(cards_bg_[scej]_1_(38|63|85|98)_0.dds)',path)
     if not match: return None
     rarity=int(match.group(3))
     spec=json.loads((s.ROOT/'custom-backgrounds'/f'rarity{rarity}.json').read_text(encoding='utf8'))
@@ -41,7 +41,7 @@ def background(s, path):
 
 def tunables(s, body):
     document=json.loads(body)
-    for rarity in (63,85,98):
+    for rarity in (38,63,85,98):
         spec=json.loads((s.ROOT/'custom-backgrounds'/f'rarity{rarity}.json').read_text(encoding='utf8'))
         document['rarities']=[x for x in document['rarities'] if x['id']!=rarity]+[spec]
     return json.dumps(document,ensure_ascii=True).encode('utf8')

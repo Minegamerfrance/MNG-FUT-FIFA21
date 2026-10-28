@@ -1594,6 +1594,28 @@
           99
         ]
       ]
+    },
+    {
+      "rarity": 38,
+      "totalRanges": 3,
+      "isShowDescription": 1,
+      "isTriggerPOA": 1,
+      "isOverrideRating": 0,
+      "overriddenRating": 0,
+      "range": [
+        [
+          0,
+          74
+        ],
+        [
+          75,
+          85
+        ],
+        [
+          86,
+          99
+        ]
+      ]
     }
   ],
   "kitRangeValue": [

@@ -14112,6 +14112,196 @@
         0,
         0
       ]
+    },
+    {
+      "rarity": 38,
+      "totalRanges": 3,
+      "isLightCrest": 1,
+      "animationType": [
+        1,
+        1,
+        1
+      ],
+      "walkOutBucketId": [
+        1,
+        1,
+        1
+      ],
+      "revealItemTimingId": [
+        2,
+        2,
+        2
+      ],
+      "inTunnelCelebrationType": [
+        0,
+        0,
+        0
+      ],
+      "inTunnelCelebrationColor1": [
+        "",
+        "",
+        ""
+      ],
+      "inTunnelCelebrationColor2": [
+        "",
+        "",
+        ""
+      ],
+      "isRarityIndicatorOn": [
+        1,
+        1,
+        1
+      ],
+      "sparkJetsColor1": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "sparkJetsColor2": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "tunnelWallGraphicsType": [
+        3,
+        3,
+        3
+      ],
+      "wallGraphicsColor": [
+        "0xC5CDD9",
+        "0xC5CDD9",
+        "0xC5CDD9"
+      ],
+      "tunnelRevealHologramColor": [
+        "0x398DFF",
+        "0x398DFF",
+        "0x398DFF"
+      ],
+      "videoWallBGColor": [
+        "0x090E1C",
+        "0x090E1C",
+        "0x090E1C"
+      ],
+      "videoWallBGColor2": [
+        "0x260A16",
+        "0x260A16",
+        "0x260A16"
+      ],
+      "videoWallTxtColor1": [
+        "0xCAD4E2",
+        "0xCAD4E2",
+        "0xCAD4E2"
+      ],
+      "videoWallTxtColor2": [
+        "0xCAD4E2",
+        "0xCAD4E2",
+        "0xCAD4E2"
+      ],
+      "isLowerColoredSpotlightsOn": [
+        1,
+        1,
+        1
+      ],
+      "lowerSpotlightAnimateType": [
+        0,
+        0,
+        1
+      ],
+      "lowerSpotlightColor1": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "lowerSpotlightColor2": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "isUpperColoredSpotlightsOn": [
+        1,
+        1,
+        1
+      ],
+      "upperSpotlightAnimateType": [
+        0,
+        0,
+        0
+      ],
+      "upperSpotlightColor1": [
+        "0xCAD4E2",
+        "0xCAD4E2",
+        "0xCAD4E2"
+      ],
+      "upperSpotlightColor2": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "confettiType": [
+        2,
+        2,
+        2
+      ],
+      "confettiColor1": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "confettiColor2": [
+        "0xCAD4E2",
+        "0xCAD4E2",
+        "0xCAD4E2"
+      ],
+      "confettiIntensity": [
+        2,
+        2,
+        2
+      ],
+      "pyrotechnicsType": [
+        3,
+        3,
+        3
+      ],
+      "pyrotechnicsColor1": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "pyrotechnicsColor2": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "smokeJetsColor1": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "smokeJetsColor2": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "stageRectangleColor1": [
+        "0xDE123C",
+        "0xDE123C",
+        "0xDE123C"
+      ],
+      "stageRectangleColor2": [
+        "0x299AFF",
+        "0x299AFF",
+        "0x299AFF"
+      ],
+      "isGrandPyrotechnicsOn": [
+        1,
+        1,
+        1
+      ],
+      "isSeasonalSetsOn": [
+        0,
+        0,
+        0
+      ]
     }
   ],
   "kitItemList": [

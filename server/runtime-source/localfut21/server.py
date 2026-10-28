@@ -344,6 +344,10 @@ def get_pack_cfg(pack_id:int):
 # absent from the paid storefront configuration; owned copies appear only in
 # My Packs and cost no coins when opened.
 _SBC_REWARD_PACK_SETTINGS: dict[int, dict[str, Any]] = {
+    528: {"name":"Pack Prime garanti", "bio":"Contient 1 joueur Prime garanti. Élément non échangeable.",
+          "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
+          "allowed_rareflags":[38],"special_weights":{"38":100},"special_chance":0,
+          "manager_chance":0,"untradeable":True,"reward_resource_ids":[67285499]},
     527: {"name":"Pack Ballon d’Or garanti", "bio":"Contient 1 joueur Ballon d’Or garanti. Élément non échangeable.",
           "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
           "allowed_rareflags":[63],"special_weights":{"63":100},"special_chance":0,
@@ -1152,7 +1156,7 @@ class State:
         return {
             **({"skillmoves": int(meta["skillMoves"])-1,
                 "weakfootabilitytypecode": int(meta["weakFoot"])}
-               if int(resource_id) in (67310990,67340307,67340730,176580,67285444,100839876) else {}),
+               if int(resource_id) in (67310990,67340307,67340730,176580,67285444,100839876,67285499) else {}),
             "id": item_id,
             "timestamp": now_s(),
             "resourceId": int(resource_id),
@@ -2742,7 +2746,7 @@ def _native_pack_item(item: dict[str, Any]) -> dict[str, Any]:
         # broke consumables / Draft).  Skill moves / weak foot are not
         # overridden -- doing so showed wrong star ratings on cards like Pelé.
         out.update(_player_name_fields(out))
-    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876):
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
         # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
         # Keep this edition-specific; gold Kane keeps his own identity.
         out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
@@ -3385,7 +3389,7 @@ def _native_player_item(item: dict[str, Any]) -> dict[str, Any]:
     # Pelé PIM show wrong star ratings, so the client's own value is kept.
     if _is_special_card(item):
         out.update(_player_name_fields(item))
-    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876):
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
         # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
         # Keep this edition-specific; gold Kane keeps his own identity.
         out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
@@ -5262,6 +5266,7 @@ _SCMP_LEVEL_REWARD_POOL = [
 
 
 _PACK_NAMES = {
+    528: "Pack Prime garanti",
     527: "Pack Ballon d’Or garanti",
     525: "Pack premium Or",
     523: "Pack 1 joueur Rulebreakers garanti",
@@ -5296,6 +5301,8 @@ _PACK_ART_BRONZE, _PACK_ART_SILVER, _PACK_ART_GOLD, _PACK_ART_SPECIAL = 1, 2, 3,
 def _pack_art_id(pack_id: int) -> int:
     """Map a store pack id to the client's EPackAssetID art band."""
     pack_id = int(pack_id or 0)
+    if pack_id == 528:
+        return 54  # Prime pack artwork.
     if pack_id == 527:
         return 53  # Ballon d’Or pack artwork.
     if pack_id == 526:
@@ -5332,7 +5339,7 @@ def _pack_award(pack_id: int, count: int = 1) -> dict[str, Any]:
     return {
         # Native reward DTO reads halId at +8. For IDs >12, its provider
         # (122ef1..12303c) registers FUTPackImages/background_<halId>.dds.
-        **({"halId": _pack_art_id(pack_id)} if pack_id in (523,527) else {}),
+        **({"halId": _pack_art_id(pack_id)} if pack_id in (523,527,528) else {}),
         "type": "pack", "awardType": "pack",
         "id": pack_id, "packId": pack_id,
         "value": pack_id, "awardValue": pack_id,
@@ -5912,7 +5919,7 @@ def _owned_reward_pack_json(pack_id: int, quantity: int) -> dict[str, Any]:
         # Per-pack override: native useDefaultImage=false publishes
         # OVERRIDE_ASSET_ID, which hides mcCardFG and loads mcCardDynamicArt.
         # displayGroupAssetId instead decorates the whole pack category.
-        **({"useDefaultImage": False} if pack_id in (523,527) else {}),
+        **({"useDefaultImage": False} if pack_id in (523,527,528) else {}),
         "quantity": quantity, "count": quantity,
         "name": name, "packName": name, "displayName": name, "title": name,
         "description": description, "packDescription": description, "longDescription": description,
@@ -7234,6 +7241,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
 
     cr7_asset = cr7_flashback_sbc.asset(sys.modules[__name__], method, low)
     if cr7_asset is not None:return cr7_asset
+    if low in ('/fut/packs/images/background_54.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/background/background_54.dds', '/fut/packs/images/icon_pack_54.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/icon/icon_pack_54.dds'):
+        return 200, {'Content-Type':'image/vnd-ms.dds','Cache-Control':'no-store'}, remote_assets.read(ROOT/'custom-packimages/background_54.dds')
     if low in ('/fut/packs/images/background_53.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/background/background_53.dds', '/fut/packs/images/icon_pack_53.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/icon/icon_pack_53.dds'):
         return 200, {'Content-Type':'image/vnd-ms.dds','Cache-Control':'no-store'}, remote_assets.read(ROOT/'custom-packimages/background_53.dds')
     if low in ('/fut/packs/images/background_52.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/background/background_52.dds', '/fut/packs/images/icon_pack_52.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/icon/icon_pack_52.dds'):
@@ -7353,6 +7362,9 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                     f'      <trans-unit id="{key}" resname="{key}">'
                     f'<source>{html.escape(reward_desc, quote=False) if key.endswith("_DESC") else rn}</source></trans-unit>'
                 )
+
+        for rarity_key in ("Player_Rarity_38", "PLAYER_RARITY_38", "FUT_POA_PLAYER_RARITY_38"):
+            loc_lines.append(f'<trans-unit id="{rarity_key}" resname="{rarity_key}"><source>Prime</source></trans-unit>')
 
         # The custom Götze uses the native Libertadores Flashback artwork,
         # whose label is absent from this client's bundled translations.
@@ -7516,7 +7528,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # The native details screen asks for both base asset and special
         # definition, and may resolve its detailed attributes through either.
         # Alias only this explicit Kane-edition batch, never base-only searches.
-        for special_id,base_id in ((67310990,202126),(67340307,231443),(67340730,231866)):
+        for special_id,base_id in ((67310990,202126),(67340307,231443),(67340730,231866),(67285499,176635)):
             if special_id in requested_ids:
                 records = [dict(player_attribute_metadata(special_id), defId=record['defId'])
                            if record['defId'] == base_id else record for record in records]
@@ -8755,7 +8767,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                     "nation": int(vmeta.get("nation", 0)), "attributeList": player_attribute_list(int(vrid)),
                 })
             for variant in variants:
-                if int(variant.get('resourceId',0)) in (67310990,67340307,67340730,176580,67285444,100839876):
+                if int(variant.get('resourceId',0)) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
                     variant['skillmoves'] = int(player_meta(int(variant['resourceId']))['skillMoves']) - 1
                     variant['weakfootabilitytypecode'] = int(player_meta(int(variant['resourceId']))['weakFoot'])
             variants.sort(key=lambda x: int(x.get("rating", 0)), reverse=True)
