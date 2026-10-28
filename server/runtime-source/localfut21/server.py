@@ -344,7 +344,7 @@ def get_pack_cfg(pack_id:int):
 # absent from the paid storefront configuration; owned copies appear only in
 # My Packs and cost no coins when opened.
 _SBC_REWARD_PACK_SETTINGS: dict[int, dict[str, Any]] = {
-    527: {"name":"Pack Ballon d’Or garanti", "bio":"Contient 1 joueur Ballon d’Or garanti. Non échangeable.",
+    527: {"name":"Pack Ballon d’Or garanti", "bio":"Contient 1 joueur Ballon d’Or garanti. Élément non échangeable.",
           "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
           "allowed_rareflags":[63],"special_weights":{"63":100},"special_chance":0,
           "manager_chance":0,"untradeable":True,
@@ -5262,6 +5262,7 @@ _SCMP_LEVEL_REWARD_POOL = [
 
 
 _PACK_NAMES = {
+    527: "Pack Ballon d’Or garanti",
     525: "Pack premium Or",
     523: "Pack 1 joueur Rulebreakers garanti",
     524: "Pack Méga",
@@ -5295,6 +5296,8 @@ _PACK_ART_BRONZE, _PACK_ART_SILVER, _PACK_ART_GOLD, _PACK_ART_SPECIAL = 1, 2, 3,
 def _pack_art_id(pack_id: int) -> int:
     """Map a store pack id to the client's EPackAssetID art band."""
     pack_id = int(pack_id or 0)
+    if pack_id == 527:
+        return 53  # Ballon d’Or pack artwork.
     if pack_id == 526:
         return 52  # Dedicated player-pick reward artwork.
     if pack_id == 525:
@@ -5329,7 +5332,7 @@ def _pack_award(pack_id: int, count: int = 1) -> dict[str, Any]:
     return {
         # Native reward DTO reads halId at +8. For IDs >12, its provider
         # (122ef1..12303c) registers FUTPackImages/background_<halId>.dds.
-        **({"halId": 51} if pack_id == 523 else {}),
+        **({"halId": _pack_art_id(pack_id)} if pack_id in (523,527) else {}),
         "type": "pack", "awardType": "pack",
         "id": pack_id, "packId": pack_id,
         "value": pack_id, "awardValue": pack_id,
@@ -5909,7 +5912,7 @@ def _owned_reward_pack_json(pack_id: int, quantity: int) -> dict[str, Any]:
         # Per-pack override: native useDefaultImage=false publishes
         # OVERRIDE_ASSET_ID, which hides mcCardFG and loads mcCardDynamicArt.
         # displayGroupAssetId instead decorates the whole pack category.
-        **({"useDefaultImage": False} if pack_id == 523 else {}),
+        **({"useDefaultImage": False} if pack_id in (523,527) else {}),
         "quantity": quantity, "count": quantity,
         "name": name, "packName": name, "displayName": name, "title": name,
         "description": description, "packDescription": description, "longDescription": description,
@@ -7231,6 +7234,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
 
     cr7_asset = cr7_flashback_sbc.asset(sys.modules[__name__], method, low)
     if cr7_asset is not None:return cr7_asset
+    if low in ('/fut/packs/images/background_53.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/background/background_53.dds', '/fut/packs/images/icon_pack_53.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/icon/icon_pack_53.dds'):
+        return 200, {'Content-Type':'image/vnd-ms.dds','Cache-Control':'no-store'}, remote_assets.read(ROOT/'custom-packimages/background_53.dds')
     if low in ('/fut/packs/images/background_52.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/background/background_52.dds', '/fut/packs/images/icon_pack_52.dds', '/contentfifa/ui/external/ion_fut/imgassets/pack/icon/icon_pack_52.dds'):
         return 200, {'Content-Type':'image/vnd-ms.dds','Cache-Control':'no-store'}, remote_assets.read(ROOT/'custom-packimages/background_52.dds')
     if low in ('/fut/sbc/gen4/sets/images/sbc_set_image_1010009.png','/fut/sbc/gen4/challenges/images/sbc_set_image_1010009.png') and method in ('GET','HEAD'):
@@ -7338,7 +7343,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             if reward_pid in loc_seen:
                 continue
             rn = html.escape(t(reward_name), quote=False)
-            reward_desc = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if reward_pid == 523 else t(reward_name)
+            reward_desc = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if reward_pid == 523 else str(get_pack_cfg(reward_pid).get("bio") or t(reward_name))
             for key in (
                 f"FUT_STORE_PACK_{reward_pid}_NAME",
                 f"FUT_STORE_PACK_{reward_pid}_DESC",
