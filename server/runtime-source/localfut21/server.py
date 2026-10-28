@@ -5213,9 +5213,9 @@ def _scmp_grant_reward() -> list[dict[str, Any]]:
 
 
 # --- Season Progress (the SCMP campaign XP level track) ---
-_SCMP_XP_PER_LEVEL = 500
+_SCMP_XP_PER_LEVEL = 1000
 _SCMP_SEASON_LEVELS = 30
-_SCMP_GROUP_XP_AWARD = 3 * _SCMP_XP_PER_LEVEL  # claiming Welcome Objectives
+_SCMP_GROUP_XP_AWARD = 1500  # Preserve the existing Welcome Objectives reward.
 # Level reward pool cycled across the track: (awardType, value).  "coin" pays
 # coins; "pack" is a FIFA 21 pack template id from PACK_ID_REFERENCE.json.
 _SCMP_LEVEL_REWARD_POOL = [
