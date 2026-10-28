@@ -5494,8 +5494,12 @@ def _scmp_campaign_json() -> dict[str, Any]:
     season_window = season_persistence.window(sys.modules[__name__])
     claimed = bool(STATE.get("scmp_reward_claimed", False))
     cats = [league_objectives.mng_category(sys.modules[__name__]), league_objectives.event_category(sys.modules[__name__]), _scmp_category(claimed), league_objectives.category(sys.modules[__name__])]
-    user_xp = int(STATE.get("scmp_user_xp", 0) or 0)
     levels = _scmp_season_levels()
+    # The native progress widget looks up its next threshold from this score.
+    # Overflow beyond the last threshold produces an invalid 0 XP target.
+    # Keep earned XP in storage; only bound the season's displayed score.
+    user_xp = min(max(0, int(STATE.get("scmp_user_xp", 0) or 0)),
+                  max(level["xpThreshold"] for level in levels))
     return {
         "campaignId": _SCMP_CAMPAIGN_ID,
         "id": _SCMP_CAMPAIGN_ID,

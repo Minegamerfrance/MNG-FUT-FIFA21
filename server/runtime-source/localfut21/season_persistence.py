@@ -1,5 +1,6 @@
 """Stable season identity, native claim routes and atomic level receipts."""
 import json,re
+from datetime import datetime, timezone
 import season_cosmetics
 import season_picks
 
@@ -10,13 +11,17 @@ def normalize(path):
 def _put(s,key,value):
  s.STATE.conn.execute('INSERT INTO kv(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value',(key,json.dumps(value)))
 
+# End: 30 November 2026 at 12:00 in Paris (UTC+1).
+SEASON_END = int(datetime(2026,11,30,11,0,tzinfo=timezone.utc).timestamp())
+
 def window(s):
  with s.STATE.lock:
   data=s.STATE.get('scmp_season_window_v1')
-  if not data:
-   now=s.now_s();data={'start':now-30*86400,'end':now+365*86400}
+  if not data or data.get('end') != SEASON_END:
+   data=dict(data or {'start':s.now_s()-30*86400},end=SEASON_END)
    with s.STATE.conn:_put(s,'scmp_season_window_v1',data)
   return data
+
 
 def chosen_levels(s):
  # CardsDLL 0x331410 consumes scmpChosenRewardDtos, using the level parser

@@ -35,3 +35,19 @@ ids=[i['id'] for i in data];s.STATE.conn.close();s.STATE=s.State(s.DB_PATH)
 assert all(s.STATE.get_item(i)['untradeable'] for i in ids)
 print('PASS: direct awards, choices, owned pack HTTP opening, unchanged shop/SBC, sorting special OVR then regular OVR, persisted order and restart')
 
+
+# Terminal XP display and the fixed November 30 noon deadline.
+from datetime import datetime,timezone
+for earned,displayed in ((0,0),(999,999),(1000,1000),(29999,29999),(30000,30000),(31150,30000)):
+ s.STATE.set('scmp_user_xp',earned)
+ campaign=s._scmp_campaign_json()
+ assert campaign['userXp']==campaign['campaignScore']==displayed
+ assert s.STATE.get('scmp_user_xp')==earned
+ assert len(campaign['levels'])==30 and campaign['levels'][-1]['xpThreshold']==30000
+ assert datetime.fromtimestamp(campaign['endTime'],timezone.utc).isoformat()=='2026-11-30T11:00:00+00:00'
+s.STATE.set('scmp_season_window_v1',dict(start=123,end=9999999999))
+assert s.season_persistence.window(s)==dict(start=123,end=s.season_persistence.SEASON_END)
+s.STATE.conn.close();s.STATE=s.State(s.DB_PATH)
+assert s.season_persistence.window(s)==dict(start=123,end=s.season_persistence.SEASON_END)
+assert s.STATE.get('scmp_user_xp')==31150
+print('PASS: level 30 XP display bounded without losing earned XP; fixed November 30 Paris deadline survives restart')
