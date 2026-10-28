@@ -469,6 +469,31 @@ function Invoke-LocalAuthBridge([string]$HelperPath, [int]$GamePid, [string]$Gam
     }
 }
 
+function Start-RarityNames([int]$GamePid) {
+    # The display helper waits for CardsDLL independently of login readiness.
+    # It validates native signatures and only overrides the four custom names.
+    $helperPath = Join-Path $ProjectRoot 'MNG21-RarityNames.exe'
+    $sourcePath = Join-Path $ProjectRoot 'FIFA21-RarityNames.cs'
+    $logPath = Join-Path $RuntimeRoot 'rarity-names.log'
+    try {
+        if (-not (Test-Path -LiteralPath $helperPath) -or
+            (Get-Item -LiteralPath $sourcePath).LastWriteTimeUtc -gt (Get-Item -LiteralPath $helperPath).LastWriteTimeUtc) {
+            $compiler = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+            $compilerOutput = & $compiler '/nologo' '/target:exe' '/platform:x64' '/optimize+' ('/out:{0}' -f $helperPath) $sourcePath 2>&1
+            if ($LASTEXITCODE -ne 0) { throw ($compilerOutput -join "`n") }
+        }
+        $info = [Diagnostics.ProcessStartInfo]::new()
+        $info.FileName = $helperPath
+        $info.Arguments = '--install --pid {0} --wait --log "{1}"' -f $GamePid, $logPath
+        $info.UseShellExecute = $false
+        $info.CreateNoWindow = $true
+        $process = [Diagnostics.Process]::Start($info)
+        $process.Dispose()
+    } catch {
+        "[WARNING] Rarity name display helper: $_" | Write-RuntimeText -Path $logPath
+    }
+}
+
 function Invoke-TrustPatch([string]$Python, [string]$PatchScript, [int]$GamePid, [bool]$PatchOriginBootstrap = $true) {
     # The supplied script intentionally pauses with input() on both success and
     # error. Feeding one newline lets the unified launcher collect its exact
@@ -894,6 +919,7 @@ try {
                 $status.authBridge = 'WAITING for native local auth readiness'
                 Save-Status $status
                 Invoke-LocalAuthBridge $authHelper $patch.GamePid $resolvedGame
+                Start-RarityNames $patch.GamePid
                 $status.authBridge = 'READY (running process only; game login not yet verified)'
                 Add-RedirectHostsEntry
                 $status.connection = 'LOCAL ROUTING ARMED (trust and auth bridges ready; awaiting FIFA TLS and game login)'
