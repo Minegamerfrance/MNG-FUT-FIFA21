@@ -1371,6 +1371,11 @@ class State:
             for choice_index, choice in enumerate(choices):
                 if not isinstance(choice, dict):
                     continue
+                if token.get("seasonLevel"):
+                    expected = dict(untradeable=True, untradeableCount=1, discardValue=0,
+                                    rewardSource="season_level", seasonLevel=token["seasonLevel"])
+                    if any(choice.get(k) != v for k,v in expected.items()):
+                        choice.update(expected); repaired = True
                 for key in ("globalChoiceIndex", "localChoiceIndex", "choiceIndex"):
                     if choice.get(key) != choice_index:
                         choice[key] = choice_index
@@ -1413,6 +1418,8 @@ class State:
             choice = self.build_player_item(
                 resource_id, self.next_item_id(), "unassigned"
             )
+            if token.get("seasonLevel"):
+                choice.update(rewardSource="season_level", seasonLevel=token["seasonLevel"])
             choice["untradeable"] = True
             choice["untradeableCount"] = 1
             choice["discardValue"] = 0
@@ -2300,12 +2307,21 @@ class State:
             self.conn.commit()
             return cur.rowcount > 0
 
-    def create_pack(self, pack_id: int = 1) -> dict[str, Any]:
+    def create_pack(self, pack_id: int = 1, reward: dict[str, Any] | None = None) -> dict[str, Any]:
         cleared=self.clear_pile("unassigned")
         if cleared:
             log.info("Cleared %d stale unassigned pack item(s) before new pack",cleared)
 
-        pcfg=get_pack_cfg(pack_id)
+        pcfg=dict(get_pack_cfg(pack_id))
+        # An owned reward overrides the shop template for this opening only.
+        if reward and "untradeable" in reward:
+            pcfg["untradeable"] = bool(reward["untradeable"])
+        def stamp_reward(item):
+            if pcfg.get("untradeable"):
+                item.update(untradeable=True, untradeableCount=1, discardValue=0)
+            if reward and reward.get("source") == "season_level":
+                item.update(rewardSource="season_level", seasonLevel=int(reward["levelId"]))
+            return item
         if pcfg.get("club_items"):
             candidates=cosmetics(sys.modules[__name__])
             size=int(pcfg.get('size',12))
@@ -2315,7 +2331,7 @@ class State:
             selected+=random.sample(kits,min(size-len(selected),len(kits)))
             items=[]
             for meta in selected:
-                item=cosmetic_item(meta,self.next_item_id())
+                item=stamp_reward(cosmetic_item(meta,self.next_item_id()))
                 item['timestamp']=now_s()
                 self.conn.execute('INSERT INTO items VALUES(?,?,?,?)',(item['id'],item['resourceId'],'unassigned',json.dumps(item)))
                 items.append(item)
@@ -2340,6 +2356,9 @@ class State:
                 int(pack_id),
                 preview_resource_id,
             )
+            stamp_reward(token)
+            with self.conn:
+                self.conn.execute("UPDATE items SET data=? WHERE id=?", (json.dumps(token), token["id"]))
             return {
                 "packId": int(pack_id), "purchasedPackId": int(pack_id),
                 "packType": "PLAYER_PICK", "itemList": [token],
@@ -2600,11 +2619,8 @@ class State:
 
         # Pack reveal order: SPECIAL cards first, regardless of OVR; then highest OVR first.
         # Within each group, rareflag/resourceId are deterministic tie-breakers.
-        selected=sorted(selected,key=lambda rid:(
-            0 if (bool(player_meta(rid).get("special",False)) or int(player_meta(rid).get("rareflag",0) or 0)>1) else 1,
-            -int(player_meta(rid).get("rating",0) or 0),
-            -int(player_meta(rid).get("rareflag",0) or 0),
-            -int(rid)))
+        selected=sorted(selected,key=lambda rid: _pack_reveal_sort_key(
+            dict(player_meta(rid), resourceId=rid)))
         pack_entries=[("player", rid) for rid in selected]
         if pack_entries and MANAGER_DB and random.random() < manager_chance:
             enabled_tiers={tier for tier, weight in tier_weights.items() if weight > 0}
@@ -2635,8 +2651,7 @@ class State:
                   else self.make_player_item(rid,"unassigned",loan_games=int(pcfg.get("loan_games",0))))
             if item_type == "player" and rid in forced_rare:
                 item["rareflag"]=1
-            if pcfg.get("untradeable"):
-                item.update(untradeable=True,untradeableCount=1,discardValue=0)
+            stamp_reward(item)
             created_reversed.append(item)
         items=list(reversed(created_reversed))
         base_ts=now_s()
@@ -2662,12 +2677,7 @@ class State:
             refreshed={int(x.get("id",0)):x for x in self.list_items("unassigned")}
             items=[refreshed.get(int(x.get("id",0)),x) for x in items]
 
-        items=sorted(items,key=lambda x:(
-            2 if str(x.get("itemType", "player")) == "manager" else
-            0 if (bool(x.get("special",False)) or int(x.get("rareflag",0) or 0)>1) else 1,
-            -int(x.get("rating",0) or 0),
-            -int(x.get("rareflag",0) or 0),
-            -int(x.get("resourceId",x.get("assetId",0)) or 0)))
+        items=sorted(items,key=_pack_reveal_sort_key)
         log.warning("CUSTOM PACK id=%s name=%s size=%d rareSlots=%d minRating=%d guaranteedSpecials=%d specialChance=%.1f%% managerChance=%.1f%%",
                     pack_id,pcfg.get("name"),pack_size,rare_slots,min_rating,
                     guaranteed_specials,special_chance*100,manager_chance*100)
@@ -2679,6 +2689,19 @@ class State:
                 "itemList":items,"itemData":items,"items":items,
                 "newcards":len(items)-len(dup_ids),"numberItems":len(items),
                 "duplicateItemIdList":dup_list,"credits":self.credits()}
+
+
+def _pack_reveal_sort_key(item):
+    """Every special edition precedes regular cards; OVR decides within each group."""
+    def number(value):
+        try: return int(value or 0)
+        except (TypeError, ValueError): return 0
+    rarity = number(item.get("rareflag"))
+    player = str(item.get("itemType", "player")) == "player"
+    special = bool(item.get("special", False)) or rarity > 1
+    return (0 if player and special else 1 if player else 2,
+            -number(item.get("rating")), -rarity,
+            -number(item.get("resourceId", item.get("assetId"))))
 
 
 def _native_play_style(item: dict[str, Any]) -> int:
@@ -8287,7 +8310,12 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             log.warning("CARDS-SCOUT PACK_OPEN_BEGIN packId=%s ownedClub=%d ownedSquad=%d",
                         pack_id, len(STATE.list_items("club")), len(STATE.list_items("squad")))
             try:
-                pack = STATE.create_pack(pack_id)
+                reward = None
+                if owned_reward:
+                    with STATE.lock:
+                        row = STATE.conn.execute("SELECT data FROM unopened_packs WHERE pack_id=? ORDER BY id LIMIT 1", (pack_id,)).fetchone()
+                        if row: reward = json.loads(row[0])
+                pack = STATE.create_pack(pack_id, reward=reward)
                 if owned_reward and not STATE.take_unopened_pack(pack_id):
                     raise RuntimeError("owned reward pack is no longer available")
             except Exception as error:
@@ -8323,25 +8351,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # FIFA refreshes /purchased/items after the pack-open POST and uses this
         # refreshed itemData order for the reveal/New Items screen. Keep this
         # order identical to create_pack(): highest rating first.
-        def _unassigned_reveal_sort_key(item):
-            try:
-                rating = int(item.get("rating", 0) or 0)
-            except Exception:
-                rating = 0
-            try:
-                rareflag = int(item.get("rareflag", 0) or 0)
-            except Exception:
-                rareflag = 0
-            try:
-                rid = int(item.get("resourceId", item.get("assetId", 0)) or 0)
-            except Exception:
-                rid = 0
-            # Same ordering as create_pack(): specials first, then OVR descending.
-            is_special = bool(item.get("special", False)) or rareflag > 1
-            is_manager = str(item.get("itemType", "player")) == "manager"
-            return (2 if is_manager else 0 if is_special else 1, -rating, -rareflag, -rid)
-
-        unassigned = sorted(unassigned, key=_unassigned_reveal_sort_key)
+        unassigned = sorted(unassigned, key=_pack_reveal_sort_key)
 
         duplicate_item_list = []
         for item in unassigned:

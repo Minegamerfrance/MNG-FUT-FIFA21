@@ -32,7 +32,7 @@ def claim_level(s,lvl,option_id=0):
    return {'awards':[],'awardsList':[],'alreadyClaimed':lvl in claimed,'scmpChosenRewardDtos':chosen_levels(s)}
   option=next((row for row in level['rewardOptionList'] if row['optionId']==option_id),None)
   if option is None:return {'awards':[],'awardsList':[],'invalidOption':True,'scmpChosenRewardDtos':chosen_levels(s)}
-  award=option['awards'][0]
+  award=dict(option['awards'][0],untradeable=True,isUntradeable=True)
   kind=award.get('awardType');items=[]
   pack_id=int(award.get('value',0)) if kind=='pack' else None
   # Preserve existing level rewards while committing their marker with them.
@@ -45,7 +45,12 @@ def claim_level(s,lvl,option_id=0):
   for rid in resources:
    next_id+=1
    items.append(season_cosmetics.item(s,rid,next_id) if rid in season_cosmetics.REWARDS else s.STATE.build_player_item(rid,next_id,'unassigned'))
+  for item in items:
+   item.update(untradeable=True,untradeableCount=1,discardValue=0,
+               rewardSource='season_level',seasonLevel=lvl)
   with s.STATE.conn:
+   _put(s,'season_reward_receipt:'+str(lvl),dict(levelId=lvl,optionId=option_id,
+        itemIds=[i['id'] for i in items],packId=pack_id))
    if pack_id is not None:
     s.STATE.conn.execute('INSERT INTO unopened_packs(pack_id,data) VALUES(?,?)',
       (pack_id,json.dumps({'source':'season_level','levelId':lvl,'created':s.now_s(),'untradeable':True})))
