@@ -8771,8 +8771,8 @@
         1
       ],
       "walkOutBucketId": [
-        -1,
-        -1,
+        1,
+        1,
         1
       ],
       "revealItemTimingId": [
@@ -8801,14 +8801,14 @@
         1
       ],
       "sparkJetsColor1": [
-        "0x31E515",
-        "0x31E515",
-        "0x31E515"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "sparkJetsColor2": [
-        "0x31E515",
-        "0x31E515",
-        "0x31E515"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "tunnelWallGraphicsType": [
         2,
@@ -8816,34 +8816,34 @@
         2
       ],
       "wallGraphicsColor": [
-        "0xCCB768",
-        "0xCCB768",
-        "0xCCB768"
+        "0xD4AF37",
+        "0xD4AF37",
+        "0xD4AF37"
       ],
       "tunnelRevealHologramColor": [
-        "0xCCB768",
-        "0xCCB768",
-        "0xCCB768"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "videoWallBGColor": [
-        "0x8C01F5",
-        "0x8C01F5",
-        "0x8C01F5"
+        "0x14110B",
+        "0x14110B",
+        "0x14110B"
       ],
       "videoWallBGColor2": [
-        "0x8C01F5",
-        "0x8C01F5",
-        "0x8C01F5"
+        "0x30230D",
+        "0x30230D",
+        "0x30230D"
       ],
       "videoWallTxtColor1": [
-        "0xE4F711",
-        "0xE4F711",
-        "0xE4F711"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "videoWallTxtColor2": [
-        "0xE4F711",
-        "0xE4F711",
-        "0xE4F711"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "isLowerColoredSpotlightsOn": [
         1,
@@ -8856,18 +8856,18 @@
         1
       ],
       "lowerSpotlightColor1": [
-        "0xFFFFFF",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "lowerSpotlightColor2": [
-        "0xFFFFFF",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "isUpperColoredSpotlightsOn": [
-        0,
-        0,
+        1,
+        1,
         1
       ],
       "upperSpotlightAnimateType": [
@@ -8876,74 +8876,74 @@
         0
       ],
       "upperSpotlightColor1": [
-        "",
-        "",
-        "0xFFFFFF"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "upperSpotlightColor2": [
-        "",
-        "",
-        "0xFFFFFF"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "confettiType": [
-        1,
-        1,
+        2,
+        2,
         2
       ],
       "confettiColor1": [
-        "0x31E515",
-        "0xAC1174",
-        "0x31E515"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "confettiColor2": [
-        "0x31E515",
-        "0xAC1174",
-        "0x262626"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "confettiIntensity": [
-        1,
+        2,
         2,
         2
       ],
       "pyrotechnicsType": [
-        1,
-        1,
-        2
+        3,
+        3,
+        3
       ],
       "pyrotechnicsColor1": [
-        "0xE4F711",
-        "0x9A57CD",
-        "0x31E515"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "pyrotechnicsColor2": [
-        "0xE4F711",
-        "0x9A57CD",
-        "0xE4F711"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "smokeJetsColor1": [
-        "",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xD4AF37",
+        "0xD4AF37",
+        "0xD4AF37"
       ],
       "smokeJetsColor2": [
-        "",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xFFF0B0",
+        "0xFFF0B0",
+        "0xFFF0B0"
       ],
       "stageRectangleColor1": [
-        "0xFFFFFF",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xD4AF37",
+        "0xD4AF37",
+        "0xD4AF37"
       ],
       "stageRectangleColor2": [
-        "0xFFFFFF",
-        "0xFFFFFF",
-        "0xFFFFFF"
+        "0xFFD700",
+        "0xFFD700",
+        "0xFFD700"
       ],
       "isGrandPyrotechnicsOn": [
-        0,
-        0,
-        0
+        1,
+        1,
+        1
       ],
       "isSeasonalSetsOn": [
         0,

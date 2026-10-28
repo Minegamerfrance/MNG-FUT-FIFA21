@@ -344,6 +344,11 @@ def get_pack_cfg(pack_id:int):
 # absent from the paid storefront configuration; owned copies appear only in
 # My Packs and cost no coins when opened.
 _SBC_REWARD_PACK_SETTINGS: dict[int, dict[str, Any]] = {
+    527: {"name":"Pack Ballon d’Or garanti", "bio":"Contient 1 joueur Ballon d’Or garanti. Non échangeable.",
+          "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
+          "allowed_rareflags":[63],"special_weights":{"63":100},"special_chance":0,
+          "manager_chance":0,"untradeable":True,
+          "reward_resource_ids":[67310990,67340307,67340730]},
     526: {"name":"Choix joueur 80+ (1 sur 3)","size":1,"gold_weight":100,"rare_slots":1,"min_rating":80,"player_pick_count":3,"untradeable":True},
     525: {"name":"Pack premium Or", "size":12,"gold_weight":100,"rare_slots":3,"untradeable":True},
     524: {"name":"Pack Méga", "size":30, "gold_weight":100,"rare_slots":18,"untradeable":True},
@@ -2491,7 +2496,10 @@ class State:
         pools={t:{"common":[],"rare":[],"special":[]} for t in ("gold","silver","bronze")}
         for rid0 in PLAYER_DB.keys():
             rid=int(rid0); meta=player_meta(rid); t=tier_for(meta)
-            if not meta.get("packEligible", True):
+            reward_resources = pcfg.get("reward_resource_ids")
+            if reward_resources is not None and rid not in reward_resources:
+                continue
+            if not meta.get("packEligible", True) and reward_resources is None:
                 continue
             rating=int(meta.get("rating",0) or 0)
             if rating < min_rating:
@@ -5883,7 +5891,7 @@ def _store_purchasegroups() -> dict[str, Any]:
 def _owned_reward_pack_json(pack_id: int, quantity: int) -> dict[str, Any]:
     cfg = get_pack_cfg(pack_id)
     name = str(cfg.get("name", _PACK_NAMES.get(pack_id, f"Pack {pack_id}")))
-    description = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if pack_id == 523 else name
+    description = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if pack_id == 523 else str(cfg.get("bio", name))
     size = max(1, min(30, int(cfg.get("size", 12) or 12)))
     rare = max(0, min(size, int(cfg.get("rare_slots", 0) or 0)))
     gold_weight = float(cfg.get("gold_weight", 0) or 0)
