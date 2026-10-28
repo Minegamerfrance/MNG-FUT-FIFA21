@@ -15,5 +15,6 @@ row=next(x for x in settings['itemList'] if x['rarity']==63)
 assert row['totalRanges']==next(x['totalRanges'] for x in config['rangeValue'] if x['rarity']==63)==3
 assert all(len(v)==3 for v in row.values() if isinstance(v,list))
 assert set(row['walkOutBucketId'])<=set(x['walkOutBucketId'] for x in settings['walkOutList'])
+assert row['tunnelWallGraphicsType']==[3,3,3]
 assert row['videoWallBGColor']==['0x14110B']*3 and row['confettiColor1']==['0xFFD700']*3
 print('PASS: 20 single untradeable rarity63 openings, objective players excluded from other packs, native gold walkout settings with valid buckets/ranges')
