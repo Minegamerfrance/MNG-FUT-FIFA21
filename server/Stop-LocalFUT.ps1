@@ -83,6 +83,7 @@ if (Test-Path -LiteralPath $PidPath) {
         [pscustomobject]@{ Name = 'externalWaitPid'; FullPath = (Join-Path $ProjectRoot 'Launch-LocalFUT.ps1'); RelativePath = '' },
         [pscustomobject]@{ Name = 'serverPid'; FullPath = (Join-Path $VendorRoot 'localfut21\server.py'); RelativePath = 'localfut21\server.py' },
         [pscustomobject]@{ Name = 'serverPid'; FullPath = (Join-Path $VendorRoot 'remote_relay.py'); RelativePath = 'remote_relay.py' },
+        [pscustomobject]@{ Name = 'serverPid'; FullPath = (Join-Path $VendorRoot 'account_client.py'); RelativePath = 'account_client.py' },
         [pscustomobject]@{ Name = 'redirectorPid'; FullPath = (Join-Path $VendorRoot 'redirector_tls.py'); RelativePath = 'redirector_tls.py' }
     )
     foreach ($trackedScript in $trackedScripts) {
@@ -103,6 +104,7 @@ if (Test-Path -LiteralPath $PidPath) {
 $ownedScripts = @(
     [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'localfut21\server.py'); RelativePath = 'localfut21\server.py' },
     [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'remote_relay.py'); RelativePath = 'remote_relay.py' },
+    [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'account_client.py'); RelativePath = 'account_client.py' },
     [pscustomobject]@{ FullPath = (Join-Path $VendorRoot 'redirector_tls.py'); RelativePath = 'redirector_tls.py' }
 )
 Get-CimInstance Win32_Process -Filter "Name='python.exe'" | ForEach-Object {

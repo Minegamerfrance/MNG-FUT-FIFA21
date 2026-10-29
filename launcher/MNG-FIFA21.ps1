@@ -3,6 +3,12 @@ function Update-Mng21Package([switch]$CheckOnly,[switch]$Force) {
     $settings=Get-Settings
     $root=if($settings.Fifa21ServerRoot){[string]$settings.Fifa21ServerRoot}else{Join-Path $script:AppRoot 'fifa21-server'}
     if(-not [IO.Path]::IsPathRooted($root)){$root=Join-Path $script:AppRoot $root}
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $root = $packagedRoot }
+    if (Test-Path -LiteralPath (Join-Path $root 'account-server.json')) {
+        Set-OperationStatus 'FIFA 21 utilise le serveur en ligne MNG. Le catalogue est gere sur le serveur.' '#87DB72'
+        return
+    }
     $updater=Join-Path $script:AppRoot 'FIFA21-Update.py'
     if(-not(Test-Path -LiteralPath $updater)){throw 'Le programme de mise à jour FIFA 21 est manquant.'}
     $python=Get-Command python.exe -ErrorAction SilentlyContinue
@@ -42,8 +48,12 @@ function Get-Mng21Root {
     $root = if ($configuration.Fifa21ServerRoot) { [string]$configuration.Fifa21ServerRoot } else { Join-Path $script:AppRoot 'fifa21-server' }
     if (-not [IO.Path]::IsPathRooted($root)) { $root = Join-Path $script:AppRoot $root }
     $root = [IO.Path]::GetFullPath($root)
-    if (-not (Test-Path -LiteralPath (Join-Path $root 'runtime-source\localfut21\server.py'))) { Update-Mng21Package }
-    foreach ($file in @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\localfut21\server.py')) {
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $root = $packagedRoot }
+    $accountMode = Test-Path -LiteralPath (Join-Path $root 'account-server.json')
+    if (-not $accountMode -and -not (Test-Path -LiteralPath (Join-Path $root 'runtime-source\localfut21\server.py'))) { Update-Mng21Package }
+    $required = if ($accountMode) { @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\account_client.py','runtime-source\account_transport.py','remote-runtime.json') } else { @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\localfut21\server.py') }
+    foreach ($file in $required) {
         if (-not (Test-Path -LiteralPath (Join-Path $root $file) -PathType Leaf)) { throw "Les fichiers MNG FUT FIFA 21 sont incomplets : $root ($file)." }
     }
     return $root
@@ -59,8 +69,14 @@ function Test-ManagedServerRunning([string]$GameId=$script:SelectedGame) {
     try {
         $root = Get-Mng21Root
         $needsProfile = $false
-        foreach ($entry in @(@{Port=8090;Script='localfut21\server.py'},@{Port=44321;Script='localfut21\server.py'},@{Port=42230;Script='redirector_tls.py'})) {
-            $listener = Get-NetTCPConnection -State Listen -LocalPort $entry.Port -ErrorAction SilentlyContinue | Select-Object -First 1
+        $accountMode = Test-Path -LiteralPath (Join-Path $root 'account-server.json')
+        $backendScript = if ($accountMode) { 'account_client.py' } else { 'localfut21\server.py' }
+        if ($accountMode) {
+            $connectionStatus = Read-JsonFile (Join-Path $root 'runtime\status.json')
+            if (-not $script:Profile -or [long]$connectionStatus.accountId -ne [long]$script:Profile.id) { return $false }
+        }
+        foreach ($entry in @(@{Port=8090;Script=$backendScript},@{Port=44321;Script=$backendScript},@{Port=42230;Script='redirector_tls.py'})) {
+            $listener = Get-NetTCPConnection -State Listen -LocalPort $entry.Port -ErrorAction SilentlyContinue | Where-Object { $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') } | Select-Object -First 1
             if (-not $listener) { return $false }
             $owner = try { Get-CimInstance Win32_Process -Filter ('ProcessId='+$listener.OwningProcess) -ErrorAction Stop } catch { $null }
             if ($owner -and $owner.CommandLine) {
@@ -75,7 +91,10 @@ function Test-ManagedServerRunning([string]$GameId=$script:SelectedGame) {
             $profile = Invoke-RestMethod -Uri 'http://127.0.0.1:8090/localfut/auth/bootstrap' -TimeoutSec 2 -MaximumRedirection 0 -ErrorAction Stop
             if ($profile.version -ne 1) { return $false }
             foreach ($pair in @(@('serverSourceSha256','server.py'),@('onboardingSourceSha256','onboarding.py'))) {
-                $hash = (Get-FileHash -LiteralPath (Join-Path $root ('runtime-source\localfut21\'+$pair[1])) -Algorithm SHA256).Hash
+                if ($accountMode) {
+                    $contract = Read-JsonFile (Join-Path $root 'remote-runtime.json')
+                    $hash = if ($pair[1] -eq 'server.py') { [string]$contract.server } else { [string]$contract.onboarding }
+                } else { $hash = (Get-FileHash -LiteralPath (Join-Path $root ('runtime-source\localfut21\'+$pair[1])) -Algorithm SHA256).Hash }
                 if ([string]$profile.($pair[0]) -ine $hash) { return $false }
             }
         }
@@ -87,16 +106,26 @@ function Apply-Language {
     if ($StopFifa21Button) { $StopFifa21Button.Visibility = if ($script:SelectedGame -eq '21') { 'Visible' } else { 'Collapsed' } }
     if ($script:SelectedGame -ne '21') { return }
     $running = Test-ManagedServerRunning '21'
+    $configuration = Get-Settings
+    $displayRoot = if ($configuration.Fifa21ServerRoot) { [string]$configuration.Fifa21ServerRoot } else { Join-Path $script:AppRoot 'fifa21-server' }
+    if (-not [IO.Path]::IsPathRooted($displayRoot)) { $displayRoot = Join-Path $script:AppRoot $displayRoot }
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $displayRoot = $packagedRoot }
+    $accountMode = Test-Path -LiteralPath (Join-Path $displayRoot 'account-server.json')
     $PlayButton.Content = T '▶   START SERVER' '▶   DÉMARRER LE SERVEUR' '▶   INICIAR SERVIDOR'
+    if ($accountMode) { $PlayButton.Content = T '▶   CONNECT TO FUT' '▶   SE CONNECTER À FUT' '▶   CONECTARSE A FUT' }
     if ($StopFifa21Button) {
         $StopFifa21Button.Content = T '■   STOP SERVER' '■   ARRÊTER LE SERVEUR' '■   DETENER SERVIDOR'
+        if ($accountMode) { $StopFifa21Button.Content = T '■   DISCONNECT' '■   SE DÉCONNECTER' '■   DESCONECTARSE' }
         $StopFifa21Button.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     }
     if ($GameHeaderText) { $GameHeaderText.Text = if ($script:Fifa21Starting) { 'FIFA 21 • PRÉPARATION EN COURS' } elseif ($running) { 'FIFA 21 • SERVEUR DÉMARRÉ' } else { 'FIFA 21 • SERVEUR ARRÊTÉ' } }
+    if ($accountMode -and $GameHeaderText) { $GameHeaderText.Text = if ($script:Fifa21Starting) { 'FIFA 21 • CONNEXION EN COURS' } elseif ($running) { 'FIFA 21 • CLUB PERSONNEL CONNECTÉ' } else { 'FIFA 21 • SERVEUR EN LIGNE' } }
     $LaunchGameButton.Content = '▶   LANCER FIFA'
     $PlayButton.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     $LaunchGameButton.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     $SettingsHint.Text = 'Le serveur reste actif. Lance FIFA manuellement ; les nouvelles sessions sont détectées automatiquement.'
+    if ($accountMode) { $SettingsHint.Text = 'Créez un compte ou connectez-vous à MNG FUT pour retrouver votre club personnel sur le serveur en ligne.' }
 }
 function Refresh-ServerLogs {
     if ($script:SelectedGame -ne '21') { Refresh-LegacyServerLogs; return }
@@ -125,6 +154,26 @@ function Start-Fifa21Server([switch]$LaunchGame) {
     $script:Fifa21Starting = $true
     try {
         $root = Get-Mng21Root
+        $accountConfig = Join-Path $root 'account-server.json'
+        $accountMode = Test-Path -LiteralPath $accountConfig
+        if ($accountMode -and -not (Validate-Session)) {
+            Open-Account
+            throw 'Connecte-toi ou cree ton compte MNG pour acceder a ton club FIFA 21.'
+        }
+        if ($accountMode) {
+            $clientPython = Join-Path $root '.venv\Scripts\python.exe'
+            $prepared = $false
+            if (Test-Path -LiteralPath $clientPython) {
+                & $clientPython -c 'import cryptography' 2>$null
+                $prepared = $LASTEXITCODE -eq 0
+            }
+            if (-not $prepared) {
+                Set-OperationStatus 'Preparation de votre premiere connexion MNG FUT…'
+                $prepare = Start-Mng21BackgroundWorker ('-NoProfile -ExecutionPolicy Bypass -File "{0}" -AccountMode' -f (Join-Path $root 'Prepare-RemoteClient.ps1')) $root
+                while (-not $prepare.HasExited) { Wait-Ui 300 }
+                if ($prepare.ExitCode -ne 0) { throw 'La preparation du connecteur a echoue. Verifie que Python est installe.' }
+            }
+        }
         $exe = Get-SelectedGameExe
         if (-not $exe -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) { Choose-GameExe; $exe = Get-SelectedGameExe }
         if (-not $exe -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) { return }
@@ -140,6 +189,9 @@ function Start-Fifa21Server([switch]$LaunchGame) {
         $configRoot = if ($env:LOCALFUT21_USER_CONFIG_ROOT) { $env:LOCALFUT21_USER_CONFIG_ROOT } else { Join-Path $env:LOCALAPPDATA 'MNG21\LocalFUT' }
         $arguments = '-NoLogo -NoProfile -ExecutionPolicy Bypass -File "{0}" -GamePath "{1}" -UserConfigRoot "{2}" -LauncherLogPath "{3}"' -f (Join-Path $root 'Launch-LocalFUT.ps1'),$exe,$configRoot,$log
         $arguments += ' -WaitForExternalGame'
+        if ($accountMode) {
+            $arguments += ' -AccountGatewayConfig "{0}" -AccountSessionPath "{1}" -LSXMode ea-app' -f $accountConfig,$script:SessionPath
+        }
         if ($games) {
             foreach ($game in $games) {
                 if (-not $game.Path -or [IO.Path]::GetFullPath($game.Path) -ine [IO.Path]::GetFullPath($exe)) { throw 'Le FIFA 21 ouvert ne correspond pas au chemin choisi dans MNG FUT.' }

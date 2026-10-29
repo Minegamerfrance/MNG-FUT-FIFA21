@@ -1,0 +1,27 @@
+services:
+  accounts:
+    build:
+      context: ..
+      dockerfile: hosting/Dockerfile
+    command: ["python", "-u", "/app/account_gateway.py"]
+    restart: unless-stopped
+    init: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    mem_limit: 2500m
+    pids_limit: 256
+    volumes:
+      - personal-clubs:/state
+    ports:
+      - "51443:51443/tcp"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',51443),timeout=3).close()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  personal-clubs:

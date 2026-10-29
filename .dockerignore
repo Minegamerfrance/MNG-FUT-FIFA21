@@ -7,6 +7,8 @@
 !hosting/
 !hosting/Dockerfile
 !hosting/healthcheck.py
+!hosting/account_gateway.py
+!server/runtime-source/account_transport.py
 **/__pycache__/**
 **/*.pyc
 **/*.sqlite3*

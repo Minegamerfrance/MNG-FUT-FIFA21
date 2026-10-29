@@ -28,7 +28,7 @@ $script:Lang = 'en'
 $script:ServerProcess = $null
 $script:SelectedGame = '17'
 $script:ActiveServerGame = ''
-$script:LauncherVersion = '1.3.26'
+$script:LauncherVersion = '1.3.27'
 $script:ThemeAccent = '#DDFD45'
 $script:NotificationsUrl = 'https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/notifications.json'
 $script:NotificationsSeenPath = Join-Path $script:StateRoot 'notifications-seen.json'
@@ -637,7 +637,7 @@ function Send-Presence([string]$State,[string]$Text=''){
       <Border x:Name="AccountDrawer" Grid.RowSpan="2" Grid.ColumnSpan="3" Width="430" HorizontalAlignment="Right" Background="#FB08110F" BorderBrush="#385044" BorderThickness="1,0,0,0" Visibility="Collapsed" Panel.ZIndex="51" Effect="{StaticResource SoftShadow}">
         <Grid Margin="26"><Grid.RowDefinitions><RowDefinition Height="62"/><RowDefinition Height="*"/></Grid.RowDefinitions>
           <Grid><StackPanel VerticalAlignment="Center"><TextBlock x:Name="AccountTitleText" Text="MNG ACCOUNT" FontSize="19" FontWeight="Bold"/><TextBlock x:Name="AccountFeaturesText" Text="LOGIN • CLOUD SAVE • SOCIAL" FontSize="8" Foreground="#68766F" Margin="0,3,0,0"/></StackPanel><Button x:Name="CloseAccountButton" Style="{StaticResource NavButton}" Content="×" Width="40" Height="40" HorizontalAlignment="Right" FontSize="21"/></Grid>
-          <StackPanel Grid.Row="1" x:Name="LoginPanel"><TextBlock x:Name="LoginTitleText" Text="Connect to MNG FUT" FontSize="25" FontWeight="SemiBold" Margin="0,24,0,6"/><TextBlock x:Name="LoginDescriptionText" Text="Use the same MNG account as your FIFA 17 Cloud Save." Foreground="#84918A" TextWrapping="Wrap" Margin="0,0,0,24"/><TextBlock x:Name="UsernameLabel" Text="Username" Foreground="#9AA69F" FontSize="10" Margin="0,0,0,5"/><TextBox x:Name="LoginUserBox" Height="42"/><TextBlock x:Name="PasswordLabel" Text="Password" Foreground="#9AA69F" FontSize="10" Margin="0,15,0,5"/><PasswordBox x:Name="LoginPasswordBox" Height="42"/><TextBlock x:Name="LoginMessage" Foreground="#E4C665" TextWrapping="Wrap" Margin="0,14,0,0"/><StackPanel Orientation="Horizontal" Margin="0,20,0,0"><Button x:Name="LoginSubmitButton" Style="{StaticResource PrimaryButton}" Content="Login" Width="150"/><Button x:Name="RegisterButton" Style="{StaticResource GhostButton}" Content="Create account" Width="160" Margin="10,0,0,0"/></StackPanel><Button x:Name="LegacyLoginButton" Style="{StaticResource GhostButton}" Content="Open maintenance launcher" Margin="0,26,0,0"/></StackPanel>
+          <StackPanel Grid.Row="1" x:Name="LoginPanel"><TextBlock x:Name="LoginTitleText" Text="Connect to MNG FUT" FontSize="25" FontWeight="SemiBold" Margin="0,24,0,6"/><TextBlock x:Name="LoginDescriptionText" Text="Create your MNG account or sign in to access your personal FIFA 21 club online." Foreground="#84918A" TextWrapping="Wrap" Margin="0,0,0,24"/><TextBlock x:Name="UsernameLabel" Text="Username" Foreground="#9AA69F" FontSize="10" Margin="0,0,0,5"/><TextBox x:Name="LoginUserBox" Height="42"/><TextBlock x:Name="PasswordLabel" Text="Password" Foreground="#9AA69F" FontSize="10" Margin="0,15,0,5"/><PasswordBox x:Name="LoginPasswordBox" Height="42"/><TextBlock x:Name="LoginMessage" Foreground="#E4C665" TextWrapping="Wrap" Margin="0,14,0,0"/><StackPanel Orientation="Horizontal" Margin="0,20,0,0"><Button x:Name="LoginSubmitButton" Style="{StaticResource PrimaryButton}" Content="Login" Width="150"/><Button x:Name="RegisterButton" Style="{StaticResource GhostButton}" Content="Create account" Width="160" Margin="10,0,0,0"/></StackPanel><Button x:Name="LegacyLoginButton" Style="{StaticResource GhostButton}" Content="Open maintenance launcher" Margin="0,26,0,0"/></StackPanel>
           <StackPanel Grid.Row="1" x:Name="LoggedPanel" Visibility="Collapsed"><Border Width="84" Height="84" CornerRadius="42" Background="#16241E" BorderBrush="#DDFD45" BorderThickness="2" HorizontalAlignment="Left" Margin="0,25,0,16"><TextBlock Text="M" FontSize="34" FontWeight="Black" Foreground="#DDFD45" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock x:Name="LoggedUserText" Text="Player" FontSize="27" FontWeight="SemiBold"/><TextBlock x:Name="LoggedPersonaText" Text="MNG FUT account" Foreground="#839087" Margin="0,6,0,0"/><Border Background="#0F1A17" CornerRadius="12" BorderBrush="#31463C" BorderThickness="1" Padding="15" Margin="0,24,0,0"><StackPanel><TextBlock Text="●  Connected" Foreground="#9BEA70" FontWeight="SemiBold"/><TextBlock Text="Friends and presence are synchronized while this launcher is open." Foreground="#78857E" FontSize="10" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border><Button x:Name="LogoutButton" Style="{StaticResource GhostButton}" Content="Logout" Margin="0,24,0,0" Width="120" HorizontalAlignment="Left"/></StackPanel>
         </Grid>
       </Border>
@@ -865,7 +865,7 @@ function Apply-LegacyLanguage(){
     $CommunityLabel.Text=T 'ALL SET, TOGETHER' 'TOUT EST PRÊT, ENSEMBLE' 'TODO LISTO, JUNTOS';$CommunityTitle.Text=T 'A community that plays together.' 'Une communauté qui joue ensemble.' 'Una comunidad que juega unida.';$CommunityDescription.Text=T 'Your MNG account connects Friends, Cloud Save and FIFA 17.' 'Votre compte MNG relie vos amis, votre sauvegarde cloud et FIFA 17.' 'Tu cuenta MNG conecta tus amigos, tu guardado en la nube y FIFA 17.'
     $FindFriendsButton.Content=T '👥   Find friends and requests                                      →' '👥   Rechercher des amis et demandes                              →' '👥   Buscar amigos y solicitudes                                    →';$SettingsButton.Content=T '⚙    Launcher settings                                             →' '⚙    Réglages du lanceur                                           →' '⚙    Ajustes del lanzador                                           →';$MaintenanceButton.Content=T '↻    Repair / maintenance tools                                    →' '↻    Outils de réparation / maintenance                            →' '↻    Herramientas de reparación / mantenimiento                    →'
     $FriendsTitleText.Text=T 'FRIENDS' 'AMIS' 'AMIGOS';$FriendSearchButton.Content=T 'Search' 'Rechercher' 'Buscar';$RequestsLabel.Text=T 'REQUESTS' 'DEMANDES' 'SOLICITUDES';$MyFriendsLabel.Text=T 'MY FRIENDS' 'MES AMIS' 'MIS AMIGOS';$RefreshFriendsButton.Content=T 'Refresh friends' 'Actualiser les amis' 'Actualizar amigos'
-    $AccountTitleText.Text=T 'MNG ACCOUNT' 'COMPTE MNG' 'CUENTA MNG';$AccountFeaturesText.Text=T 'LOGIN • CLOUD SAVE • SOCIAL' 'CONNEXION • SAUVEGARDE CLOUD • SOCIAL' 'INICIO DE SESIÓN • GUARDADO EN LA NUBE • SOCIAL';$LoginTitleText.Text=T 'Connect to MNG FUT' 'Se connecter à MNG FUT' 'Conectarse a MNG FUT';$LoginDescriptionText.Text=T 'Use the same MNG account as your FIFA 17 Cloud Save.' 'Utilisez le même compte MNG que pour votre sauvegarde cloud FIFA 17.' 'Usa la misma cuenta MNG que para tu guardado en la nube de FIFA 17.'
+    $AccountTitleText.Text=T 'MNG ACCOUNT' 'COMPTE MNG' 'CUENTA MNG';$AccountFeaturesText.Text=T 'LOGIN • CLOUD SAVE • SOCIAL' 'CONNEXION • SAUVEGARDE CLOUD • SOCIAL' 'INICIO DE SESIÓN • GUARDADO EN LA NUBE • SOCIAL';$LoginTitleText.Text=T 'Connect to MNG FUT' 'Se connecter à MNG FUT' 'Conectarse a MNG FUT';$LoginDescriptionText.Text=T 'Create your MNG account or sign in to access your personal FIFA 21 club online.' 'Créez votre compte MNG ou connectez-vous pour accéder à votre club personnel FIFA 21 en ligne.' 'Crea tu cuenta MNG o inicia sesión para acceder a tu club personal de FIFA 21 en línea.'
     $UsernameLabel.Text=T 'Username' 'Identifiant' 'Nombre de usuario';$PasswordLabel.Text=T 'Password' 'Mot de passe' 'Contraseña';$LoginSubmitButton.Content=T 'Login' 'Se connecter' 'Iniciar sesión';$RegisterButton.Content=T 'Create account' 'Créer un compte' 'Crear una cuenta';$LegacyLoginButton.Content=T 'Open maintenance tools' 'Ouvrir les outils de maintenance' 'Abrir herramientas de mantenimiento';$LogoutButton.Content=T 'Logout' 'Se déconnecter' 'Cerrar sesión'
     Update-GamePathUi
     Update-AccountUi
@@ -1279,10 +1279,19 @@ $window.Add_ContentRendered({
 })
 
 
+
+
+
 function Update-Mng21Package([switch]$CheckOnly,[switch]$Force) {
     $settings=Get-Settings
     $root=if($settings.Fifa21ServerRoot){[string]$settings.Fifa21ServerRoot}else{Join-Path $script:AppRoot 'fifa21-server'}
     if(-not [IO.Path]::IsPathRooted($root)){$root=Join-Path $script:AppRoot $root}
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $root = $packagedRoot }
+    if (Test-Path -LiteralPath (Join-Path $root 'account-server.json')) {
+        Set-OperationStatus 'FIFA 21 utilise le serveur en ligne MNG. Le catalogue est gere sur le serveur.' '#87DB72'
+        return
+    }
     $updater=Join-Path $script:AppRoot 'FIFA21-Update.py'
     if(-not(Test-Path -LiteralPath $updater)){throw 'Le programme de mise à jour FIFA 21 est manquant.'}
     $python=Get-Command python.exe -ErrorAction SilentlyContinue
@@ -1322,8 +1331,12 @@ function Get-Mng21Root {
     $root = if ($configuration.Fifa21ServerRoot) { [string]$configuration.Fifa21ServerRoot } else { Join-Path $script:AppRoot 'fifa21-server' }
     if (-not [IO.Path]::IsPathRooted($root)) { $root = Join-Path $script:AppRoot $root }
     $root = [IO.Path]::GetFullPath($root)
-    if (-not (Test-Path -LiteralPath (Join-Path $root 'runtime-source\localfut21\server.py'))) { Update-Mng21Package }
-    foreach ($file in @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\localfut21\server.py')) {
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $root = $packagedRoot }
+    $accountMode = Test-Path -LiteralPath (Join-Path $root 'account-server.json')
+    if (-not $accountMode -and -not (Test-Path -LiteralPath (Join-Path $root 'runtime-source\localfut21\server.py'))) { Update-Mng21Package }
+    $required = if ($accountMode) { @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\account_client.py','runtime-source\account_transport.py','remote-runtime.json') } else { @('Launch-LocalFUT.ps1','Stop-LocalFUT.ps1','User-Settings.ps1','runtime-source\localfut21\server.py') }
+    foreach ($file in $required) {
         if (-not (Test-Path -LiteralPath (Join-Path $root $file) -PathType Leaf)) { throw "Les fichiers MNG FUT FIFA 21 sont incomplets : $root ($file)." }
     }
     return $root
@@ -1339,8 +1352,14 @@ function Test-ManagedServerRunning([string]$GameId=$script:SelectedGame) {
     try {
         $root = Get-Mng21Root
         $needsProfile = $false
-        foreach ($entry in @(@{Port=8090;Script='localfut21\server.py'},@{Port=44321;Script='localfut21\server.py'},@{Port=42230;Script='redirector_tls.py'})) {
-            $listener = Get-NetTCPConnection -State Listen -LocalPort $entry.Port -ErrorAction SilentlyContinue | Select-Object -First 1
+        $accountMode = Test-Path -LiteralPath (Join-Path $root 'account-server.json')
+        $backendScript = if ($accountMode) { 'account_client.py' } else { 'localfut21\server.py' }
+        if ($accountMode) {
+            $connectionStatus = Read-JsonFile (Join-Path $root 'runtime\status.json')
+            if (-not $script:Profile -or [long]$connectionStatus.accountId -ne [long]$script:Profile.id) { return $false }
+        }
+        foreach ($entry in @(@{Port=8090;Script=$backendScript},@{Port=44321;Script=$backendScript},@{Port=42230;Script='redirector_tls.py'})) {
+            $listener = Get-NetTCPConnection -State Listen -LocalPort $entry.Port -ErrorAction SilentlyContinue | Where-Object { $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') } | Select-Object -First 1
             if (-not $listener) { return $false }
             $owner = try { Get-CimInstance Win32_Process -Filter ('ProcessId='+$listener.OwningProcess) -ErrorAction Stop } catch { $null }
             if ($owner -and $owner.CommandLine) {
@@ -1355,7 +1374,10 @@ function Test-ManagedServerRunning([string]$GameId=$script:SelectedGame) {
             $profile = Invoke-RestMethod -Uri 'http://127.0.0.1:8090/localfut/auth/bootstrap' -TimeoutSec 2 -MaximumRedirection 0 -ErrorAction Stop
             if ($profile.version -ne 1) { return $false }
             foreach ($pair in @(@('serverSourceSha256','server.py'),@('onboardingSourceSha256','onboarding.py'))) {
-                $hash = (Get-FileHash -LiteralPath (Join-Path $root ('runtime-source\localfut21\'+$pair[1])) -Algorithm SHA256).Hash
+                if ($accountMode) {
+                    $contract = Read-JsonFile (Join-Path $root 'remote-runtime.json')
+                    $hash = if ($pair[1] -eq 'server.py') { [string]$contract.server } else { [string]$contract.onboarding }
+                } else { $hash = (Get-FileHash -LiteralPath (Join-Path $root ('runtime-source\localfut21\'+$pair[1])) -Algorithm SHA256).Hash }
                 if ([string]$profile.($pair[0]) -ine $hash) { return $false }
             }
         }
@@ -1367,16 +1389,26 @@ function Apply-Language {
     if ($StopFifa21Button) { $StopFifa21Button.Visibility = if ($script:SelectedGame -eq '21') { 'Visible' } else { 'Collapsed' } }
     if ($script:SelectedGame -ne '21') { return }
     $running = Test-ManagedServerRunning '21'
+    $configuration = Get-Settings
+    $displayRoot = if ($configuration.Fifa21ServerRoot) { [string]$configuration.Fifa21ServerRoot } else { Join-Path $script:AppRoot 'fifa21-server' }
+    if (-not [IO.Path]::IsPathRooted($displayRoot)) { $displayRoot = Join-Path $script:AppRoot $displayRoot }
+    $packagedRoot = Join-Path $script:AppRoot 'fifa21-server'
+    if (Test-Path -LiteralPath (Join-Path $packagedRoot 'account-server.json')) { $displayRoot = $packagedRoot }
+    $accountMode = Test-Path -LiteralPath (Join-Path $displayRoot 'account-server.json')
     $PlayButton.Content = T '▶   START SERVER' '▶   DÉMARRER LE SERVEUR' '▶   INICIAR SERVIDOR'
+    if ($accountMode) { $PlayButton.Content = T '▶   CONNECT TO FUT' '▶   SE CONNECTER À FUT' '▶   CONECTARSE A FUT' }
     if ($StopFifa21Button) {
         $StopFifa21Button.Content = T '■   STOP SERVER' '■   ARRÊTER LE SERVEUR' '■   DETENER SERVIDOR'
+        if ($accountMode) { $StopFifa21Button.Content = T '■   DISCONNECT' '■   SE DÉCONNECTER' '■   DESCONECTARSE' }
         $StopFifa21Button.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     }
     if ($GameHeaderText) { $GameHeaderText.Text = if ($script:Fifa21Starting) { 'FIFA 21 • PRÉPARATION EN COURS' } elseif ($running) { 'FIFA 21 • SERVEUR DÉMARRÉ' } else { 'FIFA 21 • SERVEUR ARRÊTÉ' } }
+    if ($accountMode -and $GameHeaderText) { $GameHeaderText.Text = if ($script:Fifa21Starting) { 'FIFA 21 • CONNEXION EN COURS' } elseif ($running) { 'FIFA 21 • CLUB PERSONNEL CONNECTÉ' } else { 'FIFA 21 • SERVEUR EN LIGNE' } }
     $LaunchGameButton.Content = '▶   LANCER FIFA'
     $PlayButton.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     $LaunchGameButton.IsEnabled = -not ($script:Fifa21Starting -or $script:Fifa21Stopping)
     $SettingsHint.Text = 'Le serveur reste actif. Lance FIFA manuellement ; les nouvelles sessions sont détectées automatiquement.'
+    if ($accountMode) { $SettingsHint.Text = 'Créez un compte ou connectez-vous à MNG FUT pour retrouver votre club personnel sur le serveur en ligne.' }
 }
 function Refresh-ServerLogs {
     if ($script:SelectedGame -ne '21') { Refresh-LegacyServerLogs; return }
@@ -1405,6 +1437,26 @@ function Start-Fifa21Server([switch]$LaunchGame) {
     $script:Fifa21Starting = $true
     try {
         $root = Get-Mng21Root
+        $accountConfig = Join-Path $root 'account-server.json'
+        $accountMode = Test-Path -LiteralPath $accountConfig
+        if ($accountMode -and -not (Validate-Session)) {
+            Open-Account
+            throw 'Connecte-toi ou cree ton compte MNG pour acceder a ton club FIFA 21.'
+        }
+        if ($accountMode) {
+            $clientPython = Join-Path $root '.venv\Scripts\python.exe'
+            $prepared = $false
+            if (Test-Path -LiteralPath $clientPython) {
+                & $clientPython -c 'import cryptography' 2>$null
+                $prepared = $LASTEXITCODE -eq 0
+            }
+            if (-not $prepared) {
+                Set-OperationStatus 'Preparation de votre premiere connexion MNG FUT…'
+                $prepare = Start-Mng21BackgroundWorker ('-NoProfile -ExecutionPolicy Bypass -File "{0}" -AccountMode' -f (Join-Path $root 'Prepare-RemoteClient.ps1')) $root
+                while (-not $prepare.HasExited) { Wait-Ui 300 }
+                if ($prepare.ExitCode -ne 0) { throw 'La preparation du connecteur a echoue. Verifie que Python est installe.' }
+            }
+        }
         $exe = Get-SelectedGameExe
         if (-not $exe -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) { Choose-GameExe; $exe = Get-SelectedGameExe }
         if (-not $exe -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) { return }
@@ -1420,6 +1472,9 @@ function Start-Fifa21Server([switch]$LaunchGame) {
         $configRoot = if ($env:LOCALFUT21_USER_CONFIG_ROOT) { $env:LOCALFUT21_USER_CONFIG_ROOT } else { Join-Path $env:LOCALAPPDATA 'MNG21\LocalFUT' }
         $arguments = '-NoLogo -NoProfile -ExecutionPolicy Bypass -File "{0}" -GamePath "{1}" -UserConfigRoot "{2}" -LauncherLogPath "{3}"' -f (Join-Path $root 'Launch-LocalFUT.ps1'),$exe,$configRoot,$log
         $arguments += ' -WaitForExternalGame'
+        if ($accountMode) {
+            $arguments += ' -AccountGatewayConfig "{0}" -AccountSessionPath "{1}" -LSXMode ea-app' -f $accountConfig,$script:SessionPath
+        }
         if ($games) {
             foreach ($game in $games) {
                 if (-not $game.Path -or [IO.Path]::GetFullPath($game.Path) -ine [IO.Path]::GetFullPath($exe)) { throw 'Le FIFA 21 ouvert ne correspond pas au chemin choisi dans MNG FUT.' }

@@ -3,6 +3,8 @@ param(
     [string]$GamePath = "",
     [ValidatePattern('^(?:100\.)\d{1,3}\.\d{1,3}\.\d{1,3}$')]
     [string]$RemoteHost = "",
+    [string]$AccountGatewayConfig = "",
+    [string]$AccountSessionPath = "",
     [switch]$NoGameLaunch,
     [switch]$SafeGameLaunch,
     [switch]$WaitForExternalGame,
@@ -632,6 +634,9 @@ if (-not $SafeGameLaunch -and -not (Test-Administrator)) {
     $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"{0}"' -f $PSCommandPath))
     if ($GamePath) { $argList += @('-GamePath', ('"{0}"' -f $GamePath)) }
     if ($RemoteHost) { $argList += @('-RemoteHost', $RemoteHost) }
+    if ($AccountGatewayConfig) {
+        $argList += @('-AccountGatewayConfig', ('"{0}"' -f $AccountGatewayConfig), '-AccountSessionPath', ('"{0}"' -f $AccountSessionPath))
+    }
     if ($NoGameLaunch) { $argList += '-NoGameLaunch' }
     if ($SafeGameLaunch) { $argList += '-SafeGameLaunch' }
     if ($WaitForExternalGame) { $argList += '-WaitForExternalGame' }
@@ -648,6 +653,17 @@ if (-not $SafeGameLaunch -and -not (Test-Administrator)) {
 $transcribing = $false
 try {
     if ($LauncherLogPath) { Start-Transcript -LiteralPath $LauncherLogPath -Append -Force | Out-Null; $transcribing = $true }
+    if ($AccountGatewayConfig) {
+        $gateway = Get-Content -LiteralPath $AccountGatewayConfig -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($gateway.gameId -ne '21' -or $gateway.certificateSha256 -notmatch '^[a-fA-F0-9]{64}$') { throw 'Configuration serveur MNG invalide.' }
+        $gatewayAddress = [Net.IPAddress]::Parse([string]$gateway.host)
+        $RemoteHost = $gatewayAddress.IPAddressToString
+        $accountSession = Get-Content -LiteralPath $AccountSessionPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $accountIdentity = [long]$accountSession.profile.id
+        if ($accountIdentity -le 0 -or -not $accountSession.token) { throw 'Connecte-toi a ton compte dans MNG FUT.' }
+        $status.accountId = $accountIdentity
+        $accountSession = $null
+    }
     New-Item -ItemType Directory -Force -Path $RuntimeRoot | Out-Null
     Save-Status $status
     Write-StatusLine 'Settings' $SettingsPath
@@ -733,7 +749,7 @@ try {
         throw "Python dependency missing: cryptography. Install it with: `"$pythonHint`" -m pip install cryptography>=42"
     }
 
-    $expectedServerScript = if ($RemoteHost) { Join-Path $VendorRoot 'remote_relay.py' } else { $localServerScript }
+    $expectedServerScript = if ($AccountGatewayConfig) { Join-Path $VendorRoot 'account_client.py' } elseif ($RemoteHost) { Join-Path $VendorRoot 'remote_relay.py' } else { $localServerScript }
     $reuseHealthyServer = $false
     $serverSourceHash = (Get-ExpectedRuntimeHashes).server
     $serverListeners = @(44321, 8090 | ForEach-Object { Get-Listener $_ } | Where-Object { $_ })
@@ -744,10 +760,13 @@ try {
         }
         $serverOwner = Get-CimInstance Win32_Process -Filter "ProcessId=$($serverOwnerIds[0])" -ErrorAction SilentlyContinue
         if (-not (Test-ProcessOwnsExactScript $serverOwner $expectedServerScript)) {
-            throw "FUT/Blaze ports belong to PID $($serverOwnerIds[0]), whose exact script is not '$localServerScript'. No foreign server will be stopped."
+            throw "FUT/Blaze ports belong to PID $($serverOwnerIds[0]), whose exact script is not '$expectedServerScript'. No foreign server will be stopped."
         }
         if ($RemoteHost -and [string]$serverOwner.CommandLine -notmatch ('--remote-host\s+' + [regex]::Escape($RemoteHost) + '(?:\s|$)')) {
             throw 'A relay for a different host is already running. Stop it first.'
+        }
+        if ($AccountGatewayConfig -and [string]$serverOwner.CommandLine -notmatch ('--account-id\s+' + [regex]::Escape([string]$accountIdentity) + '(?:\s|$)')) {
+            throw 'Un autre compte utilise cette connexion. Arrete la session avant de changer de compte.'
         }
         if (Test-HealthyLocalMockServer $serverSourceHash) {
             if ($selectedLSXMode -eq 'replacement' -and -not $localServerOwnsLSX) {
@@ -803,6 +822,9 @@ try {
             @($python.Arguments) + @('-u', ('"{0}"' -f $serverScript), '--remote-host', $RemoteHost)
         } else {
             @($python.Arguments) + @('-u', ('"{0}"' -f $serverScript), '--lsx-mode', $serverLSXMode)
+        }
+        if ($AccountGatewayConfig) {
+            $serverArgs += @('--account-config', ('"{0}"' -f $AccountGatewayConfig), '--session-file', ('"{0}"' -f $AccountSessionPath), '--account-id', [string]$accountIdentity)
         }
         $server = Start-Process -FilePath $python.Path -ArgumentList $serverArgs -WorkingDirectory $VendorRoot -RedirectStandardOutput $serverLog -RedirectStandardError $serverError -WindowStyle Hidden -PassThru
         if (-not (Wait-ForPort 44321) -or -not (Wait-ForPort 8090) -or -not (Wait-ForPort 10853)) {

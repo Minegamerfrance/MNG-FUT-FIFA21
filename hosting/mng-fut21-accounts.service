@@ -1,0 +1,16 @@
+[Unit]
+Description=MNG FUT 21 personal clubs
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/ubuntu/mng21-server/hosting
+ExecStart=/usr/bin/docker compose -p mng21-accounts -f accounts.compose.yaml up -d
+ExecStop=/usr/bin/docker compose -p mng21-accounts -f accounts.compose.yaml stop
+TimeoutStartSec=90
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,36 @@
 # Hébergement de test FIFA 21
 
+## Clubs personnels avec le compte MNG
+
+Le lanceur 1.3.27 réutilise l'inscription et la connexion MNG existantes.
+Le connecteur vérifie l'empreinte TLS du VPS avant d'envoyer le jeton de session.
+La passerelle `account_gateway.py` valide ce jeton auprès de l'API MNG fixe
+et refuse toute identité différente de celle retournée par l'API.
+Aucun mot de passe MNG ni jeton n'est stocké dans les données du VPS.
+
+Chaque compte ouvre son propre processus FUT, ses réglages et sa base SQLite
+dans le volume `personal-clubs`. Les anciens clubs locaux et le club commun
+du test Tailscale ne sont pas migrés automatiquement.
+L'inscription, les joueurs et la progression sont indépendants entre comptes.
+Le catalogue de joueurs reste commun et est distribué avec le moteur.
+
+Déploiement : `docker compose -p mng21-accounts -f accounts.compose.yaml up -d --build`.
+Seule la passerelle TLS écoute sur le port public TCP 51443 ; les ports des
+clubs sont limités aux adresses de boucle locale du conteneur. Tailscale n'est
+pas nécessaire à cette connexion. Le service `mng-fut21-accounts.service`
+assure le démarrage après Docker. Les clés TLS restent dans le volume privé.
+
+Capacité initiale : 4 clubs actifs simultanément, avec remplacement du club
+inactif le plus ancien lorsque nécessaire. Les bases sont conservées.
+Cette configuration n'est pas une validation pour 50 joueurs simultanés.
+Le marché multijoueur et les rencontres 1 contre 1 restent à développer.
+
+Tests : `python hosting/test_account_gateway.py` vérifie deux vrais moteurs
+isolés avec des identités de test, le refus des mauvaises sessions, l'empreinte
+TLS, les canaux HTTP/UDP et la persistance après redémarrage. Le connecteur a
+aussi été testé depuis Windows vers le VPS avec un compte MNG réel.
+La version du lanceur doit encore être validée dans FIFA.
+
 ## Essai gratuit sur le PC de l'hôte
 
 Tailscale doit être installé et connecté. `server/Start-TestHost.cmd` démarre
