@@ -4,6 +4,9 @@ from pathlib import Path
 from squad_payload import read_database,build_database,database_crc,compress,decompress
 POSITIONS={'GK':0,'RWB':2,'RB':3,'CB':5,'LB':7,'LWB':8,'CDM':10,'CM':14,'RM':12,'LM':16,'CAM':18,'CF':21,'RW':23,'ST':25,'LW':27}
 _lock=threading.RLock()
+# Shared release floor: clients retain FutSquads across local/VPS migrations.
+# A fresh account must advertise a version above the previously shipped 21005.
+MIN_ROSTER_VERSION=21006
 def _columns(t):return {n.decode():(kind,offset,depth) for kind,offset,n,depth in struct.iter_unpack('<II4sI',t['fields'])}
 def _number(row,f):kind,offset,depth=f;assert kind==3;return int.from_bytes(row,'little')>>offset&((1<<depth)-1)
 def _set(row,f,value):
@@ -42,12 +45,12 @@ def build(s,definitions,source,version):
  return payload,dict(schemaCRC=definitions['schema'],advertisedSchemas=definitions.get('advertisedSchemas',[definitions['schema']]),version=version,databaseCRC=crc if crc<0x80000000 else crc-0x100000000,size=len(payload),sha256=hashlib.sha256(payload).hexdigest(),tables=len(tables),playersChanged=len(changed),changedPlayerIds=changed,baseCardsMatched=len(found),missingBaseIds=sorted(cards.keys()-found))
 def ensure(s):
  with _lock:
-  definitions=json.loads((s.ROOT/'roster-baseline/metadata.json').read_text(encoding='utf8'));fingerprint=hashlib.sha256(json.dumps(dict(cards=_base_cards(s),baseline=[d['baselineSha256'] for d in definitions],generator=5),sort_keys=True,separators=(',',':')).encode()).hexdigest()
+  definitions=json.loads((s.ROOT/'roster-baseline/metadata.json').read_text(encoding='utf8'));fingerprint=hashlib.sha256(json.dumps(dict(cards=_base_cards(s),baseline=[d['baselineSha256'] for d in definitions],generator=6,minimumVersion=MIN_ROSTER_VERSION),sort_keys=True,separators=(',',':')).encode()).hexdigest()
   directory=s.RUNTIME_ROOT/'roster-updates';directory.mkdir(parents=True,exist_ok=True);index=directory/'current.json'
   try:current=json.loads(index.read_text(encoding='utf8'))
   except (OSError,ValueError):current={}
   if current.get('fingerprint')==fingerprint and all((directory/u['file']).is_file() and hashlib.sha256((directory/u['file']).read_bytes()).hexdigest()==u['sha256'] for u in current.get('updates',[])) and len(current.get('updates',[]))==len(definitions):return current
-  version=max(21001,int(current.get('version',21000))+1)
+  version=max(MIN_ROSTER_VERSION,int(current.get('version',21000))+1)
   if version>65535:raise ValueError('Native roster version exhausted')
   updates=[]
   for d in definitions:
