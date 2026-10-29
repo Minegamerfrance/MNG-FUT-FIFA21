@@ -34,6 +34,7 @@ from fut_inventory import dispatch as inventory_route, filter_items as inventory
 import league_objectives
 import squad_battles_results
 import squad_battles_weekly
+import squad_concepts
 import featured_totw
 import featured_event
 import live_messaging
@@ -2265,7 +2266,17 @@ class State:
     def list_squads(self) -> list[dict[str, Any]]:
         with self.lock:
             rows = self.conn.execute("SELECT data FROM squads ORDER BY active DESC,id").fetchall()
-        return [json.loads(r[0]) for r in rows]
+            owned = self.list_items()
+            squads = []
+            for row in rows:
+                original = json.loads(row[0])
+                current = squad_concepts.reconcile(original, owned, CONCEPT_BASE)
+                if current != original:
+                    self.conn.execute("UPDATE squads SET data=? WHERE id=?",
+                                      (json.dumps(current), int(current["id"])))
+                squads.append(current)
+            self.conn.commit()
+            return squads
 
     def save_squad(self, payload: Any) -> dict[str, Any]:
         with self.lock:
@@ -3705,6 +3716,7 @@ def _native_squad(squad_id: int | None = None) -> dict[str, Any]:
         "id": sid,
         "personaId": int(CFG["persona_id"]),
         "squadName": name,
+        "squadType": src.get("squadType", "REGULAR_SQUAD"),
         "formation": str(src.get("formation") or "f442"),
         "captain": captain,
         "chemistry": int(src.get("chemistry", 100) if src.get("chemistry") is not None else 100),
@@ -8017,7 +8029,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             src = dict(src["squad"])
         with STATE.lock:
             sid = int(STATE.conn.execute("SELECT COALESCE(MAX(id),0)+1 FROM squads").fetchone()[0])
-            src.update(id=sid, squadId=sid, active=False)
+            src.update(id=sid, squadId=sid, active=True)
             src.setdefault("players", [])
             src.setdefault("formation", "f442")
             src.setdefault("squadType", "REGULAR_SQUAD")
@@ -8071,6 +8083,9 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         if method == "DELETE":
             STATE.delete_squad(sid)
             return 200, {}, json_bytes({"id": sid})
+        # The native selector selects a squad by fetching its full detail;
+        # subsequent builder/user requests refer to the active squad.
+        STATE.save_squad({"id": sid, "active": True})
         return 200, {}, json_bytes(_native_squad(sid))
 
     if regular_squad and method in ("PUT", "POST"):

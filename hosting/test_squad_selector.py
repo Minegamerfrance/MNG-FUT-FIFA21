@@ -25,7 +25,7 @@ class Selector(unittest.TestCase):
    call=lambda m,p,b={}:json.loads(scope['dispatch'](m,p,b)[2])
    obj.save_squad({'id':1,'squadName':'Original','players':[{'index':0,'itemId':100}],'active':True})
    created=call('POST','/ut/game/fifa21/squad',{'squadName':'Second'})
-   self.assertEqual(created['id'],2);self.assertEqual(obj.list_squads()[0]['id'],1)
+   self.assertEqual(created['id'],2);self.assertEqual(obj.list_squads()[0]['id'],2)
    self.assertEqual(len(call('GET','/ut/game/fifa21/squad/list')['squad']),2)
    call('PUT','/ut/game/fifa21/squad/active',{'squadId':2})
    call('PUT','/ut/game/fifa21/squad/2',{'squadName':'Renamed','players':[{'index':1,'itemId':101}]})
@@ -34,3 +34,4 @@ class Selector(unittest.TestCase):
    self.assertEqual(call('GET','/ut/game/fifa21/squad/1')['players'][0]['itemId'],100)
    call('DELETE','/ut/game/fifa21/squad/2');obj.conn.commit();obj.conn.close()
 if __name__=='__main__':unittest.main()
+
