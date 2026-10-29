@@ -2276,6 +2276,11 @@ class State:
         src = payload if isinstance(payload, dict) else {}
         if isinstance(src.get("squad"), dict):
             src = src["squad"]
+        src = dict(src)
+        if "squadName" in src and "name" not in src:
+            src["name"] = src["squadName"]
+        elif "name" in src and "squadName" not in src:
+            src["squadName"] = src["name"]
         sid = int(src.get("id") or src.get("squadId") or 1)
         # Native saves can contain only captain/kicktakers or tactics. Missing
         # fields mean unchanged; an explicit players=[] still clears the squad.
@@ -3631,8 +3636,10 @@ def _loan_player_choices() -> dict[str, list[dict[str, Any]]]:
     return {"loans": loans}
 
 
-def _native_squad() -> dict[str, Any]:
+def _native_squad(squad_id: int | None = None) -> dict[str, Any]:
     squads = STATE.list_squads()
+    if squad_id is not None:
+        squads = [saved for saved in squads if int(saved.get("id") or saved.get("squadId") or 1) == squad_id]
     src = dict(squads[0]) if squads else {"id": 1, "squadName": "Local XI", "formation": "f442", "players": []}
     item_by_id = {int(x.get("id", 0)): x for x in STATE.list_items()}
 
@@ -7994,7 +8001,35 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
 
         return 200, {}, json_bytes(_native_player_item(granted_item))
 
+    if low == "/ut/game/fifa21/squad/list" and method == "GET":
+        return 200, {}, json_bytes({"squad": [
+            {"id": int(saved.get("id") or saved.get("squadId") or 1),
+             "squadName": str(saved.get("squadName") or saved.get("name") or "Squad"),
+             "formation": str(saved.get("formation") or "f442"),
+             "rating": int(saved.get("rating", 0) or 0),
+             "chemistry": int(saved.get("chemistry", 0) or 0),
+             "squadType": str(saved.get("squadType") or "REGULAR_SQUAD")}
+            for saved in STATE.list_squads()]})
+
+    if low == "/ut/game/fifa21/squad" and method in ("POST", "PUT"):
+        src = dict(payload) if isinstance(payload, dict) else {}
+        if isinstance(src.get("squad"), dict):
+            src = dict(src["squad"])
+        with STATE.lock:
+            sid = int(STATE.conn.execute("SELECT COALESCE(MAX(id),0)+1 FROM squads").fetchone()[0])
+            src.update(id=sid, squadId=sid, active=False)
+            src.setdefault("players", [])
+            src.setdefault("formation", "f442")
+            src.setdefault("squadType", "REGULAR_SQUAD")
+            STATE.save_squad(src)
+        return 200, {}, json_bytes(_native_squad(sid))
+
     if low == "/ut/game/fifa21/squad/active":
+        if method in ("POST", "PUT") and isinstance(payload, dict):
+            sid = int(payload.get("id") or payload.get("squadId") or 0)
+            if not any(int(saved.get("id", 0)) == sid for saved in STATE.list_squads()):
+                return 404, {}, json_bytes({"reason": "SQUAD_NOT_FOUND"})
+            STATE.save_squad({"id": sid, "active": True})
         return 200, {}, json_bytes(_native_squad())
 
     if low == "/ut/game/fifa21/squad/900001" and method == "GET":
@@ -8028,7 +8063,17 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             _draft_save(run)
             return 200, {"Cache-Control": "no-store"}, json_bytes(_draft_squad(run))
 
-    if low.startswith("/ut/game/fifa21/squad/") and method in ("PUT", "POST"):
+    regular_squad = re.fullmatch(r"/ut/game/fifa21/squad/(\d+)", low)
+    if regular_squad and method in ("GET", "DELETE"):
+        sid = int(regular_squad.group(1))
+        if not any(int(saved.get("id", 0)) == sid for saved in STATE.list_squads()):
+            return 404, {}, json_bytes({"reason": "SQUAD_NOT_FOUND"})
+        if method == "DELETE":
+            STATE.delete_squad(sid)
+            return 200, {}, json_bytes({"id": sid})
+        return 200, {}, json_bytes(_native_squad(sid))
+
+    if regular_squad and method in ("PUT", "POST"):
         try:
             sid = int(low.rsplit("/", 1)[-1])
         except Exception:
