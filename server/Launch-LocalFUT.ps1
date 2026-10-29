@@ -497,6 +497,29 @@ function Ensure-LocalAuthBridge {
 }
 
 function Invoke-LocalAuthBridge([string]$HelperPath, [int]$GamePid, [string]$GamePath) {
+    # A VPS rebuild can briefly interrupt the local connector. Wait before
+    # starting the native helper, whose bootstrap request has a short timeout.
+    $bootstrapWait = [Diagnostics.Stopwatch]::StartNew()
+    $bootstrapReady = $false
+    do {
+        $bootstrapResponse = $null
+        try {
+            $bootstrapRequest = [Net.HttpWebRequest]::Create('http://127.0.0.1:8090/localfut/auth/bootstrap')
+            $bootstrapRequest.Proxy = $null
+            $bootstrapRequest.Timeout = 2000
+            $bootstrapRequest.ReadWriteTimeout = 2000
+            $bootstrapResponse = $bootstrapRequest.GetResponse()
+            if ([int]$bootstrapResponse.StatusCode -eq 200) { $bootstrapReady = $true; break }
+        } catch [Net.WebException] {
+            if ($bootstrapWait.Elapsed.TotalSeconds -ge 30) {
+                throw 'Le connecteur MNG ne repond pas apres 30 secondes. Relance la connexion dans le lanceur.'
+            }
+            Start-Sleep -Milliseconds 500
+        } finally {
+            if ($bootstrapResponse) { $bootstrapResponse.Dispose() }
+        }
+    } while ($bootstrapWait.Elapsed.TotalSeconds -lt 30)
+    if (-not $bootstrapReady) { throw 'Le connecteur MNG ne repond pas. Relance la connexion dans le lanceur.' }
     $logPath = Join-Path $RuntimeRoot 'auth-bridge.log'
     $startInfo = [Diagnostics.ProcessStartInfo]::new()
     $startInfo.FileName = $HelperPath
