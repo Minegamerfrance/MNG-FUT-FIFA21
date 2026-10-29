@@ -1,46 +1,45 @@
 {
   "colorArray": [
     0,
-    16777215,
     16777215
   ],
   "expColorIndices": [
     1,
     1,
-    1,
-    1,
-    1,
     2,
     2,
-    3,
+    2,
+    0,
+    0,
+    0,
     0
   ],
   "collColorIndices": [
     1,
     1,
-    1,
-    1,
-    1,
     2,
     2,
-    3,
+    2,
+    0,
+    0,
+    0,
     0
   ],
   "smallColorIndices": [
     1,
     1,
-    1,
-    1,
-    1,
     2,
     2,
-    3,
+    2,
+    0,
+    0,
+    0,
     0
   ],
   "shineArray": [
     11272447
   ],
-  "version": 1,
+  "version": 2,
   "id": 19,
   "name": "MNG FUT",
   "levels": false,

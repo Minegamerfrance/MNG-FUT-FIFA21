@@ -109,7 +109,7 @@ internal static class RarityNames {
       try{Write(h,slot,BitConverter.GetBytes(mem+EntryOffset));Need(Ptr(h,slot)==mem+EntryOffset,"Readback failed");installed=true;}
       catch{Write(h,slot,BitConverter.GetBytes(original));throw;}
      }finally{if(writable)VirtualProtectEx(h,new IntPtr(slot),(UIntPtr)8,prior,out ignored);NtResumeProcess(h);}
-     Console.WriteLine("[READY] Four rarity names installed in current FIFA process only. No game files modified.");
+     Console.WriteLine("[READY] Custom rarity names installed in current FIFA process only. No game files modified.");
     }finally{if(!installed)VirtualFreeEx(h,new IntPtr(mem),UIntPtr.Zero,0x8000);}
    }finally{CloseHandle(h);}
   }
@@ -121,8 +121,10 @@ internal static class RarityNames {
    if(li>=0){Need(li+1<args.Length,"Missing log path");log=new StreamWriter(args[li+1],false,Encoding.UTF8);log.AutoFlush=true;Console.SetOut(log);Console.SetError(log);}
    if(args.Contains("--self-test")){SelfTest();return 0;}
    int pi=Array.IndexOf(args,"--pid");Need(pi>=0&&pi+1<args.Length,"Missing PID");int pid=int.Parse(args[pi+1]);string mode=args[0].TrimStart('-');
-   DateTime deadline=DateTime.UtcNow.AddSeconds(args.Contains("--wait")?30:0);
-   while(true){try{Run(pid,mode);return 0;}catch(InvalidOperationException e){if(e.Message!="Localization service not ready"||DateTime.UtcNow>=deadline)throw;Thread.Sleep(250);}}
+   bool wait=args.Contains("--wait");
+   while(true){try{Run(pid,mode);return 0;}catch(InvalidOperationException e){if(e.Message!="Localization service not ready"||!wait)throw;
+    using(var game=Process.GetProcessById(pid)){if(game.HasExited)return 0;}
+    Thread.Sleep(1000);}}
   }catch(Exception e){Console.Error.WriteLine(e);return 1;}finally{if(log!=null)log.Dispose();}
  }
 }

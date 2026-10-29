@@ -525,7 +525,7 @@ function Invoke-LocalAuthBridge([string]$HelperPath, [int]$GamePid, [string]$Gam
 
 function Start-RarityNames([int]$GamePid) {
     # The display helper waits for CardsDLL independently of login readiness.
-    # It validates native signatures and only overrides the four custom names.
+    # It validates native signatures and only overrides the custom rarity names.
     $helperPath = Join-Path $ProjectRoot 'MNG21-RarityNames.exe'
     $sourcePath = Join-Path $ProjectRoot 'FIFA21-RarityNames.cs'
     $logPath = Join-Path $RuntimeRoot 'rarity-names.log'

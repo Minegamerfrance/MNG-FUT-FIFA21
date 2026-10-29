@@ -12,7 +12,14 @@ def _set(row,f,value):
  mask=((1<<depth)-1)<<offset;return ((int.from_bytes(row,'little')&~mask)|(value<<offset)).to_bytes(len(row),'little')
 def _base_cards(s):
  # One native search identity per asset; promotional editions retain their own item stats.
- return {int(rid):m for rid,m in s.PLAYER_DB.items() if int(rid)==int(m.get('assetId',rid)) and int(m.get('rareflag',0)) in (0,1)}
+ cards={}
+ # Some regular cards only exist as versioned definitions (e.g. Thiago).
+ # Search uses the native asset ID, not that definition ID.
+ for rid,m in sorted(s.PLAYER_DB.items(),key=lambda entry:int(entry[0])):
+  if int(m.get('rareflag',0)) not in (0,1):continue
+  asset=int(m.get('assetId',rid))
+  cards.setdefault(asset,m)
+ return cards
 def build(s,definitions,source,version):
  tables=read_database(source);players=next(t for t in tables if t['shortname']=='CZUM');cols=_columns(players);info=definitions['fields'];cards=_base_cards(s);rows=[];changed=[];found=set()
  for pos in range(0,len(players['records']),players['record_size']):
@@ -35,7 +42,7 @@ def build(s,definitions,source,version):
  return payload,dict(schemaCRC=definitions['schema'],advertisedSchemas=definitions.get('advertisedSchemas',[definitions['schema']]),version=version,databaseCRC=crc if crc<0x80000000 else crc-0x100000000,size=len(payload),sha256=hashlib.sha256(payload).hexdigest(),tables=len(tables),playersChanged=len(changed),changedPlayerIds=changed,baseCardsMatched=len(found),missingBaseIds=sorted(cards.keys()-found))
 def ensure(s):
  with _lock:
-  definitions=json.loads((s.ROOT/'roster-baseline/metadata.json').read_text(encoding='utf8'));fingerprint=hashlib.sha256(json.dumps(dict(cards=_base_cards(s),baseline=[d['baselineSha256'] for d in definitions],generator=4),sort_keys=True,separators=(',',':')).encode()).hexdigest()
+  definitions=json.loads((s.ROOT/'roster-baseline/metadata.json').read_text(encoding='utf8'));fingerprint=hashlib.sha256(json.dumps(dict(cards=_base_cards(s),baseline=[d['baselineSha256'] for d in definitions],generator=5),sort_keys=True,separators=(',',':')).encode()).hexdigest()
   directory=s.RUNTIME_ROOT/'roster-updates';directory.mkdir(parents=True,exist_ok=True);index=directory/'current.json'
   try:current=json.loads(index.read_text(encoding='utf8'))
   except (OSError,ValueError):current={}
