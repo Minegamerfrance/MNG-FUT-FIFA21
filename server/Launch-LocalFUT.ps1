@@ -1,7 +1,7 @@
 ﻿[CmdletBinding()]
 param(
     [string]$GamePath = "",
-    [ValidatePattern('^(?:100\.)\d{1,3}\.\d{1,3}\.\d{1,3}$')]
+    [ValidatePattern('^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')]
     [string]$RemoteHost = "",
     [string]$AccountGatewayConfig = "",
     [string]$AccountSessionPath = "",
@@ -426,13 +426,29 @@ function Add-RedirectHostsEntry {
 }
 
 function Remove-RedirectHostsEntry {
-    $lines = @(Get-Content -LiteralPath $HostsPath -ErrorAction Stop)
     $redirectPattern = '^\s*127\.0\.0\.1\s+spring18\.gosredirector\.(?:ea\.com|(?:stest|scert|sdev)\.ea\.com)\s*$'
-    if ($lines | Where-Object { $_ -match $redirectPattern }) {
-        $lines | Where-Object { $_ -notmatch $redirectPattern } |
-            Set-Content -LiteralPath $HostsPath -Encoding ascii
-        ipconfig /flushdns | Out-Null
+    for ($attempt = 0; $attempt -lt 8; $attempt++) {
+        $stream = $null
+        try {
+            $stream = [IO.File]::Open($HostsPath, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::ReadWrite)
+            $reader = [IO.StreamReader]::new($stream, [Text.Encoding]::UTF8, $true, 1024, $true)
+            try { $text = $reader.ReadToEnd() } finally { $reader.Dispose() }
+            $lines = [regex]::Split($text, '(?<=\n)')
+            $filtered = ($lines | Where-Object { $_.TrimEnd("`r", "`n") -notmatch $redirectPattern }) -join ''
+            if ($filtered -cne $text) {
+                $bytes = [Text.UTF8Encoding]::new($false).GetBytes($filtered)
+                $stream.Position = 0
+                $stream.Write($bytes, 0, $bytes.Length)
+                $stream.SetLength($bytes.Length)
+                $stream.Flush()
+            }
+            break
+        } catch [IO.IOException] {
+            if ($attempt -eq 7) { throw }
+            Start-Sleep -Milliseconds 250
+        } finally { if ($stream) { $stream.Dispose() } }
     }
+    ipconfig /flushdns | Out-Null
 }
 
 function Stop-StartedRuntime([object]$ServerProcess, [object]$RedirectorProcess) {
@@ -629,6 +645,7 @@ $status = @{ server = 'NOT STARTED'; game = 'NOT STARTED'; connection = 'NOT STA
 $server = $null
 $redirector = $null
 $suspendedGame = $null
+$hostsRoutingInstalled = $false
 if (-not $SafeGameLaunch -and -not (Test-Administrator)) {
     Write-Host 'Administrator permission is required to update the hosts file and patch the running FIFA21.exe process.' -ForegroundColor Yellow
     $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"{0}"' -f $PSCommandPath))
@@ -987,6 +1004,7 @@ try {
                 Invoke-LocalAuthBridge $authHelper $patch.GamePid $resolvedGame
                 Start-RarityNames $patch.GamePid
                 $status.authBridge = 'READY (running process only; game login not yet verified)'
+                $hostsRoutingInstalled = $true
                 Add-RedirectHostsEntry
                 $status.connection = 'LOCAL ROUTING ARMED (trust and auth bridges ready; awaiting FIFA TLS and game login)'
                 Write-StatusLine 'Trust bridge' $status.trustBridge Green
@@ -998,7 +1016,7 @@ try {
                     $suspendedGame = $null
                 }
                 Stop-StartedRuntime $server $redirector
-                Remove-RedirectHostsEntry
+                if ($hostsRoutingInstalled) { Remove-RedirectHostsEntry; $hostsRoutingInstalled = $false }
                 $status.server = 'STOPPED after trust bridge failure'
                 $status.trustBridge = 'FAILED — see runtime\trust-patch.log'
                 $status.connection = 'NOT REDIRECTED — hosts file was left unchanged'
@@ -1042,7 +1060,9 @@ try {
         $suspendedGame = $null
     }
     try { Stop-StartedRuntime $server $redirector } catch { $status.detail += "Runtime cleanup: $($_.Exception.Message)" }
-    try { Remove-RedirectHostsEntry } catch { $status.detail += "Hosts cleanup: $($_.Exception.Message)" }
+    if ($hostsRoutingInstalled) {
+        try { Remove-RedirectHostsEntry } catch { $status.detail += "Hosts cleanup: $($_.Exception.Message)" }
+    }
     $status.server = if ($status.server -eq 'NOT STARTED') { 'FAILED' } else { $status.server }
     $status.connection = 'NOT READY'
     $status.detail += $_.Exception.Message
