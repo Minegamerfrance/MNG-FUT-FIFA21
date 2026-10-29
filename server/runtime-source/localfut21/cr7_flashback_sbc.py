@@ -16,10 +16,13 @@ RULES={
  910301:dict(rating=83,chemistry=65),
 }
 RULES.update({910401: {'rating': 83, 'chemistry': 80, 'club': 112172, 'clubCount': 3}, 910402: {'rating': 84, 'chemistry': 75, 'league': 19, 'leagueCount': 1}, 910403: {'rating': 85, 'chemistry': 70, 'club': 21, 'clubCount': 1, 'totw': 1}, 910404: {'rating': 85, 'chemistry': 65, 'league': 19, 'leagueCount': 1}, 910405: {'rating': 86, 'chemistry': 60, 'club': 21, 'clubCount': 1, 'totw': 1}, 910406: {'rating': 86, 'chemistry': 55, 'league': 19, 'leagueCount': 1}})
-GROUP_PLAYERS={910200:PLAYER,910400:67321486}
+RULES.update({910601:dict(rating=85),910602:dict(rating=85,totw=1),910603:dict(rating=86),910604:dict(rating=86,totw=1)})
+GROUP_PLAYERS={910200:PLAYER,910400:67321486,910600:67291385}
 
 def asset(s,method,path):
  name=path.rsplit('/',1)[-1]
+ if path=='/fut/sbc/gen4/sets/images/sbc_set_image_1010019.png':
+  return 200,{'Content-Type':'image/png','Cache-Control':'no-store'},remote_assets.read(s.ROOT/'assets/sbc'/name)
  if path in ('/fut/sbc/gen4/sets/images/sbc_set_image_1010002.png','/fut/sbc/gen4/challenges/images/sbc_set_image_1010002.png'):
   return 200,{'Content-Type':'image/png','Cache-Control':'no-store'},remote_assets.read((s.ROOT/'assets/sbc'/name))
  # A fresh native image identity avoids reusing the prior failed fetch.
@@ -85,7 +88,7 @@ def submit(s,cid):
   complete=all(str(c['id']) in done for c in group['challenges'])
   entries=challenge['rewards']['entries']
   pack_ids=[s._sbc_pack_id(e['attributes']['pack'],challenge) for e in entries if e['type']=='PACK']
-  assert len(pack_ids)==1
+  assert len(pack_ids)<=1
   item=None;granted=[]
   reward_player=GROUP_PLAYERS.get(set_id)
   if reward_player and complete:
@@ -120,7 +123,7 @@ def submit(s,cid):
   return 200,response
 
 def route(s,method,path,payload):
- match=re.fullmatch(r'/ut/game/fifa21/sbs/challenge/(91020[1-6]|910301|91040[1-6])(/squad)?',path)
+ match=re.fullmatch(r'/ut/game/fifa21/sbs/challenge/(91020[1-6]|910301|91040[1-6]|91060[1-4])(/squad)?',path)
  if not match:return None
  cid=int(match.group(1))
  if match.group(2) and method=='PUT':return save(s,cid,payload)

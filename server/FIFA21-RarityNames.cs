@@ -11,10 +11,10 @@ using System.Threading;
 // Local display override only. Original game files and all other translations stay intact.
 internal static class RarityNames {
  const long GlobalRva=0x522dd0;
- const int EntryOffset=0x100, DataOffset=0x1000;
- static readonly byte[] Magic=Encoding.ASCII.GetBytes("MNG21-RARITY-NAMES-V1\0");
- static readonly string[] Names={"Rulebreakers","Flashback","Prime","Ballon d'Or"};
- static readonly int[] Ids={22,37,38,63};
+ const int EntryOffset=0x100, DataOffset=0x2000;
+ static readonly byte[] Magic=Encoding.ASCII.GetBytes("MNG21-RARITY-NAMES-V2\0");
+ static readonly string[] Names={"Rulebreakers","Flashback","Prime","Ballon d'Or","MNG FUT"};
+ static readonly int[] Ids={22,37,38,63,19};
  [DllImport("kernel32.dll",SetLastError=true)] static extern IntPtr OpenProcess(uint access,bool inherit,int pid);
  [DllImport("kernel32.dll")] static extern bool CloseHandle(IntPtr h);
  [DllImport("kernel32.dll")] static extern IntPtr GetCurrentProcess();
@@ -38,7 +38,7 @@ internal static class RarityNames {
  static byte[] Read(IntPtr h,long a,int n){var b=new byte[n];UIntPtr done;Need(ReadProcessMemory(h,new IntPtr(a),b,(UIntPtr)n,out done)&&done.ToUInt64()==(ulong)n,"Read failed: "+new Win32Exception().Message);return b;}
  static long Ptr(IntPtr h,long a){return BitConverter.ToInt64(Read(h,a,8),0);}
  static void Write(IntPtr h,long a,byte[] b){UIntPtr done;Need(WriteProcessMemory(h,new IntPtr(a),b,(UIntPtr)b.Length,out done)&&done.ToUInt64()==(ulong)b.Length,"Write failed: "+new Win32Exception().Message);}
- static long Alloc(IntPtr h){long a=VirtualAllocEx(h,IntPtr.Zero,(UIntPtr)8192,0x3000,4).ToInt64();Need(a!=0,"Allocation failed");return a;}
+ static long Alloc(IntPtr h){long a=VirtualAllocEx(h,IntPtr.Zero,(UIntPtr)12288,0x3000,4).ToInt64();Need(a!=0,"Allocation failed");return a;}
  static byte[] SmallString(string text){byte[] raw=Encoding.UTF8.GetBytes(text);Need(raw.Length<15,"Label exceeds native inline capacity");byte[] b=new byte[16];Buffer.BlockCopy(raw,0,b,0,raw.Length);b[15]=(byte)(15-raw.Length);return b;}
  static byte[] Hook(long original,long counters,long assign,long labels){
   var a=new Asm();a.E(0x4d,0x85,0xc0);a.J("fallback",0x0f,0x84); // null key
@@ -59,13 +59,13 @@ internal static class RarityNames {
   }
   a.L("fallback");a.E(0xff,0x25,0,0,0,0);a.I64(original);return a.Finish();
  }
- static void Labels(IntPtr h,long address){for(int i=0;i<4;i++){Write(h,address+i*64,Encoding.UTF8.GetBytes(Names[i]+"\0"));Write(h,address+i*64+32,Encoding.UTF8.GetBytes(Names[i].ToUpperInvariant()+"\0"));}}
+ static void Labels(IntPtr h,long address){for(int i=0;i<Ids.Length;i++){Write(h,address+i*64,Encoding.UTF8.GetBytes(Names[i]+"\0"));Write(h,address+i*64+32,Encoding.UTF8.GetBytes(Names[i].ToUpperInvariant()+"\0"));}}
  static void SelfTest(){
   Need(Environment.Is64BitProcess,"x64 required");var h=GetCurrentProcess();long mem=Alloc(h);IntPtr output=Marshal.AllocHGlobal(16);
   try{
    AssignText assign=(o,first,last)=>{int n=checked((int)(last.ToInt64()-first.ToInt64()));var raw=new byte[n];Marshal.Copy(first,raw,0,n);byte[] result=SmallString(Encoding.UTF8.GetString(raw));Marshal.Copy(result,0,o,16);return o;};
    Labels(h,mem+DataOffset+256);
-   byte[] code=Hook(mem+0xf00,mem+DataOffset+128,Marshal.GetFunctionPointerForDelegate(assign).ToInt64(),mem+DataOffset+256);Need(code.Length<0xe00,"Hook too large");Write(h,mem+EntryOffset,code);Write(h,mem+0xf00,new byte[]{0xb8,0x34,0x12,0,0,0xc3});uint old;Need(VirtualProtectEx(h,new IntPtr(mem),(UIntPtr)4096,0x20,out old),"RX protection failed");FlushInstructionCache(h,new IntPtr(mem),(UIntPtr)4096);
+   byte[] code=Hook(mem+0x1f00,mem+DataOffset+128,Marshal.GetFunctionPointerForDelegate(assign).ToInt64(),mem+DataOffset+256);Need(code.Length<0x1e00,"Hook too large");Write(h,mem+EntryOffset,code);Write(h,mem+0x1f00,new byte[]{0xb8,0x34,0x12,0,0,0xc3});uint old;Need(VirtualProtectEx(h,new IntPtr(mem),(UIntPtr)8192,0x20,out old),"RX protection failed");FlushInstructionCache(h,new IntPtr(mem),(UIntPtr)8192);
    var call=(Translate)Marshal.GetDelegateForFunctionPointer(new IntPtr(mem+EntryOffset),typeof(Translate));
    for(int i=0;i<Ids.Length;i++)foreach(string prefix in new[]{"Player_Rarity_","PLAYER_RARITY_","FUT_POA_PLAYER_RARITY_"}){
     string key=prefix+Ids[i];IntPtr text=Marshal.StringToHGlobalAnsi(key);
@@ -75,7 +75,7 @@ internal static class RarityNames {
    foreach(string key in new[]{"Player_Rarity_1","Player_Rarity_220","Player_Rarity_22_extra","Other",""}){IntPtr t=Marshal.StringToHGlobalAnsi(key);try{Need(call(IntPtr.Zero,output,t,1)==0x1234,"Unrelated text intercepted");}finally{Marshal.FreeHGlobal(t);}}
    Need(call(IntPtr.Zero,output,IntPtr.Zero,1)==0x1234,"Null key fallback");
    IntPtr probe=Marshal.StringToHGlobalAnsi("Player_Rarity_22");try{Need(call(IntPtr.Zero,IntPtr.Zero,probe,1)==0x1234,"Null result fallback");}finally{Marshal.FreeHGlobal(probe);}
-   for(int i=0;i<4;i++)Need(Ptr(h,mem+DataOffset+128+i*8)==3,"Counter mismatch");
+   for(int i=0;i<Ids.Length;i++)Need(Ptr(h,mem+DataOffset+128+i*8)==3,"Counter mismatch");
    GC.KeepAlive(assign);Console.WriteLine("PASS x64 native-assignment ABI, all rarity keys, exact match, nulls, original fallback, hit counters. No FIFA process touched.");
   }finally{Marshal.FreeHGlobal(output);VirtualFreeEx(h,new IntPtr(mem),UIntPtr.Zero,0x8000);}
  }
@@ -92,7 +92,7 @@ internal static class RarityNames {
     Console.WriteLine("Method owner="+(owner==null?"private":owner.ModuleName+" RVA="+(original-owner.BaseAddress.ToInt64()).ToString("x")));
     if(mode=="probe") {File.WriteAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"rarity-localize-method.bin"),Read(h,original,2048));return;}
     if(Read(h,original-EntryOffset,Magic.Length).SequenceEqual(Magic)){
-     Console.WriteLine("[ALREADY] Rarity names installed; hits="+string.Join(",",Enumerable.Range(0,4).Select(i=>Ptr(h,original-EntryOffset+DataOffset+128+i*8).ToString()).ToArray()));return;
+     Console.WriteLine("[ALREADY] Rarity names installed; hits="+string.Join(",",Enumerable.Range(0,Ids.Length).Select(i=>Ptr(h,original-EntryOffset+DataOffset+128+i*8).ToString()).ToArray()));return;
     }
     Need(owner!=null,"Localization method owner is unknown; no patch installed");
     Need(mode=="install","Unknown mode");long mem=Alloc(h);bool installed=false;
@@ -101,7 +101,7 @@ internal static class RarityNames {
      Need(owner.ModuleName.Equals("FIFA21.exe",StringComparison.OrdinalIgnoreCase)&&original==imageBase+0xe43ab0,"Unsupported native localization implementation");
      Need(Read(h,assign,16).SequenceEqual(new byte[]{0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x6c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,0x57}),"Unsupported native string assignment");
      Labels(h,mem+DataOffset+256);
-     byte[] code=Hook(original,mem+DataOffset+128,assign,mem+DataOffset+256);Need(code.Length<0xe00,"Hook exceeds page");Write(h,mem,Magic);Write(h,mem+EntryOffset,code);Write(h,mem+DataOffset,BitConverter.GetBytes(original));uint ignored;Need(VirtualProtectEx(h,new IntPtr(mem),(UIntPtr)4096,0x20,out ignored),"RX protection failed");FlushInstructionCache(h,new IntPtr(mem),(UIntPtr)4096);
+     byte[] code=Hook(original,mem+DataOffset+128,assign,mem+DataOffset+256);Need(code.Length<0x1e00,"Hook exceeds page");Write(h,mem,Magic);Write(h,mem+EntryOffset,code);Write(h,mem+DataOffset,BitConverter.GetBytes(original));uint ignored;Need(VirtualProtectEx(h,new IntPtr(mem),(UIntPtr)8192,0x20,out ignored),"RX protection failed");FlushInstructionCache(h,new IntPtr(mem),(UIntPtr)8192);
      Need(NtSuspendProcess(h)==0,"Could not suspend briefly for atomic installation");
      uint prior=0;bool writable=false;
      try{

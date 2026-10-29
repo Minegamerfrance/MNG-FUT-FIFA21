@@ -2801,6 +2801,147 @@
       "setImageId": 1010003
     },
     {
+      "id": "MNG_KROOS_75",
+      "_catalogOrdinal": 106,
+      "tabId": 3,
+      "name": "MNG FUT Kroos",
+      "description": "Terminez ces défis pour obtenir Toni Kroos MNG FUT au Bayer Leverkusen.",
+      "repeatable": false,
+      "state": "available",
+      "setImageId": 1010019,
+      "challenges": [
+        {
+          "id": "MNG_KROOS_1",
+          "order": 1,
+          "name": "Équipe 85",
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 85
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          },
+          "challengeImageId": "330005-fb83431f-9d46"
+        },
+        {
+          "id": "MNG_KROOS_2",
+          "order": 2,
+          "name": "Équipe 85 + TOTW",
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 85
+                }
+              },
+              {
+                "type": "TOTW",
+                "attributes": {
+                  "min": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          },
+          "challengeImageId": "330005-fb83431f-9d46"
+        },
+        {
+          "id": "MNG_KROOS_3",
+          "order": 3,
+          "name": "Équipe 86",
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 86
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          },
+          "challengeImageId": 0
+        },
+        {
+          "id": "MNG_KROOS_4",
+          "order": 4,
+          "name": "Équipe 86 + TOTW",
+          "requirements": {
+            "rules": [
+              {
+                "type": "PLAYERS",
+                "attributes": {
+                  "min": 11,
+                  "max": 11
+                }
+              },
+              {
+                "type": "RATING",
+                "attributes": {
+                  "min": 86
+                }
+              },
+              {
+                "type": "TOTW",
+                "attributes": {
+                  "min": 1
+                }
+              }
+            ]
+          },
+          "rewards": {
+            "entries": []
+          },
+          "challengeImageId": 0
+        }
+      ],
+      "rewards": {
+        "entries": [
+          {
+            "type": "PLAYER",
+            "attributes": {
+              "resourceId": 67291385,
+              "name": "Kroos",
+              "rating": 75,
+              "position": "CAM"
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "MNG_PICK_80",
       "_catalogOrdinal": 105,
       "tabId": 3,

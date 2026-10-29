@@ -1157,7 +1157,7 @@ class State:
         return {
             **({"skillmoves": int(meta["skillMoves"])-1,
                 "weakfootabilitytypecode": int(meta["weakFoot"])}
-               if int(resource_id) in (67310990,67340307,67340730,176580,67285444,100839876,67285499) else {}),
+               if int(resource_id) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817) else {}),
             "id": item_id,
             "timestamp": now_s(),
             "resourceId": int(resource_id),
@@ -2774,7 +2774,7 @@ def _native_pack_item(item: dict[str, Any]) -> dict[str, Any]:
         # broke consumables / Draft).  Skill moves / weak foot are not
         # overridden -- doing so showed wrong star ratings on cards like Pelé.
         out.update(_player_name_fields(out))
-    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817):
         # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
         # Keep this edition-specific; gold Kane keeps his own identity.
         out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
@@ -3417,7 +3417,7 @@ def _native_player_item(item: dict[str, Any]) -> dict[str, Any]:
     # Pelé PIM show wrong star ratings, so the client's own value is kept.
     if _is_special_card(item):
         out.update(_player_name_fields(item))
-    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
+    if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817):
         # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
         # Keep this edition-specific; gold Kane keeps his own identity.
         out["skillmoves"] = int(player_meta(int(out["resourceId"]))["skillMoves"]) - 1
@@ -6654,7 +6654,7 @@ def _sbc_set_json(set_obj: dict[str, Any]) -> dict[str, Any]:
         "setId": set_int, "id": set_int,
         "name": t(set_obj.get("name", "")),
         "description": _sbc_set_description(set_obj),
-        "priority": int(set_obj.get("tabId", 0) or 0) * 100 + 1,
+        "priority": int(set_obj.get("tabId", 0) or 0) * 100 + (0 if set_obj.get("id")=="MNG_KROOS_75" else 1),
         "hidden": len(challenges) == 1,
         "repeatable": bool(set_obj.get("repeatable", False)),
         "challengesCount": len(challenges),
@@ -7561,7 +7561,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # The native details screen asks for both base asset and special
         # definition, and may resolve its detailed attributes through either.
         # Alias only this explicit Kane-edition batch, never base-only searches.
-        for special_id,base_id in ((67310990,202126),(67340307,231443),(67340730,231866),(67285499,176635)):
+        for special_id,base_id in ((67310990,202126),(67340307,231443),(67340730,231866),(67285499,176635),(67291385,182521),(84068601,182521),(100845817,182521)):
             if special_id in requested_ids:
                 records = [dict(player_attribute_metadata(special_id), defId=record['defId'])
                            if record['defId'] == base_id else record for record in records]
@@ -8843,7 +8843,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                     "nation": int(vmeta.get("nation", 0)), "attributeList": player_attribute_list(int(vrid)),
                 })
             for variant in variants:
-                if int(variant.get('resourceId',0)) in (67310990,67340307,67340730,176580,67285444,100839876,67285499):
+                if int(variant.get('resourceId',0)) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817):
                     variant['skillmoves'] = int(player_meta(int(variant['resourceId']))['skillMoves']) - 1
                     variant['weakfootabilitytypecode'] = int(player_meta(int(variant['resourceId']))['weakFoot'])
             variants.sort(key=lambda x: int(x.get("rating", 0)), reverse=True)
