@@ -23,7 +23,7 @@ def squad(s):
     players += [dict(index=i,kitNumber=0) for i in range(len(players),23)]
     ids=[p['itemData']['id'] for p in players[:11]]
     result.update(id=ID,squadId=ID,squadName='Rulebreakers 1',name='Rulebreakers 1',formation='f433c',players=players,captain=ids[9],chemistry=100,starRating=5,kicktakers=[dict(index=i,id=pid,dream=False) for i,pid in enumerate(ids[6:11])])
-    if bayern:result.update(squadName='Bayern Munich',name='Bayern Munich',formation='f4231b',captain=ids[0])
+    if bayern:result.update(squadName='Bayern Munich',name='Bayern Munich',formation='f4231a',captain=ids[0])
     for item in result['actives']:item['id']=int(item['id'])+20000
     result['club']=[dict(item) for item in result['actives']]
     result['manager']=[s._native_manager_item(s.STATE.build_manager_item(1169894,953999,'none'),in_squad=True)]

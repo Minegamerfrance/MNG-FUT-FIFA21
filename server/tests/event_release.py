@@ -54,7 +54,7 @@ for now,has_totw,has_rb in [(e.STARTS['totw1']-1,False,False),(e.STARTS['totw1']
    assert s.route_fut('POST','/ut/game/fifa21/purchased/items',{},b'{"packId":523}')[0]==403
    assert s.route_fut('POST','/ut/game/fifa21/scmp/campaign/group/7101/rewards',{},b'{}')[0]==403
    team=s.featured_event.squad(s)
-   assert team['formation']=='f4231b' and team['badgeAssetId']=='21'
+   assert team['formation']=='f4231a' and team['badgeAssetId']=='21'
    assert len(team['players'])==23 and all(p['itemData']['teamid']==21 for p in team['players'])
    assert s.featured_event.stats(s)['clubName']=='Bayern Munich'
    s.squad_battles_results.start(s,5,{})
