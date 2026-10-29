@@ -147,9 +147,16 @@ def catalogue(s,search,concept=False):
     kind=str(value(search,'type','itemType',default='player')).lower()
     if kind in ('player','concept','conceptplayer','any','all'):
         result=[]
+        # Resolve a selected player's editions before building native items.
+        # Item construction allocates attribute/stat payloads; doing it for
+        # 14,000 unrelated players on every bio/compare request is unnecessary.
+        definitions={x for x in ids(value(search,'defid','definitionid','resourceid')) if x>0}
+        assets={x for x in ids(value(search,'maskeddefid','assetid')) if x>0}
         for rid,meta in s.PLAYER_DB.items():
             if not meta.get('catalogEnabled',True):continue
             if not concept and not eligible(meta):continue
+            if definitions and number(rid) not in definitions:continue
+            if assets and number(meta.get('assetId',rid)) not in assets:continue
             item=s.STATE.build_player_item(rid,CONCEPT_BASE+rid if concept else MARKET_BASE+rid,'concept' if concept else 'trade')
             item.update(name=meta.get('name',''))
             if concept:item.update(concept=True,dream=True,untradeable=True,contract=0,contracts=0)

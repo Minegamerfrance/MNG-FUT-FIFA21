@@ -5,6 +5,7 @@ import datetime as _dt
 import hashlib
 import json
 import logging
+from logging.handlers import RotatingFileHandler
 import os
 import random
 import re
@@ -694,7 +695,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
     handlers=[
-        logging.FileHandler(LOGS / "localfut15.log", encoding="utf-8"),
+        RotatingFileHandler(LOGS / "localfut15.log", maxBytes=16*1024*1024, backupCount=4, encoding="utf-8"),
         logging.StreamHandler(),
     ],
 )
@@ -9707,7 +9708,11 @@ def _fire2_build(component: int, command: int, msg_num: int, msg_type: int, payl
     return bytes(out)
 
 
-def _save_fire2(packet: Fire2Packet, peer: tuple[str, int], kind: str = "rx") -> Path:
+def _save_fire2(packet: Fire2Packet, peer: tuple[str, int], kind: str = "rx") -> Path | None:
+    # Packet dumps are opt-in diagnostics. Normal play must not create two
+    # files for every heartbeat/RPC; structured errors remain in the main log.
+    if not CFG.get('debug_packet_trace', False):
+        return None
     stamp = f"{int(time.time()*1000)}-{peer[0].replace(':','_')}-{peer[1]}"
     path = LOGS / f"fire2-{kind}-c{packet.component}-k{packet.command}-m{packet.msg_num}-{stamp}.bin"
     path.write_bytes(packet.raw)
@@ -10154,17 +10159,17 @@ class BlazeOrHttpHandler(socketserver.BaseRequestHandler):
                 continue
 
             path = _save_fire2(packet, peer, "rx")
-            log.info(
+            log.debug(
                 "FIRE2 RX c=%d cmd=%d(0x%X) msg=%d type=%d payload=%d metadata=%d saved=%s",
                 packet.component, packet.command, packet.command, packet.msg_num,
-                packet.msg_type, len(packet.payload), len(packet.metadata), path.name,
+                packet.msg_type, len(packet.payload), len(packet.metadata), path.name if path else 'disabled',
             )
 
             # Fire2 Message=0; Reply=1; Ping=4; PingReply=5.
             if packet.msg_type == 4:
                 reply = _fire2_build(packet.component, packet.command, packet.msg_num, 5, b"")
                 sock.sendall(reply)
-                log.info("FIRE2 TX PingReply msg=%d", packet.msg_num)
+                log.debug("FIRE2 TX PingReply msg=%d", packet.msg_num)
                 continue
             if packet.msg_type != 0:
                 continue
@@ -10175,7 +10180,7 @@ class BlazeOrHttpHandler(socketserver.BaseRequestHandler):
                 sock.sendall(reply)
             except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 return
-            log.info(
+            log.debug(
                 "FIRE2 TX %s c=%d cmd=%d msg=%d payload=%d",
                 label, packet.component, packet.command, packet.msg_num, len(payload),
             )
@@ -10232,6 +10237,8 @@ class BlazeOrHttpHandler(socketserver.BaseRequestHandler):
                     packet.component, packet.command, packet.command, packet.msg_num, len(packet.payload), scout,
                 )
                 try:
+                    if not CFG.get('debug_packet_trace', False):
+                        continue
                     scout_path = LOGS / f"cards-scout-c{packet.component}-k{packet.command}-m{packet.msg_num}-{int(time.time()*1000)}.json"
                     scout_path.write_text(json.dumps({
                         "component": packet.component, "command": packet.command, "commandHex": hex(packet.command),
