@@ -45,6 +45,7 @@ def connect(config, token, service, account_id):
     context.verify_mode = ssl.CERT_NONE
     context.minimum_version = ssl.TLSVersion.TLSv1_2
     raw = socket.create_connection((config['host'], int(config['port'])), timeout=12)
+    raw.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
     secure = None
     try:
         secure = context.wrap_socket(raw, server_hostname=config['host'])
@@ -63,6 +64,10 @@ def connect(config, token, service, account_id):
 
 
 def relay(first, second, stopped, valid=lambda: True):
+    # FUT exchanges many short request/reply packets. Do not hold them for
+    # Nagle batching while waiting for the peer's delayed acknowledgement.
+    for connection in (first, second):
+        connection.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
     first.settimeout(10)
     second.settimeout(10)
     activity = checked = time.monotonic()

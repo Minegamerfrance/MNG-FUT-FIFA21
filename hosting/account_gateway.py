@@ -237,6 +237,7 @@ class Handler(socketserver.BaseRequestHandler):
                 return
         try:
             self.request.settimeout(10)
+            self.request.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             secure = gateway.context.wrap_socket(self.request, server_side=True)
             request = receive_message(secure)
             service = request.get('service')
