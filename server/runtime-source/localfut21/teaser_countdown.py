@@ -23,11 +23,9 @@ def render(poster,parts):
     def text(x,y,value,size,fill):
         font=ImageFont.load_default(size=max(12,round(size*sx)))
         draw.text((round(x*sx),round(y*sy)),value,font=font,fill=fill,anchor='mm')
-    text(942.5,901,'RULEBREAKERS - 6 NOVEMBRE 2026 - 20 H (PARIS)',28,'white')
-    for index,(value,label) in enumerate(zip(parts,('JOURS','HEURES','MINUTES','SECONDES'))):
+    for index,value in enumerate(parts):
         x=395+(index+.5)*(1490-395)/4
-        text(x,958,f'{value:02d}',64,(199,255,35,255))
-        text(x,1013,label,20,(230,230,240,255))
+        text(x,960,f'{value:02d}',64,(199,255,35,255))
     image=Image.alpha_composite(image,overlay).convert('RGB')
     output=BytesIO();image.save(output,format='JPEG',quality=92)
     return output.getvalue()
