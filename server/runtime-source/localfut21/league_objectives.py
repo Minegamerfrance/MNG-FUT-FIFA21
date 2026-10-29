@@ -96,8 +96,9 @@ def event_category(s):
     return dict(categoryId=RULEBREAKERS_CATEGORY,id=RULEBREAKERS_CATEGORY,name='Rulebreakers',priority=3,groupsList=groups,groups=groups)
 
 def mng_category(s):
+    # Retain the category/group identifiers so existing progress and locks stay valid.
     groups=[group(s,True,7201),group(s,True,7202),group(s,True,7203)]
-    return dict(categoryId=72,id=72,name='MNG FUT',priority=4,groupsList=groups,groups=groups)
+    return dict(categoryId=72,id=72,name='Ballon d’Or',priority=4,groupsList=groups,groups=groups)
 
 def route(s,method,path):
     match=re.fullmatch(r'/ut/game/fifa21/scmp/(?:active|learning|world)/category/(70|71|72)/details',path)

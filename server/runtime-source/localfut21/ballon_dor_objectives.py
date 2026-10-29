@@ -15,7 +15,7 @@ class BallonDor(Campaign):
  def __init__(self):
   super().__init__(7201,dict(player=PLAYER,key='mng_ballon_or_2026_v1',title='La route du Ballon d’or 2026',
    subTitle='Revivez le parcours de Harry Kane, des Spurs à Munich, et obtenez sa version Ballon d’or 2026 en prêt pour 15 matchs !',
-   leagueName='MNG FUT',priority=300,displayOrder=list(range(6))),ROWS,xp=0,group_xp=1000)
+   leagueName='Ballon d’Or',priority=300,displayOrder=list(range(6))),ROWS,xp=0,group_xp=1000)
  def progress(self,s):
   p=super().progress(s)
   if p.get('criteriaVersion')!=2:
@@ -152,7 +152,7 @@ class DembeleBallonDor(BallonDor):
  def __init__(self):
   Campaign.__init__(self,7202,dict(player=DEMBELE,key='mng_ballon_or_2025_v1',title='La route du Ballon d’or 2025',
    subTitle='Revivez le parcours d’Ousmane Dembélé et obtenez sa version Ballon d’or 2025 en prêt pour 15 matchs !',
-   rewardName='Ousmane Dembélé Ballon d’or 2025 — prêt de 15 matchs',leagueName='MNG FUT',priority=200,displayOrder=list(range(6)),
+   rewardName='Ousmane Dembélé Ballon d’or 2025 — prêt de 15 matchs',leagueName='Ballon d’Or',priority=200,displayOrder=list(range(6)),
    previousGroup=7201,previousKey='mng_ballon_or_2026_v1',matchAsset=231443,starterNation=18,starterRole='ST',starterClub=73),DEMBELE_ROWS,xp=0,group_xp=1000)
  def progress(self,s):
   p=Campaign.progress(self,s)
@@ -177,6 +177,6 @@ class RodriBallonDor(BallonDor):
  def __init__(self):
   Campaign.__init__(self,7203,dict(player=RODRI,key='mng_ballon_or_2024_v1',title='La route du Ballon d’or 2024',
    subTitle='Revivez le parcours de Rodri et obtenez sa version Ballon d’or 2024 en prêt pour 15 matchs !',
-   rewardName='Rodri Ballon d’or 2024 — prêt de 15 matchs',leagueName='MNG FUT',priority=100,displayOrder=list(range(6)),
+   rewardName='Rodri Ballon d’or 2024 — prêt de 15 matchs',leagueName='Ballon d’Or',priority=100,displayOrder=list(range(6)),
    previousGroup=7202,previousKey='mng_ballon_or_2025_v1',matchAsset=231866,starterNation=45,starterRole='CDM',starterClub=10),RODRI_ROWS,xp=0,group_xp=1000)
  def progress(self,s):return Campaign.progress(self,s)
