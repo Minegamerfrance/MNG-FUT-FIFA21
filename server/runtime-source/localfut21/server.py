@@ -38,6 +38,7 @@ import squad_battles_weekly
 import squad_concepts
 import featured_totw
 import featured_event
+import event_schedule
 import live_messaging
 import loading_content
 import remote_assets
@@ -1410,6 +1411,7 @@ class State:
             # only for picks.
             and aqua_pro_resource_id(int(resource_id)) is None
             and player_meta(int(resource_id)).get("packEligible", True)
+            and event_schedule.available(player_meta(int(resource_id)))
             and (not token.get('allowedRarities') or int(player_meta(int(resource_id)).get('rareflag',0)) in token['allowedRarities'])
         ]
         if len(candidates) < choice_count:
@@ -2382,9 +2384,10 @@ class State:
                 if int(meta.get("rating", 0) or 0) >= min_rating
                 and aqua_pro_resource_id(int(rid)) is None
                 and meta.get("packEligible", True)
+                and event_schedule.available(meta)
             ]
             if not candidates:
-                candidates = [rid for rid, meta in PLAYER_DB.items() if meta.get("packEligible", True)]
+                candidates = [rid for rid, meta in PLAYER_DB.items() if meta.get("packEligible", True) and event_schedule.available(meta)]
             weights = [max(0.0001, float(high_rating_pack_weight(rid))) for rid in candidates]
             preview_resource_id = int(random.choices(candidates, weights=weights, k=1)[0])
             token = self.make_player_pick_item(
@@ -2529,6 +2532,7 @@ class State:
         pools={t:{"common":[],"rare":[],"special":[]} for t in ("gold","silver","bronze")}
         for rid0 in PLAYER_DB.keys():
             rid=int(rid0); meta=player_meta(rid); t=tier_for(meta)
+            if not event_schedule.available(meta):continue
             reward_resources = pcfg.get("reward_resource_ids")
             if reward_resources is not None and rid not in reward_resources:
                 continue
@@ -4079,7 +4083,7 @@ def _draft_player_choices(run: dict[str, Any], position_id: int, captain: bool =
     allowed = None if captain else _draft_allowed_positions(run, position_id)
     candidates = []
     for resource_id, meta in PLAYER_DB.items():
-        if not meta.get("catalogEnabled", True):
+        if not meta.get("catalogEnabled", True) or not event_schedule.available(meta):
             continue
         rating = int(meta.get("rating", 0) or 0)
         asset_id = int(meta.get("assetId", resource_id) or resource_id)
@@ -8833,7 +8837,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         variants = []
         if rid:
             for vrid, vmeta in PLAYER_DB.items():
-                if not vmeta.get("catalogEnabled", True):
+                if not vmeta.get("catalogEnabled", True) or not event_schedule.available(vmeta):
                     continue
                 try:
                     asset = int(vmeta.get("assetId", vrid) or vrid)
@@ -10920,6 +10924,7 @@ roster_update.apply(sys.modules[__name__])
 squad_battle_presentation.apply(sys.modules[__name__])
 import classic_store
 classic_store.apply(sys.modules[__name__])
+event_schedule.apply(sys.modules[__name__])
 
 if __name__ == "__main__":
     raise SystemExit(main())

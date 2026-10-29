@@ -1,5 +1,6 @@
 """The requested store offers; reward packs remain independently openable."""
 import copy
+import event_schedule
 
 # id, name, group, coin price, FIFA points, items, rares
 OFFERS=(
@@ -25,6 +26,7 @@ def apply(s):
   result=copy.deepcopy(original_settings())
   for cfg in result['packs'].values():cfg['enabled']=False
   allowed=set(s.CATALOG_POLICY.get('allowedRarities',[0,1,3,12,21,22]))-set(s.CATALOG_POLICY.get('disabledRarities',[]))
+  allowed-={r for r,event in event_schedule.RARITIES.items() if not event_schedule.active(event)}
   for pid,name,group,price,fp,size,rare in OFFERS:
    tier=group if group!='special' else 'gold'
    flags=[0,1] if tier!='gold' else sorted(allowed & {0,1,3,12,21,22})

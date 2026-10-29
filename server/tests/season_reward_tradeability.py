@@ -1,7 +1,11 @@
 from pathlib import Path
 import os,sys,tempfile,json
+import atexit
+from unittest.mock import patch
 r=Path(__file__).resolve().parent;p=r.parent/'runtime-source/localfut21'
 w=Path(tempfile.mkdtemp(prefix='mng-season-rewards-'));os.environ['LOCALFUT_RUNTIME_ROOT']=str(w);os.environ['LOCALFUT21_USER_CONFIG_ROOT']=str(w/'config');sys.path.insert(0,str(p))
+release_clock=patch('event_schedule.time.time',return_value=1793991600)
+release_clock.start();atexit.register(release_clock.stop)
 import server as s
 s.STATE.set('scmp_user_xp',30000);s.STATE.set('scmp_claimed_levels',[])
 for lvl in (2,3,5,6,10,13,15,16,20,23,25,26,27,28,30):

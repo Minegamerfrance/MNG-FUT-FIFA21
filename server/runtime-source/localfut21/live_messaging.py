@@ -1,4 +1,5 @@
 import remote_assets
+import event_schedule
 """Native FUT entrance announcements, matching the installed FIFA 20 flow."""
 import json
 
@@ -7,6 +8,7 @@ HUB_KEY='mng_fifa21_user_hub_client_data'
 
 
 def event(s):
+    if not event_schedule.active('rulebreakers'):return None
     path=s.ROOT/'live-event.json'
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
 

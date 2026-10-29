@@ -1,4 +1,5 @@
 import remote_assets
+import event_schedule
 """Persistent League Telles objectives, based on the XI at match creation."""
 import re
 import uuid
@@ -118,6 +119,8 @@ def route(s,method,path):
 def reset(s):
     for campaign in CAMPAIGNS.values():campaign.reset(s)
 def start(s,payload,response):
-    for campaign in CAMPAIGNS.values():campaign.start(s,payload,response)
+    for gid,campaign in CAMPAIGNS.items():
+        if gid not in event_schedule.OBJECTIVES or event_schedule.active('rulebreakers'):campaign.start(s,payload,response)
 def finish(s,payload):
-    for campaign in CAMPAIGNS.values():campaign.finish(s,payload)
+    for gid,campaign in CAMPAIGNS.items():
+        if gid not in event_schedule.OBJECTIVES or event_schedule.active('rulebreakers'):campaign.finish(s,payload)

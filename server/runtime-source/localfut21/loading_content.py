@@ -1,4 +1,5 @@
 import remote_assets
+import event_schedule
 """FUT loading carousel through the native dynamic-content provider."""
 TRIGGER_ID='MNG_FUTLOAD'
 CONTENT_PATH='/fut/loading/content'
@@ -36,6 +37,9 @@ def content(base,trigger_ids=None):
                 'attributes':{'x':'160','y':'90','width':'1600','height':'900'} if loading else
                 {'x':'0','y':'0','width':'379','height':'576'}}],
             'attributes':{'displayTime':'5' if loading else '10','doNotDisplay':'0'}})
+    for trigger in triggers:
+        trigger['actions']=[a for a in trigger['actions'] if event_schedule.active('rulebreakers' if a['actionid'] in ('220001','240005') else 'totw1')]
+    triggers=[t for t in triggers if t['actions']]
     if trigger_ids:
         requested={trigger_ids} if isinstance(trigger_ids,str) else set(trigger_ids)
         triggers=[t for t in triggers if t['triggerid'] in requested]

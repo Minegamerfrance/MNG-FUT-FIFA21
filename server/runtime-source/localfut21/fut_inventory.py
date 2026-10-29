@@ -1,5 +1,6 @@
 """Shared catalogue search and a persistent local FUT transfer market."""
 import copy
+import event_schedule
 import datetime
 import json
 import re
@@ -153,6 +154,7 @@ def catalogue(s,search,concept=False):
         definitions={x for x in ids(value(search,'defid','definitionid','resourceid')) if x>0}
         assets={x for x in ids(value(search,'maskeddefid','assetid')) if x>0}
         for rid,meta in s.PLAYER_DB.items():
+            if not event_schedule.available(meta):continue
             if not meta.get('catalogEnabled',True):continue
             if not concept and not eligible(meta):continue
             if definitions and number(rid) not in definitions:continue

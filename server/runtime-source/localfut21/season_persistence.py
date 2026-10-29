@@ -3,6 +3,7 @@ import json,re
 from datetime import datetime, timezone
 import season_cosmetics
 import season_picks
+import event_schedule
 
 def normalize(path):
  # FIFA 21 chooses learning/campaign/world from the native group type.
@@ -38,6 +39,16 @@ def claim_level(s,lvl,option_id=0):
   option=next((row for row in level['rewardOptionList'] if row['optionId']==option_id),None)
   if option is None:return {'awards':[],'awardsList':[],'invalidOption':True,'scmpChosenRewardDtos':chosen_levels(s)}
   award=dict(option['awards'][0],untradeable=True,isUntradeable=True)
+  event=None
+  if lvl in season_picks.SPECS:
+   event=event_schedule.RARITIES.get(season_picks.SPECS[lvl][2])
+  elif award.get('awardType')=='item':
+   meta=s.PLAYER_DB.get(int(award.get('value',0)),{})
+   event=event_schedule.RARITIES.get(int(meta.get('rareflag',0)))
+  elif award.get('awardType')=='pack':
+   event=event_schedule.pack_event(s.get_pack_cfg(int(award.get('value',0))))
+  if event and not event_schedule.active(event):
+   return dict(awards=[],awardsList=[],reason='EVENT_NOT_STARTED',event=event,startTime=event_schedule.STARTS[event],scmpChosenRewardDtos=chosen_levels(s))
   kind=award.get('awardType');items=[]
   pack_id=int(award.get('value',0)) if kind=='pack' else None
   # Preserve existing level rewards while committing their marker with them.
