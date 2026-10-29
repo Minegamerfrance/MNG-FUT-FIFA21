@@ -1,6 +1,7 @@
 import remote_assets
 import event_schedule
-from datetime import datetime,timezone
+import re
+import teaser_countdown
 """FUT loading carousel through the native dynamic-content provider."""
 TRIGGER_ID='MNG_FUTLOAD'
 CONTENT_PATH='/fut/loading/content'
@@ -8,19 +9,13 @@ ASSET_PATH='/fut/loading/rulebreakers-team1.jpg'
 HUB_TRIGGER_ID='MNG_FUTHUB_RULEBREAKERS_2'
 HUB_ASSET_PATH='/fut/loading/rulebreakers-panel-v3.png'
 TEASER_PATH='/fut/loading/rulebreakers-team1-teaser.jpg'
+COUNTDOWN_PATH='/fut/loading/rulebreakers-countdown-{}.jpg'
 
 def teaser(base):
-    deadline=event_schedule.STARTS['rulebreakers']
-    # FIFA21 FormatCountdown (RVA 0x4a31fe0) replaces this marker and
-    # requires exactly YYYYMMDD-HHMMSS. ISO dates trigger the expired branch.
-    return {'actionid':'220007','render':[
-        {'name':'bodyImage','type':'IMAGE','value':base+TEASER_PATH,
-         'attributes':{'x':'160','y':'90','width':'1600','height':'900'}},
-        {'name':'releaseDate','type':'TEXT','value':'RULEBREAKERS — VENDREDI 6 NOVEMBRE À 20 H (PARIS)',
-         'attributes':{'x':'400','y':'866','width':'1120','height':'42','alignment':'1','size':'26','colour':'4294967295','highlightColour':'4294967295'}},
-        {'name':'bodyText','type':'TEXT','value':'^COUNTDOWNTO^',
-         'attributes':{'x':'400','y':'910','width':'1120','height':'64','alignment':'1','size':'44','colour':'4294967295','highlightColour':'4294967295',
-                       'countdownTime':datetime.fromtimestamp(deadline,timezone.utc).strftime('%Y%m%d-%H%M%S')}}],
+    # A fresh image identity at each entry also bypasses FIFA's image cache.
+    return {'actionid':'220008','render':[
+        {'name':'bodyImage','type':'IMAGE','value':base+COUNTDOWN_PATH.format(int(event_schedule.time.time())),
+         'attributes':{'x':'160','y':'90','width':'1600','height':'900'}}],
         'attributes':{'displayTime':'5','doNotDisplay':'0'}}
 
 def settings(base):
@@ -65,6 +60,12 @@ def content(base,trigger_ids=None):
 
 def route(s,method,path,payload):
     headers={'Cache-Control':'no-store','Content-Type':'application/json'}
+    if re.fullmatch(r'/fut/loading/rulebreakers-countdown-\d{10}\.jpg',path) and method in ('GET','HEAD'):
+        if event_schedule.active('rulebreakers'):
+            return 404,headers,s.json_bytes({'reason':'teaserEnded'})
+        poster=remote_assets.read(s.ROOT/'assets/livemessaging/rulebreakers-team1-teaser.jpg')
+        parts=teaser_countdown.remaining(event_schedule.STARTS['rulebreakers'],event_schedule.time.time())
+        return 200,{'Content-Type':'image/jpeg','Cache-Control':'no-store, max-age=0'},teaser_countdown.render(poster,parts) if method=='GET' else b''
     if path==TEASER_PATH and method in ('GET','HEAD'):
         if event_schedule.active('rulebreakers'):
             return 404,headers,s.json_bytes({'reason':'teaserEnded'})

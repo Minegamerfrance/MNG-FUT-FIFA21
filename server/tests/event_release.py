@@ -1,5 +1,8 @@
 """Release boundaries and native routes, with an isolated club and fake clock."""
 import json,os,sys,tempfile
+from io import BytesIO
+from urllib.parse import urlsplit
+from PIL import Image
 from pathlib import Path
 from unittest.mock import patch
 p=Path(__file__).resolve().parents[1]/'runtime-source/localfut21'
@@ -29,19 +32,20 @@ for now,has_totw,has_rb in [(e.STARTS['totw1']-1,False,False),(e.STARTS['totw1']
   ads=json.dumps(s.loading_content.content('http://localhost'))
   assert ('rulebreakers-team1.jpg' in ads)==has_rb
   assert ('totw1-new.png' in ads)==has_totw
-  assert ('rulebreakers-team1-teaser.jpg' in ads)==(not has_rb)
+  assert ('rulebreakers-countdown-' in ads)==(not has_rb)
   if not has_rb:
    entry=s.loading_content.content('http://localhost',[s.loading_content.TRIGGER_ID])['triggers'][0]['actions'][0]
-   assert entry['actionid']=='220007'
-   assert entry['render'][-1]['value']=='^COUNTDOWNTO^'
-   assert entry['render'][-1]['attributes']['countdownTime']=='20261106-190000'
-   assert entry['render'][-1]['attributes']['colour']=='4294967295'
+   assert entry['actionid']=='220008'
+   assert len(entry['render'])==1 and entry['render'][0]['type']=='IMAGE'
+   code,headers,image=s.route_fut('GET',urlsplit(entry['render'][0]['value']).path,{},b'')
+   assert code==200 and headers['Content-Type']=='image/jpeg'
+   with Image.open(BytesIO(image)) as poster:assert poster.size==(1920,1080)
   assert s.route_fut('GET','/ut/game/fifa21/sbs/setId/910200/challenges',{},b'')[0]==(200 if has_rb else 403)
-  for consumer,enabled in [('sqbt',has_rb),('sqbttotw',has_totw)]:
+  for consumer,enabled in [('sqbt',True),('sqbttotw',has_totw)]:
    code,headers,body=s.route_fut('GET','/ut/game/fifa21/featuredsquad/user/stats?featureConsumerId='+consumer,{},b'')
    assert code==200
    assert bool(json.loads(body)['featuredSquadId'])==enabled
-  for slot,enabled in [(4,has_totw),(5,has_rb)]:
+  for slot,enabled in [(4,has_totw),(5,True)]:
    assert s.route_fut('GET',f'/ut/game/fifa21/featuredsquad/{slot}',{},b'')[0]==(200 if enabled else 403)
   if not has_rb:
    before=s.STATE.get('scmp_claimed_levels',[])
@@ -49,7 +53,12 @@ for now,has_totw,has_rb in [(e.STARTS['totw1']-1,False,False),(e.STARTS['totw1']
    assert s.STATE.get('scmp_claimed_levels',[])==before
    assert s.route_fut('POST','/ut/game/fifa21/purchased/items',{},b'{"packId":523}')[0]==403
    assert s.route_fut('POST','/ut/game/fifa21/scmp/campaign/group/7101/rewards',{},b'{}')[0]==403
-   assert s.route_fut('POST','/ut/game/fifa21/match',{},b'{"featuredSquadId":5}')[0]==403
+   team=s.featured_event.squad(s)
+   assert team['formation']=='f4231b' and team['badgeAssetId']=='21'
+   assert len(team['players'])==23 and all(p['itemData']['teamid']==21 for p in team['players'])
+   assert s.featured_event.stats(s)['clubName']=='Bayern Munich'
+   s.squad_battles_results.start(s,5,{})
+   assert s.STATE.get(s.squad_battles_results.CONTEXT)['featuredKey']=='featured_bayern'
   else:
    assert s.STATE.create_pack(523)['itemData'][0]['rareflag']==22
    assert s.season_persistence.claim_level(s,10)['grantedItems']

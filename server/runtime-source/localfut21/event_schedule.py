@@ -66,14 +66,14 @@ def apply(s):
             if match and int(match.group(1)) in OBJECTIVES:return unavailable(s,'rulebreakers')
         event=None
         match=re.fullmatch(r'/ut/game/fifa21/(?:featuredsquad|sqbt/user/opponentsquad)/(4|5)',path)
-        if match:event='totw1' if match.group(1)=='4' else 'rulebreakers'
+        if match and match.group(1)=='4':event='totw1'
         if path=='/ut/game/fifa21/match' and method in ('POST','PUT'):
             slot=s._requested_sqbt_opponent(payload)
-            if slot in (4,5):event='totw1' if slot==4 else 'rulebreakers'
+            if slot==4:event='totw1'
         if event and not active(event):return unavailable(s,event)
         if path.startswith('/ut/game/fifa21/featuredsquad/user/stats'):
             consumer=query.get('featureConsumerId',[''])[0]
-            event={'sqbt':'rulebreakers','sqbttotw':'totw1'}.get(consumer)
+            event={'sqbttotw':'totw1'}.get(consumer)
             if event and not active(event):
                 return 200,{'Cache-Control':'no-store'},s.json_bytes(dict(id=0,squadId=0,featuredSquadId=0,available=False,enabled=False,isActive=False,
                     startTime=STARTS[event],endTimeStamp=STARTS[event],pointsWon=-1,score=-1,oppScore=-1,bannerImageName='',difficultyBasedWinPoints=[],difficultyBasedLossPoints=[],sqbt2data={}))

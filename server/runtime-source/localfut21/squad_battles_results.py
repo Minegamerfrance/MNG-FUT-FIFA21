@@ -47,6 +47,7 @@ def progress(s):
 def start(s,slot,payload):
     data=progress(s)
     s.STATE.set(CONTEXT,dict(id=secrets.token_hex(16),slot=int(slot),cycle=data['cycle'],batch=data['batch'],created=s.now_s(),
+        featuredKey=s.featured_event.progress_key() if int(slot)==5 else 'featured_totw' if int(slot)==4 else None,
         difficulty=payload.get('sqbtMatchDifficulty',payload.get('matchDifficulty',0))))
 
 
@@ -78,7 +79,7 @@ def finish(s,payload):
             lost=not won and not draw
             slot=(str(context.get('batch',0))+':'+str(context['slot'])) if context.get('batch',0) else str(context['slot'])
             featured=context['slot'] in (4,5)
-            if featured:slot='featured_totw' if context['slot']==4 else 'featured_event'
+            if featured:slot=context.get('featuredKey') or ('featured_totw' if context['slot']==4 else 'featured_event')
             first=slot not in data['played'] and context.get('cycle',data['cycle'])==data['cycle']
             scoring=first and (featured or data['scoringMatches'] < s.squad_battles_weekly.LIMIT)
             difficulty=max(0,min(6,int(payload.get('matchDifficulty',context.get('difficulty',0)) or 0)))

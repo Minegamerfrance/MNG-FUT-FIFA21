@@ -3,7 +3,7 @@ import copy,json
 TEAMS=(21,22,241,39,243,47)
 def theme(s,slot):
  if slot==4:return 243
- if slot==5:return 47
+ if slot==5:return 21 if s.featured_event.bayern_active() else 47
  data=s.squad_battles_weekly.progress(s)
  return TEAMS[(int(slot)+int(data['batch']))%4]
 def kits(s,team):
