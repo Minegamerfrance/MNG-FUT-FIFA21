@@ -2268,11 +2268,23 @@ class State:
         return [json.loads(r[0]) for r in rows]
 
     def save_squad(self, payload: Any) -> dict[str, Any]:
+        with self.lock:
+            return self._save_squad_locked(payload)
+
+    def _save_squad_locked(self, payload: Any) -> dict[str, Any]:
         # Accept the game's native JSON shape without over-normalizing it.
         src = payload if isinstance(payload, dict) else {}
         if isinstance(src.get("squad"), dict):
             src = src["squad"]
         sid = int(src.get("id") or src.get("squadId") or 1)
+        # Native saves can contain only captain/kicktakers or tactics. Missing
+        # fields mean unchanged; an explicit players=[] still clears the squad.
+        with self.lock:
+            previous = self.conn.execute("SELECT data FROM squads WHERE id=?", (sid,)).fetchone()
+        if previous:
+            src = {**json.loads(previous[0]), **src}
+        else:
+            src = dict(src)
         name = str(src.get("name") or src.get("squadName") or f"Squad {sid}")
         src["id"] = sid
         src["squadId"] = sid
