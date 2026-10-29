@@ -19,7 +19,7 @@ def build(executable, assets, output):
                 if '..' in Path(name).parts:
                     raise ValueError('Unsafe asset path')
                 files[name] = old.read(name)
-    for name in (*FILES, 'account-server.json', 'runtime-source/account_client.py', 'runtime-source/account_transport.py'):
+    for name in (*FILES, 'account-server.json', 'runtime-source/account_client.py', 'runtime-source/account_transport.py', 'runtime-source/account_assets.py'):
         files['fifa21-server/' + name] = (REPO / 'server' / name).read_bytes()
     contract = {'gameId': '21'}
     for key, name in [('server', 'server.py'), ('onboarding', 'onboarding.py')]:

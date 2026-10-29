@@ -10,6 +10,7 @@ import threading
 import time
 
 from account_transport import PORTS, connect, receive_exact, relay
+from account_assets import CardArt, handler as asset_handler
 
 
 def credentials(path):
@@ -80,16 +81,23 @@ def start(config, token, account, ports=PORTS, bind='127.0.0.1'):
             finally:
                 capacity.release()
 
+    art=CardArt(open_stream,stopped)
+    http_handler=asset_handler(open_stream,stopped,capacity,art)
     servers = []
     try:
         for port in ports:
-            servers.append(TCP((bind, port), Stream))
+            servers.append(TCP((bind, port), http_handler if port==8090 else Stream))
         if 17502 in ports:
             servers.append(UDP((bind, 17502), Datagram))
         for server in servers:
             threading.Thread(target=server.serve_forever, daemon=True).start()
+        def close_art():
+            stopped.wait()
+            art.close()
+        threading.Thread(target=close_art,daemon=True).start()
         return servers, stopped
     except BaseException:
+        art.close()
         for server in servers:
             server.server_close()
         raise
