@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.29'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.30'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'
@@ -512,6 +512,7 @@ function Start-Fifa21Server([switch]$LaunchGame) {
     if ($script:Fifa21Starting) { return }
     $script:Fifa21Starting = $true
     try {
+        Apply-Language
         $root = Get-Mng21Root
         $accountConfig = Join-Path $root 'account-server.json'
         $accountMode = Test-Path -LiteralPath $accountConfig
@@ -763,9 +764,23 @@ function Choose-GameExe {
   $settings=Get-Settings;Set-Property $settings 'Fifa21Exe' $dialog.FileName;Write-JsonFile $script:SettingsPath $settings
  }}finally{$dialog.Dispose();Apply-Language}
 }
+function Update-ServerButton {
+ $busy=$script:Fifa21Starting -or $script:Fifa21Stopping -or $script:AuthBusy
+ $running=$false
+ if($script:Profile -and -not $busy){$running=Test-ManagedServerRunning '21'}
+ $PlayButton.Content=if($script:Fifa21Starting){'Démarrage…'}elseif($script:Fifa21Stopping){'Arrêt…'}elseif($running){'Arrêter le serveur'}else{'Lancer le serveur'}
+ $PlayButton.IsEnabled=(-not $busy -and $null -ne $script:Profile)
+ $GameHeaderText.Text=if($script:Fifa21Starting){'FIFA 21 • DÉMARRAGE EN COURS'}elseif($script:Fifa21Stopping){'FIFA 21 • ARRÊT EN COURS'}elseif($running){'FIFA 21 • SERVEUR DÉMARRÉ'}else{'FIFA 21 • SERVEUR ARRÊTÉ'}
+}
+function Toggle-Server {
+ if(-not $script:Profile -or $script:Fifa21Starting -or $script:Fifa21Stopping -or $script:AuthBusy){return}
+ try{if(Test-ManagedServerRunning '21'){Stop-SelectedServer}else{Start-Fifa21Server}}
+ catch{Set-OperationStatus $_.Exception.Message '#E8A6B6'}
+ finally{Apply-Language}
+}
 function Apply-Language {
  $busy=$script:Fifa21Starting -or $script:Fifa21Stopping -or $script:AuthBusy
- $PlayButton.Content='Lancer le serveur';$PlayButton.IsEnabled=(-not $busy -and $null -ne $script:Profile)
+ Update-ServerButton
  $LaunchGameButton.Content=if(Test-GameExe (Get-SelectedGameExe)){'Lancer FIFA 21'}else{'Choisir exe'}
  $LaunchGameButton.IsEnabled=(-not $busy -and $null -ne $script:Profile)
  $GamePathText.Text=if(Test-GameExe (Get-SelectedGameExe)){Get-SelectedGameExe}else{'Sélectionnez FIFA21.exe pour lancer le jeu.'}
@@ -789,7 +804,7 @@ $LoginPasswordBox.Add_KeyDown({param($sender,$eventArgs) if($eventArgs.Key -eq '
 $SettingsButton.Add_Click({$SettingsDrawer.Visibility='Visible'});$CloseSettingsButton.Add_Click({$SettingsDrawer.Visibility='Collapsed'})
 $AppUpdateButton.Add_Click({$AppUpdateButton.IsEnabled=$false;try{Update-ApplicationInternal}finally{$AppUpdateButton.IsEnabled=$true}})
 $ChangeFolderButton.Add_Click({try{Choose-GameExe}catch{Set-OperationStatus $_.Exception.Message '#E8A6B6'}})
-$PlayButton.Add_Click({try{Start-Fifa21Server}catch{Set-OperationStatus $_.Exception.Message '#E8A6B6'}finally{Apply-Language}})
+$PlayButton.Add_Click({Toggle-Server})
 $LaunchGameButton.Add_Click({if(-not(Test-GameExe (Get-SelectedGameExe))){Choose-GameExe}else{Launch-SelectedGame}})
 $LogoutButton.Add_Click({
  try{
@@ -800,11 +815,16 @@ $LogoutButton.Add_Click({
   $script:Session=$null;$script:Profile=$null;$LoginPasswordBox.Clear();Set-PasswordVisible $false;$SettingsDrawer.Visibility='Collapsed';Update-AccountUi;Set-OperationStatus 'Vous êtes déconnecté.'
  }catch{Set-OperationStatus $_.Exception.Message '#E8A6B6'}
 })
+$serverStateTimer=New-Object Windows.Threading.DispatcherTimer
+$serverStateTimer.Interval=[TimeSpan]::FromSeconds(5)
+$serverStateTimer.Add_Tick({if($script:Profile -and -not ($script:Fifa21Starting -or $script:Fifa21Stopping -or $script:AuthBusy)){Update-ServerButton}})
+$window.Add_Closed({$serverStateTimer.Stop()})
 $window.Add_ContentRendered({
  $RememberCheckBox.IsChecked=[bool](Get-Settings).RememberMe
  Set-OperationStatus 'Bienvenue sur MNG FUT'
  if($RememberCheckBox.IsChecked){Set-OperationStatus 'Connexion à votre compte…';if(Restore-RememberedSession){Set-OperationStatus 'Votre compte est connecté.' '#CEFA52'}else{$LoginMessage.Text='Connexion automatique indisponible. Réessayez de vous connecter.'}}
  Update-AccountUi
+ $serverStateTimer.Start()
 })
 Update-AccountUi
 if($env:MNG_FUT_TEST_MODE -ne '1'){[void]$window.ShowDialog()}

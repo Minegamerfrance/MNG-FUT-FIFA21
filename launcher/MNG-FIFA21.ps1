@@ -153,6 +153,7 @@ function Start-Fifa21Server([switch]$LaunchGame) {
     if ($script:Fifa21Starting) { return }
     $script:Fifa21Starting = $true
     try {
+        Apply-Language
         $root = Get-Mng21Root
         $accountConfig = Join-Path $root 'account-server.json'
         $accountMode = Test-Path -LiteralPath $accountConfig

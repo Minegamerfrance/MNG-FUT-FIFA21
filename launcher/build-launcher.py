@@ -16,7 +16,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.29'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.30'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'
@@ -32,4 +32,4 @@ function Get-Settings {
 integration = (ROOT / 'MNG-FIFA21.ps1').read_text(encoding='utf-8-sig')
 integration = integration[:integration.index("if (Get-Command C -CommandType Function")]
 (ROOT / 'MNG-FUT.ps1').write_text(header + '\n' + core.read_text(encoding='utf-8-sig') + '\n' + integration + '\n' + (ROOT / 'FIFA21-Interface.ps1').read_text(encoding='utf-8-sig'), encoding='utf-8-sig', newline='\n')
-print('Assembled MNG FUT 1.3.29')
+print('Assembled MNG FUT 1.3.30')

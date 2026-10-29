@@ -3,6 +3,7 @@ $env:MNG_FUT_TEST_MODE='1'
 $env:MNG_FUT_TEST_STATE=Join-Path $env:TEMP ('mng-launcher-test-'+[guid]::NewGuid().ToString('N'))
 . (Join-Path $PSScriptRoot 'MNG-FUT.ps1')
 function Assert($Condition,[string]$Message){if(-not $Condition){throw $Message}}
+function Test-ManagedServerRunning {return [bool]$script:TestReady}
 Assert ($AuthView.Visibility -eq 'Visible' -and $HomeView.Visibility -eq 'Collapsed') 'First launch must show authentication.'
 Assert ($LaunchGameButton.Content -eq 'Choisir exe') 'Unconfigured game must show Choisir exe.'
 Submit-Account
@@ -68,6 +69,27 @@ $script:TestReady=$false;$script:TestLaunch=$null;Launch-SelectedGame
 Assert (-not $script:TestLaunch) 'Game must not launch if server preparation failed.'
 $script:TestReady=$true;Launch-SelectedGame
 Assert ($script:TestPrepared -and $script:TestLaunch[1] -eq 'origin2://game/launch/?offerIds=195853&authCode=&cmdParams=') 'Game must launch through the configured EA App offer after server preparation.'
+function Start-Fifa21Server {$script:TestReady=$true;$script:TestStarts++}
+function Stop-SelectedServer {$script:TestReady=$false;$script:TestStops++}
+$script:TestStarts=0;$script:TestStops=0;$script:TestReady=$false;Apply-Language
+Assert ($PlayButton.Content -eq 'Lancer le serveur') 'Stopped server must offer start.'
+$PlayButton.RaiseEvent((New-Object Windows.RoutedEventArgs([Windows.Controls.Button]::ClickEvent)))
+Assert ($script:TestStarts -eq 1 -and $PlayButton.Content -eq 'Arrêter le serveur') 'Start click must switch to stop after confirmed startup.'
+$PlayButton.RaiseEvent((New-Object Windows.RoutedEventArgs([Windows.Controls.Button]::ClickEvent)))
+Assert ($script:TestStops -eq 1 -and $PlayButton.Content -eq 'Lancer le serveur') 'Stop click must stop the connector and switch back to start.'
+$script:Fifa21Starting=$true;Apply-Language;Toggle-Server
+Assert ($PlayButton.Content -eq 'Démarrage…' -and -not $PlayButton.IsEnabled -and $script:TestStarts -eq 1) 'Repeated clicks during startup must be ignored.'
+$script:Fifa21Starting=$false;$script:Fifa21Stopping=$true;Apply-Language
+Assert ($PlayButton.Content -eq 'Arrêt…' -and -not $PlayButton.IsEnabled) 'Stop in progress must disable the button.'
+$script:Fifa21Stopping=$false;$script:TestReady=$true;Update-ServerButton
+Assert ($PlayButton.Content -eq 'Arrêter le serveur') 'Refreshing must detect a pre-existing running connector.'
+$script:TestReady=$false;Update-ServerButton
+Assert ($PlayButton.Content -eq 'Lancer le serveur') 'Refreshing must detect an externally stopped connector.'
+$script:TestReady=$true
+function Stop-SelectedServer {throw 'test stop failure'}
+Toggle-Server
+Assert ($PlayButton.Content -eq 'Arrêter le serveur') 'A failed stop must retain the running state.'
+$script:TestReady=$false
 function Render-Preview([string]$Name){
  $content=$window.Content;$window.Content=$null
  if($content.Resources.MergedDictionaries.Count -eq 0){$content.Resources.MergedDictionaries.Add($window.Resources)}
