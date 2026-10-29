@@ -32,8 +32,10 @@ for now,has_totw,has_rb in [(e.STARTS['totw1']-1,False,False),(e.STARTS['totw1']
   assert ('rulebreakers-team1-teaser.jpg' in ads)==(not has_rb)
   if not has_rb:
    entry=s.loading_content.content('http://localhost',[s.loading_content.TRIGGER_ID])['triggers'][0]['actions'][0]
-   assert entry['actionid']=='220006'
-   assert entry['render'][-1]['attributes']['countdownTime']=='2026-11-06T19:00:00Z'
+   assert entry['actionid']=='220007'
+   assert entry['render'][-1]['value']=='^COUNTDOWNTO^'
+   assert entry['render'][-1]['attributes']['countdownTime']=='20261106-190000'
+   assert entry['render'][-1]['attributes']['colour']=='4294967295'
   assert s.route_fut('GET','/ut/game/fifa21/sbs/setId/910200/challenges',{},b'')[0]==(200 if has_rb else 403)
   for consumer,enabled in [('sqbt',has_rb),('sqbttotw',has_totw)]:
    code,headers,body=s.route_fut('GET','/ut/game/fifa21/featuredsquad/user/stats?featureConsumerId='+consumer,{},b'')

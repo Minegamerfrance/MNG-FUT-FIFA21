@@ -11,18 +11,16 @@ TEASER_PATH='/fut/loading/rulebreakers-team1-teaser.jpg'
 
 def teaser(base):
     deadline=event_schedule.STARTS['rulebreakers']
-    remaining=max(0,int(deadline-event_schedule.time.time()))
-    days,remainder=divmod(remaining,86400)
-    hours,remainder=divmod(remainder,3600)
-    minutes,seconds=divmod(remainder,60)
-    return {'actionid':'220006','render':[
+    # FIFA21 FormatCountdown (RVA 0x4a31fe0) replaces this marker and
+    # requires exactly YYYYMMDD-HHMMSS. ISO dates trigger the expired branch.
+    return {'actionid':'220007','render':[
         {'name':'bodyImage','type':'IMAGE','value':base+TEASER_PATH,
          'attributes':{'x':'160','y':'90','width':'1600','height':'900'}},
         {'name':'releaseDate','type':'TEXT','value':'RULEBREAKERS — VENDREDI 6 NOVEMBRE À 20 H (PARIS)',
-         'attributes':{'x':'400','y':'866','width':'1120','height':'42','alignment':'1','size':'26','color':'16777215'}},
-        {'name':'bodyText','type':'TEXT','value':f'{days:02d} J  {hours:02d} H  {minutes:02d} MIN  {seconds:02d} S',
-         'attributes':{'x':'400','y':'910','width':'1120','height':'64','alignment':'1','size':'44','color':'16777215',
-                       'countdownTime':datetime.fromtimestamp(deadline,timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}}],
+         'attributes':{'x':'400','y':'866','width':'1120','height':'42','alignment':'1','size':'26','colour':'4294967295','highlightColour':'4294967295'}},
+        {'name':'bodyText','type':'TEXT','value':'^COUNTDOWNTO^',
+         'attributes':{'x':'400','y':'910','width':'1120','height':'64','alignment':'1','size':'44','colour':'4294967295','highlightColour':'4294967295',
+                       'countdownTime':datetime.fromtimestamp(deadline,timezone.utc).strftime('%Y%m%d-%H%M%S')}}],
         'attributes':{'displayTime':'5','doNotDisplay':'0'}}
 
 def settings(base):
