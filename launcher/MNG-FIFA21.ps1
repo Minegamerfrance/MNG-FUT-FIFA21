@@ -218,8 +218,29 @@ function Start-Fifa21Server([switch]$LaunchGame) {
 function Launch-SelectedGame {
     if ($script:SelectedGame -ne '21') { Launch-LegacySelectedGame; return }
     try {
+        if ($script:Fifa21Starting -or $script:Fifa21Stopping) { return }
+        if (-not (Test-GameExe (Get-SelectedGameExe))) { Choose-GameExe; return }
         Start-Fifa21Server
-        Set-OperationStatus 'Serveur prêt. Lance FIFA 21 avec ton lanceur habituel.' '#87DB72'
+        if (-not (Test-ManagedServerRunning '21')) { return }
+        if (Get-Process -Name FIFA21 -ErrorAction SilentlyContinue) {
+            Set-OperationStatus 'FIFA 21 est déjà ouvert.' '#87DB72'; return
+        }
+        # Use the same EA App offer as the connector, preserving normal EA authentication.
+        $root = Get-Mng21Root
+        . (Join-Path $root 'User-Settings.ps1')
+        $userSettings = Get-LocalFutUserSettings (Resolve-LocalFutUserConfigRoot)
+        $offerId = [string]$userSettings.eaAppOfferId
+        if ($offerId -notmatch '^\d+$') { throw 'Le jeu FIFA 21 configuré dans EA App est invalide.' }
+        $uri = 'origin2://game/launch/?offerIds='+$offerId+'&authCode=&cmdParams='
+        if ($userSettings.eaAppLauncherPath) {
+            if (-not (Test-Path -LiteralPath $userSettings.eaAppLauncherPath -PathType Leaf)) { throw 'EA App est introuvable au chemin configuré.' }
+            Start-Process -FilePath $userSettings.eaAppLauncherPath -ArgumentList $uri | Out-Null
+        } else {
+            $launch = New-Object Diagnostics.ProcessStartInfo
+            $launch.FileName = $uri; $launch.UseShellExecute = $true
+            [Diagnostics.Process]::Start($launch) | Out-Null
+        }
+        Set-OperationStatus 'Lancement de FIFA 21 demandé à EA App…' '#87DB72'
     } catch { Set-OperationStatus $_.Exception.Message '#E76F6F' }
 }
 function Stop-SelectedServer {
