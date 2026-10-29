@@ -21,6 +21,12 @@ GROUP_PLAYERS={910200:PLAYER,910400:67321486,910600:67291385}
 
 def asset(s,method,path):
  name=path.rsplit('/',1)[-1]
+ if method in ('GET','HEAD'):
+  badge=re.fullmatch(r'/fut/sbc/gen4/(?:challenges|sets)/images/sbc_(?:challenge|set)_image_(85|86|1003100)\.png',path)
+  if badge:
+   image_id=badge.group(1)
+   filename=('sbc_set_image_' if image_id=='1003100' else 'sbc_challenge_image_')+image_id+'.png'
+   return 200,{'Content-Type':'image/png','Cache-Control':'no-store'},remote_assets.read(s.ROOT/'assets/sbc'/filename) if method=='GET' else b''
  if path=='/fut/sbc/gen4/sets/images/sbc_set_image_1010019.png':
   return 200,{'Content-Type':'image/png','Cache-Control':'no-store'},remote_assets.read(s.ROOT/'assets/sbc'/name)
  if path in ('/fut/sbc/gen4/sets/images/sbc_set_image_1010002.png','/fut/sbc/gen4/challenges/images/sbc_set_image_1010002.png'):

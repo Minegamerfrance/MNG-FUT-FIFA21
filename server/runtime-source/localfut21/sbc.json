@@ -2808,7 +2808,7 @@
       "description": "Terminez ces défis pour obtenir Toni Kroos MNG FUT au Bayer Leverkusen.",
       "repeatable": false,
       "state": "available",
-      "setImageId": 1010019,
+      "setImageId": 1003100,
       "challenges": [
         {
           "id": "MNG_KROOS_1",
@@ -2834,7 +2834,8 @@
           "rewards": {
             "entries": []
           },
-          "challengeImageId": "330005-fb83431f-9d46"
+          "challengeImageId": "85",
+          "trophyId": 85
         },
         {
           "id": "MNG_KROOS_2",
@@ -2866,7 +2867,8 @@
           "rewards": {
             "entries": []
           },
-          "challengeImageId": "330005-fb83431f-9d46"
+          "challengeImageId": "85",
+          "trophyId": 85
         },
         {
           "id": "MNG_KROOS_3",
@@ -2892,7 +2894,8 @@
           "rewards": {
             "entries": []
           },
-          "challengeImageId": 0
+          "challengeImageId": "86",
+          "trophyId": 86
         },
         {
           "id": "MNG_KROOS_4",
@@ -2924,7 +2927,8 @@
           "rewards": {
             "entries": []
           },
-          "challengeImageId": 0
+          "challengeImageId": "86",
+          "trophyId": 86
         }
       ],
       "rewards": {
