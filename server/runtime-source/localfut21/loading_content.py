@@ -1,11 +1,29 @@
 import remote_assets
 import event_schedule
+from datetime import datetime,timezone
 """FUT loading carousel through the native dynamic-content provider."""
 TRIGGER_ID='MNG_FUTLOAD'
 CONTENT_PATH='/fut/loading/content'
 ASSET_PATH='/fut/loading/rulebreakers-team1.jpg'
 HUB_TRIGGER_ID='MNG_FUTHUB_RULEBREAKERS_2'
 HUB_ASSET_PATH='/fut/loading/rulebreakers-panel-v3.png'
+TEASER_PATH='/fut/loading/rulebreakers-team1-teaser.jpg'
+
+def teaser(base):
+    deadline=event_schedule.STARTS['rulebreakers']
+    remaining=max(0,int(deadline-event_schedule.time.time()))
+    days,remainder=divmod(remaining,86400)
+    hours,remainder=divmod(remainder,3600)
+    minutes,seconds=divmod(remainder,60)
+    return {'actionid':'220006','render':[
+        {'name':'bodyImage','type':'IMAGE','value':base+TEASER_PATH,
+         'attributes':{'x':'160','y':'90','width':'1600','height':'900'}},
+        {'name':'releaseDate','type':'TEXT','value':'RULEBREAKERS — VENDREDI 6 NOVEMBRE À 20 H (PARIS)',
+         'attributes':{'x':'400','y':'866','width':'1120','height':'42','alignment':'1','size':'26','color':'16777215'}},
+        {'name':'bodyText','type':'TEXT','value':f'{days:02d} J  {hours:02d} H  {minutes:02d} MIN  {seconds:02d} S',
+         'attributes':{'x':'400','y':'910','width':'1120','height':'64','alignment':'1','size':'44','color':'16777215',
+                       'countdownTime':datetime.fromtimestamp(deadline,timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}}],
+        'attributes':{'displayTime':'5','doNotDisplay':'0'}}
 
 def settings(base):
     entries=list({
@@ -39,6 +57,8 @@ def content(base,trigger_ids=None):
             'attributes':{'displayTime':'5' if loading else '10','doNotDisplay':'0'}})
     for trigger in triggers:
         trigger['actions']=[a for a in trigger['actions'] if event_schedule.active('rulebreakers' if a['actionid'] in ('220001','240005') else 'totw1')]
+        if trigger['triggerid']==TRIGGER_ID and not event_schedule.active('rulebreakers'):
+            trigger['actions'].insert(0,teaser(base))
     triggers=[t for t in triggers if t['actions']]
     if trigger_ids:
         requested={trigger_ids} if isinstance(trigger_ids,str) else set(trigger_ids)
@@ -47,6 +67,10 @@ def content(base,trigger_ids=None):
 
 def route(s,method,path,payload):
     headers={'Cache-Control':'no-store','Content-Type':'application/json'}
+    if path==TEASER_PATH and method in ('GET','HEAD'):
+        if event_schedule.active('rulebreakers'):
+            return 404,headers,s.json_bytes({'reason':'teaserEnded'})
+        return 200,{'Content-Type':'image/jpeg','Cache-Control':'no-store'},remote_assets.read(s.ROOT/'assets/livemessaging/rulebreakers-team1-teaser.jpg') if method=='GET' else b''
     if path==CONTENT_PATH and method in ('GET','POST'):
         ids=[]
         if method=='POST':
