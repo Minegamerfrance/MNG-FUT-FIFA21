@@ -38,3 +38,19 @@ saved=s._save_fire2(packet,('127.0.0.1',1))
 assert saved.read_bytes()==b'packet' and saved.with_suffix('.hex.txt').is_file()
 print('PASS: selected-player search matches full catalogue across 16 cases; diagnostics off by default and available on demand')
 print('Median search milliseconds:',times)
+
+# Empty and populated watchlists preserve results and do not construct
+# unrelated player cards. Synthetic auction generations still expire.
+original=inventory.catalogue
+try:
+ inventory.catalogue=lambda *a,**k: (_ for _ in ()).throw(AssertionError('Empty watchlist built a catalogue'))
+ assert inventory.dispatch(s,'GET','/ut/game/fifa21/watchlist',{},{} )[1]['auctionInfo']==[]
+finally:inventory.catalogue=original
+selected=original(s,{'type':'all','resourceid':182521})[0]
+listing=inventory.auction(s,selected)
+s.STATE.set('market_watchlist',[listing['tradeId']])
+result=inventory.dispatch(s,'GET','/ut/game/fifa21/watchlist',{},{} )[1]
+assert [x['tradeId'] for x in result['auctionInfo']]==[listing['tradeId']]
+s.STATE.set('market_generation_182521',1)
+assert not inventory.dispatch(s,'GET','/ut/game/fifa21/watchlist',{},{} )[1]['auctionInfo']
+print('PASS: empty watchlist skips market; watched listing resolves; expired generation remains excluded')

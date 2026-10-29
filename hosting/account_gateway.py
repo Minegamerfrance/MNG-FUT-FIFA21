@@ -33,6 +33,9 @@ class Authenticator:
     def __init__(self):
         self.cache = {}
         self.lock = threading.Lock()
+        # Bound coordination memory while coalescing parallel channel opens
+        # for the same token. Authentication still expires after 30 seconds.
+        self.verification_locks = [threading.Lock() for _ in range(64)]
         self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
 
     def verify(self, token):
@@ -43,6 +46,14 @@ class Authenticator:
             cached = self.cache.get(key)
             if cached and cached[0] > time.monotonic():
                 return cached[1]
+        with self.verification_locks[key[0] % len(self.verification_locks)]:
+            with self.lock:
+                cached = self.cache.get(key)
+                if cached and cached[0] > time.monotonic():
+                    return cached[1]
+            return self._fetch(token, key)
+
+    def _fetch(self, token, key):
         request = urllib.request.Request(AUTH_API, headers={'Authorization': 'Bearer ' + token,
             'Accept': 'application/json', 'User-Agent': 'MNG-FUT-Launcher/1.3.27'})
         with self.opener.open(request, timeout=8) as response:

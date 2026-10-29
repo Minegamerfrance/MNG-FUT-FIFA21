@@ -359,7 +359,7 @@ def dispatch(s,method,path,query,payload):
             if receipt:rows.extend(receipt['auctionInfo']);continue
             rid=(tid-MARKET_BASE)%1000000000
             kind='player' if rid in s.PLAYER_DB else 'manager' if rid in s.MANAGER_DB else 'development' if any(x['resourceId']==rid for x in consumables(s)) else 'allclub'
-            item=next((x for x in catalogue(s,{'type':kind}) if x['resourceId']==rid),None)
+            item=next((x for x in catalogue(s,{'type':kind,'resourceid':rid}) if x['resourceId']==rid),None)
             if item:
                 listing=auction(s,item)
                 if listing['tradeId']==tid:rows.append(listing)
@@ -369,7 +369,11 @@ def dispatch(s,method,path,query,payload):
         if method in ('PUT','POST'):
             watch=list(set(watch)|ids(value(search,'tradeId','tradeIds')));s.STATE.set('market_watchlist',watch)
         if method=='DELETE':s.STATE.set('market_watchlist',[]);watch=[]
-        rows=[auction(s,x) for x in catalogue(s,{'type':'all'})]
+        # A hub refresh often asks for an empty watchlist. Never construct the
+        # entire market (including one DB lookup per auction) for that case.
+        if not watch:return 200,{'auctionInfo':[],'credits':s.STATE.credits()}
+        resources={(number(tid)-MARKET_BASE)%1000000000 for tid in watch}
+        rows=[auction(s,x) for x in catalogue(s,{'type':'all','resourceid':list(resources)})]
         return 200,{'auctionInfo':[x for x in rows if x['tradeId'] in watch],'credits':s.STATE.credits()}
     return None
 
