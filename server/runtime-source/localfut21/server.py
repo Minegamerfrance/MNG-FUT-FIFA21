@@ -7561,8 +7561,13 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # The native details screen asks for both base asset and special
         # definition, and may resolve its detailed attributes through either.
         # Alias only this explicit Kane-edition batch, never base-only searches.
-        for special_id,base_id in ((67310990,202126),(67340307,231443),(67340730,231866),(67285499,176635),(67291385,182521),(84068601,182521),(100845817,182521)):
-            if special_id in requested_ids:
+        detail_aliases = ((67310990,202126),(67340307,231443),(67340730,231866),(67285499,176635),(67291385,182521),(84068601,182521),(100845817,182521))
+        for special_id,base_id in detail_aliases:
+            # A variants browser requests the base and several editions in one
+            # batch. Its base record must remain the real base card, otherwise
+            # opening the gold bio turns it into the last special's rating.
+            edition_count = sum(edition in requested_ids for edition,asset in detail_aliases if asset == base_id)
+            if special_id in requested_ids and edition_count == 1:
                 records = [dict(player_attribute_metadata(special_id), defId=record['defId'])
                            if record['defId'] == base_id else record for record in records]
 

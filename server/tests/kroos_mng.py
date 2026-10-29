@@ -29,6 +29,11 @@ assert s.PLAYER_DB[182521]['rating']==88 and s.PLAYER_DB[182521]['teamid']==243
 status,headers,body=s.route_fut('GET',f'/ut/game/fifa21/attributes/metadata?defIds=182521,{rid}',{},b'')
 assert status==200 and all(x['attributeArray']==m['face'] for x in json.loads(body))
 assert all(x['rating']==75 for x in json.loads(body))
+status,headers,body=s.route_fut('GET','/ut/game/fifa21/attributes/metadata?defIds=182521,67291385,84068601,100845817',{},b'')
+records={x['defId']:x for x in json.loads(body)}
+assert {k:v['rating'] for k,v in records.items()}=={182521:88,67291385:75,84068601:85,100845817:90}
+assert records[182521]['attributeArray']==s.PLAYER_DB[182521]['face']
+assert records[84068601]['attributeArray']==[70,82,86,84,64,58]
 spec=json.loads((p/'custom-backgrounds/rarity19.json').read_text(encoding='utf8'))
 for letter,key in [('e','largeItemCRC'),('s','smallItemCRC'),('c','collapsedItemCRC'),('j','jumboItemCRC')]:
  data=s.league_objectives.background(s,f"/fut/items/images/backgrounds/itembgs/{spec['guid']}/cards_bg_{letter}_1_19_0.dds")
