@@ -9963,6 +9963,23 @@ def _fire2_local_response(packet: Fire2Packet) -> tuple[bytes, str]:
         return _blaze_fifa_postauth_payload(), "Util.PostAuth"
     if (c, k) == (9, 5):
         return _blaze_telemetry_payload(), "Util.GetTelemetryServer"
+    if (c, k) == (9, 20):
+        # The name-entry callback dereferences TLST[0] before creating a squad.
+        # An empty generic acknowledgement crashes FIFA at RVA 0x10fe922.
+        # Return one processed result for every supplied native text field.
+        marker = _tdf_tag("UTXT", _TDF_STRING)
+        results = []
+        remaining = packet.payload
+        while marker in remaining and len(results) < 64:
+            offset = remaining.index(marker)
+            text = _tdf_get_string(remaining[offset:], "UTXT")
+            if text is None:
+                raise ValueError("Invalid user text")
+            results.append(_tdf_field_int("DIRT", 0) + _tdf_field_str("UTXT", text))
+            remaining = remaining[offset + 4 + len(_tdf_str_value(text)):]
+        if not results:
+            raise ValueError("Missing user text")
+        return _tdf_field_list_groups("TLST", results), "Util.FilterForProfanity"
     if (c, k) == (9, 12):
         options = _blaze_user_settings()
         return _tdf_field_map_str_str("SMAP", sorted(options.items())), "Util.GetUserOptions"

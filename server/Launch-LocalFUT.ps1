@@ -332,8 +332,13 @@ function Get-ExpectedRuntimeHashes {
 function Test-HealthyLocalMockServer([string]$ServerSourceHash) {
     try {
         $profile = Invoke-RestMethod -Uri 'http://127.0.0.1:8090/localfut/auth/bootstrap' -TimeoutSec 3 -MaximumRedirection 0
-        if ($profile.version -ne 1 -or [string]$profile.serverSourceSha256 -ne $ServerSourceHash) { return $false }
-        if ([string]$profile.onboardingSourceSha256 -ne (Get-ExpectedRuntimeHashes).onboarding) { return $false }
+        if ($profile.version -ne 1) { return $false }
+        # Account clients speak the bootstrap protocol, not a particular server
+        # source revision. Server-only fixes must not restart the local bridge.
+        if (-not $AccountGatewayConfig) {
+            if ([string]$profile.serverSourceSha256 -ne $ServerSourceHash) { return $false }
+            if ([string]$profile.onboardingSourceSha256 -ne (Get-ExpectedRuntimeHashes).onboarding) { return $false }
+        }
         $expectedClientIds = @('localfut21-blaze-server', 'localfut21-blaze-sdk', 'localfut21-ssf')
         $clientIds = @($profile.clientIds)
         if ($clientIds.Count -ne $expectedClientIds.Count) { return $false }

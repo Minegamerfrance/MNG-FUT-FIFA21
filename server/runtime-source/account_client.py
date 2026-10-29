@@ -37,12 +37,24 @@ def start(config, token, account, ports=PORTS, bind='127.0.0.1'):
     stopped = threading.Event()
     capacity = threading.BoundedSemaphore(64)
 
+    def open_stream(port):
+        # Retry only before forwarding any game bytes. Never replay a purchase
+        # or squad save after an established connection has been interrupted.
+        deadline = time.monotonic() + 12
+        while True:
+            try:
+                return connect(config, token, port, account)[0]
+            except OSError:
+                if stopped.is_set() or time.monotonic() >= deadline:
+                    raise
+                stopped.wait(0.5)
+
     class Stream(socketserver.BaseRequestHandler):
         def handle(self):
             if not capacity.acquire(False):
                 return
             try:
-                with connect(config, token, self.server.server_address[1], account)[0] as remote:
+                with open_stream(self.server.server_address[1]) as remote:
                     relay(self.request, remote, stopped)
             except (OSError, ValueError):
                 print('[CHANNEL] Connexion au club indisponible', flush=True)
