@@ -24,5 +24,5 @@ for spec,u in zip(json.loads((p/'roster-baseline/metadata.json').read_text()),cu
 style=json.loads((p/'custom-backgrounds/rarity19.json').read_text())
 assert style['colorArray']==[0,0xffffff]
 for field in ('expColorIndices','smallColorIndices','collColorIndices'):
- assert style[field][:5]==[1,1,2,2,2] and style[field][5:]==[0,0,0,0]
+ assert style[field][:5]==[1,2,2,2,2] and style[field][5:]==[0,0,0,0]
 print('PASS: Muller and Thiago native search ratings 88, regular Kroos 88 retained, MNG lower text white and decoration tint overrides cleared')

@@ -5,7 +5,7 @@
   ],
   "expColorIndices": [
     1,
-    1,
+    2,
     2,
     2,
     2,
@@ -16,7 +16,7 @@
   ],
   "collColorIndices": [
     1,
-    1,
+    2,
     2,
     2,
     2,
@@ -27,7 +27,7 @@
   ],
   "smallColorIndices": [
     1,
-    1,
+    2,
     2,
     2,
     2,
@@ -39,7 +39,7 @@
   "shineArray": [
     11272447
   ],
-  "version": 2,
+  "version": 3,
   "id": 19,
   "name": "MNG FUT",
   "levels": false,
