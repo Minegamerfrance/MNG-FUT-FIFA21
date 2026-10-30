@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.33'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.34'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'

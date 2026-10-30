@@ -12,6 +12,7 @@ FILES = (
     "Launch-RemoteFUT.ps1", "Prepare-RemoteClient.ps1", "Check-RemoteClient.ps1",
     "FIFA21-LocalAuthBridge.cs", "MNG21-LocalAuthBridge.exe",
     "FIFA21-RarityNames.cs", "MNG21-RarityNames.exe",
+    "FIFA21-PackSort.cs", "MNG21-PackSort.exe",
     "runtime-source/remote_relay.py", "runtime-source/redirector_tls.py",
     "runtime-source/PATCH_RUNNING_FIFA21_TRUST.py",
     "runtime-source/generate_local_cert.py", "runtime-source/gos2015-original-modulus.bin",

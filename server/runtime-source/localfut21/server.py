@@ -2756,9 +2756,16 @@ def _pack_reveal_sort_key(item):
     rarity = number(item.get("rareflag"))
     player = str(item.get("itemType", "player")) == "player"
     special = bool(item.get("special", False)) or rarity > 1
-    return (0 if player and special else 1 if player else 2,
+    return (0 if player and special else 1 if player and rarity == 1 and number(item.get("rating")) >= 75 else 2 if player else 3,
             -number(item.get("rating")), -rarity,
             -number(item.get("resourceId", item.get("assetId"))))
+
+
+def _pack_display_items(items):
+    """Publish chronological sort hints without changing saved acquisition dates."""
+    stamp = now_s()
+    return [dict(item, timestamp=stamp-rank)
+            for rank, item in enumerate(sorted(items, key=_pack_reveal_sort_key))]
 
 
 def _native_play_style(item: dict[str, Any]) -> int:
@@ -8464,7 +8471,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                         [x.get("id") for x in pack.get("itemData", [])],
                         [x.get("resourceId") for x in pack.get("itemData", [])],
                         pack.get("duplicateItemIdList", []))
-            ordered_pack_items = [_native_pack_item(x) for x in pack.get("itemData", [])]
+            ordered_pack_items = [_native_pack_item(x) for x in _pack_display_items(pack.get("itemData", []))]
             real_resources = [x.get("resourceId") for x in ordered_pack_items]
             # The client resolves player cards by resourceId. Keep it native;
             # reveal order is already persisted in ids/timestamps by create_pack.
@@ -8486,7 +8493,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # FIFA refreshes /purchased/items after the pack-open POST and uses this
         # refreshed itemData order for the reveal/New Items screen. Keep this
         # order identical to create_pack(): highest rating first.
-        unassigned = sorted(unassigned, key=_pack_reveal_sort_key)
+        unassigned = _pack_display_items(unassigned)
 
         duplicate_item_list = []
         for item in unassigned:

@@ -572,7 +572,31 @@ function Invoke-LocalAuthBridge([string]$HelperPath, [int]$GamePid, [string]$Gam
     }
 }
 
+function Start-PackSort([int]$GamePid) {
+    $helperPath = Join-Path $ProjectRoot 'MNG21-PackSort.exe'
+    $sourcePath = Join-Path $ProjectRoot 'FIFA21-PackSort.cs'
+    $logPath = Join-Path $RuntimeRoot 'pack-sort.log'
+    try {
+        if (-not (Test-Path -LiteralPath $helperPath) -or
+            (Get-Item -LiteralPath $sourcePath).LastWriteTimeUtc -gt (Get-Item -LiteralPath $helperPath).LastWriteTimeUtc) {
+            $compiler = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+            $compilerOutput = & $compiler '/nologo' '/target:exe' '/platform:x64' '/optimize+' ('/out:{0}' -f $helperPath) $sourcePath 2>&1
+            if ($LASTEXITCODE -ne 0) { throw ($compilerOutput -join "`n") }
+        }
+        $info = [Diagnostics.ProcessStartInfo]::new()
+        $info.FileName = $helperPath
+        $info.Arguments = '--install --pid {0} --wait --watch --log "{1}"' -f $GamePid, $logPath
+        $info.UseShellExecute = $false
+        $info.CreateNoWindow = $true
+        $process = [Diagnostics.Process]::Start($info)
+        $process.Dispose()
+    } catch {
+        "[WARNING] Pack display order helper: $_" | Write-RuntimeText -Path $logPath
+    }
+}
+
 function Start-RarityNames([int]$GamePid) {
+    Start-PackSort $GamePid
     # The display helper waits for CardsDLL independently of login readiness.
     # It validates native signatures and only overrides the custom rarity names.
     $helperPath = Join-Path $ProjectRoot 'MNG21-RarityNames.exe'
