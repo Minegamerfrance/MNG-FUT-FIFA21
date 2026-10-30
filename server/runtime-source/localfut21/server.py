@@ -35,7 +35,7 @@ from fut_inventory import dispatch as inventory_route, filter_items as inventory
 import league_objectives
 import ui_localization
 import shared_market
-from market_prices import price_limits
+from shared_market import price_limits
 import squad_battles_results
 import squad_battles_weekly
 import squad_concepts
