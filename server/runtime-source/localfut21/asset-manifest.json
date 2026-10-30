@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "baseUrl": "https://raw.githubusercontent.com/Minegamerfrance/MNG-FUT-FIFA21/7c4f8bf1b872463731bd26beef6f8e482209bcea",
+  "baseUrl": "https://raw.githubusercontent.com/Minegamerfrance/MNG-FUT-FIFA21/6830e5f314f8e33ba4a2f4ab2976f381cd0441c1",
   "files": {
     "custom-backgrounds/cards_bg_c_1_85_0.dds": {
       "sha256": "597704d576f222b5f50b97fafb4a6e3893809af3ad1f2ec1a553f26b2b71c0dd",
@@ -273,12 +273,12 @@
       "path": "images/runtime/custom-playerheads/p83906881.dds"
     },
     "custom-playerheads/p84075655.dds": {
-      "sha256": "6b530d135367924adfa1f59ff8637a64f8eaa27f78c9909d068676193d05689c",
+      "sha256": "ac6cac4b9e9d759a73c981549da5733ca37fc32d2d5cab9c7c55e9264c90038f",
       "size": 56448,
       "path": "images/runtime/custom-playerheads/p84075655.dds"
     },
     "custom-playerheads/p84088451.dds": {
-      "sha256": "56dcf2bd8d12857c7e4ecde87a7a11233b3250e405da185d979e479691c3a092",
+      "sha256": "be802f57ae32240c5be128b5791396b1f98d39416194d77b79e33ec1c36c9b2d",
       "size": 56448,
       "path": "images/runtime/custom-playerheads/p84088451.dds"
     },
@@ -288,12 +288,12 @@
       "path": "images/runtime/custom-playerheads/p84095368.dds"
     },
     "custom-playerheads/p84098542.dds": {
-      "sha256": "97a97bf36715fccc918868f0ec09d319043db2697c4ebfe01eff48e1e4f9aa19",
+      "sha256": "0acf9e495587160eb6b35e67c5c5219852c25c24251812b6ea541b0e2827d2ea",
       "size": 56448,
       "path": "images/runtime/custom-playerheads/p84098542.dds"
     },
     "custom-playerheads/p84102432.dds": {
-      "sha256": "cfa5ab2789695ed36850514b94d552304a738627520d7ff7ab69c8e584751153",
+      "sha256": "eff560f57a53ebe1af62e6a93da0d687d2985f2e19ce3d427569e0ab90e70730",
       "size": 56448,
       "path": "images/runtime/custom-playerheads/p84102432.dds"
     },
