@@ -445,6 +445,9 @@ def dispatch(s, method, path, query, payload):
             by_id={row['id']:row for row in all_rows}
             filtered=[item for item in filtered if (by_id[item['id']]['buy'] or not low and high==15000000) and low<=(by_id[item['id']]['buy'] or 15000000)<=high and
                       minbid<=max(by_id[item['id']]['current'],by_id[item['id']]['start'])<=maxbid]
+            # Native transfer search pages must be chronological, independent
+            # of inventory filtering's default overall-rating sort.
+            filtered.sort(key=lambda item:(by_id[item['id']]['expires'],item['id']))
             selected=inventory.page(filtered,search)
             return 200,dict(auctionInfo=[dto(s,by_id[item['id']],actor) for item in selected],
                             credits=s.STATE.credits(),total=len(filtered),count=len(selected))

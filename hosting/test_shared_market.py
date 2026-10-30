@@ -157,6 +157,24 @@ class SharedMarket(unittest.TestCase):
   self.assert_error('NOT_YOUR_AUCTION',lambda:self.market.remove(3,row['id']))
   self.market.remove(1,row['id']);self.assertEqual(self.market.get(row['id'])['seller_removed'],1)
   self.market.watch(2,[row['id']],remove=True);self.assertEqual(self.market.watch(2),[])
+ def test_search_orders_expiry_before_pagination_not_rating(self):
+  from unittest.mock import patch
+  class State:
+   path=self.market.club_path(2)
+   def credits(inner):return self.balance(2)
+   def get(inner,key,default=None):return True if key=='shared_market_legacy_migrated_v1' else default
+  s=SimpleNamespace(STATE=State(),CFG={'club_id':2},now_s=lambda:self.now,_native_pack_item=lambda x:x)
+  rows=[]
+  for index,(rating,duration) in enumerate(((74,10800),(60,3600),(70,21600),(65,3600))):
+   item=dict(self.item,id=500+index,resourceId=5000+index,rating=rating)
+   self.insert(1,item)
+   rows.append(self.market.list_item(1,item['id'],500,1000,duration,'Seller',self.now))
+  with patch.dict(os.environ,LOCALFUT_SHARED_MARKET_ROOT=str(self.root)):
+   _,page1=dispatch(s,'GET','/ut/game/fifa21/transfermarket',{'start':['0'],'num':['2']},{})
+   _,page2=dispatch(s,'GET','/ut/game/fifa21/transfermarket',{'start':['2'],'num':['2']},{})
+  combined=page1['auctionInfo']+page2['auctionInfo']
+  self.assertEqual([r['tradeId'] for r in combined],[rows[i]['id'] for i in (1,3,0,2)])
+  self.assertEqual(page1['total'],4)
  def test_real_player_search_and_identity_cannot_fall_back_to_catalogue(self):
   class State:
    def __init__(self,outer):self.path=outer.market.club_path(2);self.outer=outer
