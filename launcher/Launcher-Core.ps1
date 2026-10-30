@@ -262,6 +262,34 @@ function Validate-Session(){
 
 }
 
+function Get-AccountFailure($Failure){
+    $status=0
+    try{$status=[int]$Failure.Exception.Response.StatusCode}catch{}
+    $body=[string]$Failure.ErrorDetails.Message
+    if(-not $body -and $Failure.Exception.Response){
+        try{
+            $reader=New-Object IO.StreamReader($Failure.Exception.Response.GetResponseStream())
+            try{$body=$reader.ReadToEnd()}finally{$reader.Dispose()}
+        }catch{}
+    }
+    $payload=$null
+    try{$payload=$body|ConvertFrom-Json -ErrorAction Stop}catch{}
+    $message=switch([string]$payload.error){
+        'INVALID_USERNAME' {"Nom d’utilisateur : 3 à 24 caractères (lettres, chiffres, _, . ou -)."}
+        'INVALID_PASSWORD' {'Mot de passe : 8 à 128 caractères.'}
+        'INVALID_CREDENTIALS' {"Nom d’utilisateur ou mot de passe incorrect."}
+        'USERNAME_TAKEN' {"Ce nom d’utilisateur est déjà utilisé. Choisissez-en un autre ou connectez-vous."}
+        default {
+            if($payload.message){[string]$payload.message}
+            elseif($status -in @(404,405)){'Le service de connexion est introuvable. Vérifiez les mises à jour du lanceur.'}
+            elseif($status -eq 429){'Trop de tentatives. Patientez un peu avant de réessayer.'}
+            elseif($status -ge 500){'Le service des comptes est temporairement indisponible. Réessayez dans un instant.'}
+            elseif($status -eq 0){'Impossible de joindre le service des comptes. Vérifiez votre connexion et réessayez.'}
+            else{'La demande a été refusée par le service des comptes (code '+$status+').'}
+        }
+    }
+    return @{status=$status;message=$message}
+}
 function Try-AccountEndpoint([string]$Mode,[string]$Username,[string]$Password){
 
     $base=Get-AuthBase
@@ -298,13 +326,20 @@ function Try-AccountEndpoint([string]$Mode,[string]$Username,[string]$Password){
 
                 Remove-Item -LiteralPath $script:SessionPath -Force -ErrorAction SilentlyContinue
 
-                $last='Le serveur a renvoye un token invalide.'
+                $last="La connexion n’a pas pu être vérifiée. Si vous venez de créer votre compte, essayez Se connecter."
 
-            } else { $last='Reponse de connexion sans token.' }
+            } else { $last='Réponse de connexion sans session. Réessayez de vous connecter.' }
+
+            break
 
         }catch{
 
-            $last=$_.Exception.Message
+            $failure=Get-AccountFailure $_
+            $last=$failure.message
+            # Only try a legacy address when the route itself is unavailable.
+            # A validation error or a taken username must never be replaced by
+            # the legacy address's 404, nor cause a duplicate registration.
+            if($failure.status -notin @(404,405)){break}
 
         }
 

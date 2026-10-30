@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.32'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.33'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'
@@ -287,6 +287,34 @@ function Validate-Session(){
 
 }
 
+function Get-AccountFailure($Failure){
+    $status=0
+    try{$status=[int]$Failure.Exception.Response.StatusCode}catch{}
+    $body=[string]$Failure.ErrorDetails.Message
+    if(-not $body -and $Failure.Exception.Response){
+        try{
+            $reader=New-Object IO.StreamReader($Failure.Exception.Response.GetResponseStream())
+            try{$body=$reader.ReadToEnd()}finally{$reader.Dispose()}
+        }catch{}
+    }
+    $payload=$null
+    try{$payload=$body|ConvertFrom-Json -ErrorAction Stop}catch{}
+    $message=switch([string]$payload.error){
+        'INVALID_USERNAME' {"Nom d’utilisateur : 3 à 24 caractères (lettres, chiffres, _, . ou -)."}
+        'INVALID_PASSWORD' {'Mot de passe : 8 à 128 caractères.'}
+        'INVALID_CREDENTIALS' {"Nom d’utilisateur ou mot de passe incorrect."}
+        'USERNAME_TAKEN' {"Ce nom d’utilisateur est déjà utilisé. Choisissez-en un autre ou connectez-vous."}
+        default {
+            if($payload.message){[string]$payload.message}
+            elseif($status -in @(404,405)){'Le service de connexion est introuvable. Vérifiez les mises à jour du lanceur.'}
+            elseif($status -eq 429){'Trop de tentatives. Patientez un peu avant de réessayer.'}
+            elseif($status -ge 500){'Le service des comptes est temporairement indisponible. Réessayez dans un instant.'}
+            elseif($status -eq 0){'Impossible de joindre le service des comptes. Vérifiez votre connexion et réessayez.'}
+            else{'La demande a été refusée par le service des comptes (code '+$status+').'}
+        }
+    }
+    return @{status=$status;message=$message}
+}
 function Try-AccountEndpoint([string]$Mode,[string]$Username,[string]$Password){
 
     $base=Get-AuthBase
@@ -323,13 +351,20 @@ function Try-AccountEndpoint([string]$Mode,[string]$Username,[string]$Password){
 
                 Remove-Item -LiteralPath $script:SessionPath -Force -ErrorAction SilentlyContinue
 
-                $last='Le serveur a renvoye un token invalide.'
+                $last="La connexion n’a pas pu être vérifiée. Si vous venez de créer votre compte, essayez Se connecter."
 
-            } else { $last='Reponse de connexion sans token.' }
+            } else { $last='Réponse de connexion sans session. Réessayez de vous connecter.' }
+
+            break
 
         }catch{
 
-            $last=$_.Exception.Message
+            $failure=Get-AccountFailure $_
+            $last=$failure.message
+            # Only try a legacy address when the route itself is unavailable.
+            # A validation error or a taken username must never be replaced by
+            # the legacy address's 404, nor cause a duplicate registration.
+            if($failure.status -notin @(404,405)){break}
 
         }
 
@@ -678,6 +713,7 @@ function Show-Fifa21Preparation {
       <TextBox x:Name="VisiblePasswordBox" MaxLength="256" Visibility="Collapsed"/>
       <Button x:Name="TogglePasswordButton" Grid.Column="1" Content="Afficher" ToolTip="Afficher le mot de passe" Margin="8,0,0,0" Padding="12,10" FontSize="12"/>
      </Grid>
+     <TextBlock x:Name="PasswordRulesText" Text="8 à 128 caractères" Foreground="#A9A3BA" FontSize="11" Margin="0,7,0,0" Visibility="Collapsed"/>
      <CheckBox x:Name="RememberCheckBox" Content="Rester connecté" Foreground="#D3CDDF" FontSize="13" Margin="0,18,0,18"/>
      <Button x:Name="LoginSubmitButton" Content="Se connecter" Background="#CEFA52" Foreground="#15151D"/>
      <TextBlock x:Name="LoginMessage" Foreground="#E8A6B6" TextWrapping="Wrap" Margin="0,14,0,0" MinHeight="38"/>
@@ -721,6 +757,7 @@ $hero=Join-Path $script:AppRoot 'assets\hero.jpg'
 if(Test-Path -LiteralPath $hero){$HeroImage.Source=[Windows.Media.Imaging.BitmapImage]::new([Uri]$hero)}
 $script:AuthMode='login'
 $VisiblePasswordBox=C 'VisiblePasswordBox';$TogglePasswordButton=C 'TogglePasswordButton'
+$PasswordRulesText=C 'PasswordRulesText'
 function Set-PasswordVisible([bool]$Visible){
  if($Visible){
   $VisiblePasswordBox.Text=$LoginPasswordBox.Password
@@ -746,6 +783,7 @@ function Set-OperationStatus([string]$Text,[string]$Color='#E3CF66'){
 function Set-AuthMode([string]$Mode){
  Set-PasswordVisible $false
  $script:AuthMode=$Mode;$register=$Mode -eq 'register'
+ $PasswordRulesText.Visibility=if($register){'Visible'}else{'Collapsed'}
  $AuthTitle.Text=if($register){'Bienvenue sur MNG FUT'}else{'Bon retour sur MNG FUT'}
  $AuthDescription.Text=if($register){'Créez votre compte pour commencer votre club.'}else{'Connectez-vous pour retrouver votre club.'}
  $LoginSubmitButton.Content=if($register){'Créer mon compte'}else{'Se connecter'}
@@ -813,6 +851,10 @@ function Apply-Language {
 function Submit-Account {
  if($script:AuthBusy){return}
  if([string]::IsNullOrWhiteSpace($LoginUserBox.Text) -or -not $LoginPasswordBox.Password){$LoginMessage.Text="Saisissez votre nom d’utilisateur et votre mot de passe.";return}
+ if($script:AuthMode -eq 'register'){
+  if($LoginUserBox.Text.Trim() -notmatch '^[a-zA-Z0-9_.-]{3,24}$'){$LoginMessage.Text="Nom d’utilisateur : 3 à 24 caractères (lettres, chiffres, _, . ou -).";return}
+  if($LoginPasswordBox.Password.Length -lt 8 -or $LoginPasswordBox.Password.Length -gt 128){$LoginMessage.Text='Mot de passe : 8 à 128 caractères.';return}
+ }
  $script:AuthBusy=$true;$LoginSubmitButton.IsEnabled=$false;$LoginTab.IsEnabled=$false;$RegisterTab.IsEnabled=$false
  $LoginMessage.Text=if($script:AuthMode -eq 'register'){'Création du compte…'}else{'Connexion…'};$window.Dispatcher.Invoke([action]{},[Windows.Threading.DispatcherPriority]::Background)
  try{

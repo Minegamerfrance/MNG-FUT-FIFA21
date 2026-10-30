@@ -26,6 +26,7 @@
       <TextBox x:Name="VisiblePasswordBox" MaxLength="256" Visibility="Collapsed"/>
       <Button x:Name="TogglePasswordButton" Grid.Column="1" Content="Afficher" ToolTip="Afficher le mot de passe" Margin="8,0,0,0" Padding="12,10" FontSize="12"/>
      </Grid>
+     <TextBlock x:Name="PasswordRulesText" Text="8 à 128 caractères" Foreground="#A9A3BA" FontSize="11" Margin="0,7,0,0" Visibility="Collapsed"/>
      <CheckBox x:Name="RememberCheckBox" Content="Rester connecté" Foreground="#D3CDDF" FontSize="13" Margin="0,18,0,18"/>
      <Button x:Name="LoginSubmitButton" Content="Se connecter" Background="#CEFA52" Foreground="#15151D"/>
      <TextBlock x:Name="LoginMessage" Foreground="#E8A6B6" TextWrapping="Wrap" Margin="0,14,0,0" MinHeight="38"/>
@@ -69,6 +70,7 @@ $hero=Join-Path $script:AppRoot 'assets\hero.jpg'
 if(Test-Path -LiteralPath $hero){$HeroImage.Source=[Windows.Media.Imaging.BitmapImage]::new([Uri]$hero)}
 $script:AuthMode='login'
 $VisiblePasswordBox=C 'VisiblePasswordBox';$TogglePasswordButton=C 'TogglePasswordButton'
+$PasswordRulesText=C 'PasswordRulesText'
 function Set-PasswordVisible([bool]$Visible){
  if($Visible){
   $VisiblePasswordBox.Text=$LoginPasswordBox.Password
@@ -94,6 +96,7 @@ function Set-OperationStatus([string]$Text,[string]$Color='#E3CF66'){
 function Set-AuthMode([string]$Mode){
  Set-PasswordVisible $false
  $script:AuthMode=$Mode;$register=$Mode -eq 'register'
+ $PasswordRulesText.Visibility=if($register){'Visible'}else{'Collapsed'}
  $AuthTitle.Text=if($register){'Bienvenue sur MNG FUT'}else{'Bon retour sur MNG FUT'}
  $AuthDescription.Text=if($register){'Créez votre compte pour commencer votre club.'}else{'Connectez-vous pour retrouver votre club.'}
  $LoginSubmitButton.Content=if($register){'Créer mon compte'}else{'Se connecter'}
@@ -161,6 +164,10 @@ function Apply-Language {
 function Submit-Account {
  if($script:AuthBusy){return}
  if([string]::IsNullOrWhiteSpace($LoginUserBox.Text) -or -not $LoginPasswordBox.Password){$LoginMessage.Text="Saisissez votre nom d’utilisateur et votre mot de passe.";return}
+ if($script:AuthMode -eq 'register'){
+  if($LoginUserBox.Text.Trim() -notmatch '^[a-zA-Z0-9_.-]{3,24}$'){$LoginMessage.Text="Nom d’utilisateur : 3 à 24 caractères (lettres, chiffres, _, . ou -).";return}
+  if($LoginPasswordBox.Password.Length -lt 8 -or $LoginPasswordBox.Password.Length -gt 128){$LoginMessage.Text='Mot de passe : 8 à 128 caractères.';return}
+ }
  $script:AuthBusy=$true;$LoginSubmitButton.IsEnabled=$false;$LoginTab.IsEnabled=$false;$RegisterTab.IsEnabled=$false
  $LoginMessage.Text=if($script:AuthMode -eq 'register'){'Création du compte…'}else{'Connexion…'};$window.Dispatcher.Invoke([action]{},[Windows.Threading.DispatcherPriority]::Background)
  try{

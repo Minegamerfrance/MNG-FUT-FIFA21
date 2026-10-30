@@ -23,12 +23,21 @@ Set-PasswordVisible $true;Set-AuthMode 'register'
 Assert ($VisiblePasswordBox.Visibility -eq 'Collapsed') 'Switching authentication modes must hide the password.'
 Set-AuthMode 'login'
 function Try-AccountEndpoint($Mode,$Username,$Password){
+ $script:AuthCalls++
  $script:Session=[pscustomobject]@{apiBaseUrl='https://test.invalid';token='test-only-token'}
  $script:Profile=[pscustomobject]@{id=999;username=$Username}
  Write-JsonFile $script:SessionPath $script:Session
  return @{ok=$true;message='OK'}
 }
 function Validate-Session {$script:Session=Read-JsonFile $script:SessionPath;$script:Profile=[pscustomobject]@{id=999;username='Test'};return $true}
+$script:AuthCalls=0;Set-AuthMode 'register';$LoginUserBox.Text='jonas';$LoginPasswordBox.Password='1234567';Submit-Account
+Assert ($script:AuthCalls -eq 0 -and $LoginMessage.Text -like '*8*128*') 'Registration must reject a short password before sending it.'
+$LoginPasswordBox.Password=('a'*129);Submit-Account
+Assert ($script:AuthCalls -eq 0 -and $LoginMessage.Text -like '*8*128*') 'Registration must explain an overly long password.'
+$LoginUserBox.Text='j';$LoginPasswordBox.Password='test-only-password';Submit-Account
+Assert ($script:AuthCalls -eq 0 -and $LoginMessage.Text -like '*3*24*') 'Registration must explain invalid usernames before submitting.'
+Assert ($PasswordRulesText.Visibility -eq 'Visible') 'Registration must display the password rules.'
+Set-AuthMode 'login'
 $RememberCheckBox.IsChecked=$true;$LoginUserBox.Text='Test';$LoginPasswordBox.Password='test-only-password'
 Submit-Account
 Assert ($HomeView.Visibility -eq 'Visible' -and $AuthView.Visibility -eq 'Collapsed') 'Login must open FIFA 21 home.'
