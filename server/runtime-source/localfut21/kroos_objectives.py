@@ -23,8 +23,8 @@ ROWS = (
 class Kroos(Campaign):
     def __init__(self):
         super().__init__(GROUP, dict(player=FINAL, key='mng_kroos_career_v1',
-            title='La route de Toni Kroos 90', leagueName='MNG FUT', priority=1,
-            subTitle='Du SBC à Leverkusen, puis au Bayern : accomplissez les 9 défis pour gagner Toni Kroos 90.',
+            title="L'ascension du maestro Toni Kroos", leagueName='MNG FUT', priority=1,
+            subTitle="Jeune prodige du Bayern Munich, révélé à Leverkusen, puis de retour en Bavière avant de devenir une légende du Real Madrid. Revivez l'ascension de Toni Kroos.",
             displayOrder=list(range(len(ROWS)))), ROWS, xp=0, group_xp=0)
 
     def progress(self, s):
