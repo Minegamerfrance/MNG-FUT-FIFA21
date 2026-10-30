@@ -21,7 +21,7 @@ class SharedMarket(unittest.TestCase):
    db=sqlite3.connect(path)
    db.executescript('CREATE TABLE kv(key TEXT PRIMARY KEY,value TEXT);CREATE TABLE items(id INTEGER PRIMARY KEY,resource_id INTEGER,pile TEXT,data TEXT);CREATE TABLE squads(id INTEGER PRIMARY KEY,data TEXT);')
    db.executemany('INSERT INTO kv VALUES(?,?)',[('credits','10000'),('next_item_id','900000000000')]);db.commit();db.close()
-  self.item=dict(id=101,resourceId=1001,assetId=1001,pile='trade',itemType='player',rating=81,rareflag=1,
+  self.item=dict(id=101,resourceId=1001,assetId=1001,pile='trade',itemType='player',rating=74,rareflag=1,
                  name='Test Player',preferredPosition='CM',teamid=21,leagueId=19,nation=21,contract=38,untradeable=False)
   self.insert(1,self.item)
  def tearDown(self):self.tmp.cleanup()
@@ -42,6 +42,25 @@ class SharedMarket(unittest.TestCase):
  def assert_error(self,reason,call):
   with self.assertRaises(MarketError) as raised:call()
   self.assertEqual(raised.exception.reason,reason)
+ def test_card_price_limits_reject_without_removing_owned_card(self):
+  from market_prices import price_limits
+  examples=[(0,78,350,10000),(1,79,700,15000),(1,80,1500,30000),
+    (1,83,4000,60000),(1,85,12000,150000),(1,87,35000,350000),
+    (1,89,100000,900000),(1,90,250000,2000000),(1,91,250000,2000000),
+    (1,92,500000,4000000),(22,84,30000,200000),(22,87,70000,500000),
+    (22,90,200000,1500000),(22,91,500000,5000000),
+    (12,85,150000,900000),(12,89,350000,2500000),
+    (12,90,750000,8000000),(12,91,750000,8000000),(12,92,1500000,15000000)]
+  for index,(rarity,rating,low,high) in enumerate(examples):
+   with self.subTest(rarity=rarity,rating=rating):
+    item=dict(self.item,id=1000+index,rating=rating,rareflag=rarity)
+    self.insert(1,item)
+    self.assertEqual(price_limits(item),(low,high))
+    self.assert_error('INVALID_PRICE_RANGE',lambda:self.market.list_item(1,item['id'],low-50,high,3600,'Seller',self.now))
+    self.assert_error('INVALID_PRICE_RANGE',lambda:self.market.list_item(1,item['id'],low,high+1000,3600,'Seller',self.now))
+    self.assertTrue(any(i['id']==item['id'] for i in self.items(1)))
+    row=self.market.list_item(1,item['id'],low,high,3600,'Seller',self.now)
+    self.assertEqual((row['start'],row['buy']),(low,high))
  def test_buy_now_transfers_exact_card_and_tax_once(self):
   row=self.listing();self.assertEqual(self.items(1),[])
   self.assertEqual(self.listing()['id'],row['id'])

@@ -3,6 +3,7 @@
 Cards are escrowed, bids reserve coins, and the market plus participating club
 databases commit together in DELETE/FULL journal mode. No synthetic stock.
 """
+from market_prices import price_limits
 from contextlib import contextmanager
 from functools import lru_cache
 import json
@@ -199,6 +200,9 @@ class Market:
             stored=db.execute(f'SELECT data,pile FROM {alias}.items WHERE id=?',(iid,)).fetchone()
             if stored is None:raise MarketError('ITEM_NOT_OWNED',403)
             item=json.loads(stored['data'])
+            floor,ceiling=price_limits(item)
+            if not floor<=start<=ceiling or buy and not floor<=buy<=ceiling:
+                raise MarketError('INVALID_PRICE_RANGE')
             if stored['pile']!='trade' or item.get('untradeable') or integer(item.get('untradeableCount'))>0 or any(
                     item.get(k) for k in ('concept','dream','objectiveReward','ballonDorLoan')) or integer(item.get('loans'))>0:
                 raise MarketError('ITEM_NOT_TRADEABLE_IN_TRANSFER_LIST',403)
@@ -240,6 +244,8 @@ class Market:
                 if row['high_bidder'] and row['high_bidder']!=buyer:
                     change_coins(db,'a'+str(row['high_bidder']),row['current'])
                 return dict(self.sell(db,row,buyer,price,now,'buyNow'))
+            ceiling=max(price_limits(json.loads(row['item']))[1],row['start'],row['buy'],row['current'])
+            if amount>ceiling:raise MarketError('BID_TOO_HIGH',400)
             minimum=row['current']+step(row['current']) if row['current'] else row['start']
             if not valid_price(amount) or amount<minimum:raise MarketError('BID_TOO_LOW',457)
             change_coins(db,alias,-(amount-row['current'] if row['high_bidder']==buyer else amount))

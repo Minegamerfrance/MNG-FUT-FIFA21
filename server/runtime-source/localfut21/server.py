@@ -35,6 +35,7 @@ from fut_inventory import dispatch as inventory_route, filter_items as inventory
 import league_objectives
 import ui_localization
 import shared_market
+from market_prices import price_limits
 import squad_battles_results
 import squad_battles_weekly
 import squad_concepts
@@ -349,18 +350,18 @@ def get_pack_cfg(pack_id:int):
 # absent from the paid storefront configuration; owned copies appear only in
 # My Packs and cost no coins when opened.
 _SBC_REWARD_PACK_SETTINGS: dict[int, dict[str, Any]] = {
-    528: {"name":"Pack Prime garanti", "bio":"Contient 1 joueur Prime garanti. Élément non échangeable.",
+    528: {"name":"Pack Prime garanti", "bio":"Contient 1 joueur Prime garanti. Ã‰lÃ©ment non Ã©changeable.",
           "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
           "allowed_rareflags":[38],"special_weights":{"38":100},"special_chance":0,
           "manager_chance":0,"untradeable":True,"reward_resource_ids":[67285499]},
-    527: {"name":"Pack Ballon d’Or garanti", "bio":"Contient 1 joueur Ballon d’Or garanti. Élément non échangeable.",
+    527: {"name":"Pack Ballon dâ€™Or garanti", "bio":"Contient 1 joueur Ballon dâ€™Or garanti. Ã‰lÃ©ment non Ã©changeable.",
           "size":1,"gold_weight":100,"rare_slots":1,"guaranteed_specials":1,
           "allowed_rareflags":[63],"special_weights":{"63":100},"special_chance":0,
           "manager_chance":0,"untradeable":True,
           "reward_resource_ids":[67310990,67340307,67340730]},
     526: {"name":"Choix joueur 80+ (1 sur 3)","size":1,"gold_weight":100,"rare_slots":1,"min_rating":80,"player_pick_count":3,"untradeable":True},
     525: {"name":"Pack premium Or", "size":12,"gold_weight":100,"rare_slots":3,"untradeable":True},
-    524: {"name":"Pack Méga", "size":30, "gold_weight":100,"rare_slots":18,"untradeable":True},
+    524: {"name":"Pack MÃ©ga", "size":30, "gold_weight":100,"rare_slots":18,"untradeable":True},
     523: {"name":"Pack Rulebreakers garanti", "size":1, "gold_weight":100, "rare_slots":1, "guaranteed_specials":1, "allowed_rareflags":[22], "special_weights":{"22":100}, "special_chance":0, "manager_chance":0, "untradeable":True},
     520: {"name":"Pack 2 joueurs", "size":2, "gold_weight":100,"min_rating":75,"rare_slots":1,"special_chance":0,"untradeable":True},
     521: {"name":"Pack 2 joueurs Or rares", "size":2, "gold_weight":100,"min_rating":75,"rare_slots":2,"special_chance":0,"untradeable":True},
@@ -1212,8 +1213,8 @@ class State:
             "pile": pile,
             "nation": int(meta.get("nation", 0)),
             "resourceGameYear": 2021,
-            "marketDataMinPrice": 150,
-            "marketDataMaxPrice": 15000000,
+            "marketDataMinPrice": price_limits(meta)[0],
+            "marketDataMaxPrice": price_limits(meta)[1],
             "firstName": str(meta.get("firstName", "") or ""),
             "lastName": str(meta.get("lastName", "") or ""),
             "commonname": str(meta.get("commonname", "") or ""),
@@ -2778,6 +2779,8 @@ def _native_pack_item(item: dict[str, Any]) -> dict[str, Any]:
     out = dict(item)
     if str(item.get("itemType", "player")) == "player":
         out["playStyle"] = _native_play_style(item)
+        limits = price_limits(player_meta(int(item.get("resourceId", 0) or 0)))
+        out["marketDataMinPrice"], out["marketDataMaxPrice"] = limits
     # Keep assetId on FIFA 21 PC. Removing it can make some base cards render
     # as NOT FOUND even when resourceId is valid. Only strip server-only fields.
     for key in ("pile", "special", "tier", "wefutCard"):
@@ -2788,7 +2791,7 @@ def _native_pack_item(item: dict[str, Any]) -> dict[str, Any]:
         # unless the name is supplied here.  Plain gold/silver/bronze cards
         # resolve fine on their own and must be left untouched (adding fields
         # broke consumables / Draft).  Skill moves / weak foot are not
-        # overridden -- doing so showed wrong star ratings on cards like Pelé.
+        # overridden -- doing so showed wrong star ratings on cards like PelÃ©.
         out.update(_player_name_fields(out))
     if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817):
         # Native item keys: skillmoves is zero-based, weak-foot stars are 1..5.
@@ -3430,7 +3433,7 @@ def _native_player_item(item: dict[str, Any]) -> dict[str, Any]:
     # the name from the catalogue -- but ONLY for special cards: doing it for
     # every player broke consumable application and Draft squad swaps.  Skill
     # moves / weak foot are left untouched: overriding them made cards like
-    # Pelé PIM show wrong star ratings, so the client's own value is kept.
+    # PelÃ© PIM show wrong star ratings, so the client's own value is kept.
     if _is_special_card(item):
         out.update(_player_name_fields(item))
     if int(out.get("resourceId",0) or 0) in (67310990,67340307,67340730,176580,67285444,100839876,67285499,67291385,84068601,100845817):
@@ -4964,7 +4967,7 @@ def _rivals_hub_json() -> dict[str, Any]:
 
 
 # FUT Champions -- field names verified present in CardsDLL_Win64_retail.dll
-# (37133BE9…48A49): activeChampionLeagues, previousChampionEvents,
+# (37133BE9â€¦48A49): activeChampionLeagues, previousChampionEvents,
 # upcomingChampionEvents, unclaimedPrizesChampionEvents, qualifiedChampionLeagueIds,
 # qualifiedChampionEventId, qualifiedInWeekendLeague, currentChampionEvent,
 # userRegistration, userStats, minMatchesToRank, maxMatches, qualifierTournaments,
@@ -5316,10 +5319,10 @@ _SCMP_LEVEL_REWARD_POOL = [
 
 _PACK_NAMES = {
     528: "Pack Prime garanti",
-    527: "Pack Ballon d’Or garanti",
+    527: "Pack Ballon dâ€™Or garanti",
     525: "Pack premium Or",
     523: "Pack Rulebreakers garanti",
-    524: "Pack Méga",
+    524: "Pack MÃ©ga",
     520:"Pack 2 joueurs",521:"Pack 2 joueurs Or rares",522:"Pack joueur rare 75+",
     302: "Pack Jumbo Or",
     303: "Jumbo Premium Gold Pack", 310: "Premium Loan Player Reward Pack",
@@ -5353,7 +5356,7 @@ def _pack_art_id(pack_id: int) -> int:
     if pack_id == 528:
         return 54  # Prime pack artwork.
     if pack_id == 527:
-        return 53  # Ballon d’Or pack artwork.
+        return 53  # Ballon dâ€™Or pack artwork.
     if pack_id == 526:
         return 52  # Dedicated player-pick reward artwork.
     if pack_id == 525:
@@ -5955,7 +5958,7 @@ def _store_purchasegroups() -> dict[str, Any]:
 def _owned_reward_pack_json(pack_id: int, quantity: int) -> dict[str, Any]:
     cfg = get_pack_cfg(pack_id)
     name = str(cfg.get("name", _PACK_NAMES.get(pack_id, f"Pack {pack_id}")))
-    description = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if pack_id == 523 else str(cfg.get("bio", name))
+    description = "Contient 1 joueur Rulebreakers garanti. Non Ã©changeable." if pack_id == 523 else str(cfg.get("bio", name))
     size = max(1, min(30, int(cfg.get("size", 12) or 12)))
     rare = max(0, min(size, int(cfg.get("rare_slots", 0) or 0)))
     gold_weight = float(cfg.get("gold_weight", 0) or 0)
@@ -7409,7 +7412,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             if reward_pid in loc_seen:
                 continue
             rn = html.escape(t(reward_name), quote=False)
-            reward_desc = "Contient 1 joueur Rulebreakers garanti. Non échangeable." if reward_pid == 523 else str(get_pack_cfg(reward_pid).get("bio") or t(reward_name))
+            reward_desc = "Contient 1 joueur Rulebreakers garanti. Non Ã©changeable." if reward_pid == 523 else str(get_pack_cfg(reward_pid).get("bio") or t(reward_name))
             for key in (
                 f"FUT_STORE_PACK_{reward_pid}_NAME",
                 f"FUT_STORE_PACK_{reward_pid}_DESC",
@@ -7423,7 +7426,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         for rarity_key in ("Player_Rarity_38", "PLAYER_RARITY_38", "FUT_POA_PLAYER_RARITY_38"):
             loc_lines.append(f'<trans-unit id="{rarity_key}" resname="{rarity_key}"><source>Prime</source></trans-unit>')
 
-        # The custom Götze uses the native Libertadores Flashback artwork,
+        # The custom GÃ¶tze uses the native Libertadores Flashback artwork,
         # whose label is absent from this client's bundled translations.
         # Bio keys are case sensitive: the extracted client database uses
         # Player_Rarity_51, for example. The UI renders missing keys in capitals,
@@ -8601,7 +8604,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
 
     if low == "/ut/game/fifa21/marketdata/pricelimits" and method == "GET":
         # CardsDLL 0x31d0e0 reads a list of {defId,minPrice,maxPrice}.
-        # Use the same local bounds already carried by owned player items.
+        # Use the same rating and rarity policy as listing validation.
         definitions = []
         for raw in query.get("defId", []):
             for value in str(raw).split(","):
@@ -8618,7 +8621,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
         # This native call parses the root array directly (CardsDLL 0x31d0e0).
         # marketPriceLimitValues is a settings key, not a response envelope.
         return 200, {"Cache-Control": "no-store"}, json_bytes([
-            {"defId": definition, "minPrice": 150, "maxPrice": 15000000}
+            {"defId": definition, "minPrice": price_limits(player_meta(definition))[0],
+             "maxPrice": price_limits(player_meta(definition))[1]}
             for definition in definitions
         ])
 
