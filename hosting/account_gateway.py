@@ -120,7 +120,7 @@ class Club:
                     club_abbr='MNG', nucleus_id=1000000000 + self.profile['id'], persona_id=1100000000 + self.profile['id'],
                     club_id=self.profile['id'], starter_credits=10000, starter_fifa_points=1000)), encoding='utf-8')
             env = dict(os.environ, LOCALFUT21_USER_CONFIG_ROOT=str(config), LOCALFUT_RUNTIME_ROOT=str(self.root / 'runtime'),
-                       LOCALAPPDATA=str(self.root / 'cache'))
+                       LOCALAPPDATA=str(self.root / 'cache'), LOCALFUT_SHARED_MARKET_ROOT=str(self.root.parent.parent))
             if self.log:
                 self.log.close()
             self.log = (self.root / 'worker.log').open('ab')
@@ -216,6 +216,19 @@ class Gateway(socketserver.ThreadingTCPServer):
         self.context.minimum_version = ssl.TLSVersion.TLSv1_2
         self.context.load_cert_chain(cert, key)
         super().__init__(address, Handler)
+        # Settle auctions even when the seller and winner are offline.
+        market_path=Path(server_script).with_name('shared_market.py')
+        if market_path.is_file():
+            import importlib.util
+            specification=importlib.util.spec_from_file_location('mng_market_service',market_path)
+            module=importlib.util.module_from_spec(specification)
+            specification.loader.exec_module(module)
+            self.market=module.Market(self.root)
+            def sweep():
+                while not self.stopped.wait(2):
+                    try:self.market.settle_due()
+                    except Exception as error:print('Market settlement delayed: '+type(error).__name__,flush=True)
+            threading.Thread(target=sweep,daemon=True).start()
 
     def process_request(self, request, address):
         if not self.capacity.acquire(False):

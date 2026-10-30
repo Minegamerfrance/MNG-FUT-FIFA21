@@ -94,5 +94,58 @@ class TestGateway(unittest.TestCase):
                 self.assertEqual(json.loads(db.execute('SELECT value FROM kv WHERE key=?', ('account_test_marker',)).fetchone()[0]), club.profile['id'])
 
 
+    def test_04_native_shared_market_between_two_authenticated_clubs(self):
+        def request(account,method,path,payload=None):
+            token='test-account-one-token' if account==1 else 'test-account-two-token'
+            body=json.dumps(payload).encode() if payload is not None else b''
+            with connect(self.config,token,8090,account)[0] as channel:
+                header=f'{method} {path} HTTP/1.0\r\nHost: localhost\r\nContent-Type: application/json\r\nContent-Length: {len(body)}\r\n\r\n'.encode()
+                channel.sendall(header+body)
+                response=http.client.HTTPResponse(channel);response.begin()
+                result=json.loads(response.read());self.assertEqual(response.status,200,result)
+                return result
+        for account,token in ((1,'test-account-one-token'),(2,'test-account-two-token')):
+            with connect(self.config,token,'ping',account)[0]:pass
+        self.assertEqual(request(2,'GET','/ut/game/fifa21/transfermarket')['auctionInfo'],[])
+        seller=self.gateway.clubs.live[1]
+        item=dict(id=900900000001,resourceId=182521,assetId=182521,itemType='player',pile='trade',
+                  rating=85,rareflag=1,name='Kroos',preferredPosition='CM',teamid=243,leagueId=53,
+                  nation=21,untradeable=False,contract=38)
+        dbpath=seller.root/'runtime/data/localfut15.sqlite3'
+        with closing(sqlite3.connect(dbpath)) as db,db:
+            self.assertEqual(db.execute('PRAGMA journal_mode').fetchone()[0],'delete')
+            db.execute('INSERT INTO items VALUES(?,?,?,?)',(item['id'],item['resourceId'],'trade',json.dumps(item)))
+        listing=request(1,'POST','/ut/game/fifa21/auctionhouse',dict(itemData={'id':item['id']},startingBid=500,buyNowPrice=1000,duration=3600))
+        tid=listing['tradeId']
+        found=request(2,'GET','/ut/game/fifa21/transfermarket?maskedDefId=182521')
+        self.assertEqual(found['auctionInfo'][0]['tradeId'],tid)
+        bought=request(2,'PUT',f'/ut/game/fifa21/trade/{tid}/bid',{'bid':1000})
+        self.assertEqual(bought['credits'],9000)
+        self.assertEqual(request(2,'PUT',f'/ut/game/fifa21/trade/{tid}/bid',{'bid':1000})['credits'],9000)
+        sold=request(1,'GET','/ut/game/fifa21/tradepile')
+        self.assertEqual(sold['credits'],10950);self.assertEqual(sold['sold'],1)
+        self.assertEqual(request(2,'GET','/ut/game/fifa21/watchlist')['auctionInfo'][0]['tradeState'],'closed')
+        won=request(2,'GET','/ut/game/fifa21/purchased/items')['itemData']
+        self.assertEqual(sum(i.get('resourceId')==182521 for i in won),1)
+        request(1,'DELETE',f'/ut/game/fifa21/trade/{tid}')
+        self.assertEqual(request(1,'GET','/ut/game/fifa21/tradepile')['sold'],0)
+        # The gateway, rather than a player's HTTP request, settles an expired bid.
+        item['id']+=1
+        with closing(sqlite3.connect(dbpath)) as db,db:
+            db.execute('INSERT INTO items VALUES(?,?,?,?)',(item['id'],item['resourceId'],'trade',json.dumps(item)))
+        tid=request(1,'POST','/ut/game/fifa21/auctionhouse',dict(itemData={'id':item['id']},startingBid=500,buyNowPrice=0,duration=3600))['tradeId']
+        request(2,'PUT',f'/ut/game/fifa21/trade/{tid}/bid',{'bid':500})
+        import time
+        with closing(sqlite3.connect(Path(self.temporary.name)/'transfermarket.sqlite3')) as db,db:
+            db.execute('UPDATE auctions SET expires=? WHERE id=?',(int(time.time())-1,tid))
+        deadline=time.monotonic()+8
+        while time.monotonic()<deadline:
+            with closing(sqlite3.connect(Path(self.temporary.name)/'transfermarket.sqlite3')) as db:
+                if db.execute('SELECT state FROM auctions WHERE id=?',(tid,)).fetchone()[0]=='sold':break
+            time.sleep(.1)
+        else:self.fail('Gateway did not settle the offline auction.')
+        self.assertEqual(request(1,'GET','/ut/game/fifa21/tradepile')['credits'],11425)
+
+
 if __name__ == '__main__':
     unittest.main()

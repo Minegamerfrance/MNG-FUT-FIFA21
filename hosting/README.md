@@ -23,7 +23,23 @@ assure le démarrage après Docker. Les clés TLS restent dans le volume privé.
 Capacité initiale : 4 clubs actifs simultanément, avec remplacement du club
 inactif le plus ancien lorsque nécessaire. Les bases sont conservées.
 Cette configuration n'est pas une validation pour 50 joueurs simultanés.
-Le marché multijoueur et les rencontres 1 contre 1 restent à développer.
+Le marché de transferts est partagé entre les comptes : seules les cartes
+effectivement proposées par les joueurs apparaissent. Il n'y a pas de stock
+automatique. Achats immédiats, enchères, remboursements des joueurs surenchéris,
+expiration, remise en vente et listes de suivi sont persistants. La taxe de vente
+est de 5 %. Les cartes non échangeables, en prêt ou utilisées dans une équipe
+ne peuvent pas être mises en vente.
+
+La passerelle définit `LOCALFUT_SHARED_MARKET_ROOT` pour chaque moteur. Le fichier
+`/state/accounts/transfermarket.sqlite3` contient les annonces, cartes en dépôt,
+enchères réservées et reçus. Il doit être sauvegardé avec `accounts.sqlite3` et
+les bases des clubs, jamais publié. Les transactions entre clubs utilisent le
+mode de journal SQLite DELETE et la synchronisation FULL pour que cartes et
+crédits soient validés ensemble. Les annonces expirées sont réglées toutes les
+deux secondes, même lorsque les joueurs sont hors ligne.
+
+Tests : `python hosting/test_shared_market.py` et
+`python hosting/test_account_gateway.py`. Les rencontres 1 contre 1 restent à développer.
 
 Tests : `python hosting/test_account_gateway.py` vérifie deux vrais moteurs
 isolés avec des identités de test, le refus des mauvaises sessions, l'empreinte

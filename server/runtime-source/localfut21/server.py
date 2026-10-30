@@ -34,6 +34,7 @@ import fut_inventory
 from fut_inventory import dispatch as inventory_route, filter_items as inventory_filter, criteria as inventory_criteria, deduplicate_owned, cosmetics, cosmetic_item, CONCEPT_BASE
 import league_objectives
 import ui_localization
+import shared_market
 import squad_battles_results
 import squad_battles_weekly
 import squad_concepts
@@ -918,16 +919,18 @@ class State:
     def __init__(self, path: Path):
         self.path = path
         self.lock = threading.RLock()
-        self.conn = sqlite3.connect(path, check_same_thread=False)
+        self.conn = sqlite3.connect(path, timeout=30, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self._init()
 
     def _init(self) -> None:
         with self.lock:
             c = self.conn.cursor()
+            # Shared market settlements use SQLite's multi-database super-journal.
+            c.execute('PRAGMA journal_mode='+('DELETE' if os.environ.get('LOCALFUT_SHARED_MARKET_ROOT') else 'WAL'))
+            c.execute('PRAGMA synchronous=FULL')
             c.executescript(
                 """
-                PRAGMA journal_mode=WAL;
                 CREATE TABLE IF NOT EXISTS kv(key TEXT PRIMARY KEY, value TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS items(
                     id INTEGER PRIMARY KEY,
@@ -1012,9 +1015,16 @@ class State:
         return int(self.get("credits", 0))
 
     def add_credits(self, amount: int) -> int:
-        v = max(0, self.credits() + int(amount))
-        self.set("credits", v)
-        return v
+        with self.lock, self.conn:
+            row=self.conn.execute("UPDATE kv SET value=CAST(MAX(0,CAST(value AS INTEGER)+?) AS TEXT) WHERE key='credits' RETURNING value",
+                                  (int(amount),)).fetchone()
+            return int(row[0])
+
+    def spend_credits(self, amount: int) -> bool:
+        amount=max(0,int(amount))
+        with self.lock, self.conn:
+            return self.conn.execute("UPDATE kv SET value=CAST(CAST(value AS INTEGER)-? AS TEXT) WHERE key='credits' AND CAST(value AS INTEGER)>=?",
+                                     (amount,amount)).rowcount==1
 
     def sid(self) -> str:
         return str(self.get("sid"))
@@ -1077,9 +1087,9 @@ class State:
 
     def next_item_id(self) -> int:
         with self.lock:
-            v = int(self.get("next_item_id", 900000000000)) + 1
-            self.set("next_item_id", v)
-            return v
+            with self.conn:
+                row=self.conn.execute("UPDATE kv SET value=CAST(MAX(CAST(value AS INTEGER),COALESCE((SELECT MAX(id) FROM items),0))+1 AS TEXT) WHERE key='next_item_id' RETURNING value").fetchone()
+                return int(row[0])
 
     def add_unopened_pack(self, pack_id: int, source: str = "reward") -> int:
         with self.lock:
@@ -2080,7 +2090,8 @@ class State:
         payout = 0
         deleted = []
 
-        with self.lock:
+        with self.lock, self.conn:
+            if not self.conn.in_transaction:self.conn.execute('BEGIN IMMEDIATE')
             for iid in clean_ids:
                 row = self.conn.execute(
                     "SELECT resource_id, data FROM items WHERE id=?",
@@ -2108,10 +2119,9 @@ class State:
                 value = (self.player_discard_value(rid)
                          if str(data.get("itemType", "player")) == "player"
                          else int(data.get("discardValue", 0) or 0))
-                payout += max(0, int(value))
-
                 cur = self.conn.execute("DELETE FROM items WHERE id=?", (iid,))
                 if cur.rowcount:
+                    payout += max(0, int(value))
                     deleted.append(iid)
 
             if deleted and payout:
@@ -5664,6 +5674,8 @@ def _native_user() -> dict[str, Any]:
 
 
 def _trade_pile_response() -> dict[str, Any]:
+    shared=shared_market.tradepile(sys.modules[__name__])
+    if shared is not None:return shared
     # Special/event editions first, then rare gold and common gold, with
     # descending ratings inside each band. Never change owned instance IDs.
     def order(item):
@@ -5682,6 +5694,8 @@ def _trade_pile_response() -> dict[str, Any]:
 
 
 def _transfer_hub_counts() -> dict[str, Any]:
+    shared=shared_market.hub(sys.modules[__name__])
+    if shared is not None:return shared
     pile = _trade_pile_response()
     sold = sum(row["tradeState"] == "closed" and int(row.get("currentBid",0) or 0)>0
                for row in pile["auctionInfo"])
@@ -5691,7 +5705,8 @@ def _transfer_hub_counts() -> dict[str, Any]:
     available += len(MANAGER_DB) + len(fut_inventory.consumables(sys.modules[__name__]))
     available += len(fut_inventory.cosmetics(sys.modules[__name__]))
     return {"auctionCount": available + pile["selling"],
-            "tradePile": {"count":pile["count"], "selling":pile["selling"], "sold":sold}}
+            "tradePile": {"count":pile["count"], "selling":pile["selling"], "sold":sold},
+            "watchlist": {"count":0,"outbid":0,"winning":0}}
 
 
 def _club_stats(category: str = "club") -> dict[str, Any]:
@@ -6987,6 +7002,10 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
     if league_result is not None:
         status, document = league_result
         return status, {"Cache-Control": "no-store"}, json_bytes(document)
+    market_result = shared_market.dispatch(sys.modules[__name__], method, low, query, payload)
+    if market_result is not None:
+        status, document = market_result
+        return status, {"Cache-Control":"no-store"}, json_bytes(document)
     inventory_result = inventory_route(sys.modules[__name__], method, low, query, payload)
     if inventory_result is not None:
         status, document = inventory_result
@@ -7126,9 +7145,8 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
             currency = str(payload.get("currency", "COINS") if isinstance(payload, dict) else "COINS").upper()
             if run is None:
                 if currency in ("COINS", "CREDITS"):
-                    if STATE.credits() < 15000:
+                    if not STATE.spend_credits(15000):
                         return 403, {}, json_bytes({"reason": "insufficientCoins", **_credits_payload()})
-                    STATE.add_credits(-15000)
                 run = _draft_new_run("SINGLE_PLAYER" if draft_purchase.group(1) != "0" else "ONLINE")
                 _draft_save(run)
             response = [{
@@ -8134,7 +8152,6 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                if query.get("screen",[""])[0].lower()=="futlivemsggen4" else {}),
             **_transfer_hub_counts(),
             "clubPlayers": len(STATE.list_items("club")) + len(STATE.list_items("squad")),
-            "watchlist": {"count": 0, "outbid": 0, "winning": 0},
             "squad": _native_squad(),
         })
 
@@ -8408,7 +8425,7 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                 log.warning("PACK_OPEN_REJECTED packId=%s reason=unsupported-currency currency=%s", pack_id, currency)
                 return 400, {}, json_bytes({"code": "400", "reason": f"unsupported local pack currency {currency}"})
             if use_credits:
-                if STATE.credits() < price:
+                if not STATE.spend_credits(price):
                     log.warning("PACK_OPEN_REJECTED packId=%s reason=insufficient-coins price=%s credits=%s",
                                 pack_id, price, STATE.credits())
                     return 200, {}, json_bytes({
@@ -8420,7 +8437,6 @@ def _route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes)
                         "itemData": [],
                         **_credits_payload(),
                     })
-                STATE.add_credits(-price)
             log.warning("CARDS-SCOUT PACK_OPEN_BEGIN packId=%s ownedClub=%d ownedSquad=%d",
                         pack_id, len(STATE.list_items("club")), len(STATE.list_items("squad")))
             try:
@@ -10141,6 +10157,7 @@ class BlazeOrHttpHandler(socketserver.BaseRequestHandler):
                 try:
                     more = sock.recv(65536)
                 except socket.timeout:
+                    shared_market.poll_refresh(sys.modules[__name__])
                     if PENDING_USERSESSION_REFRESH.is_set():
                         notification = _fire2_build(
                             30722, 5, 0, 2, _blaze_notify_user_updated()
@@ -10207,6 +10224,7 @@ class BlazeOrHttpHandler(socketserver.BaseRequestHandler):
                     report_id,
                 )
 
+            shared_market.poll_refresh(sys.modules[__name__])
             if (PENDING_USERSESSION_REFRESH.is_set() and
                     (packet.component, packet.command) != (28, 2)):
                 notification = _fire2_build(
