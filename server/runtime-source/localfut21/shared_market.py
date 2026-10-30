@@ -68,6 +68,18 @@ def valid_price(price):
     return 150<=price<=15000000 and price % step(price)==0
 
 
+@lru_cache(maxsize=1)
+def icon_release_policy():
+    return json.loads(Path(__file__).with_name('icon-release-policy.json').read_text(encoding='utf-8'))
+
+
+def icon_available(meta):
+    rarity=integer(meta.get('rareflag'))
+    if rarity not in (12,84):return True
+    policy=icon_release_policy()
+    return not policy.get('baseOnly') or (rarity==12 and integer(meta.get('resourceId')) in policy['baseResourceIds'])
+
+
 def put(db, alias, key, value):
     db.execute(f'INSERT INTO {alias}.kv(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value',
                (key,json.dumps(value)))
@@ -227,6 +239,7 @@ class Market:
             stored=db.execute(f'SELECT data,pile FROM {alias}.items WHERE id=?',(iid,)).fetchone()
             if stored is None:raise MarketError('ITEM_NOT_OWNED',403)
             item=json.loads(stored['data'])
+            if not icon_available(item):raise MarketError('ICON_VERSION_NOT_RELEASED',403)
             floor,ceiling=price_limits(item)
             if not floor<=start<=ceiling or buy and not floor<=buy<=ceiling:
                 raise MarketError('INVALID_PRICE_RANGE')
@@ -259,6 +272,7 @@ class Market:
             row=self.expire(db,row,now)
             if row['state']=='sold' and row['winner']==buyer:return dict(row)
             if row['state']!='active':raise MarketError('AUCTION_EXPIRED',460)
+            if not icon_available(json.loads(row['item'])):raise MarketError('ICON_VERSION_NOT_RELEASED',403)
             if row['seller']==buyer:raise MarketError('CANNOT_BUY_OWN_ITEM',403)
             if row['high_bidder']==buyer and row['current']==amount:return dict(row)
             alias='a'+str(buyer)
@@ -420,7 +434,9 @@ def dispatch(s, method, path, query, payload):
             all_rows=store.rows("state='active' AND seller<>?",(actor,))
             offers=[]
             for row in all_rows:
-                item=json.loads(row['item']);item.update(id=row['id'],buyNowPrice=row['buy'] or row['current'] or row['start'])
+                item=json.loads(row['item'])
+                if not icon_available(item):continue
+                item.update(id=row['id'],buyNowPrice=row['buy'] or row['current'] or row['start'])
                 offers.append(item)
             filtered=inventory.filter_items(offers,search)
             low=integer(inventory.value(search,'micr','minbuy','minprice'))

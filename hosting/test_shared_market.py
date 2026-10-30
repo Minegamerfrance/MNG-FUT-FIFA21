@@ -56,11 +56,35 @@ class SharedMarket(unittest.TestCase):
     item=dict(self.item,id=1000+index,rating=rating,rareflag=rarity)
     self.insert(1,item)
     self.assertEqual(price_limits(item),(low,high))
+    if rarity==12:
+     self.assert_error('ICON_VERSION_NOT_RELEASED',lambda:self.market.list_item(1,item['id'],low,high,3600,'Seller',self.now))
+     continue
     self.assert_error('INVALID_PRICE_RANGE',lambda:self.market.list_item(1,item['id'],low-50,high,3600,'Seller',self.now))
     self.assert_error('INVALID_PRICE_RANGE',lambda:self.market.list_item(1,item['id'],low,high+1000,3600,'Seller',self.now))
     self.assertTrue(any(i['id']==item['id'] for i in self.items(1)))
     row=self.market.list_item(1,item['id'],low,high,3600,'Seller',self.now)
     self.assertEqual((row['start'],row['buy']),(low,high))
+ def test_only_base_icons_are_obtainable_and_tradeable(self):
+  from shared_market import icon_available
+  import event_schedule
+  from collections import defaultdict
+  catalog=json.loads((ROOT/'players.json').read_text(encoding='utf-8-sig'))
+  groups=defaultdict(list)
+  for rid,meta in catalog.items():
+   if meta.get('rareflag')==12:groups[(meta['firstName'],meta['lastName'],meta['dateOfBirth'])].append(meta)
+  self.assertEqual(len(groups),101)
+  for versions in groups.values():
+   ordered=sorted(versions,key=lambda m:m['rating'])
+   self.assertEqual([event_schedule.available(m) for m in ordered],[True,False,False])
+  base=next(m for m in catalog.values() if m.get('rareflag')==12 and m['rating']==90 and icon_available(m))
+  item=dict(self.item,id=222,**{k:base[k] for k in ('resourceId','rating','rareflag')})
+  self.insert(1,item)
+  self.market.list_item(1,222,750000,8000000,3600,'Seller',self.now)
+  prime=next(m for m in catalog.values() if m.get('rareflag')==12 and not icon_available(m))
+  item=dict(self.item,id=223,**{k:prime[k] for k in ('resourceId','rating','rareflag')})
+  self.insert(1,item)
+  self.assert_error('ICON_VERSION_NOT_RELEASED',lambda:self.market.list_item(1,223,750000,8000000,3600,'Seller',self.now))
+  self.assertTrue(any(i['id']==223 for i in self.items(1)))
  def test_buy_now_transfers_exact_card_and_tax_once(self):
   row=self.listing();self.assertEqual(self.items(1),[])
   self.assertEqual(self.listing()['id'],row['id'])

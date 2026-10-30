@@ -4415,6 +4415,8 @@ def _squad_battle_player_ids(target_rating: int, slot: int = 0) -> list[int]:
             rating = int(meta.get("rating", 0) or 0)
             rareflag = int(meta.get("rareflag", 1) or 0)
             asset_id = int(meta.get("assetId", resource_id) or resource_id)
+            if not event_schedule.available(meta):
+                continue
             if position not in positions or rating < 55:
                 continue
             if base_only and (rareflag not in (0, 1) or resource_id > 0x00FFFFFF):

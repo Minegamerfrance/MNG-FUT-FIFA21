@@ -49,8 +49,8 @@ def constrain_packs(settings: dict, policy: dict) -> dict:
                        special_chance=0.0, guaranteed_specials=0,
                        allowed_rareflags=[0, 1])
         if str(pid) == "7":
-            cfg.update(name="Classic Icon 90+ Pack",
-                       bio="One classic Icon rated 90 or higher.",
+            cfg.update(name="Base Icon Pack", min_rating=85,
+                       bio="One Base Icon player.",
                        allowed_rareflags=[12])
         if 21 in policy["allowedRarities"] and str(pid) == "3":
             cfg.update(special_chance=0.05, allowed_rareflags=[0,1,12,21]+([3] if policy.get("totwNumbers")==[1] else []))

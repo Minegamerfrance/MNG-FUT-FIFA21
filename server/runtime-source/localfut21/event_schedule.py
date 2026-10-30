@@ -1,6 +1,7 @@
 """Server-clock release gates; no club migration or destructive state changes."""
 from datetime import datetime,timezone
 import re,time,urllib.parse
+from shared_market import icon_available
 
 # Paris is UTC+1 on both requested November release dates.
 STARTS={'totw1':int(datetime(2026,11,4,19,tzinfo=timezone.utc).timestamp()),
@@ -10,6 +11,7 @@ OBJECTIVES={7101,7102,8003}
 
 def active(event,now=None):return (time.time() if now is None else now)>=STARTS[event]
 def available(meta):
+    if not icon_available(meta):return False
     event=RARITIES.get(int(meta.get('rareflag',0)))
     return event is None or active(event)
 def pack_event(cfg):
