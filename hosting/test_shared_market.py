@@ -144,6 +144,31 @@ class SharedMarket(unittest.TestCase):
     income.result();sale.result()
    self.assertEqual(self.balance(1),11050)
   finally:state.conn.close()
+ def test_retail_delete_alias_removes_sold_tile_without_repaying_or_deleting_buyer_card(self):
+  row=self.listing();self.market.bid(2,row['id'],1000,self.now)
+  class State:
+   def __init__(self,outer,identity):self.outer=outer;self.identity=identity;self.path=outer.market.club_path(identity)
+   def get(self,key,default=None):return True if key=='shared_market_legacy_migrated_v1' else default
+   def credits(self):return self.outer.balance(self.identity)
+  s=SimpleNamespace(STATE=State(self,1),CFG={'club_id':1},now_s=lambda:self.now,_native_pack_item=lambda x:x)
+  old=os.environ.get('LOCALFUT_SHARED_MARKET_ROOT');os.environ['LOCALFUT_SHARED_MARKET_ROOT']=str(self.root)
+  try:
+   path=f"/ut/delete/game/fifa21/trade/{row['id']}"
+   balances=[self.balance(i) for i in (1,2)];buyer_items=self.items(2)
+   for _ in range(2):self.assertEqual(dispatch(s,'GET',path,{},None)[0],200)
+   self.assertEqual(self.market.get(row['id'])['seller_removed'],1)
+   self.assertEqual([self.balance(i) for i in (1,2)],balances);self.assertEqual(self.items(2),buyer_items)
+   result=dispatch(s,'GET','/ut/game/fifa21/trade/status',{'tradeIds':[str(row['id'])]},None)
+   self.assertEqual(result[1]['auctionInfo'],[])
+   s.STATE=State(self,3);s.CFG['club_id']=3
+   self.assertEqual(dispatch(s,'GET',path,{},None)[0],403)
+   self.insert(1,dict(self.item,id=102))
+   active=self.market.list_item(1,102,500,1000,3600,'P1',self.now)
+   s.STATE=State(self,1);s.CFG['club_id']=1
+   self.assertEqual(dispatch(s,'GET',f"/ut/delete/game/fifa21/trade/{active['id']}",{},None)[0],403)
+  finally:
+   if old is None:os.environ.pop('LOCALFUT_SHARED_MARKET_ROOT',None)
+   else:os.environ['LOCALFUT_SHARED_MARKET_ROOT']=old
  def test_native_debits_and_item_allocators_are_atomic(self):
   first=self.accounting(2);second=self.accounting(2)
   try:

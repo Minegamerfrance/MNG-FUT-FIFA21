@@ -366,6 +366,13 @@ def poll_refresh(s):
 
 
 def dispatch(s, method, path, query, payload):
+    # Retail FIFA 21 tunnels this DELETE through a GET to /ut/delete/.
+    # Limit the alias to the observed trade-removal route; ownership and
+    # active-auction checks still run through Market.remove below.
+    legacy_delete=re.fullmatch(r'/ut/delete/game/fifa21/trade/(\d+)',path)
+    if legacy_delete and method in ('GET','POST','DELETE'):
+        path='/ut/game/fifa21/trade/'+legacy_delete.group(1)
+        method='DELETE'
     relevant=path in ('/ut/game/fifa21/transfermarket','/ut/game/fifa21/tradepile',
         '/ut/game/fifa21/watchlist','/ut/game/fifa21/watchlist/items',
         '/ut/game/fifa21/trade/status','/ut/game/fifa21/trade/status/lite') or re.match(
@@ -411,7 +418,8 @@ def dispatch(s, method, path, query, payload):
             store.remove(actor,int(single.group(1)));return 200,dict(success=True,credits=s.STATE.credits())
         if path in ('/ut/game/fifa21/trade/status','/ut/game/fifa21/trade/status/lite') or single and method=='GET':
             wanted={int(single.group(1))} if single else inventory.ids(inventory.value(search,'tradeids','tradeid'))
-            rows=[r for tid in wanted for r in [store.get(tid)] if r is not None]
+            rows=[r for tid in wanted for r in [store.get(tid)] if r is not None
+                  and not (r['seller']==actor and r['seller_removed'])]
             watched={r['id'] for r in store.watch(actor)}
             return 200,dict(auctionInfo=[dto(s,dict(row),actor,row['id'] in watched) for row in rows],credits=s.STATE.credits())
         if path in ('/ut/game/fifa21/watchlist','/ut/game/fifa21/watchlist/items'):
