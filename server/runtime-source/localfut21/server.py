@@ -5549,7 +5549,7 @@ def _scmp_campaign_json() -> dict[str, Any]:
     recurring_objectives.login(sys.modules[__name__])
     season_window = season_persistence.window(sys.modules[__name__])
     claimed = bool(STATE.get("scmp_reward_claimed", False))
-    cats = [league_objectives.mng_category(sys.modules[__name__]), league_objectives.event_category(sys.modules[__name__]), _scmp_category(claimed), league_objectives.category(sys.modules[__name__])]
+    cats = [league_objectives.kroos_category(sys.modules[__name__]), league_objectives.mng_category(sys.modules[__name__]), league_objectives.event_category(sys.modules[__name__]), _scmp_category(claimed), league_objectives.category(sys.modules[__name__])]
     levels = _scmp_season_levels()
     # The native progress widget looks up its next threshold from this score.
     # Overflow beyond the last threshold produces an invalid 0 XP target.

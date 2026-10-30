@@ -83,6 +83,8 @@ from ballon_dor_objectives import BallonDor,DembeleBallonDor,RodriBallonDor
 CAMPAIGNS[7201]=BallonDor()
 CAMPAIGNS[7202]=DembeleBallonDor()
 CAMPAIGNS[7203]=RodriBallonDor()
+from kroos_objectives import Kroos
+CAMPAIGNS[7301]=Kroos()
 
 def progress(s,group_id=GROUP):return CAMPAIGNS[group_id].progress(s)
 def group(s,details=True,group_id=GROUP):return CAMPAIGNS[group_id].group(s,details)
@@ -101,10 +103,14 @@ def mng_category(s):
     groups=[group(s,True,7201),group(s,True,7202),group(s,True,7203)]
     return dict(categoryId=72,id=72,name='Ballon d’Or',priority=4,groupsList=groups,groups=groups)
 
+def kroos_category(s):
+    groups=[group(s,True,7301)]
+    return dict(categoryId=73,id=73,name='MNG FUT',priority=5,groupsList=groups,groups=groups)
+
 def route(s,method,path):
-    match=re.fullmatch(r'/ut/game/fifa21/scmp/(?:active|learning|world)/category/(70|71|72)/details',path)
+    match=re.fullmatch(r'/ut/game/fifa21/scmp/(?:active|learning|world)/category/(70|71|72|73)/details',path)
     if match:
-        cat={70:category,71:event_category,72:mng_category}[int(match.group(1))](s)
+        cat={70:category,71:event_category,72:mng_category,73:kroos_category}[int(match.group(1))](s)
         return 200,dict(categoryId=cat['categoryId'],groupsList=cat['groupsList'])
     match=re.fullmatch(r'/ut/game/fifa21/scmp/campaign/group/(\d+)(?:/objective/(\d+))?/rewards',path)
     if match and method in ('POST','PUT'):
