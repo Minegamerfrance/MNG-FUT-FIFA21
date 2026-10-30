@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.31'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.32'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'
@@ -402,6 +402,23 @@ function Start-Mng21BackgroundWorker([string]$Arguments,[string]$Root) {
     $info.WindowStyle = [Diagnostics.ProcessWindowStyle]::Hidden
     return [Diagnostics.Process]::Start($info)
 }
+function Get-Mng21Listener([int]$Port) {
+    $rows = @(Get-NetTCPConnection -LocalPort $Port -ErrorAction SilentlyContinue |
+        Where-Object { $_.RemotePort -eq 0 -and $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') })
+    $listening = $rows | Where-Object { $_.State -eq 'Listen' } | Select-Object -First 1
+    if ($listening) { return $listening }
+    # Keep ownership verification when Windows mislabels an accepting socket.
+    if ($rows.Count -eq 1 -and $rows[0].OwningProcess -gt 0) {
+        $client = New-Object Net.Sockets.TcpClient
+        try {
+            $pending = $client.BeginConnect('127.0.0.1',$Port,$null,$null)
+            if ($pending.AsyncWaitHandle.WaitOne(200)) {
+                $client.EndConnect($pending)
+                if ($client.Connected) { return $rows[0] }
+            }
+        } catch {} finally { $client.Close() }
+    }
+}
 function Get-Mng21Root {
     $configuration = Get-Settings
     $root = if ($configuration.Fifa21ServerRoot) { [string]$configuration.Fifa21ServerRoot } else { Join-Path $script:AppRoot 'fifa21-server' }
@@ -435,7 +452,7 @@ function Test-ManagedServerRunning([string]$GameId=$script:SelectedGame) {
             if (-not $script:Profile -or [long]$connectionStatus.accountId -ne [long]$script:Profile.id) { return $false }
         }
         foreach ($entry in @(@{Port=8090;Script=$backendScript},@{Port=44321;Script=$backendScript},@{Port=42230;Script='redirector_tls.py'})) {
-            $listener = Get-NetTCPConnection -State Listen -LocalPort $entry.Port -ErrorAction SilentlyContinue | Where-Object { $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') } | Select-Object -First 1
+            $listener = Get-Mng21Listener $entry.Port
             if (-not $listener) { return $false }
             $owner = try { Get-CimInstance Win32_Process -Filter ('ProcessId='+$listener.OwningProcess) -ErrorAction Stop } catch { $null }
             if ($owner -and $owner.CommandLine) {

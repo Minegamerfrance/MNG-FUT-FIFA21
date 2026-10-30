@@ -255,9 +255,22 @@ function Resolve-Python3 {
 }
 
 function Get-Listener([int]$Port) {
-    @(Get-NetTCPConnection -State Listen -LocalPort $Port -ErrorAction SilentlyContinue |
-        Where-Object { $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') } |
-        Select-Object -First 1)
+    $rows = @(Get-NetTCPConnection -LocalPort $Port -ErrorAction SilentlyContinue |
+        Where-Object { $_.RemotePort -eq 0 -and $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1') })
+    $listening = $rows | Where-Object { $_.State -eq 'Listen' } | Select-Object -First 1
+    if ($listening) { return $listening }
+    # Some Windows builds report accepting sockets as Bound/Closed. Only use
+    # that row after a successful connection, keeping its exact owner PID.
+    if ($rows.Count -eq 1 -and $rows[0].OwningProcess -gt 0) {
+        $client = New-Object Net.Sockets.TcpClient
+        try {
+            $pending = $client.BeginConnect('127.0.0.1',$Port,$null,$null)
+            if ($pending.AsyncWaitHandle.WaitOne(200)) {
+                $client.EndConnect($pending)
+                if ($client.Connected) { return $rows[0] }
+            }
+        } catch {} finally { $client.Close() }
+    }
 }
 
 function Test-ProcessOwnsExactScript([object]$ProcessInfo, [string]$ScriptPath) {

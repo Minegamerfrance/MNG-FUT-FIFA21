@@ -25,7 +25,7 @@ def build(executable, assets, output):
     for key, name in [('server', 'server.py'), ('onboarding', 'onboarding.py')]:
         contract[key] = hashlib.sha256((REPO / 'server/runtime-source/localfut21' / name).read_bytes()).hexdigest()
     files['fifa21-server/remote-runtime.json'] = json.dumps(contract, indent=2).encode()
-    files['LIRE-MOI.txt'] = ('MNG FUT 1.3.31 - FIFA 21\r\n'
+    files['LIRE-MOI.txt'] = ('MNG FUT 1.3.32 - FIFA 21\r\n'
         '1. Extraire le ZIP dans un dossier. Fermer les anciens connecteurs et FIFA avant le premier essai.\r\n'
         '2. Ouvrir MNG FUT.exe. Choisir Se connecter ou Creer un compte. Cocher Rester connecte pour les prochaines ouvertures.\r\n'
         '3. Cliquer Choisir exe et selectionner FIFA21.exe. Le bouton devient Lancer FIFA 21.\r\n'
