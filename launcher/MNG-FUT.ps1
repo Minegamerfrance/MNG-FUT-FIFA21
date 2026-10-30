@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $script:StateRoot -Force | Out-Null
 $script:SettingsPath=Join-Path $script:StateRoot 'launcher-oneclick.json'
 $script:SessionPath=Join-Path $script:StateRoot 'mng-cloud-session.json'
 $script:Session=$null;$script:Profile=$null
-$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.30'
+$script:SelectedGame='21';$script:Lang='fr';$script:LauncherVersion='1.3.31'
 $script:AuthApiDefault='https://mng-fut-api.minegamerfrance.workers.dev'
 $script:LauncherManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/launcher-manifest.json'
 $script:GameServerManifestUrl='https://raw.githubusercontent.com/Minegamerfrance/MinegamerServeur17/main/updates/game-servers-manifest.json'
@@ -568,7 +568,12 @@ function Start-Fifa21Server([switch]$LaunchGame) {
             if ($ready.connection -like 'WAITING EXTERNAL GAME*' -and (Test-ManagedServerRunning '21')) { break }
             if ((Test-Mng21GamePrepared @(Get-Process -Name FIFA21 -ErrorAction SilentlyContinue) $ready $exe) -and (Test-ManagedServerRunning '21')) { break }
         }
-        if ($worker.HasExited -and $null -ne $worker.ExitCode -and $worker.ExitCode -ne 0) { throw "MNG FUT n’a pas terminé la préparation (code $($worker.ExitCode)). Consulte les journaux FIFA 21." }
+        if ($worker.HasExited -and $null -ne $worker.ExitCode -and $worker.ExitCode -ne 0) {
+            $failure = Read-JsonFile (Join-Path $root 'runtime\status.json')
+            $reason = @($failure.detail | Where-Object { $_ }) | Select-Object -Last 1
+            if ($reason) { throw ('Connexion FIFA 21 impossible : ' + $reason) }
+            throw "MNG FUT n’a pas terminé la préparation (code $($worker.ExitCode)). Consulte les journaux FIFA 21."
+        }
         $status = Read-JsonFile (Join-Path $root 'runtime\status.json')
         if (-not (Test-ManagedServerRunning '21') -or -not $status) { throw "Le serveur MNG FUT n'est pas prêt. Consulte les journaux FIFA 21." }
         $script:ActiveServerGame = '21'

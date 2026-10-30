@@ -278,6 +278,19 @@ function Wait-ForPort([int]$Port, [int]$TimeoutSeconds = 15) {
     return $false
 }
 
+function Wait-ForServerPorts([object]$Server, [int]$TimeoutSeconds = 15) {
+    # The authenticated gateway can take up to 45 seconds to open a cold club.
+    # Keep one bounded deadline for all local ports and fail early if Python exits.
+    $until = (Get-Date).AddSeconds($TimeoutSeconds)
+    do {
+        if ($Server.HasExited) { return $false }
+        $missing = @(44321, 8090, 10853 | Where-Object { -not (Get-Listener $_) })
+        if ($missing.Count -eq 0) { return $true }
+        Start-Sleep -Milliseconds 300
+    } while ((Get-Date) -lt $until)
+    return $false
+}
+
 function Wait-ForGameProcess([int]$TimeoutSeconds = 180) {
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     do {
@@ -872,7 +885,8 @@ try {
             $serverArgs += @('--account-config', ('"{0}"' -f $AccountGatewayConfig), '--session-file', ('"{0}"' -f $AccountSessionPath), '--account-id', [string]$accountIdentity)
         }
         $server = Start-Process -FilePath $python.Path -ArgumentList $serverArgs -WorkingDirectory $VendorRoot -RedirectStandardOutput $serverLog -RedirectStandardError $serverError -WindowStyle Hidden -PassThru
-        if (-not (Wait-ForPort 44321) -or -not (Wait-ForPort 8090) -or -not (Wait-ForPort 10853)) {
+        $serverReadyTimeout = if ($AccountGatewayConfig) { 75 } else { 15 }
+        if (-not (Wait-ForServerPorts $server $serverReadyTimeout)) {
             if (-not $server.HasExited) { Stop-Process -Id $server.Id -Force }
             throw "FUT server did not become ready on required ports 44321, 8090, and 10853. See $serverError"
         }
