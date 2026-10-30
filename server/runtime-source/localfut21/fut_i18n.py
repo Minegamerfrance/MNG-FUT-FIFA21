@@ -136,6 +136,12 @@ def language_for_request(path, headers, default="fr"):
 def t(text, **values):
     text = str(text or "")
     lang = LANGUAGE.get()
+    # Authored French strings and canonical English catalogue strings share
+    # the same request-scoped translations, including the English locale.
+    from ui_localization import translate
+    translated = translate(text, lang)
+    if translated is not None:
+        return translated.format(**values) if values else translated
     if lang == "en":
         return EN_MESSAGES.get(text,text).format(**values) if values else EN_MESSAGES.get(text,text)
     index = LANGUAGES.index(lang) if lang in LANGUAGES else 0

@@ -1,0 +1,1414 @@
+{
+  "languages": [
+    "fr",
+    "en",
+    "es",
+    "de",
+    "it",
+    "pt"
+  ],
+  "entries": [
+    [
+      "Objectifs",
+      "Objectives",
+      "Objetivos",
+      "Aufgaben",
+      "Obiettivi",
+      "Objetivos"
+    ],
+    [
+      "League",
+      "Leagues",
+      "Ligas",
+      "Ligen",
+      "Campionati",
+      "Ligas"
+    ],
+    [
+      "Saison des frissons",
+      "Season of Frights",
+      "Temporada de escalofríos",
+      "Saison des Schreckens",
+      "Stagione dei brividi",
+      "Temporada dos Arrepios"
+    ],
+    [
+      "Objectifs quotidiens",
+      "Daily objectives",
+      "Objetivos diarios",
+      "Tägliche Aufgaben",
+      "Obiettivi giornalieri",
+      "Objetivos diários"
+    ],
+    [
+      "Objectifs hebdomadaires",
+      "Weekly objectives",
+      "Objetivos semanales",
+      "Wöchentliche Aufgaben",
+      "Obiettivi settimanali",
+      "Objetivos semanais"
+    ],
+    [
+      "Connexion FUT",
+      "FUT login",
+      "Inicio de sesión en FUT",
+      "FUT-Anmeldung",
+      "Accesso a FUT",
+      "Início de sessão no FUT"
+    ],
+    [
+      "Défis quotidiens",
+      "Daily challenges",
+      "Desafíos diarios",
+      "Tägliche Herausforderungen",
+      "Sfide giornaliere",
+      "Desafios diários"
+    ],
+    [
+      "Sur le terrain",
+      "On the pitch",
+      "Sobre el césped",
+      "Auf dem Platz",
+      "In campo",
+      "Em campo"
+    ],
+    [
+      "Victoires quotidiennes",
+      "Daily wins",
+      "Victorias diarias",
+      "Tägliche Siege",
+      "Vittorie giornaliere",
+      "Vitórias diárias"
+    ],
+    [
+      "Semaine de football",
+      "A week of football",
+      "Semana de fútbol",
+      "Eine Woche Fußball",
+      "Settimana di calcio",
+      "Semana de futebol"
+    ],
+    [
+      "Série de victoires",
+      "Winning streak",
+      "Racha de victorias",
+      "Siegesserie",
+      "Serie di vittorie",
+      "Série de vitórias"
+    ],
+    [
+      "Passeurs décisifs",
+      "Assist providers",
+      "Asistentes",
+      "Vorlagengeber",
+      "Uomini assist",
+      "Assistentes"
+    ],
+    [
+      "Buteurs de la semaine",
+      "Scorers of the week",
+      "Goleadores de la semana",
+      "Torjäger der Woche",
+      "Marcatori della settimana",
+      "Goleadores da semana"
+    ],
+    [
+      "Défis de la semaine",
+      "Weekly challenges",
+      "Desafíos semanales",
+      "Wöchentliche Herausforderungen",
+      "Sfide settimanali",
+      "Desafios da semana"
+    ],
+    [
+      "Connectez-vous à FUT.",
+      "Log in to FUT.",
+      "Inicia sesión en FUT.",
+      "Melde dich bei FUT an.",
+      "Accedi a FUT.",
+      "Inicia sessão no FUT."
+    ],
+    [
+      "Renouvellement dimanche à 10 h · heure française",
+      "Resets Sunday at 10:00 · Paris time",
+      "Se renueva el domingo a las 10:00 · hora de París",
+      "Wird sonntags um 10:00 zurückgesetzt · Pariser Zeit",
+      "Si rinnova domenica alle 10:00 · ora di Parigi",
+      "Renova ao domingo às 10:00 · hora de Paris"
+    ],
+    [
+      "Renouvellement à minuit · heure française",
+      "Resets at midnight · Paris time",
+      "Se renueva a medianoche · hora de París",
+      "Wird um Mitternacht zurückgesetzt · Pariser Zeit",
+      "Si rinnova a mezzanotte · ora di Parigi",
+      "Renova à meia-noite · hora de Paris"
+    ],
+    [
+      "Altruiste par excellence",
+      "The ultimate team player",
+      "Generoso por excelencia",
+      "Der perfekte Teamspieler",
+      "Altruista per eccellenza",
+      "Altruísta por excelência"
+    ],
+    [
+      "Soif de buts",
+      "Hungry for goals",
+      "Hambre de gol",
+      "Torhunger",
+      "Fame di gol",
+      "Sede de golos"
+    ],
+    [
+      "Tout en finesse",
+      "All about finesse",
+      "Con sutileza",
+      "Mit viel Gefühl",
+      "Tutta finezza",
+      "Com toda a classe"
+    ],
+    [
+      "Finesse en championnat",
+      "League finesse",
+      "Calidad en la liga",
+      "Gefühl in der Liga",
+      "Finezza in campionato",
+      "Classe no campeonato"
+    ],
+    [
+      "La Ligue 1 en force",
+      "Ligue 1 strength",
+      "El poder de la Ligue 1",
+      "Ligue-1-Stärke",
+      "La forza della Ligue 1",
+      "A força da Ligue 1"
+    ],
+    [
+      "La Bundesliga en force",
+      "Bundesliga strength",
+      "El poder de la Bundesliga",
+      "Bundesliga-Stärke",
+      "La forza della Bundesliga",
+      "A força da Bundesliga"
+    ],
+    [
+      "La Premier League en force",
+      "Premier League strength",
+      "El poder de la Premier League",
+      "Premier-League-Stärke",
+      "La forza della Premier League",
+      "A força da Premier League"
+    ],
+    [
+      "La Serie A en force",
+      "Serie A strength",
+      "El poder de la Serie A",
+      "Serie-A-Stärke",
+      "La forza della Serie A",
+      "A força da Serie A"
+    ],
+    [
+      "LaLiga en force",
+      "LaLiga strength",
+      "El poder de LaLiga",
+      "LaLiga-Stärke",
+      "La forza di LaLiga",
+      "A força da LaLiga"
+    ],
+    [
+      "La connexion française",
+      "The French connection",
+      "La conexión francesa",
+      "Die französische Verbindung",
+      "La connessione francese",
+      "A ligação francesa"
+    ],
+    [
+      "Créateurs de Liga MX",
+      "Liga MX creators",
+      "Creadores de la Liga MX",
+      "Liga-MX-Spielmacher",
+      "Creatori della Liga MX",
+      "Criadores da Liga MX"
+    ],
+    [
+      "Les Tigres à la passe",
+      "Tigres assist makers",
+      "Los Tigres asisten",
+      "Tigres-Vorlagengeber",
+      "Gli assist dei Tigres",
+      "Os Tigres à assistência"
+    ],
+    [
+      "Un nouveau meneur",
+      "A new playmaker",
+      "Un nuevo creador",
+      "Ein neuer Spielmacher",
+      "Un nuovo regista",
+      "Um novo organizador"
+    ],
+    [
+      "Le collectif mexicain",
+      "Mexican teamwork",
+      "El colectivo mexicano",
+      "Mexikanisches Teamwork",
+      "Il collettivo messicano",
+      "O coletivo mexicano"
+    ],
+    [
+      "La touche de Gignac",
+      "The Gignac touch",
+      "El toque de Gignac",
+      "Der Gignac-Touch",
+      "Il tocco di Gignac",
+      "O toque de Gignac"
+    ],
+    [
+      "Nuits effrayantes",
+      "Scary nights",
+      "Noches aterradoras",
+      "Gruselige Nächte",
+      "Notti spaventose",
+      "Noites assustadoras"
+    ],
+    [
+      "Les premiers frissons",
+      "The first chills",
+      "Los primeros escalofríos",
+      "Das erste Frösteln",
+      "I primi brividi",
+      "Os primeiros arrepios"
+    ],
+    [
+      "Une nuit sur le terrain",
+      "A night on the pitch",
+      "Una noche en el campo",
+      "Eine Nacht auf dem Platz",
+      "Una notte in campo",
+      "Uma noite em campo"
+    ],
+    [
+      "Des buts effrayants",
+      "Frightening goals",
+      "Goles aterradores",
+      "Gruselige Tore",
+      "Gol spaventosi",
+      "Golos assustadores"
+    ],
+    [
+      "Des passes à faire peur",
+      "Terrifying assists",
+      "Asistencias de miedo",
+      "Schreckliche Vorlagen",
+      "Assist da paura",
+      "Assistências de meter medo"
+    ],
+    [
+      "Victoires terrifiantes",
+      "Terrifying victories",
+      "Victorias terroríficas",
+      "Schreckliche Siege",
+      "Vittorie terrificanti",
+      "Vitórias aterradoras"
+    ],
+    [
+      "La récolte des citrouilles",
+      "The pumpkin harvest",
+      "La cosecha de calabazas",
+      "Die Kürbisernte",
+      "Il raccolto delle zucche",
+      "A colheita das abóboras"
+    ],
+    [
+      "La citrouille entre en jeu",
+      "The pumpkin enters the game",
+      "La calabaza entra en juego",
+      "Der Kürbis kommt ins Spiel",
+      "La zucca entra in gioco",
+      "A abóbora entra em jogo"
+    ],
+    [
+      "Une récolte victorieuse",
+      "A victorious harvest",
+      "Una cosecha victoriosa",
+      "Eine siegreiche Ernte",
+      "Un raccolto vittorioso",
+      "Uma colheita vitoriosa"
+    ],
+    [
+      "Des passes ensorcelées",
+      "Bewitched assists",
+      "Asistencias hechizadas",
+      "Verhexte Vorlagen",
+      "Assist stregati",
+      "Assistências enfeitiçadas"
+    ],
+    [
+      "Des buts à glacer le sang",
+      "Blood-curdling goals",
+      "Goles escalofriantes",
+      "Tore zum Fürchten",
+      "Gol da brividi",
+      "Golos de gelar o sangue"
+    ],
+    [
+      "Les débuts de Dubois",
+      "Dubois' beginnings",
+      "Los inicios de Dubois",
+      "Die Anfänge von Dubois",
+      "Gli inizi di Dubois",
+      "Os primeiros passos de Dubois"
+    ],
+    [
+      "Dubois victorieux",
+      "Victorious Dubois",
+      "Dubois victorioso",
+      "Siegreicher Dubois",
+      "Dubois vittorioso",
+      "Dubois vitorioso"
+    ],
+    [
+      "Présences effrayantes",
+      "Frightening appearances",
+      "Apariciones aterradoras",
+      "Gruselige Einsätze",
+      "Presenze spaventose",
+      "Presenças assustadoras"
+    ],
+    [
+      "Les débuts aux Spurs",
+      "The Spurs beginnings",
+      "Los inicios en los Spurs",
+      "Die Anfänge bei den Spurs",
+      "Gli inizi agli Spurs",
+      "Os primeiros passos nos Spurs"
+    ],
+    [
+      "Les Trois Lions",
+      "The Three Lions",
+      "Los Tres Leones",
+      "Die Three Lions",
+      "I Tre Leoni",
+      "Os Três Leões"
+    ],
+    [
+      "Un véritable numéro neuf",
+      "A true number nine",
+      "Un auténtico nueve",
+      "Ein echter Neuner",
+      "Un vero numero nove",
+      "Um verdadeiro número nove"
+    ],
+    [
+      "Le départ pour Munich",
+      "The move to Munich",
+      "El salto a Múnich",
+      "Der Wechsel nach München",
+      "Il trasferimento a Monaco",
+      "A mudança para Munique"
+    ],
+    [
+      "Le sens du collectif",
+      "Teamwork instinct",
+      "Instinto colectivo",
+      "Teamgeist",
+      "Lo spirito di squadra",
+      "O sentido de equipa"
+    ],
+    [
+      "Le Soulier d’or",
+      "The Golden Boot",
+      "La Bota de Oro",
+      "Der Goldene Schuh",
+      "La Scarpa d'Oro",
+      "A Bota de Ouro"
+    ],
+    [
+      "Les débuts à Rennes",
+      "The Rennes beginnings",
+      "Los inicios en Rennes",
+      "Die Anfänge in Rennes",
+      "Gli inizi a Rennes",
+      "Os primeiros passos em Rennes"
+    ],
+    [
+      "Les Bleus",
+      "Les Bleus",
+      "Los Bleus",
+      "Les Bleus",
+      "Les Bleus",
+      "Les Bleus"
+    ],
+    [
+      "Le faux neuf parisien",
+      "The Parisian false nine",
+      "El falso nueve parisino",
+      "Die Pariser falsche Neun",
+      "Il falso nove parigino",
+      "O falso nove parisiense"
+    ],
+    [
+      "La conquête de Paris",
+      "The conquest of Paris",
+      "La conquista de París",
+      "Die Eroberung von Paris",
+      "La conquista di Parigi",
+      "A conquista de Paris"
+    ],
+    [
+      "Le génie du collectif",
+      "The teamwork genius",
+      "El genio del colectivo",
+      "Das Teamwork-Genie",
+      "Il genio del collettivo",
+      "O génio do coletivo"
+    ],
+    [
+      "L’instinct du buteur",
+      "The scorer's instinct",
+      "El instinto goleador",
+      "Der Torjägerinstinkt",
+      "L'istinto del goleador",
+      "O instinto goleador"
+    ],
+    [
+      "Les débuts à Villarreal",
+      "The Villarreal beginnings",
+      "Los inicios en Villarreal",
+      "Die Anfänge in Villarreal",
+      "Gli inizi al Villarreal",
+      "Os primeiros passos no Villarreal"
+    ],
+    [
+      "La Roja",
+      "La Roja",
+      "La Roja",
+      "La Roja",
+      "La Roja",
+      "La Roja"
+    ],
+    [
+      "Le maître de l’entrejeu",
+      "The midfield maestro",
+      "El maestro del mediocampo",
+      "Der Mittelfeldstratege",
+      "Il maestro del centrocampo",
+      "O maestro do meio-campo"
+    ],
+    [
+      "Le départ pour Manchester",
+      "The move to Manchester",
+      "El salto a Manchester",
+      "Der Wechsel nach Manchester",
+      "Il trasferimento a Manchester",
+      "A mudança para Manchester"
+    ],
+    [
+      "Le maître du jeu",
+      "The master of the game",
+      "El maestro del juego",
+      "Der Meister des Spiels",
+      "Il maestro del gioco",
+      "O mestre do jogo"
+    ],
+    [
+      "Le collectif s’affirme",
+      "The team comes together",
+      "El colectivo se consolida",
+      "Das Team wächst zusammen",
+      "Il collettivo si afferma",
+      "O coletivo afirma-se"
+    ],
+    [
+      "Les débuts de Kroos",
+      "Kroos' beginnings",
+      "Los inicios de Kroos",
+      "Die Anfänge von Kroos",
+      "Gli inizi di Kroos",
+      "Os primeiros passos de Kroos"
+    ],
+    [
+      "L’apprentissage",
+      "The apprenticeship",
+      "El aprendizaje",
+      "Die Lehrjahre",
+      "L'apprendistato",
+      "A aprendizagem"
+    ],
+    [
+      "Le sens du but",
+      "An eye for goal",
+      "El olfato goleador",
+      "Der Torriecher",
+      "Il fiuto del gol",
+      "O faro de golo"
+    ],
+    [
+      "Le chef d’orchestre",
+      "The conductor",
+      "El director de orquesta",
+      "Der Dirigent",
+      "Il direttore d'orchestra",
+      "O maestro"
+    ],
+    [
+      "L’ascension",
+      "The rise",
+      "El ascenso",
+      "Der Aufstieg",
+      "L'ascesa",
+      "A ascensão"
+    ],
+    [
+      "L’ère bavaroise",
+      "The Bavarian era",
+      "La era bávara",
+      "Die bayerische Ära",
+      "L'era bavarese",
+      "A era bávara"
+    ],
+    [
+      "La précision du maestro",
+      "The maestro's precision",
+      "La precisión del maestro",
+      "Die Präzision des Maestros",
+      "La precisione del maestro",
+      "A precisão do maestro"
+    ],
+    [
+      "La domination allemande",
+      "German dominance",
+      "El dominio alemán",
+      "Die deutsche Dominanz",
+      "Il dominio tedesco",
+      "O domínio alemão"
+    ],
+    [
+      "L'ascension du maestro Toni Kroos",
+      "The rise of maestro Toni Kroos",
+      "El ascenso del maestro Toni Kroos",
+      "Der Aufstieg von Maestro Toni Kroos",
+      "L'ascesa del maestro Toni Kroos",
+      "A ascensão do maestro Toni Kroos"
+    ],
+    [
+      "Ballon",
+      "Ball",
+      "Balón",
+      "Ball",
+      "Pallone",
+      "Bola"
+    ],
+    [
+      "Ballon Citrouille",
+      "Pumpkin ball",
+      "Balón Calabaza",
+      "Kürbisball",
+      "Pallone Zucca",
+      "Bola Abóbora"
+    ],
+    [
+      "Maillot Chat effrayant",
+      "Scary Cat kit",
+      "Equipación Gato aterrador",
+      "Gruselkatzen-Trikot",
+      "Divisa Gatto spaventoso",
+      "Equipamento Gato Assustador"
+    ],
+    [
+      "Maillot Citrouille",
+      "Pumpkin kit",
+      "Equipación Calabaza",
+      "Kürbis-Trikot",
+      "Divisa Zucca",
+      "Equipamento Abóbora"
+    ],
+    [
+      "Maillot Rulebreakers",
+      "Rulebreakers kit",
+      "Equipación Rulebreakers",
+      "Rulebreakers-Trikot",
+      "Divisa Rulebreakers",
+      "Equipamento Rulebreakers"
+    ],
+    [
+      "Écusson",
+      "Badge",
+      "Escudo",
+      "Wappen",
+      "Stemma",
+      "Emblema"
+    ],
+    [
+      "Tifo",
+      "Tifo",
+      "Tifo",
+      "Choreo",
+      "Tifo",
+      "Tifo"
+    ],
+    [
+      "Pack 2 joueurs",
+      "Two Players Pack",
+      "Sobre de dos jugadores",
+      "Zwei-Spieler-Pack",
+      "Pacchetto due giocatori",
+      "Pacote de dois jogadores"
+    ],
+    [
+      "Pack 2 joueurs Or rares",
+      "Two Rare Gold Players Pack",
+      "Sobre de dos jugadores Oro únicos",
+      "Zwei-seltene-Goldspieler-Pack",
+      "Pacchetto due giocatori Oro rari",
+      "Pacote de dois jogadores Ouro raros"
+    ],
+    [
+      "Pack joueur rare 75+",
+      "75+ Rare Player Pack",
+      "Sobre de jugador único 75+",
+      "75+-Seltener-Spieler-Pack",
+      "Pacchetto giocatore raro 75+",
+      "Pacote de jogador raro 75+"
+    ],
+    [
+      "Pack joueurs Argent premium",
+      "Premium Silver Players Pack",
+      "Sobre de jugadores Plata premium",
+      "Premium-Silberspieler-Pack",
+      "Pacchetto giocatori Argento premium",
+      "Pacote de jogadores Prata premium"
+    ],
+    [
+      "Pack joueurs mélangés prime",
+      "Prime Mixed Players Pack",
+      "Sobre de jugadores mixtos prime",
+      "Prime-gemischte-Spieler-Pack",
+      "Pacchetto giocatori misti prime",
+      "Pacote de jogadores mistos prime"
+    ],
+    [
+      "Pack joueurs Électrum",
+      "Electrum Players Pack",
+      "Sobre de jugadores Electro",
+      "Electrum-Spieler-Pack",
+      "Pacchetto giocatori Electrum",
+      "Pacote de jogadores Electrum"
+    ],
+    [
+      "Pack Jumbo Or",
+      "Jumbo Gold Pack",
+      "Sobre Oro jumbo",
+      "Jumbo-Gold-Pack",
+      "Pacchetto Oro maxi",
+      "Pacote Ouro jumbo"
+    ],
+    [
+      "Pack jumbo Or premium",
+      "Jumbo Premium Gold Pack",
+      "Sobre Oro premium jumbo",
+      "Jumbo-Premium-Gold-Pack",
+      "Pacchetto Oro premium maxi",
+      "Pacote Ouro premium jumbo"
+    ],
+    [
+      "Pack Méga",
+      "Mega Pack",
+      "Megasobre",
+      "Mega-Pack",
+      "Mega pacchetto",
+      "Megapacote"
+    ],
+    [
+      "Pack premium Or",
+      "Premium Gold Pack",
+      "Sobre Oro premium",
+      "Premium-Gold-Pack",
+      "Pacchetto Oro premium",
+      "Pacote Ouro premium"
+    ],
+    [
+      "Pack ultime",
+      "Ultimate Pack",
+      "Sobre definitivo",
+      "Ultimatives Pack",
+      "Pacchetto Ultimate",
+      "Pacote Ultimate"
+    ],
+    [
+      "Pack Rulebreakers garanti",
+      "Guaranteed Rulebreakers Pack",
+      "Sobre de Rulebreakers garantizado",
+      "Garantierter-Rulebreakers-Pack",
+      "Pacchetto Rulebreakers garantito",
+      "Pacote Rulebreakers garantido"
+    ],
+    [
+      "Briseur de règles",
+      "Rule breaker",
+      "Romperreglas",
+      "Regelbrecher",
+      "Infrangere le regole",
+      "Quebrador de regras"
+    ],
+    [
+      "Journée des morts",
+      "Day of the Dead",
+      "Día de los Muertos",
+      "Tag der Toten",
+      "Giorno dei morti",
+      "Dia dos Mortos"
+    ],
+    [
+      "Un bonbon ou un sort ?",
+      "Trick or treat?",
+      "¿Truco o trato?",
+      "Süßes oder Saures?",
+      "Dolcetto o scherzetto?",
+      "Doçura ou travessura?"
+    ],
+    [
+      "Gloire d’Old Trafford",
+      "Old Trafford glory",
+      "Gloria de Old Trafford",
+      "Ruhm in Old Trafford",
+      "Gloria a Old Trafford",
+      "Glória de Old Trafford"
+    ],
+    [
+      "Étoile montante",
+      "Rising star",
+      "Estrella emergente",
+      "Aufstrebender Star",
+      "Stella nascente",
+      "Estrela em ascensão"
+    ],
+    [
+      "Technique portugais",
+      "Portuguese technique",
+      "Técnica portuguesa",
+      "Portugiesische Technik",
+      "Tecnica portoghese",
+      "Técnica portuguesa"
+    ],
+    [
+      "Rapidité éclair",
+      "Lightning pace",
+      "Velocidad relámpago",
+      "Blitzschnelles Tempo",
+      "Velocità fulminea",
+      "Velocidade relâmpago"
+    ],
+    [
+      "Sous les projecteurs",
+      "In the spotlight",
+      "Bajo los focos",
+      "Im Rampenlicht",
+      "Sotto i riflettori",
+      "Sob os holofotes"
+    ],
+    [
+      "Performance éclair",
+      "Lightning performance",
+      "Actuación relámpago",
+      "Blitzleistung",
+      "Prestazione fulminea",
+      "Desempenho relâmpago"
+    ],
+    [
+      "L’héritier de Lahm",
+      "Lahm's heir",
+      "El heredero de Lahm",
+      "Lahms Erbe",
+      "L'erede di Lahm",
+      "O herdeiro de Lahm"
+    ],
+    [
+      "Le géant bavarois",
+      "The Bavarian giant",
+      "El gigante bávaro",
+      "Der bayerische Riese",
+      "Il gigante bavarese",
+      "O gigante bávaro"
+    ],
+    [
+      "La Mannschaft",
+      "Die Mannschaft",
+      "La Mannschaft",
+      "Die Mannschaft",
+      "La Mannschaft",
+      "A Mannschaft"
+    ],
+    [
+      "Les débuts d’un prodige",
+      "A prodigy's beginnings",
+      "Los inicios de un prodigio",
+      "Die Anfänge eines Wunderkinds",
+      "Gli inizi di un prodigio",
+      "Os primeiros passos de um prodígio"
+    ],
+    [
+      "Tigres · Liga MX · France",
+      "Tigres · Liga MX · France",
+      "Tigres · Liga MX · Francia",
+      "Tigres · Liga MX · Frankreich",
+      "Tigres · Liga MX · Francia",
+      "Tigres · Liga MX · França"
+    ],
+    [
+      "anglais",
+      "English",
+      "inglés",
+      "englischen",
+      "inglese",
+      "inglês"
+    ],
+    [
+      "français",
+      "French",
+      "francés",
+      "französischen",
+      "francese",
+      "francês"
+    ],
+    [
+      "espagnol",
+      "Spanish",
+      "español",
+      "spanischen",
+      "spagnolo",
+      "espanhol"
+    ],
+    [
+      "BU",
+      "ST",
+      "DC",
+      "ST",
+      "ATT",
+      "PL"
+    ],
+    [
+      "MDC",
+      "CDM",
+      "MCD",
+      "ZDM",
+      "CDC",
+      "MDC"
+    ],
+    [
+      "Accomplissez ces défis effrayants pour obtenir Gignac Rulebreakers !",
+      "Complete these frightening challenges to earn Rulebreakers Gignac!",
+      "¡Completa estos desafíos aterradores para conseguir a Gignac Rulebreakers!",
+      "Schließe diese gruseligen Aufgaben ab, um Rulebreakers Gignac zu erhalten!",
+      "Completa queste sfide spaventose per ottenere Gignac Rulebreakers!",
+      "Conclui estes desafios assustadores para obteres Gignac Rulebreakers!"
+    ],
+    [
+      "Échappez à cette nuit terrifiante et remportez plusieurs récompenses.",
+      "Escape this terrifying night and earn several rewards.",
+      "Escapa de esta noche aterradora y consigue varias recompensas.",
+      "Entkomme dieser schrecklichen Nacht und sichere dir mehrere Belohnungen.",
+      "Sfuggi a questa notte terrificante e ottieni diversi premi.",
+      "Escapa desta noite aterradora e ganha várias recompensas."
+    ],
+    [
+      "Bravez cette récolte terrifiante avec Gignac Rulebreakers et remportez le maillot Citrouille !",
+      "Brave this terrifying harvest with Rulebreakers Gignac and earn the Pumpkin kit!",
+      "¡Afronta esta cosecha aterradora con Gignac Rulebreakers y consigue la equipación Calabaza!",
+      "Stelle dich dieser schrecklichen Ernte mit Rulebreakers Gignac und erhalte das Kürbis-Trikot!",
+      "Affronta questo raccolto terrificante con Gignac Rulebreakers e ottieni la divisa Zucca!",
+      "Enfrenta esta colheita aterradora com Gignac Rulebreakers e ganha o equipamento Abóbora!"
+    ],
+    [
+      "Disputez un match en Rivals ou en Clashs d’équipes.",
+      "Play one match in Rivals or Squad Battles.",
+      "Juega un partido en Rivals o Squad Battles.",
+      "Absolviere ein Spiel in Rivals oder Squad Battles.",
+      "Gioca una partita in Rivals o Squad Battles.",
+      "Disputa um jogo em Rivals ou Squad Battles."
+    ],
+    [
+      "Jeune prodige du Bayern Munich, révélé à Leverkusen, puis de retour en Bavière avant de devenir une légende du Real Madrid. Revivez l'ascension de Toni Kroos.",
+      "A young Bayern Munich prodigy who made his breakthrough at Leverkusen, returned to Bavaria and went on to become a Real Madrid legend. Relive the rise of Toni Kroos.",
+      "Joven prodigio del Bayern Munich, se dio a conocer en Leverkusen y regresó a Baviera antes de convertirse en una leyenda del Real Madrid. Revive el ascenso de Toni Kroos.",
+      "Als junges Talent des FC Bayern Munich gelang ihm in Leverkusen der Durchbruch. Nach seiner Rückkehr nach Bayern wurde er später zur Legende bei Real Madrid. Erlebe den Aufstieg von Toni Kroos erneut.",
+      "Giovane prodigio del Bayern Munich, esploso al Leverkusen e poi tornato in Baviera prima di diventare una leggenda del Real Madrid. Rivivi l'ascesa di Toni Kroos.",
+      "Jovem prodígio do Bayern Munich, revelou-se no Leverkusen e regressou à Baviera antes de se tornar uma lenda do Real Madrid. Revive a ascensão de Toni Kroos."
+    ],
+    [
+      "Terminez les 4 équipes du SBC MNG FUT Kroos pour obtenir Toni Kroos MNG FUT 75.",
+      "Complete all 4 squads in the MNG FUT Kroos SBC to earn Toni Kroos MNG FUT 75.",
+      "Completa las 4 plantillas del DCP MNG FUT Kroos para conseguir a Toni Kroos MNG FUT 75.",
+      "Schließe alle 4 Teams der MNG-FUT-Kroos-SBC ab, um Toni Kroos MNG FUT 75 zu erhalten.",
+      "Completa le 4 rose della SCR MNG FUT Kroos per ottenere Toni Kroos MNG FUT 75.",
+      "Conclui os 4 elencos do DME MNG FUT Kroos para obteres Toni Kroos MNG FUT 75."
+    ],
+    [
+      "Remportez 20 matchs avec Toni Kroos MNG FUT 75 titulaire pour gagner sa version Bayern 85.",
+      "Win 20 matches with Toni Kroos MNG FUT 75 in your starting XI to earn his Bayern 85 version.",
+      "Gana 20 partidos con Toni Kroos MNG FUT 75 en el once inicial para conseguir su versión Bayern 85.",
+      "Gewinne 20 Spiele mit Toni Kroos MNG FUT 75 in der Startelf, um seine Bayern-85-Version zu erhalten.",
+      "Vinci 20 partite con Toni Kroos MNG FUT 75 tra i titolari per ottenere la sua versione Bayern 85.",
+      "Vence 20 jogos com Toni Kroos MNG FUT 75 no onze inicial para ganhares a sua versão Bayern 85."
+    ],
+    [
+      "Adressez 10 passes décisives avec des joueurs français en Clashs d’équipes ou Rivals.",
+      "Assist 10 goals with French players in Squad Battles or Rivals.",
+      "Da 10 asistencias con jugadores franceses en Squad Battles o Rivals.",
+      "Gib 10 Torvorlagen mit französischen Spielern in Squad Battles oder Rivals.",
+      "Fornisci 10 assist con giocatori francesi in Squad Battles o Rivals.",
+      "Faz 10 assistências com jogadores franceses em Squad Battles ou Rivals."
+    ],
+    [
+      "Adressez 5 passes décisives avec des joueurs des Tigres de la UANL en Clashs d’équipes ou Rivals.",
+      "Assist 5 goals with Tigres de la UANL players in Squad Battles or Rivals.",
+      "Da 5 asistencias con jugadores de Tigres de la UANL en Squad Battles o Rivals.",
+      "Gib 5 Torvorlagen mit Spielern von Tigres de la UANL in Squad Battles oder Rivals.",
+      "Fornisci 5 assist con giocatori dei Tigres de la UANL in Squad Battles o Rivals.",
+      "Faz 5 assistências com jogadores dos Tigres de la UANL em Squad Battles ou Rivals."
+    ],
+    [
+      "Adressez au moins une passe décisive avec un joueur au poste MOC dans 6 matchs distincts en Clashs d’équipes ou Rivals.",
+      "Assist at least one goal with a CAM in 6 separate Squad Battles or Rivals matches.",
+      "Da al menos una asistencia con un MCO en 6 partidos distintos de Squad Battles o Rivals.",
+      "Gib mit einem ZOM in 6 verschiedenen Squad-Battles- oder Rivals-Spielen mindestens eine Torvorlage.",
+      "Fornisci almeno un assist con un COC in 6 partite diverse di Squad Battles o Rivals.",
+      "Faz pelo menos uma assistência com um MCO em 6 jogos diferentes de Squad Battles ou Rivals."
+    ],
+    [
+      "Remportez 4 matchs en Clashs d’équipes ou Rivals avec au moins un titulaire des Tigres et une passe décisive d’un joueur français dans chaque match.",
+      "Win 4 Squad Battles or Rivals matches with at least one Tigres player in your starting XI and an assist by a French player in each match.",
+      "Gana 4 partidos de Squad Battles o Rivals con al menos un jugador de Tigres en el once inicial y una asistencia de un jugador francés en cada partido.",
+      "Gewinne 4 Spiele in Squad Battles oder Rivals mit mindestens einem Tigres-Spieler in der Startelf und einer Vorlage eines französischen Spielers in jedem Spiel.",
+      "Vinci 4 partite di Squad Battles o Rivals con almeno un giocatore dei Tigres titolare e un assist di un giocatore francese in ogni partita.",
+      "Vence 4 jogos de Squad Battles ou Rivals com pelo menos um jogador dos Tigres no onze inicial e uma assistência de um jogador francês em cada jogo."
+    ],
+    [
+      "Remportez 5 matchs en Clashs d’équipes ou Rivals avec au moins 3 titulaires de Liga MX et une passe décisive d’un MOC dans chaque match.",
+      "Win 5 Squad Battles or Rivals matches with at least 3 Liga MX starters and an assist by a CAM in each match.",
+      "Gana 5 partidos de Squad Battles o Rivals con al menos 3 titulares de la Liga MX y una asistencia de un MCO en cada partido.",
+      "Gewinne 5 Spiele in Squad Battles oder Rivals mit mindestens 3 Liga-MX-Spielern in der Startelf und einer Vorlage eines ZOM in jedem Spiel.",
+      "Vinci 5 partite di Squad Battles o Rivals con almeno 3 titolari della Liga MX e un assist di un COC in ogni partita.",
+      "Vence 5 jogos de Squad Battles ou Rivals com pelo menos 3 titulares da Liga MX e uma assistência de um MCO em cada jogo."
+    ],
+    [
+      "Revivez le parcours de Harry Kane, des Spurs à Munich, et obtenez sa version Ballon d’or 2026 en prêt pour 15 matchs !",
+      "Relive Harry Kane's journey from Spurs to Munich and earn his 2026 Ballon d'Or version on loan for 15 matches!",
+      "¡Revive el camino de Harry Kane desde los Spurs hasta Múnich y consigue su versión Balón de Oro 2026 cedida durante 15 partidos!",
+      "Erlebe Harry Kanes Weg von den Spurs nach München und erhalte seine Ballon-d'Or-2026-Version als Leihe für 15 Spiele!",
+      "Rivivi il percorso di Harry Kane dagli Spurs a Monaco e ottieni la sua versione Pallone d'Oro 2026 in prestito per 15 partite!",
+      "Revive o percurso de Harry Kane, dos Spurs a Munique, e obtém a sua versão Bola de Ouro 2026 por empréstimo durante 15 jogos!"
+    ],
+    [
+      "Revivez le parcours d’Ousmane Dembélé et obtenez sa version Ballon d’or 2025 en prêt pour 15 matchs !",
+      "Relive Ousmane Dembélé's journey and earn his 2025 Ballon d'Or version on loan for 15 matches!",
+      "¡Revive el camino de Ousmane Dembélé y consigue su versión Balón de Oro 2025 cedida durante 15 partidos!",
+      "Erlebe den Weg von Ousmane Dembélé und erhalte seine Ballon-d'Or-2025-Version als Leihe für 15 Spiele!",
+      "Rivivi il percorso di Ousmane Dembélé e ottieni la sua versione Pallone d'Oro 2025 in prestito per 15 partite!",
+      "Revive o percurso de Ousmane Dembélé e obtém a sua versão Bola de Ouro 2025 por empréstimo durante 15 jogos!"
+    ],
+    [
+      "Revivez le parcours de Rodri et obtenez sa version Ballon d’or 2024 en prêt pour 15 matchs !",
+      "Relive Rodri's journey and earn his 2024 Ballon d'Or version on loan for 15 matches!",
+      "¡Revive el camino de Rodri y consigue su versión Balón de Oro 2024 cedida durante 15 partidos!",
+      "Erlebe den Weg von Rodri und erhalte seine Ballon-d'Or-2024-Version als Leihe für 15 Spiele!",
+      "Rivivi il percorso di Rodri e ottieni la sua versione Pallone d'Oro 2024 in prestito per 15 partite!",
+      "Revive o percurso de Rodri e obtém a sua versão Bola de Ouro 2024 por empréstimo durante 15 jogos!"
+    ],
+    [
+      "Obtenez un Cristiano Ronaldo Flashback célébrant ses premières années en Premier League sous les couleurs de Manchester United.",
+      "Earn a Flashback Cristiano Ronaldo celebrating his early Premier League years with Manchester United.",
+      "Consigue a Cristiano Ronaldo Flashback y celebra sus primeros años en la Premier League con el Manchester United.",
+      "Erhalte Flashback Cristiano Ronaldo und feiere seine frühen Premier-League-Jahre bei Manchester United.",
+      "Ottieni Cristiano Ronaldo Flashback per celebrare i suoi primi anni in Premier League con il Manchester United.",
+      "Obtém Cristiano Ronaldo Flashback para celebrar os seus primeiros anos na Premier League pelo Manchester United."
+    ],
+    [
+      "Terminez ce défi effrayant pour obtenir un pack contenant un joueur Rulebreakers garanti.",
+      "Complete this frightening challenge to earn a pack containing a guaranteed Rulebreakers player.",
+      "Completa este desafío aterrador para conseguir un sobre con un jugador Rulebreakers garantizado.",
+      "Schließe diese gruselige Aufgabe ab, um ein Pack mit einem garantierten Rulebreakers-Spieler zu erhalten.",
+      "Completa questa sfida spaventosa per ottenere un pacchetto con un giocatore Rulebreakers garantito.",
+      "Conclui este desafio assustador para obteres um pacote com um jogador Rulebreakers garantido."
+    ],
+    [
+      "Terminez ce défi effrayant pour obtenir un pack mega vendable.",
+      "Complete this frightening challenge to earn a tradeable Mega Pack.",
+      "Completa este desafío aterrador para conseguir un Megasobre transferible.",
+      "Schließe diese gruselige Aufgabe ab, um ein tauschbares Mega-Pack zu erhalten.",
+      "Completa questa sfida spaventosa per ottenere un Mega pacchetto scambiabile.",
+      "Conclui este desafio assustador para obteres um Megapacote negociável."
+    ],
+    [
+      "un joueur Rulebreakers",
+      "a Rulebreakers player",
+      "un jugador Rulebreakers",
+      "einem Rulebreakers-Spieler",
+      "un giocatore Rulebreakers",
+      "um jogador Rulebreakers"
+    ]
+  ],
+  "templates": [
+    [
+      "Joueur de {league}",
+      "{league} player",
+      "Jugador de {league}",
+      "{league}-Spieler",
+      "Giocatore di {league}",
+      "Jogador da {league}"
+    ],
+    [
+      "Victoires en {league}",
+      "{league} wins",
+      "Victorias en {league}",
+      "Siege in {league}",
+      "Vittorie in {league}",
+      "Vitórias na {league}"
+    ],
+    [
+      "La route du Ballon d’or {year}",
+      "The road to the {year} Ballon d'Or",
+      "El camino al Balón de Oro {year}",
+      "Der Weg zum Ballon d'Or {year}",
+      "La strada verso il Pallone d'Oro {year}",
+      "O caminho para a Bola de Ouro {year}"
+    ],
+    [
+      "prêt de {n} matchs",
+      "{n}-match loan",
+      "cesión de {n} partidos",
+      "Leihe für {n} Spiele",
+      "prestito per {n} partite",
+      "empréstimo de {n} jogos"
+    ],
+    [
+      "Disputez {n} matchs FUT.",
+      "Play {n} FUT matches.",
+      "Juega {n} partidos de FUT.",
+      "Absolviere {n} FUT-Spiele.",
+      "Gioca {n} partite FUT.",
+      "Disputa {n} jogos FUT."
+    ],
+    [
+      "Remportez {n} matchs FUT.",
+      "Win {n} FUT matches.",
+      "Gana {n} partidos de FUT.",
+      "Gewinne {n} FUT-Spiele.",
+      "Vinci {n} partite FUT.",
+      "Vence {n} jogos FUT."
+    ],
+    [
+      "Marquez {n} buts dans des matchs FUT.",
+      "Score {n} goals in FUT matches.",
+      "Marca {n} goles en partidos de FUT.",
+      "Erziele {n} Tore in FUT-Spielen.",
+      "Segna {n} gol nelle partite FUT.",
+      "Marca {n} golos em jogos FUT."
+    ],
+    [
+      "Adressez {n} passes décisives dans des matchs FUT.",
+      "Assist {n} goals in FUT matches.",
+      "Da {n} asistencias en partidos de FUT.",
+      "Gib {n} Torvorlagen in FUT-Spielen.",
+      "Fornisci {n} assist nelle partite FUT.",
+      "Faz {n} assistências em jogos FUT."
+    ],
+    [
+      "Terminez {n} SBC.",
+      "Complete {n} SBCs.",
+      "Completa {n} DCP.",
+      "Schließe {n} SBCs ab.",
+      "Completa {n} SCR.",
+      "Conclui {n} DME."
+    ],
+    [
+      "Disputez {n} matchs avec {player}.",
+      "Play {n} matches with {player}.",
+      "Juega {n} partidos con {player}.",
+      "Absolviere {n} Spiele mit {player}.",
+      "Gioca {n} partite con {player}.",
+      "Disputa {n} jogos com {player}."
+    ],
+    [
+      "Marquez {n} buts avec {player}.",
+      "Score {n} goals with {player}.",
+      "Marca {n} goles con {player}.",
+      "Erziele {n} Tore mit {player}.",
+      "Segna {n} gol con {player}.",
+      "Marca {n} golos com {player}."
+    ],
+    [
+      "Réalisez {n} passes décisives avec {player}.",
+      "Assist {n} goals with {player}.",
+      "Da {n} asistencias con {player}.",
+      "Gib {n} Torvorlagen mit {player}.",
+      "Fornisci {n} assist con {player}.",
+      "Faz {n} assistências com {player}."
+    ],
+    [
+      "Remportez {n} matchs avec {player} titulaire.",
+      "Win {n} matches with {player} in your starting XI.",
+      "Gana {n} partidos con {player} en el once inicial.",
+      "Gewinne {n} Spiele mit {player} in der Startelf.",
+      "Vinci {n} partite con {player} tra i titolari.",
+      "Vence {n} jogos com {player} no onze inicial."
+    ],
+    [
+      "Disputez {n} matchs avec {player}, quelle que soit sa version, en Rivals ou en Clashs d’équipes.",
+      "Play {n} matches with any version of {player} in Rivals or Squad Battles.",
+      "Juega {n} partidos con cualquier versión de {player} en Rivals o Squad Battles.",
+      "Absolviere {n} Spiele mit einer beliebigen Version von {player} in Rivals oder Squad Battles.",
+      "Gioca {n} partite con qualsiasi versione di {player} in Rivals o Squad Battles.",
+      "Disputa {n} jogos com qualquer versão de {player} em Rivals ou Squad Battles."
+    ],
+    [
+      "Disputez {n} matchs avec {player} en Rivals ou en Clashs d’équipes.",
+      "Play {n} matches with {player} in Rivals or Squad Battles.",
+      "Juega {n} partidos con {player} en Rivals o Squad Battles.",
+      "Absolviere {n} Spiele mit {player} in Rivals oder Squad Battles.",
+      "Gioca {n} partite con {player} in Rivals o Squad Battles.",
+      "Disputa {n} jogos com {player} em Rivals ou Squad Battles."
+    ],
+    [
+      "Disputez {n} matchs en Rivals ou en Clashs d’équipes avec {player} titulaire.",
+      "Play {n} matches in Rivals or Squad Battles with {player} in your starting XI.",
+      "Juega {n} partidos en Rivals o Squad Battles con {player} en el once inicial.",
+      "Absolviere {n} Spiele in Rivals oder Squad Battles mit {player} in der Startelf.",
+      "Gioca {n} partite in Rivals o Squad Battles con {player} tra i titolari.",
+      "Disputa {n} jogos em Rivals ou Squad Battles com {player} no onze inicial."
+    ],
+    [
+      "Remportez {n} matchs en Rivals ou en Clashs d’équipes avec {player} titulaire.",
+      "Win {n} matches in Rivals or Squad Battles with {player} in your starting XI.",
+      "Gana {n} partidos en Rivals o Squad Battles con {player} en el once inicial.",
+      "Gewinne {n} Spiele in Rivals oder Squad Battles mit {player} in der Startelf.",
+      "Vinci {n} partite in Rivals o Squad Battles con {player} tra i titolari.",
+      "Vence {n} jogos em Rivals ou Squad Battles com {player} no onze inicial."
+    ],
+    [
+      "Remportez {n} matchs avec {player} en Rivals ou en Clashs d’équipes.",
+      "Win {n} matches with {player} in Rivals or Squad Battles.",
+      "Gana {n} partidos con {player} en Rivals o Squad Battles.",
+      "Gewinne {n} Spiele mit {player} in Rivals oder Squad Battles.",
+      "Vinci {n} partite con {player} in Rivals o Squad Battles.",
+      "Vence {n} jogos com {player} em Rivals ou Squad Battles."
+    ],
+    [
+      "Marquez {n} buts en Rivals ou en Clashs d’équipes avec {player} titulaire.",
+      "Score {n} goals in Rivals or Squad Battles with {player} in your starting XI.",
+      "Marca {n} goles en Rivals o Squad Battles con {player} en el once inicial.",
+      "Erziele {n} Tore in Rivals oder Squad Battles mit {player} in der Startelf.",
+      "Segna {n} gol in Rivals o Squad Battles con {player} tra i titolari.",
+      "Marca {n} golos em Rivals ou Squad Battles com {player} no onze inicial."
+    ],
+    [
+      "Adressez {n} passes décisives en Rivals ou en Clashs d’équipes avec {player} titulaire.",
+      "Assist {n} goals in Rivals or Squad Battles with {player} in your starting XI.",
+      "Da {n} asistencias en Rivals o Squad Battles con {player} en el once inicial.",
+      "Gib {n} Torvorlagen in Rivals oder Squad Battles mit {player} in der Startelf.",
+      "Fornisci {n} assist in Rivals o Squad Battles con {player} tra i titolari.",
+      "Faz {n} assistências em Rivals ou Squad Battles com {player} no onze inicial."
+    ],
+    [
+      "Marquez {n} buts en Rivals ou en Clashs d’équipes.",
+      "Score {n} goals in Rivals or Squad Battles.",
+      "Marca {n} goles en Rivals o Squad Battles.",
+      "Erziele {n} Tore in Rivals oder Squad Battles.",
+      "Segna {n} gol in Rivals o Squad Battles.",
+      "Marca {n} golos em Rivals ou Squad Battles."
+    ],
+    [
+      "Adressez {n} passes décisives en Rivals ou en Clashs d’équipes.",
+      "Assist {n} goals in Rivals or Squad Battles.",
+      "Da {n} asistencias en Rivals o Squad Battles.",
+      "Gib {n} Torvorlagen in Rivals oder Squad Battles.",
+      "Fornisci {n} assist in Rivals o Squad Battles.",
+      "Faz {n} assistências em Rivals ou Squad Battles."
+    ],
+    [
+      "Disputez {n} matchs avec au moins un joueur {nation} titulaire en Rivals ou en Clashs d’équipes.",
+      "Play {n} matches with at least one {nation} player in your starting XI in Rivals or Squad Battles.",
+      "Juega {n} partidos con al menos un jugador {nation} en el once inicial en Rivals o Squad Battles.",
+      "Absolviere {n} Spiele mit mindestens einem {nation} Spieler in der Startelf in Rivals oder Squad Battles.",
+      "Gioca {n} partite con almeno un giocatore {nation} tra i titolari in Rivals o Squad Battles.",
+      "Disputa {n} jogos com pelo menos um jogador {nation} no onze inicial em Rivals ou Squad Battles."
+    ],
+    [
+      "Disputez {n} matchs avec au moins un {role} titulaire en Rivals ou en Clashs d’équipes.",
+      "Play {n} matches with at least one {role} in your starting XI in Rivals or Squad Battles.",
+      "Juega {n} partidos con al menos un {role} en el once inicial en Rivals o Squad Battles.",
+      "Absolviere {n} Spiele mit mindestens einem {role} in der Startelf in Rivals oder Squad Battles.",
+      "Gioca {n} partite con almeno un {role} tra i titolari in Rivals o Squad Battles.",
+      "Disputa {n} jogos com pelo menos um {role} no onze inicial em Rivals ou Squad Battles."
+    ],
+    [
+      "Disputez {n} matchs avec au moins un joueur au poste {role} titulaire en Rivals ou en Clashs d’équipes.",
+      "Play {n} matches with at least one {role} in your starting XI in Rivals or Squad Battles.",
+      "Juega {n} partidos con al menos un {role} en el once inicial en Rivals o Squad Battles.",
+      "Absolviere {n} Spiele mit mindestens einem {role} in der Startelf in Rivals oder Squad Battles.",
+      "Gioca {n} partite con almeno un {role} tra i titolari in Rivals o Squad Battles.",
+      "Disputa {n} jogos com pelo menos um {role} no onze inicial em Rivals ou Squad Battles."
+    ],
+    [
+      "Remportez {n} matchs avec au moins un joueur de {club} titulaire en Rivals ou en Clashs d’équipes.",
+      "Win {n} matches with at least one {club} player in your starting XI in Rivals or Squad Battles.",
+      "Gana {n} partidos con al menos un jugador de {club} en el once inicial en Rivals o Squad Battles.",
+      "Gewinne {n} Spiele mit mindestens einem Spieler von {club} in der Startelf in Rivals oder Squad Battles.",
+      "Vinci {n} partite con almeno un giocatore di {club} tra i titolari in Rivals o Squad Battles.",
+      "Vence {n} jogos com pelo menos um jogador de {club} no onze inicial em Rivals ou Squad Battles."
+    ],
+    [
+      "Remportez {n} matchs avec au moins un joueur du {club} titulaire en Rivals ou en Clashs d’équipes.",
+      "Win {n} matches with at least one {club} player in your starting XI in Rivals or Squad Battles.",
+      "Gana {n} partidos con al menos un jugador del {club} en el once inicial en Rivals o Squad Battles.",
+      "Gewinne {n} Spiele mit mindestens einem Spieler von {club} in der Startelf in Rivals oder Squad Battles.",
+      "Vinci {n} partite con almeno un giocatore del {club} tra i titolari in Rivals o Squad Battles.",
+      "Vence {n} jogos com pelo menos um jogador do {club} no onze inicial em Rivals ou Squad Battles."
+    ],
+    [
+      "Remportez {n} matchs en Clashs d’équipes ou Rivals avec uniquement des joueurs de {league} parmi les 11 titulaires.",
+      "Win {n} matches in Squad Battles or Rivals with only {league} players in your starting XI.",
+      "Gana {n} partidos en Squad Battles o Rivals con solo jugadores de {league} en el once inicial.",
+      "Gewinne {n} Spiele in Squad Battles oder Rivals mit einer Startelf nur aus {league}-Spielern.",
+      "Vinci {n} partite in Squad Battles o Rivals con soli giocatori di {league} tra gli 11 titolari.",
+      "Vence {n} jogos em Squad Battles ou Rivals com apenas jogadores da {league} no onze inicial."
+    ],
+    [
+      "Marquez {n} buts avec des joueurs de {league} en Clashs d’équipes ou Rivals.",
+      "Score {n} goals with {league} players in Squad Battles or Rivals.",
+      "Marca {n} goles con jugadores de {league} en Squad Battles o Rivals.",
+      "Erziele {n} Tore mit {league}-Spielern in Squad Battles oder Rivals.",
+      "Segna {n} gol con giocatori di {league} in Squad Battles o Rivals.",
+      "Marca {n} golos com jogadores da {league} em Squad Battles ou Rivals."
+    ],
+    [
+      "Adressez {n} passes décisives avec des joueurs de {league} en Clashs d’équipes ou Rivals.",
+      "Assist {n} goals with {league} players in Squad Battles or Rivals.",
+      "Da {n} asistencias con jugadores de {league} en Squad Battles o Rivals.",
+      "Gib {n} Torvorlagen mit {league}-Spielern in Squad Battles oder Rivals.",
+      "Fornisci {n} assist con giocatori di {league} in Squad Battles o Rivals.",
+      "Faz {n} assistências com jogadores da {league} em Squad Battles ou Rivals."
+    ],
+    [
+      "Marquez au moins un but en finesse avec un joueur de {league} dans {n} matchs distincts en Clashs d’équipes ou Rivals.",
+      "Score a finesse goal with a {league} player in {n} separate Squad Battles or Rivals matches.",
+      "Marca al menos un gol de calidad con un jugador de {league} en {n} partidos distintos de Squad Battles o Rivals.",
+      "Erziele in {n} verschiedenen Squad-Battles- oder Rivals-Spielen mindestens ein angeschnittenes Tor mit einem {league}-Spieler.",
+      "Segna almeno un gol di precisione con un giocatore di {league} in {n} partite diverse di Squad Battles o Rivals.",
+      "Marca pelo menos um golo em jeito com um jogador da {league} em {n} jogos diferentes de Squad Battles ou Rivals."
+    ],
+    [
+      "Marquez au moins un but hors de la surface avec un joueur de {league} dans {n} matchs distincts en Clashs d’équipes ou Rivals.",
+      "Score from outside the box with a {league} player in {n} separate Squad Battles or Rivals matches.",
+      "Marca al menos un gol desde fuera del área con un jugador de {league} en {n} partidos distintos de Squad Battles o Rivals.",
+      "Erziele in {n} verschiedenen Squad-Battles- oder Rivals-Spielen mindestens ein Tor von außerhalb des Strafraums mit einem {league}-Spieler.",
+      "Segna almeno un gol da fuori area con un giocatore di {league} in {n} partite diverse di Squad Battles o Rivals.",
+      "Marca pelo menos um golo de fora da área com um jogador da {league} em {n} jogos diferentes de Squad Battles ou Rivals."
+    ],
+    [
+      "Réussissez cette série d’objectifs pour gagner le joueur {league} et des récompenses non-échangeables.",
+      "Complete these objectives to earn the {league} player and untradeable rewards.",
+      "Completa estos objetivos para ganar al jugador de {league} y recompensas intransferibles.",
+      "Schließe diese Aufgaben ab, um den {league}-Spieler und untauschbare Belohnungen zu erhalten.",
+      "Completa questi obiettivi per ottenere il giocatore di {league} e premi non scambiabili.",
+      "Conclui estes objetivos para ganhares o jogador da {league} e recompensas não negociáveis."
+    ],
+    [
+      "Choix joueur {n}+ (1 sur {m})",
+      "{n}+ Player Pick (1 of {m})",
+      "Elección de jugador {n}+ (1 de {m})",
+      "{n}+-Spielerwahl (1 aus {m})",
+      "Scelta giocatore {n}+ (1 su {m})",
+      "Escolha de jogador {n}+ (1 de {m})"
+    ],
+    [
+      "Choix joueur {name} (1 sur {m})",
+      "{name} Player Pick (1 of {m})",
+      "Elección de jugador {name} (1 de {m})",
+      "{name}-Spielerwahl (1 aus {m})",
+      "Scelta giocatore {name} (1 su {m})",
+      "Escolha de jogador {name} (1 de {m})"
+    ],
+    [
+      "Équipe {n} + TOTW",
+      "{n}-Rated Squad + TOTW",
+      "Plantilla de {n} + TOTW",
+      "{n}er-Team + TOTW",
+      "Rosa da {n} + TOTW",
+      "Elenco de {n} + TOTW"
+    ],
+    [
+      "{club} : minimum {n} joueur",
+      "{club}: min. {n} player",
+      "{club}: mín. {n} jugador",
+      "{club}: mind. {n} Spieler",
+      "{club}: min. {n} giocatore",
+      "{club}: mín. {n} jogador"
+    ],
+    [
+      "{club} : minimum {n} joueurs",
+      "{club}: min. {n} players",
+      "{club}: mín. {n} jugadores",
+      "{club}: mind. {n} Spieler",
+      "{club}: min. {n} giocatori",
+      "{club}: mín. {n} jogadores"
+    ],
+    [
+      "Réalisations : {n}/{m}.",
+      "Completions: {n}/{m}.",
+      "Completados: {n}/{m}.",
+      "Abschlüsse: {n}/{m}.",
+      "Completamenti: {n}/{m}.",
+      "Conclusões: {n}/{m}."
+    ],
+    [
+      "Adressez {n} passes décisives avec des joueurs Rulebreakers en Rivals ou en Clashs d’équipes.",
+      "Assist {n} goals with Rulebreakers players in Rivals or Squad Battles.",
+      "Da {n} asistencias con jugadores Rulebreakers en Rivals o Squad Battles.",
+      "Gib {n} Torvorlagen mit Rulebreakers-Spielern in Rivals oder Squad Battles.",
+      "Fornisci {n} assist con giocatori Rulebreakers in Rivals o Squad Battles.",
+      "Faz {n} assistências com jogadores Rulebreakers em Rivals ou Squad Battles."
+    ],
+    [
+      "Marquez {n} buts avec des joueurs Rulebreakers en Rivals ou en Clashs d’équipes.",
+      "Score {n} goals with Rulebreakers players in Rivals or Squad Battles.",
+      "Marca {n} goles con jugadores Rulebreakers en Rivals o Squad Battles.",
+      "Erziele {n} Tore mit Rulebreakers-Spielern in Rivals oder Squad Battles.",
+      "Segna {n} gol con giocatori Rulebreakers in Rivals o Squad Battles.",
+      "Marca {n} golos com jogadores Rulebreakers em Rivals ou Squad Battles."
+    ],
+    [
+      "Adressez {n} passes décisives en Rivals ou en Clashs d’équipes, comme Harry Kane avec le Bayern et l’Angleterre en {year}-{season}.",
+      "Assist {n} goals in Rivals or Squad Battles, matching Harry Kane with Bayern and England in {year}-{season}.",
+      "Da {n} asistencias en Rivals o Squad Battles, como Harry Kane con el Bayern e Inglaterra en {year}-{season}.",
+      "Gib {n} Torvorlagen in Rivals oder Squad Battles, wie Harry Kane für Bayern und England in {year}-{season}.",
+      "Fornisci {n} assist in Rivals o Squad Battles, come Harry Kane con il Bayern e l'Inghilterra nel {year}-{season}.",
+      "Faz {n} assistências em Rivals ou Squad Battles, como Harry Kane pelo Bayern e por Inglaterra em {year}-{season}."
+    ],
+    [
+      "Marquez {n} buts en Rivals ou en Clashs d’équipes, comme Harry Kane avec le Bayern et l’Angleterre en {year}-{season}.",
+      "Score {n} goals in Rivals or Squad Battles, matching Harry Kane with Bayern and England in {year}-{season}.",
+      "Marca {n} goles en Rivals o Squad Battles, como Harry Kane con el Bayern e Inglaterra en {year}-{season}.",
+      "Erziele {n} Tore in Rivals oder Squad Battles, wie Harry Kane für Bayern und England in {year}-{season}.",
+      "Segna {n} gol in Rivals o Squad Battles, come Harry Kane con il Bayern e l'Inghilterra nel {year}-{season}.",
+      "Marca {n} golos em Rivals ou Squad Battles, como Harry Kane pelo Bayern e por Inglaterra em {year}-{season}."
+    ],
+    [
+      "Terminez ces défis effrayants pour obtenir une carte Rulebreakers de {player}",
+      "Complete these frightening challenges to earn a Rulebreakers {player} card.",
+      "Completa estos desafíos aterradores para conseguir una carta Rulebreakers de {player}.",
+      "Schließe diese gruseligen Aufgaben ab, um eine Rulebreakers-Karte von {player} zu erhalten.",
+      "Completa queste sfide spaventose per ottenere una carta Rulebreakers di {player}.",
+      "Conclui estes desafios assustadores para obteres uma carta Rulebreakers de {player}."
+    ],
+    [
+      "Échangez {n} joueurs or, dont au moins {m} rares, contre un choix de 3 joueurs notés 80 ou plus. Choisissez-en un seul. Ce défi est réalisable 10 fois maximum.",
+      "Exchange {n} gold players, including at least {m} rares, for a choice of 3 players rated 80 or higher. Pick one player. This challenge can be completed up to 10 times.",
+      "Intercambia {n} jugadores Oro, con al menos {m} únicos, por una elección de 3 jugadores de 80 o más. Elige solo uno. Este desafío se puede completar hasta 10 veces.",
+      "Tausche {n} Goldspieler, darunter mindestens {m} seltene, gegen eine Auswahl aus 3 Spielern mit mindestens 80 GES. Wähle einen Spieler. Diese Aufgabe ist bis zu 10-mal abschließbar.",
+      "Scambia {n} giocatori Oro, di cui almeno {m} rari, per scegliere tra 3 giocatori con valutazione 80 o superiore. Scegline uno. Questa sfida può essere completata al massimo 10 volte.",
+      "Troca {n} jogadores Ouro, incluindo pelo menos {m} raros, por uma escolha entre 3 jogadores com classificação 80 ou superior. Escolhe apenas um. Este desafio pode ser concluído até 10 vezes."
+    ]
+  ]
+}

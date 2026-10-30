@@ -33,6 +33,7 @@ from fut_i18n import LANGUAGE, language_for_request, t
 import fut_inventory
 from fut_inventory import dispatch as inventory_route, filter_items as inventory_filter, criteria as inventory_criteria, deduplicate_owned, cosmetics, cosmetic_item, CONCEPT_BASE
 import league_objectives
+import ui_localization
 import squad_battles_results
 import squad_battles_weekly
 import squad_concepts
@@ -6930,7 +6931,7 @@ def _player_pick_select_response(token_id: int, selection: Any) -> dict[str, Any
 
 
 def route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes) -> tuple[int, dict[str, str], bytes]:
-    token = LANGUAGE.set(language_for_request(raw_path, headers, str(CFG.get("language", "fr"))))
+    token = LANGUAGE.set(ui_localization.request_language(sys.modules[__name__], raw_path, headers, body))
     try:
         result = _route_fut(method, raw_path, headers, body)
         observed_path = urllib.parse.urlsplit('/'+raw_path.lstrip('/')).path.lower().rstrip('/')
@@ -6954,7 +6955,7 @@ def route_fut(method: str, raw_path: str, headers: dict[str, str], body: bytes) 
             if isinstance(document, dict):
                 document['dynamicObjectivesUpdates'] = {'needsGroupsRefresh': True}
                 result = result[0], result[1], json_bytes(document)
-        return result
+        return ui_localization.response(sys.modules[__name__], observed_path, result)
     finally:
         LANGUAGE.reset(token)
 
